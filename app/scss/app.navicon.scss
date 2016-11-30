@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+@mixin transform($transform...){
+  -ms-transform:$transform; 	/// /* IE 9 */
+  -moz-transform:$transform; 	/// /* Firefox */
+  -webkit-transform:$transform; /// /* Safari 和 Chrome */
+  -o-transform:$transform;
+  transform:$transform;
+}
+
+$nav-rotate-location-percent:0.37;
+$nav-rotate-deg:21.5deg;
+$nav-width-percent:0.5;
+$nav-height-percent:0.68;
+
+$nav-icon-size:50px;
+$nav-width-cross:30px;
+$nav-cross-deg:38deg;
+// 50 / 2  * sqrt(2)
+$nav-expand-width: 17.7px;
+$nav-expand-loc:$nav-icon-size/2;
+
+
+
+$nav-icon-width:round($nav-icon-size * $nav-width-percent);
+$nav-icon-height:round($nav-icon-size / 25);
+$nav-icon-left:round($nav-icon-size * (1-$nav-width-percent) ) / 2 - 1;
+$nav-icon-top-location:round($nav-icon-size * (1 - $nav-height-percent)) -$nav-icon-height/2;
+$nav-icon-middle-location:round($nav-icon-size * 0.5) -$nav-icon-height/2;
+$nav-icon-bottom-location:round($nav-icon-size * $nav-height-percent) -$nav-icon-height/2;
+
+
+@mixin transition($transition...){
+  -moz-transition: $transition; /* Firefox 4 */
+  -webkit-transition: $transition; /* Safari 和 Chrome */
+  -o-transition: $transition; /* Opera */
+  transition: $transition;
+}
+
+@mixin rotate($deg){
+  @include transform(rotate($deg));
+}
+
+@mixin transform-origin($origin...){
+  -webkit-transform-origin:$origin;
+  -ms-transform-origin:$origin;
+  transform-origin:$origin;
+}
+
+.nav-icon{
+  position: absolute;
+  //width:;
+  width: $nav-icon-size;
+  height: $nav-icon-size;
+  .nav-top,.nav-middle,.nav-bottom{
+    position: absolute;
+    width: $nav-icon-width;
+    height: $nav-icon-height;
+    background-color: black;
+    left:$nav-icon-left;
+    @include transition(all ease-in-out .2s);
+
+  }
+  .nav-top,.nav-bottom{
+    @include transform-origin(0 $nav-icon-height/2);
+  }
+  .nav-top{
+    top:$nav-icon-top-location;
+  }
+  .nav-middle{
+    top:$nav-icon-middle-location;
+  }
+  .nav-bottom{
+    top:$nav-icon-bottom-location;
+  }
+  &.nav-icon-left{
+    .nav-top{
+      @include rotate(-$nav-rotate-deg);
+    }
+    .nav-middle{
+      opacity: 0;
+    }
+    .nav-bottom{
+      @include rotate($nav-rotate-deg);
+    }
+    .nav-top,.nav-bottom{
+      @include transform-origin($nav-icon-width $nav-icon-height/2);
+    }
+  }
+  &.nav-icon-right{
+    .nav-top{
+      @include rotate($nav-rotate-deg);
+    }
+    .nav-middle{
+      opacity: 0;
+    }
+    .nav-bottom{
+      @include rotate(-$nav-rotate-deg);
+    }
+  }
+  &.nav-icon-close{
+    .nav-top{
+      @include rotate($nav-cross-deg);
+      width:$nav-width-cross;
+    }
+    .nav-middle{
+      opacity: 0;
+    }
+    .nav-bottom{
+      @include rotate(-$nav-cross-deg);
+      width:$nav-width-cross;
+    }
+  }
+}
+
+.nav-expand{
+  position: absolute;
+  height:$nav-icon-size;
+  width:$nav-icon-size;
+  @include transform-origin($nav-expand-width/2 1px);
+  .nav-expand-top,.nav-expand-bottom{
+    width:$nav-expand-width;
+    height: 2px;
+    position: absolute;
+    background-color: black;
+    top:$nav-expand-loc;
+    @include transition(all ease-in-out .2s);
+  }
+  .nav-expand-top{
+    left:9.7px;
+    @include rotate(45deg);
+  }
+  .nav-expand-bottom{
+    left:22.5px;
+    @include rotate(-45deg);
+  }
+
+  &.nav-expand-up{
+    .nav-expand-top{
+      @include rotate(-45deg);
+    }
+    .nav-expand-bottom{
+      @include rotate(45deg);
+    }
+  }
+
+
+}
+
+

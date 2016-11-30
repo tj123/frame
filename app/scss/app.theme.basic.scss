@@ -1,0 +1,109 @@
+@import "app.mixin";
+@import "app.variable";
+
+.theme-basic{
+  
+  
+  .header{
+    background-color: #fff;
+    @include box-shadow($box-shadow-base);
+
+  }
+
+  .header-menu{
+    background-color: #1c2b36;
+    @include box-shadow(0 1px 0 rgba(0,0,0,.25));
+  }
+
+  .menu{
+    a{
+      &:focus{
+        color:#869fb1;
+        background-color: inherit;
+      }
+      color:#869fb1;
+    }
+    background-color: #1c2b36;
+    .divider{
+      border-color: #131e26;
+    }
+    .menu-group{
+      color:#5c798f;
+      font-size: $font-size-smaller;
+    }
+    .menu-item{
+      .menu-item-title{
+        &:hover{
+          background-color: #16232d;
+        }
+      }
+      .menu-sub-item a{
+        &:hover{
+          background-color: #16232d;
+        }
+      }
+      &.active{
+        .menu-item-title{
+          //background-color: #fff;
+          .font-bold{
+            color:#fff;
+          }
+        }
+        .nav{
+          //background-color: #1c2b36;
+          //@include box-shadow($box-shadow-base);
+        }
+        a{
+
+        }
+        background-color: #131e26;
+      }
+    }
+  }
+
+  .menu-show{
+    .header{
+      background-color: #1c2b36;
+    }
+  }
+
+  &.menu-folded{
+    .menu{
+      .menu-item{
+        &.active{
+          .menu-item-title{
+            background-color: #fff;
+          }
+          .nav{
+            background-color: #1c2b36;
+            @include box-shadow($box-shadow-base);
+          }
+          span.font-bold {
+            background-color: #131e26;
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+@media (min-width: 992px) {
+
+  .theme-basic .menu-docked{
+    .menu{
+      .menu-item{
+        &.active{
+          span.font-bold{
+            background-color: #131e26;
+          }
+          .nav{
+            @include box-shadow($box-shadow-base);
+          }
+        }
+      }
+    }
+  }
+
+
+}

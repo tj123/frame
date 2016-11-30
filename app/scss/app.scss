@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+
+@import "app.variable";
+@import "app.navicon";
+@import "app.color";
+@import "app.mis";
+@import "app.header";
+@import "app.menu";
+
+
+
+
+
+
+/// xs
+
+
+.menu{
+  position: fixed;
+  top:$header-height;
+  bottom:0;
+  left:0;
+  //width:$mobile-menu-percent;
+  margin-left:-100%;
+  @include transition(margin-left ease-in-out $menu-show-time);
+  z-index: $z-index-max;
+}
+
+.header{
+  height:$header-height;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  line-height: $header-height;
+  z-index: $z-index-max;
+  .nav-icon{
+    &:hover{
+      cursor: pointer;
+      //background-color: $base-hover-bg;
+    }
+  }
+}
+
+.header-menu{
+  position: fixed;
+  top:0;
+  left:0;
+  height:$header-height;
+  //background-color: $base-bg;
+  margin-left:-100%;
+  z-index: $z-index-max;
+  @include transition(margin-left ease-in-out $menu-show-time);
+}
+
+.content{
+  margin-top:$header-height;
+  z-index: $z-index-bottom;
+}
+
+.mobile-mask{
+  display: none;
+  z-index: $z-index-max;
+}
+
+.content-mask{
+  position: fixed;
+  top:$header-height;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $mobile-mask-color;
+}
+
+.menu-show{
+  .menu{
+    margin-left:0;
+    right:$menu-show-mask-width;
+  }
+  .header-menu{
+    margin-left:0;
+    right:$menu-show-mask-width;
+  }
+  .header{
+    left:inherit;
+    width: $menu-show-mask-width;
+    .navbar-toggle{
+      display: none;
+    }
+  }
+  .mobile-mask{
+    position: fixed;
+    top:$header-height;
+    right: 0;
+    bottom: 0;
+    width: $menu-show-mask-width;
+    background-color: $mobile-mask-color;
+    display: block;
+  }
+  .content{
+    overflow: hidden;
+  }
+}
+
+
+.nav-icon-switch{
+  display: none;
+}
+
+/// sm
+@media (min-width: 768px) {
+
+
+  .menu{
+    position: absolute;
+    margin-left: 0;
+    width:$menu-width;
+
+  }
+
+  .header{
+    position: absolute;
+    left:$menu-width;
+    .navbar-right{
+      margin-right:-30px;
+    }
+  }
+
+  .header-menu{
+    position: absolute;
+    margin-left: 0;
+    width:$menu-width;
+  }
+
+  .content{
+
+    margin-left: $menu-width;
+
+
+  }
+
+  .menu-folded{
+
+    .menu{
+      width:$menu-folded-width;
+    }
+
+    .header-menu{
+      margin-left:-$menu-width;
+    }
+
+    .header{
+      left: 0;
+      //.nav-icon{
+      //  margin-left:-15px;
+      //}
+    }
+
+    .content{
+      margin-left:$menu-folded-width;
+    }
+
+  }
+
+
+
+
+
+
+}
+
+@media (min-width: 992px){
+
+  .menu-docked{
+    .menu{
+      height:$menu-docked-height;
+      width: 100%;
+    }
+
+    .header{
+      left: 0;
+      .nav-icon{
+        display: none;
+      }
+      .nav-icon-switch{
+        display: block;
+      }
+    }
+
+    .header-menu{
+      display: none;
+    }
+
+    .content{
+      margin-top:$menu-docked-height + $header-height;
+      margin-left:0;
+    }
+
+  }
+
+
+}
+
+
+
+@import "app.theme.basic";
