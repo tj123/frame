@@ -38,8 +38,8 @@
                   },
                   loadPage = $grid.loadPage =function (page) {
                        loading();
-                      $http.post(app.CONTEXT + option.url,{
-                        data:{
+                      $http.get(app.CONTEXT + option.url,{
+                        params:{
                           page:2,
                           size:5
                         }
@@ -58,7 +58,7 @@
                       });
                       $.ajax({
                         url:app.CONTEXT + option.url,
-                        method:'POST',
+                        method:'GET',
                         data:{
                           page:2,
                           size:5
