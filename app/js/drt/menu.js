@@ -13,7 +13,6 @@
           $document.bind('click',function () {
             //item.removeClass('active');
           });
-
         }
       };
     }]);

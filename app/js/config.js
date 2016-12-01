@@ -29,6 +29,15 @@ app.config(['$stateProvider', '$urlRouterProvider',
             }]
           }
         })
+      .state('app.role', {
+        url: 'sys/role',
+        templateUrl: 'tpl/sys_role.html',
+        resolve:{
+          deps:['$ocLazyLoad',function (ld) {
+            return ld.load(['js/ctrl/sys_role.js','css/sdgrid.css']);
+          }]
+        }
+      })
   }])
 
 

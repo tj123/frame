@@ -1,104 +1,130 @@
-/* line 3, ../scss/sdgrid.scss */
+@-webkit-keyframes grid-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes grid-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes grid-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes grid-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* line 92, ../scss/sdgrid.scss */
 .sd-grid {
   width: 100%;
-  overflow: hidden;
 }
-/* line 6, ../scss/sdgrid.scss */
-.sd-grid table, .sd-grid tr, .sd-grid td, .sd-grid th {
-  border-collapse: collapse;
-}
-/* line 10, ../scss/sdgrid.scss */
+/* line 95, ../scss/sdgrid.scss */
 .sd-grid table {
   width: 100%;
-  table-layout: fixed;
 }
-/* line 14, ../scss/sdgrid.scss */
+/* line 98, ../scss/sdgrid.scss */
 .sd-grid table .grid-loading {
-  line-height: 800px;
-  height: 800px;
+  line-height: 400px;
+  height: 400px;
 }
-/* line 17, ../scss/sdgrid.scss */
-.sd-grid table .grid-loading img {
-  height: 34px;
-  width: 34px;
+/* line 101, ../scss/sdgrid.scss */
+.sd-grid table .grid-loading i {
+  font-size: 34px;
+  font-weight: normal;
+  -webkit-animation: grid-loading linear 1s infinite;
+  -moz-animation: grid-loading linear 1s infinite;
+  -ms-animation: grid-loading linear 1s infinite;
+  -o-animation: grid-loading linear 1s infinite;
+  animation: grid-loading linear 1s infinite;
 }
-/* line 32, ../scss/sdgrid.scss */
-.sd-grid table .grid-link tr {
+/* line 113, ../scss/sdgrid.scss */
+.sd-grid table tr.grid-odd {
+  background-color: #fff;
+}
+/* line 116, ../scss/sdgrid.scss */
+.sd-grid table tr.grid-even {
+  background-color: #ddd;
+}
+/* line 121, ../scss/sdgrid.scss */
+.sd-grid table.grid-link tbody tr {
   cursor: pointer;
 }
-/* line 34, ../scss/sdgrid.scss */
-.sd-grid table .grid-link tr:hover {
+/* line 123, ../scss/sdgrid.scss */
+.sd-grid table.grid-link tbody tr:hover {
   background: #d0dbde;
 }
-/* line 39, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot {
-  height: 30px;
-  background: #ffffff;
-  line-height: 30px;
-  float: right;
-  font-size: 12px;
-  color: #00cccb;
-  margin-right: 20px;
+/* line 128, ../scss/sdgrid.scss */
+.sd-grid table .grid-foot, .sd-grid table li {
+  list-style: none;
+}
+/* line 133, ../scss/sdgrid.scss */
+.sd-grid table .grid-foot li {
   display: inline-block;
 }
-/* line 48, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .count {
-  display: inline-block;
-  float: left;
-  margin-top: 4px;
-}
-/* line 53, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .count-tip {
-  margin-right: 10px;
-  font-size: 14px;
-  display: block;
-  float: left;
-}
-/* line 59, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .pages {
-  display: inline-block;
-}
-/* line 62, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .page, .sd-grid table .grid-foot .next, .sd-grid table .grid-foot .previous {
-  border: 1px solid #ccc;
-  background: #ffffff;
-  color: #00cccb;
-  text-decoration: none;
-  margin: 0 3px;
-  font-size: 12px;
-  padding: 2px 8px;
-  display: block;
-  float: left;
-  line-height: 20px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-}
-/* line 78, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .more {
-  float: left;
-}
-/* line 81, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .page.active, .sd-grid table .grid-foot .page:hover {
-  background: #00cccb;
+/* line 136, ../scss/sdgrid.scss */
+.sd-grid table .grid-foot .active {
   color: #fff;
-  text-decoration: none;
-  margin: 0 3px;
+  background-color: #0ef9f8;
+  border-color: #0ed6ff;
 }
-/* line 87, ../scss/sdgrid.scss */
-.sd-grid table .grid-foot .disable {
+/* line 141, ../scss/sdgrid.scss */
+.sd-grid table .grid-foot .disable, .sd-grid table .grid-foot .disable:hover, .sd-grid table .grid-foot .disable:focus {
   color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.1);
   cursor: default;
-  border: 1px solid #ccc;
-  text-decoration: none;
-  margin: 0 3px;
-  font-size: 12px;
-  padding: 2px 8px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
 }
 
 /*# sourceMappingURL=sdgrid.css.map */

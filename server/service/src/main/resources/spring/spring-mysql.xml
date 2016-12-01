@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>Spring 数据库连接配置，读取连接属性文件，初始化连接池</description>
+
+    <bean id="dataSource" name="dataSource"
+          class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+          <!--scope="singleton">-->
+        <description>数据源</description>
+        <property name="driverClassName">
+            <value>${jdbc.driverClassName}</value>
+        </property>
+        <property name="url">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+        <!-- 初始化连接大小-->
+        <property name="initialSize">
+            <value>${druid.initialSize}</value>
+        </property>
+        <!-- 最大连接数 -->
+        <property name="maxActive">
+            <value>${druid.maxActive}</value>
+        </property>
+        <!-- 最大空闲 -->
+        <property name="maxIdle">
+            <value>${druid.maxIdle}</value>
+        </property>
+        <!-- 最小空闲 -->
+        <property name="minIdle">
+            <value>${druid.minIdle}</value>
+        </property>
+        <!--  获取连接最大等待时间  -->
+        <property name="maxWait">
+            <value>${druid.maxWait}</value>
+        </property>
+
+    </bean>
+
+    <bean class="com.github.tj123.db.MysqlTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>

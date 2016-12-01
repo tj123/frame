@@ -7,6 +7,7 @@
     'ngSanitize',
     'ngTouch',
     'ngStorage',
+    //'sdGrid',
     'ui.router',
     //'ui.bootstrap',
     //'ui.load',
@@ -23,7 +24,7 @@
           app.service = $provide.service;
           app.constant = $provide.constant;
           app.value = $provide.value;
-          app.CONTEXT = 'localhost:8080/';
+          app.CONTEXT = 'http://localhost/';
         }])
       .controller('AppCtrl', ['$scope', '$localStorage', '$window', '$timeout',
         function ($scope, $localStorage, $window, $timeout) {
@@ -321,7 +322,12 @@
               'js/lib/modules/ngImgCrop/ng-img-crop.js',
               'js/lib/modules/ngImgCrop/ng-img-crop.css'
             ]
-          }]
+          }
+          // ,{
+          //   name:'sdGrid',
+          //   files:['js/drt/sdgrid.js','css/sdgrid.css']
+          // }
+          ]
         });
       }]);
 
