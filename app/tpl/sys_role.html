@@ -1,23 +1,19 @@
 <div class="content-body animated fadeInUp" ng-controller="SysRoleCtrl">
     <div class="col">
-        <div class="wrapper-md b-b p-t-n">
-            <ol class="breadcrumb row wrapper-xs text-xs">
+        <div class="wrapper-sm p-l-sm p-r-sm p-b-n">
+            <ol class="breadcrumb row text-xs m-b-xs">
                 <span><i class="fa fa-circle-o p-r-xs"></i>当前位置：</span>
                 <li>系统管理</li>
                 <li>角色管理</li>
             </ol>
-            <div class="row">
-                <div class="col-xs-12">
-                    <h1 class="h3">角色管理</h1>
-                </div>
-            </div>
         </div>
         <div sd-grid="option" class="sd-grid wrapper-md panel panel-default">
-            <!--            <div class="panel-heading">
-                            Footable - make HTML tables on smaller devices look awesome
-                        </div>-->
+            <div class="panel-heading">
+                <h1 class="h3">角色管理</h1>
+            </div>
             <div class="panel-body b-b b-light">
-                搜索：&nbsp;&nbsp; <input type="text" class="grid-search-input form-control input-sm w-sm inline m-r"/>
+                <input type="text" class="grid-search-input form-control input-sm w-sm inline m-r"/>
+                <a href="javascript:;" class="btn btn-primary">搜索</a>
             </div>
             <div>
                 <table class="table m-b-none grid-link">
@@ -59,18 +55,26 @@
                     <tfoot>
                         <tr>
                             <td class="text-right">
-                                <ul class="grid-foot">
-                                    <li><a class="btn btn-xs btn-default previous disable" ng-click="$grid.previous()" href="javascript:;">&lt;</a></li>
-                                    <li><a class="btn btn-xs btn-default first active" ng-click="$grid.first()" href="javascript:;">1</a></li>
-                                    <li><a class="btn btn-xs btn-default more" ng-click="$grid.morePrevious($event)" href="javascript:;">...</a></li>
-                                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">4</a></li>
-                                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">5</a></li>
-                                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a></li>
-                                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">7</a></li>
-                                    <li><a class="btn btn-xs btn-default more" ng-click="$grid.moreNext()" href="javascript:;">...</a></li>
-                                    <li><a class="btn btn-xs btn-default last" ng-click="$grid.last()" href="javascript:;">20</a></li>
-                                    <li><a class="btn btn-xs btn-default next" ng-click="$grid.next()" href="javascript:;">&gt;</a></li>
-                                </ul>
+                                <div class="wrapper">
+                                    <select class="pages form-control inline w-xs" style="padding:0 2px 2px 2px;height: 25px;">
+                                        <option value="5">每页 5 条</option>
+                                        <option value="10">每页 10 条</option>
+                                        <option value="20">每页 20 条</option>
+                                        <option value="30">每页 30 条</option>
+                                    </select>
+                                    <ul class="inline grid-foot">
+                                        <li><a class="btn btn-xs btn-default previous disable" ng-click="$grid.previous()" href="javascript:;">&lt;</a></li>
+                                        <li><a class="btn btn-xs btn-default first active" ng-click="$grid.first()" href="javascript:;">1</a></li>
+                                        <li><a class="btn btn-xs btn-default more" ng-click="$grid.morePrevious($event)" href="javascript:;">...</a></li>
+                                        <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">4</a></li>
+                                        <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">5</a></li>
+                                        <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a></li>
+                                        <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">7</a></li>
+                                        <li><a class="btn btn-xs btn-default more" ng-click="$grid.moreNext()" href="javascript:;">...</a></li>
+                                        <li><a class="btn btn-xs btn-default last" ng-click="$grid.last()" href="javascript:;">20</a></li>
+                                        <li><a class="btn btn-xs btn-default next" ng-click="$grid.next()" href="javascript:;">&gt;</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     </tfoot>

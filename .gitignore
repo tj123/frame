@@ -2,8 +2,9 @@ logs/*
 !.gitkeep
 node_modules/
 tmp
-.idea/
+.idea
 bower_components/
 npm-debug.log
-.sass-cache/
+.sass-cache
+*/target/*
 

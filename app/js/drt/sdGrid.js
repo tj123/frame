@@ -12,10 +12,11 @@
                   $gridFoot = table.find('.grid-foot'),
                   trLink = table.hasClass('grid-link'),
                   $grid = scope[option.name||'$grid'] = {},
+                  size = option.size || 10,
                   init = function () {
                       $loading.appendTo(tbody);
                       loadPage(1);
-                      $gridFoot.parent('td').attr('colspan',columnLen);
+                      $gridFoot.parent().parent('td').attr('colspan',columnLen);
                   },
                   $loading = angular.element('<tr style="display: none;">'
                     +'<td class="grid-loading text-center" colspan="'+columnLen+'">'
@@ -37,9 +38,12 @@
                   },
                   loadPage = $grid.loadPage =function (page) {
                        loading();
-                      $http.get(app.CONTEXT + option.url,{
-                          data:{page:page}
-                      }).success(function (dt) {
+                      $http.post(app.CONTEXT + option.url,{
+                        data:{
+                          page:2,
+                          size:5
+                        }
+                      },false).success(function (dt) {
                           if(dt.state == true){
                               $.extend(true,$grid,dt.data);
 
@@ -48,6 +52,20 @@
 
                           }
                         loadComplete();
+                      }).error(function (e) {
+                        loadComplete();
+                        console.error(e);
+                      });
+                      $.ajax({
+                        url:app.CONTEXT + option.url,
+                        method:'POST',
+                        data:{
+                          page:2,
+                          size:5
+                        },
+                        success:function (d) {
+                          console.log(d);
+                        }
                       });
                   },
                   go = $grid.go = function (e) {

@@ -5,7 +5,9 @@ import com.shundian.frame.api.sys.MenuService;
 import com.shundian.lib.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServlet;
@@ -20,7 +22,7 @@ public class MenuAction {
     private MenuService menuService;
 
     @RequestMapping
-    public Result<?> list(Page page, HttpServletResponse response){
+    public Result<?> list(Page data, HttpServletResponse response){
         response.setHeader("Access-Control-Allow-Origin","*");
         Result<Object> result = new Result<Object>();
 
@@ -30,7 +32,7 @@ public class MenuAction {
             e.printStackTrace();
         }
         try {
-            result.ok(menuService.list(page));
+            result.ok(menuService.list(data));
         } catch (Exception e) {
             result.error(e.getMessage());
         }
