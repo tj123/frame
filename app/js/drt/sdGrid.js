@@ -38,12 +38,17 @@
                   },
                   loadPage = $grid.loadPage =function (page) {
                        loading();
-                      $http.get(app.CONTEXT + option.url,{
-                        params:{
+                      $http({
+                        url:app.CONTEXT + option.url,
+                        method:'POST',
+                        data:{
                           page:2,
                           size:5
+                        },
+                        headers:{
+                          'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
                         }
-                      },false).success(function (dt) {
+                      }).success(function (dt) {
                           if(dt.state == true){
                               $.extend(true,$grid,dt.data);
 
@@ -56,12 +61,16 @@
                         loadComplete();
                         console.error(e);
                       });
+                      var data = {
+                        page:2,
+                        size:5
+                      }
                       $.ajax({
                         url:app.CONTEXT + option.url,
-                        method:'GET',
-                        data:{
-                          page:2,
-                          size:5
+                        method:'POST',
+                        data:data,
+                        headers:{
+                          //'Content-Type':'application/json;charset=utf-8'
                         },
                         success:function (d) {
                           console.log(d);

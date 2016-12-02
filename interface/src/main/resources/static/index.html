@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="angular.js"></script>
+  <script>
+    angular.module('app',[]).controller('HelloCtrl',function ($scope,$http) {
+      $scope.a = 'world';
+
+      $http({
+        url:'sys/menu',
+        method:'POST',
+        data:{
+          page:2,
+          size:5
+        }
+      }).success(function (data) {
+        console.log(data);
+      })
+
+    });
+  </script>
+</head>
+<body ng-controller="HelloCtrl">
+<h1>hello {{ a }}</h1>
+</body>
+</html>

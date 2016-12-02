@@ -286,7 +286,7 @@
         }])
       .constant('JQ_CONFIG', {
         footable: ['js/lib/jquery/footable/footable.all.min.js', 'js/lib/jquery/footable/footable.core.css'],
-        sdGrid:[]
+        sdGrid: []
         //footable: ['js/lib/jquery/footablev3/footable.js', 'js/lib/jquery/footablev3/footable.bootstrap.css']
         //footable: ['js/lib/jquery/footablev2/footable.js', 'js/lib/jquery/footablev2/footable.core.css']
       })
@@ -323,14 +323,85 @@
               'js/lib/modules/ngImgCrop/ng-img-crop.css'
             ]
           }
-          // ,{
-          //   name:'sdGrid',
-          //   files:['js/drt/sdgrid.js','css/sdgrid.css']
-          // }
+            // ,{
+            //   name:'sdGrid',
+            //   files:['js/drt/sdgrid.js','css/sdgrid.css']
+            // }
           ]
         });
       }]);
 
 
 })(window, window.angular, jQuery, undefined);
+
+// register the interceptor as a service
+app.factory('myHttpInterceptor', function ($q) {
+  return {
+    // optional method
+    'request': function (config) {
+      // do something on success
+      return config;
+    },
+
+    // optional method
+    'requestError': function (rejection) {
+      // do something on error
+      if (canRecover(rejection)) {
+        return responseOrNewPromise
+      }
+      return $q.reject(rejection);
+    },
+
+
+    // optional method
+    'response': function (response) {
+      // do something on success
+      return response;
+    },
+
+    // optional method
+    'responseError': function (rejection) {
+      // do something on error
+      if (canRecover(rejection)) {
+        return responseOrNewPromise
+      }
+      return $q.reject(rejection);
+    }
+  };
+});
+
+app.provider('hehe',function ($httpProvider) {
+
+  $httpProvider.interceptors.push('myHttpInterceptor');
+
+
+// alternatively, register the interceptor via an anonymous factory
+  $httpProvider.interceptors.push(function ($q) {
+    return {
+      'request': function (config) {
+        console.log(config);
+        return config;
+      },
+
+      'response': function (response) {
+        console.log(response);
+        return response;
+      }
+    };
+  });
+
+  return {
+    $get:function () {
+      console.log(hehe);
+      return{
+        a:function () {
+          console.log(a);
+        }
+      }
+    }
+  }
+
+});
+
+
 
