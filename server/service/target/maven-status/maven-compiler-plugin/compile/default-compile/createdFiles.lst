@@ -1,0 +1,3 @@
+com\shundian\frame\service\impl\sys\MenuServiceImpl.class
+com\shundian\frame\dao\MenuDao.class
+com\shundian\frame\dao\impl\MenuDaoImpl.class
