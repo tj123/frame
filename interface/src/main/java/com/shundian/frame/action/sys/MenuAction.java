@@ -20,7 +20,6 @@ public class MenuAction {
 
     @RequestMapping
     public Result<?> list(Page page, HttpServletResponse response){
-        System.out.println(page);
         Result<Object> result = new Result<Object>();
 
         try {
@@ -29,7 +28,7 @@ public class MenuAction {
             e.printStackTrace();
         }
         try {
-            result.ok(menuService.list(new Page()));
+            result.ok(menuService.list(page));
         } catch (Exception e) {
             result.error(e.getMessage());
         }

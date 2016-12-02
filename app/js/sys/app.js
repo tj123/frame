@@ -380,11 +380,19 @@ app.provider('hehe',function ($httpProvider) {
     return {
       'request': function (config) {
         console.log(config);
+        config.transformRequest = [function (d) {
+          return angular.isObject(d)?$.param(d):d;
+        }];
+
         return config;
       },
 
       'response': function (response) {
         console.log(response);
+
+        console.log(response.headers());
+
+
         return response;
       }
     };

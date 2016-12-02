@@ -46,8 +46,9 @@
                           size:5
                         },
                         headers:{
-                          'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
-                        }
+                          //'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
+                        },
+
                       }).success(function (dt) {
                           if(dt.state == true){
                               $.extend(true,$grid,dt.data);
@@ -78,7 +79,7 @@
                       });
                   },
                   go = $grid.go = function (e) {
-                    console.log(e.target);
+                    loadPage(parseInt(angular.element(e.target).text()));
                   },
                   next = $grid.next = function () {
 
@@ -100,6 +101,8 @@
                   };
                   init();
 
+
+              console.log($.param({a:'sdfsdf',"bs":'sdfsdfsdf'}));
 
                 console.log($http);
                 console.log(tbody);

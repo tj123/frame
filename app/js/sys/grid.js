@@ -1,7 +1,7 @@
-;(function (window, angular, $, undefined) {
+;(function (angular, $, undefined) {
 
 
 
 
-})(window, window.angular, jQuery, undefined);
+})(window.angular, jQuery);
 

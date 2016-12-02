@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="angular.js"></script>
+  <script src="jquery.js"></script>
   <script>
     angular.module('app',[]).controller('HelloCtrl',function ($scope,$http) {
       $scope.a = 'world';
@@ -22,6 +23,18 @@
         console.log(data);
       })
 
+    });
+    debugger
+    $.ajax({
+      url:'sys/menu',
+      method:'POST',
+      data:{
+        page:2,
+        size:5
+      },
+      success:function (e) {
+        console.log(e);
+      }
     });
   </script>
 </head>
