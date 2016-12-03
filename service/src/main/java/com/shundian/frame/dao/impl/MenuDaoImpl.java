@@ -17,6 +17,6 @@ public class MenuDaoImpl implements MenuDao {
     private MysqlTemplate mysqlTemplate;
 
     public Map<String, Object> list(Page page) throws Exception {
-        return mysqlTemplate.findPage("select * from tsys_menu",page);
+        return mysqlTemplate.findPage("select * from user",page);
     }
 }

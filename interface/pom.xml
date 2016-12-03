@@ -17,7 +17,7 @@
 
     <properties>
         <!-- The main class to start by executing java -jar -->
-        <start-class>com.shundian.frame.starter.Application</start-class>
+        <start-class>com.shundian.frame.Application</start-class>
     </properties>
 
     <dependencies>

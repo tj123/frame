@@ -2,6 +2,7 @@ package com.shundian.frame.action.sys;
 
 import com.github.tj123.db.Page;
 import com.shundian.frame.api.sys.MenuService;
+import com.shundian.frame.service.CityService;
 import com.shundian.lib.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -17,6 +18,9 @@ public class MenuAction {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private CityService cityService;
 
     @RequestMapping
     public Result<?> list(Page page, HttpServletResponse response){
@@ -35,6 +39,19 @@ public class MenuAction {
 
         return result;
     }
+
+    @RequestMapping("/1")
+    public Result<?> listCity(){
+        Result<Object> result = new Result<Object>();
+        try {
+            result.ok(cityService.list());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
 
 
 }
