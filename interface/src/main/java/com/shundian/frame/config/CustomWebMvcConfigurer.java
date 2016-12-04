@@ -1,5 +1,6 @@
 package com.shundian.frame.config;
 
+import com.github.tj123.auth.permission.PermissionInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author CaoJian
  *
  */
-//@Configuration
+@Configuration
 public class CustomWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -19,7 +20,8 @@ public class CustomWebMvcConfigurer extends WebMvcConfigurerAdapter {
         // addPathPatterns 用于添加拦截规则  
         // excludePathPatterns 用于排除拦截  
         //registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
-        super.addInterceptors(registry);  
+		registry.addInterceptor(new PermissionInterceptor()).addPathPatterns("/**");
+        super.addInterceptors(registry);
 	}
 
 }

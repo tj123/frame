@@ -39,6 +39,12 @@
             <artifactId>spring-boot-starter-velocity</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.tj123</groupId>
+            <artifactId>auth</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 

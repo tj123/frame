@@ -3,10 +3,7 @@ package com.shundian.frame.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Setter
 @Getter
@@ -20,5 +17,11 @@ public class City {
 	private String name;
 
 	private String state;
+
+	@Transient
+	private Integer page = 1;
+
+	@Transient
+	private Integer rows = 10;
 
 }
