@@ -1,7 +1,6 @@
 package com.shundian.frame.config;
 
-import com.github.tj123.auth.permission.PermissionInterceptor;
-import org.springframework.context.annotation.Configuration;
+import com.shundian.lib.permission.PermissionInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -11,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author CaoJian
  *
  */
-@Configuration
+//@Configuration
 public class CustomWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 	@Override

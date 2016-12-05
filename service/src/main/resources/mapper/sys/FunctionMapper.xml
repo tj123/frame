@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shundian.frame.mapper.sys.FunctionMapper">
+
+
+
+    <insert id="insertUpdate" keyProperty="id" parameterType="com.shundian.frame.model.sys.Function">
+
+        <selectKey keyProperty="id" resultType="String" order="AFTER">
+            select id from tsys_function where `class` = #{clazz};
+        </selectKey>
+
+        insert into tsys_function (
+        `id`,`uid`,`parentId`,`class`,`name`,`uiSref`,`order`,`icon`,`alias`,`isShow`,`project`
+        ) value (
+        #{id},#{uid},#{parentId},#{clazz},#{name},#{uiSref},#{order},#{icon},#{alias},#{isShow},'${project.getKey()}'
+        ) on duplicate key update `class` = #{clazz};
+
+    </insert>
+
+
+</mapper>

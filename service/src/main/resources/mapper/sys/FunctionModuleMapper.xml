@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shundian.frame.mapper.sys.FunctionModuleMapper">
+
+
+
+
+    <insert id="insertUpdate" keyProperty="id" parameterType="com.shundian.frame.model.sys.FunctionModule">
+
+        insert into tsys_function_module(`id`,`uid`,`functionId`,`key`,`name`) value
+        (#{id},#{uid},#{functionId},#{key},#{name}) on duplicate key update `key` = #{key};
+
+    </insert>
+
+
+</mapper>
