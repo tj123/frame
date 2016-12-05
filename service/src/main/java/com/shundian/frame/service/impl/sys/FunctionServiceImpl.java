@@ -21,60 +21,84 @@ import java.util.Random;
 @Service
 public class FunctionServiceImpl implements FunctionService {
 
-	@Autowired
-	private FunctionMapper mapper;
+    @Autowired
+    private FunctionMapper mapper;
 
-	@Autowired
-	private FunctionModuleMapper functionModuleMapper;
+    @Autowired
+    private FunctionModuleMapper functionModuleMapper;
 
-	public <F extends FunctionType<?>, M extends ModuleType> void insertUpdateModule(Class<F> functionClass, Class<M> moduleClass) throws Exception {
-		Function function = new Function();
-		F functionType = functionClass.newInstance();
-		function.setClazz(functionClass.getName());
-		function.setName(functionType.getName());
-		function.setUiSref(functionType.getUiSref());
-		function.setProject(EnumUtil.valueOf(ProjectTypeEnum.class,String.valueOf(functionType.getProject())));
-		function.setShow(true);
-		function.setOrder(new Random().nextInt(20));
-		function.setUid(functionType.getId());
-		String functionId = UuidUtil.getUUID();
-		function.setId(functionId);
-		if(mapper.selectDuplicate(function) > 0){
-			throw new Exception(function.getName() + " 功能 uid 重复！");
-		}
-		mapper.insertUpdate(function);
-		functionId = function.getId();
-		M module = moduleClass.newInstance();
-		FunctionModule functionModule = new FunctionModule();
-		functionModule.setFunctionId(functionId);
-		functionModule.setName(module.getName());
-		functionModule.setKey(module.getKey());
-		functionModule.setUid(module.getId());
-		functionModule.setId(UuidUtil.getUUID());
-		functionModuleMapper.insertUpdate(functionModule);
-	}
+    /**
+     * 插入数据并判断是否存在是否重复
+     */
+    public void insert(Map<Class<? extends FunctionType<?>>, List<Class<? extends ModuleType>>> functions) throws Exception {
+        for (Map.Entry<Class<? extends FunctionType<?>>, List<Class<? extends ModuleType>>> entry : functions.entrySet()) {
+            Class<? extends FunctionType> functionClass = entry.getKey();
+            List<Class<? extends ModuleType>> moduleClasses = entry.getValue();
+            FunctionType<?> functionType = functionClass.newInstance();
+            Function function = new Function();
+            function.setUid(functionType.getId());
+            List<Function> funcs = mapper.select(function);
+            if (funcs == null || funcs.isEmpty() || funcs.size() == 0) {
+                function.setClazz(functionClass.getName());
+                function.setName(functionType.getName());
+                function.setUiSref(functionType.getUiSref());
+                function.setProject(EnumUtil.valueOf(ProjectTypeEnum.class, String.valueOf(functionType.getProject())));
+                function.setIsShow(true);
+                function.setOrder(new Random().nextInt(20));
+                function.setId(UuidUtil.getUUID());
+                mapper.insert(function);
+            } else {
+                Function dbFunction = null;
+                if (funcs.size() > 1) {
+                    throw new Exception("功能 " + functionType.getName() + " uid 重复！");
+                }
+                for (Function func : funcs) {
+                    if (func.getClazz().equals(functionClass.getName())) {
+                        dbFunction = func;
+                    }
+                }
+                if (dbFunction != null) {
+                    function.setId(dbFunction.getId());
+                    if ((!functionType.getName().equals(dbFunction.getName())
+                            || !functionType.getUiSref().equals(dbFunction.getUiSref()))) {
+                        function.setClazz(functionClass.getName());
+                        function.setName(functionType.getName());
+                        function.setUiSref(functionType.getUiSref());
+                        mapper.updateFunction(function);
+                    }
+                } else {
+                    throw new Exception("功能 " + functionType.getName() + " uid 重复！");
+                }
+            }
+            for (Class<? extends ModuleType> moduleClass : moduleClasses) {
+                ModuleType module = moduleClass.newInstance();
+                FunctionModule functionModule = new FunctionModule();
+                functionModule.setFunctionId(function.getId());
+                functionModule.setName(module.getName());
+                functionModule.setKey(module.getKey());
+                functionModule.setClazz(moduleClass.getName());
+                functionModule.setUid(module.getId());
+                if (functionModuleMapper.selectDuplicate(functionModule) > 0) {
+                    throw new Exception("模块 " + functionModule.getName() + " uid 重复！");
+                }
+                FunctionModule select = new FunctionModule();
+                select.setFunctionId(functionModule.getFunctionId());
+                select.setUid(functionModule.getUid());
+                List<FunctionModule> select1 = functionModuleMapper.select(select);
+                if (select1 == null || select1.isEmpty() || select1.size() == 0) {
+                    functionModuleMapper.insert(functionModule);
+                } else if (select1.size() == 1) {
+                    FunctionModule selectModule = select1.get(0);
+                    if (!functionModule.getKey().equals(selectModule.getKey()) ||
+                            !functionModule.getName().equals(selectModule.getName())) {
+                        functionModuleMapper.updateModule(functionModule);
+                    }
+                } else {
+                    throw new Exception("模块 " + functionModule.getName() + " 错误！");
+                }
+            }
 
-	public <F extends FunctionType<?>, M extends ModuleType> void insert(Map<Class<F>, List<Class<M>>> functions) throws Exception {
-		for (Map.Entry<Class<F>, List<Class<M>>> entry : functions.entrySet()) {
-			Class<F> functionClass = entry.getKey();
-			List<Class<M>> moduleClasses = entry.getValue();
-			F functionType = functionClass.newInstance();
-			Function function = new Function();
-			function.setClazz(functionClass.getName());
-			function.setUid(functionType.getId());
-
-
-
-			function.setName(functionType.getName());
-			function.setUiSref(functionType.getUiSref());
-			function.setProject(EnumUtil.valueOf(ProjectTypeEnum.class,String.valueOf(functionType.getProject())));
-			function.setShow(true);
-			function.setOrder(new Random().nextInt(20));
-
-			String functionId = UuidUtil.getUUID();
-			function.setId(functionId);
-
-		}
-	}
+        }
+    }
 
 }

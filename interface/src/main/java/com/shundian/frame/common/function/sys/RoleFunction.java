@@ -10,17 +10,17 @@ public class RoleFunction extends BaseFunction {
 
     @Override
     public Short getId() {
-        return 4;
+        return 7;
     }
 
     @Override
     public String getName() {
-        return "--------角色管理le";
+        return "角色管理";
     }
 
     @Override
     public String getUiSref() {
-        return "sys------.role";
+        return "sys.role";
     }
 
 }

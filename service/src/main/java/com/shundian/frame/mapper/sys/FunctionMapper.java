@@ -6,8 +6,9 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface FunctionMapper extends Mapper<Function> {
 
-    void insertUpdate(Function function) throws Exception;
-
     Integer selectDuplicate(Function function) throws Exception;
+
+    void updateFunction(Function function) throws Exception;
+
 }
 

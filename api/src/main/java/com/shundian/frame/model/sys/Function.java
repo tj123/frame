@@ -26,14 +26,15 @@ public class Function implements Serializable{
 	private String name;
 	
 	private String uiSref;
-	
-	private int order;
+
+	@Column(name = "order_")
+	private Integer order;
 	
 	private String icon;
 	
 	private String alias;
 	
-	private boolean isShow;
+	private Boolean isShow;
 	
 	private ProjectTypeEnum project;
 
