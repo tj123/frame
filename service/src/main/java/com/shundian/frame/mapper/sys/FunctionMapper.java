@@ -8,5 +8,6 @@ public interface FunctionMapper extends Mapper<Function> {
 
     void insertUpdate(Function function) throws Exception;
 
+    Integer selectDuplicate(Function function) throws Exception;
 }
 

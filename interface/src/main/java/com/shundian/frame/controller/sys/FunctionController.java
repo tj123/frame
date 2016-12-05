@@ -1,4 +1,4 @@
-package com.shundian.frame.controller;
+package com.shundian.frame.controller.sys;
 
 import com.shundian.frame.api.sys.FunctionService;
 import com.shundian.frame.common.function.module.ScanModule;
@@ -17,6 +17,9 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -26,12 +29,13 @@ import java.util.Map;
 public class FunctionController {
 
     @Autowired
-    FunctionService functionService;
+    private FunctionService functionService;
 
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
-    public Result<?> list(){
+    @RequestMapping
+    public Result<?> list() {
         Result<Object> result = new Result<Object>();
 
 
@@ -41,33 +45,45 @@ public class FunctionController {
 
     @RequestMapping("/scan")
     @Module(ScanModule.class)
-    public Result<?> scan(){
+    public Result<?> scan() {
         Result<?> res = new Result<Object>();
         Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping.getHandlerMethods();
+        Map<Class<? extends FunctionType<?>>, List<Class<? extends ModuleType>>> functions = new HashMap<Class<? extends FunctionType<?>>, List<Class<? extends ModuleType>>>();
         for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : map.entrySet()) {
             Method method = entry.getValue().getMethod();
             Class<?> clazz = method.getDeclaringClass();
             Function methodFunction = method.getAnnotation(Function.class);
             Function classFunction = clazz.getAnnotation(Function.class);
-            Function function = (methodFunction != null) ? methodFunction :classFunction;
+            Function function = (methodFunction != null) ? methodFunction : classFunction;
             Module moduleMethod = method.getAnnotation(Module.class);
-            if(function != null){
+            if (function != null) {
                 Class<? extends FunctionType<?>>[] functionClasses = function.value();
                 Class<? extends ModuleType> moduleClass = function.module();
-                if(moduleMethod != null){
+                if (moduleMethod != null) {
                     moduleClass = moduleMethod.value();
                 }
-                for(Class<? extends FunctionType<?>> functionClass:functionClasses){
-                    try {
-                        functionService.insertUpdateModule(functionClass,moduleClass);
-                    } catch (Exception e) {
-                        log.debug("扫描出错",e);
+                for (Class<? extends FunctionType<?>> functionClass : functionClasses) {
+                    List<Class<? extends ModuleType>> modules = functions.get(functionClass);
+                    if (modules == null) {
+                        modules = new ArrayList<Class<? extends ModuleType>>();
                     }
+                    modules.add(moduleClass);
+                    functions.put(functionClass, modules);
                 }
-            }else if(moduleMethod != null){
-                log.error("@Module 配置错误:不知道模块属于哪个功能!",new Exception("@Module 配置错误:不知道模块属于哪个功能!"));
+            } else if (moduleMethod != null) {
+                String msg = "@Module 配置错误:不知道模块属于哪个功能!";
+                log.error(msg, new Exception(msg));
+                res.error(msg);
             }
         }
+
+        try {
+            functionService.insert(functions);
+        } catch (Exception e) {
+            log.debug("扫描出错", e);
+            res.error(e.getMessage());
+        }
+
         return res.ok();
     }
 

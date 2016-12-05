@@ -10,7 +10,7 @@ public class LoginLogFunction extends BaseFunction {
 
     @Override
     public Short getId() {
-        return 4;
+        return 6;
     }
 
     @Override

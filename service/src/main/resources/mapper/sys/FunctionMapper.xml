@@ -2,8 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shundian.frame.mapper.sys.FunctionMapper">
 
-
-
     <insert id="insertUpdate" keyProperty="id" parameterType="com.shundian.frame.model.sys.Function">
 
         <selectKey keyProperty="id" resultType="String" order="AFTER">
@@ -18,5 +16,8 @@
 
     </insert>
 
+    <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.model.sys.Function">
+        select count(1) from tsys_function where `class` = #{clazz} and `uid` = #{uid} and `name` != #{name}
+    </select>
 
 </mapper>

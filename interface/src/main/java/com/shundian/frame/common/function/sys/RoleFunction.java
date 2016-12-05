@@ -15,12 +15,12 @@ public class RoleFunction extends BaseFunction {
 
     @Override
     public String getName() {
-        return "角色管理";
+        return "--------角色管理le";
     }
 
     @Override
     public String getUiSref() {
-        return "sys.role";
+        return "sys------.role";
     }
 
 }

@@ -20,7 +20,7 @@ public class DepartmentFunction extends BaseFunction {
 
     @Override
     public String getUiSref() {
-        return null;
+        return "sys.dep";
     }
 
 
