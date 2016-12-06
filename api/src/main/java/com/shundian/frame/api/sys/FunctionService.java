@@ -21,10 +21,24 @@ public interface FunctionService {
     void insert(Map<Class<? extends FunctionType<?>>, List<Class<? extends ModuleType>>> functions) throws Exception;
 
     /**
+     * 列表的 基础查询语句 可扩展
+     * @param conditions
+     * @return
+     * @throws Exception
+     */
+    List<Map<String,Object>> list(Map<String, String> conditions) throws Exception;
+
+    /**
      * 列出所有功能
      * @return
      * @throws Exception
      */
     PageResult<Map<String,Object>> list(Page page) throws Exception;
 
+    /**
+     * 根据id列出
+     * @return
+     * @throws Exception
+     */
+    Map<String, Object> list(String id) throws Exception;
 }

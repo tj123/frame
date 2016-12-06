@@ -47,6 +47,17 @@ public class FunctionController {
         return result;
     }
 
+    @RequestMapping("/list")
+    public Result<?> edit(String id) {
+        Result<Map<String, Object>> result = new Result<Map<String, Object>>();
+        try {
+            result.ok(functionService.list(id));
+        } catch (Exception e) {
+            result.error("错误", log, e);
+        }
+        return result;
+    }
+
 
     @RequestMapping("/scan")
     @Module(ScanModule.class)

@@ -1,4 +1,4 @@
-app.controller('SysFunctionCtrl',['$scope','$http','$state',function ($scope,$http,$state) {
+app.controller('SysUserCtrl',['$scope','$http','$state',function ($scope,$http,$state) {
 
     /**
      * 表格的配置
@@ -7,7 +7,7 @@ app.controller('SysFunctionCtrl',['$scope','$http','$state',function ($scope,$ht
     $scope.option = {
         name:'$grid',
         method:'POST',
-        url:'sys/func'
+        url:'sys/user'
     };
 
     /**

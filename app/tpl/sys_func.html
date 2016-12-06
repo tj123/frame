@@ -104,7 +104,7 @@
             <td>{{parseModule(item.module)}}</td>
             <td>{{item.ui_sref}}</td>
             <td class="text-center">
-              <a class="wrapper-xs text-info" href="javascript:;" ng-click="edit(item)">编辑</a>|<a class="wrapper-xs text-info" href="">删除</a>
+              <a class="wrapper-xs text-info" ui-sref="app.sys.funcEdit({id:item.id})">编辑</a>|<a class="wrapper-xs text-info" href="">删除</a>
             </td>
           </tr>
           </tbody>

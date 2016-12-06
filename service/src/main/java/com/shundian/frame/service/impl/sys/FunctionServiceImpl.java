@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -113,10 +114,8 @@ public class FunctionServiceImpl implements FunctionService {
     }
 
     @Override
-    public PageResult<Map<String, Object>> list(Page page) throws Exception {
-        PageUtil<Map<String, Object>> util = new PageUtil<>();
-        util.startPage(page);
-        List<Map<String, Object>> list = mapper.list(page.keywords());
+    public List<Map<String,Object>> list(Map<String,String> conditions) throws Exception {
+        List<Map<String, Object>> list = mapper.list(conditions);
         list.forEach(map -> {
             try {
                 map.put("project", EnumUtil.valueOf(ProjectTypeEnum.class, (String) map.get("project")).getName());
@@ -128,11 +127,11 @@ public class FunctionServiceImpl implements FunctionService {
                 List<Object> mds = new ObjectMapper().readValue(module,List.class);
                 for (Object md : mds) {
                     Map<String, Object> objectMap = (Map<String, Object>) md;
-                    objectMap.put("name",(String) objectMap.get("n"));
+                    objectMap.put("name",objectMap.get("n"));
                     objectMap.remove("n");
                     objectMap.put("id",Short.valueOf((String) objectMap.get("i")));
                     objectMap.remove("i");
-                    objectMap.put("key",(String) objectMap.get("k"));
+                    objectMap.put("key", objectMap.get("k"));
                     objectMap.remove("k");
                 }
                 map.put("module",mds);
@@ -141,7 +140,29 @@ public class FunctionServiceImpl implements FunctionService {
                 map.put("module","[]");
             }
         });
-        return util.assembleResult(list);
+        return list;
+    }
+
+
+    @Override
+    public PageResult<Map<String, Object>> list(Page page) throws Exception {
+        PageUtil<Map<String, Object>> util = new PageUtil<>();
+        util.startPage(page);
+        return util.assembleResult(list(page.getKeywords()));
+    }
+
+    @Override
+    public Map<String, Object> list(String id) throws Exception {
+        if (id == null || id.trim().equals("")) {
+            return new HashMap<String, Object>();
+        }
+        Map<String,String> mp = new HashMap<String,String>();
+        mp.put("id",id);
+        List<Map<String, Object>> list = list(mp);
+        if (list != null && !list.isEmpty() && list.size() > 0) {
+            return list.get(0);
+        }
+        return new HashMap<String, Object>();
     }
 
 }

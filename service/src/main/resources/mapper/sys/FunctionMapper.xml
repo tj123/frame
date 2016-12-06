@@ -11,7 +11,7 @@
     </select>
 
     <select id="list" resultType="java.util.Map" parameterType="map">
-      select id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project,
+        select id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project,
         concat('[',group_concat(concat('{"n":"',moduleName,'","k":"',`key`,'","i":"',muid,'"}')),']') module
         from (
         SELECT f.id,f.uid,f.parent_id,p.name parentName,f.class,f.name,f.ui_sref,f.order_ "order",f.icon,f.alias,f.is_show,f.project,
@@ -19,7 +19,8 @@
         FROM tsys_function f
         left join tsys_function p on f.parent_id = p.id
         left join tsys_function_module m on f.id = m.function_id
-        ) d group by id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project
+        ) d <if test="id != null">where id = #{id} </if>
+        group by id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project
     </select>
 
 </mapper>
