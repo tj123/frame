@@ -1,24 +1,32 @@
 package com.shundian.frame.service.impl.sys;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shundian.frame.api.sys.FunctionService;
+import com.shundian.frame.common.PageUtil;
 import com.shundian.frame.envm.ProjectTypeEnum;
 import com.shundian.frame.mapper.sys.FunctionMapper;
 import com.shundian.frame.mapper.sys.FunctionModuleMapper;
 import com.shundian.frame.model.sys.Function;
 import com.shundian.frame.model.sys.FunctionModule;
+import com.shundian.lib.Page;
+import com.shundian.lib.PageResult;
+import com.shundian.lib.exception.CannotConvertException;
 import com.shundian.lib.function.FunctionType;
 import com.shundian.lib.function.ModuleType;
 import com.shundian.lib.util.EnumUtil;
 import com.shundian.lib.util.UuidUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 @Service
+@Slf4j
 public class FunctionServiceImpl implements FunctionService {
 
     @Autowired
@@ -72,6 +80,9 @@ public class FunctionServiceImpl implements FunctionService {
             }
             for (Class<? extends ModuleType> moduleClass : moduleClasses) {
                 ModuleType module = moduleClass.newInstance();
+                if (module.getId() == 0) {
+                    throw new Exception("模块 id 0 为保留 id！");
+                }
                 FunctionModule functionModule = new FunctionModule();
                 functionModule.setFunctionId(function.getId());
                 functionModule.setName(module.getName());
@@ -99,6 +110,38 @@ public class FunctionServiceImpl implements FunctionService {
             }
 
         }
+    }
+
+    @Override
+    public PageResult<Map<String, Object>> list(Page page) throws Exception {
+        PageUtil<Map<String, Object>> util = new PageUtil<>();
+        util.startPage(page);
+        List<Map<String, Object>> list = mapper.list(page.keywords());
+        list.forEach(map -> {
+            try {
+                map.put("project", EnumUtil.valueOf(ProjectTypeEnum.class, (String) map.get("project")).getName());
+            } catch (CannotConvertException e) {
+                log.error("枚举错误", e);
+            }
+            String module  = (String)map.get("module");
+            try {
+                List<Object> mds = new ObjectMapper().readValue(module,List.class);
+                for (Object md : mds) {
+                    Map<String, Object> objectMap = (Map<String, Object>) md;
+                    objectMap.put("name",(String) objectMap.get("n"));
+                    objectMap.remove("n");
+                    objectMap.put("id",Short.valueOf((String) objectMap.get("i")));
+                    objectMap.remove("i");
+                    objectMap.put("key",(String) objectMap.get("k"));
+                    objectMap.remove("k");
+                }
+                map.put("module",mds);
+            } catch (IOException e) {
+                log.error("解析模块错误",e);
+                map.put("module","[]");
+            }
+        });
+        return util.assembleResult(list);
     }
 
 }

@@ -42,15 +42,15 @@
                         url:app.CONTEXT + option.url,
                         method:'POST',
                         data:{
-                          page:2,
+                          page:1,
                           size:5
                         },
                         headers:{
-                          //'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
+                          'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
                         },
 
                       }).success(function (dt) {
-                          if(dt.state == true){
+                          if(dt.status == true){
                               $.extend(true,$grid,dt.data);
 
                               console.log($grid);
@@ -63,7 +63,7 @@
                         console.error(e);
                       });
                       var data = {
-                        page:2,
+                        page:1,
                         size:5
                       }
                       $.ajax({
@@ -88,7 +88,7 @@
 
                   },
                   first = $grid.first = function () {
-
+                    loadPage(1);
                   },
                   last = $grid.last = function () {
 

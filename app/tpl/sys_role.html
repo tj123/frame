@@ -14,6 +14,10 @@
             <div class="panel-body b-b b-light">
                 <input type="text" class="grid-search-input form-control input-sm w-sm inline m-r"/>
                 <a href="javascript:;" class="btn btn-primary">搜索</a>
+                <div class="pull-right">
+                    <a href="javascript:;" ng-click="scanFunction()" class="btn btn-primary">扫描功能</a>
+                </div>
+
             </div>
             <div>
                 <table class="table m-b-none grid-link">
@@ -26,6 +30,7 @@
                         <th class="text-center" grid-hide="xs">别名</th>
                         <th class="text-center" grid-hide="sm">父菜单</th>
                         <th class="text-center" grid-hide="sm">显示状态</th>
+                        <th class="text-center" grid-hide="md">图标</th>
                         <th class="text-center" grid-hide="sm">排序</th>
                         <th class="text-center" grid-hide="md">注解类</th>
                         <th class="text-center" grid-hide="sm">模块</th>
@@ -36,19 +41,20 @@
                     <tbody>
                         <tr ng-repeat="item in $grid.rows" ng-class="{'grid-even':$even,'grid-odd':$odd}">
                             <td>{{$index + 1}}</td>
-                            <td>{{item.id}}</td>
-                            <td>{{item.menuName}}</a></td>
+                            <td>{{item.uid}}</td>
+                            <td>{{item.name}}</a></td>
                             <td>{{item.project}}</td>
-                            <td>{{item.hint}}</td>
-                            <td>{{item.showStatus}}</td>
-                            <td><span class="label" ng-class="{'bg-success':item.showStatus == 'YES'}" title="Active">{{item.showStatus == 'YES'?'显示':'不显示' }}</span></td>
-                            <td>1</td>
-                            <td></td>
-                            <td>默认,增，删，改，查</td>
-                            <td>{{item.operationTime}}</td>
+                            <td>{{item.alias}}</td>
+                            <td>{{item.parentName}}</td>
+                            <td><span class="label" ng-class="{'bg-success':item.is_show == 1}" title="Active">{{item.is_show == 1 ?'显示':'不显示' }}</span></td>
+                            <td title="{{item.icon}}">{{item.icon}}</td>
+                            <td>{{item.order}}</td>
+                            <td>{{item.class}}</td>
+                            <td>{{parseModule(item.module)}}</td>
+                            <td>{{item.ui_sref}}</td>
 
                             <td class="text-center">
-                                <a class="wrapper-xs text-info" href="">删除</a>|<a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info" href="">修改</a>|<a class="wrapper-xs text-info" href="">查看</a>
+                                <a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info" href="">删除</a>
                             </td>
                         </tr>
                     </tbody>

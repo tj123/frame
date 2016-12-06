@@ -3,6 +3,8 @@ package com.shundian.frame.controller.sys;
 import com.shundian.frame.api.sys.FunctionService;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.FuncFunction;
+import com.shundian.lib.Page;
+import com.shundian.lib.PageResult;
 import com.shundian.lib.Result;
 import com.shundian.lib.function.Function;
 import com.shundian.lib.function.FunctionType;
@@ -35,10 +37,13 @@ public class FunctionController {
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
     @RequestMapping
-    public Result<?> list() {
-        Result<Object> result = new Result<Object>();
-
-
+    public Result<?> list(Page page) {
+        Result<PageResult<Map<String, Object>>> result = new Result<PageResult<Map<String, Object>>>();
+        try {
+            result.ok(functionService.list(page));
+        } catch (Exception e) {
+            result.error("错误", log, e);
+        }
         return result;
     }
 
@@ -67,7 +72,9 @@ public class FunctionController {
                     if (modules == null) {
                         modules = new ArrayList<Class<? extends ModuleType>>();
                     }
-                    modules.add(moduleClass);
+                    if (!modules.contains(moduleClass)) {
+                        modules.add(moduleClass);
+                    }
                     functions.put(functionClass, modules);
                 }
             } else if (moduleMethod != null) {
@@ -76,14 +83,12 @@ public class FunctionController {
                 res.error(msg);
             }
         }
-
         try {
             functionService.insert(functions);
         } catch (Exception e) {
             log.debug("扫描出错", e);
             res.error(e.getMessage());
         }
-
         return res.ok();
     }
 
