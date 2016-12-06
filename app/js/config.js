@@ -24,18 +24,23 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 url: 'dep2',
                 templateUrl: 'tpl/sys_dep2.html'
             })
-            .state('app.sys.menu', {
-                url: '/menu',
-                templateUrl: 'tpl/sys_menu.html',
+            .state('app.sys.func', {
+                url: '/func',
+                templateUrl: 'tpl/sys_func.html',
                 resolve: {
                     deps: ['$ocLazyLoad', function (ld) {
-                        return ld.load(['js/ctrl/sys_menu.js', 'css/sdgrid.css']);
+                        return ld.load(['js/ctrl/sys_func.js', 'css/sdgrid.css']);
                     }]
                 }
             })
-            .state('app.sys.menuEdit', {
-                url:'/menu/edit',
-                templateUrl:'tpl/sys_menu_edit.html'
+            .state('app.sys.funcEdit', {
+                url:'/func/edit',
+                templateUrl:'tpl/sys_func_edit.html',
+                resolve:{
+                    deps:['$ocLazyLoad',function (ld) {
+                        return ld.load(['js/ctrl/sys_func_edit.js']);
+                    }]
+                }
             })
             .state('app.sys.role', {
                 url: '/role',

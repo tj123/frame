@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+@import "app.mixin";
+@import "app.variable";
+
+
+.advance-search{
+  position: relative;
+  .btn-danger{
+    @include border-right-radius(50px);
+  }
+
+  .search-content{
+    display:none;
+    position: absolute;
+    z-index: $z-index-middle-1;
+    background: #ffffff;
+    top:120%;
+    width:500px;
+    float:left;
+    @include box-shadow($box-shadow-base);
+    max-width: none;
+    .form-group{
+      .form-label{
+        text-align: left;
+      }
+
+    }
+  }
+  &.on{
+    .search-content{
+      display: block;
+    }
+  }
+
+
+}
+
+@media (min-width: 768px) {
+  .advance-search{
+    .search-content{
+      .form-group{
+        .form-label{
+          text-align: center;
+        }
+
+      }
+    }
+  }
+}
+

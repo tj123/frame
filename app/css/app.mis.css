@@ -678,508 +678,528 @@ a:focus {
 }
 
 /* line 222, ../scss/app.mis.scss */
+.ft-xs {
+  font-size: 8px;
+}
+
+/* line 223, ../scss/app.mis.scss */
+.ft-sm {
+  font-size: 10px;
+}
+
+/* line 224, ../scss/app.mis.scss */
+.ft-md {
+  font-size: 12px;
+}
+
+/* line 225, ../scss/app.mis.scss */
+.ft-lg {
+  font-size: 14px;
+}
+
+/* line 227, ../scss/app.mis.scss */
 .m-xxs {
   margin: 2px 4px;
 }
 
-/* line 223, ../scss/app.mis.scss */
+/* line 228, ../scss/app.mis.scss */
 .m-xs {
   margin: 5px;
 }
 
-/* line 224, ../scss/app.mis.scss */
+/* line 229, ../scss/app.mis.scss */
 .m-sm {
   margin: 10px;
 }
 
-/* line 225, ../scss/app.mis.scss */
+/* line 230, ../scss/app.mis.scss */
 .m {
   margin: 15px;
 }
 
-/* line 226, ../scss/app.mis.scss */
+/* line 231, ../scss/app.mis.scss */
 .m-md {
   margin: 20px;
 }
 
-/* line 227, ../scss/app.mis.scss */
+/* line 232, ../scss/app.mis.scss */
 .m-lg {
   margin: 30px;
 }
 
-/* line 228, ../scss/app.mis.scss */
+/* line 233, ../scss/app.mis.scss */
 .m-xl {
   margin: 50px;
 }
 
-/* line 229, ../scss/app.mis.scss */
+/* line 234, ../scss/app.mis.scss */
 .m-n {
   margin: 0 !important;
 }
 
-/* line 231, ../scss/app.mis.scss */
+/* line 236, ../scss/app.mis.scss */
 .m-l-none {
   margin-left: 0 !important;
 }
 
-/* line 232, ../scss/app.mis.scss */
+/* line 237, ../scss/app.mis.scss */
 .m-l-xs {
   margin-left: 5px;
 }
 
-/* line 233, ../scss/app.mis.scss */
+/* line 238, ../scss/app.mis.scss */
 .m-l-sm {
   margin-left: 10px;
 }
 
-/* line 234, ../scss/app.mis.scss */
+/* line 239, ../scss/app.mis.scss */
 .m-l {
   margin-left: 15px;
 }
 
-/* line 235, ../scss/app.mis.scss */
+/* line 240, ../scss/app.mis.scss */
 .m-l-md {
   margin-left: 20px;
 }
 
-/* line 236, ../scss/app.mis.scss */
+/* line 241, ../scss/app.mis.scss */
 .m-l-lg {
   margin-left: 30px;
 }
 
-/* line 237, ../scss/app.mis.scss */
+/* line 242, ../scss/app.mis.scss */
 .m-l-xl {
   margin-left: 40px;
 }
 
-/* line 238, ../scss/app.mis.scss */
+/* line 243, ../scss/app.mis.scss */
 .m-l-xxl {
   margin-left: 50px;
 }
 
-/* line 240, ../scss/app.mis.scss */
+/* line 245, ../scss/app.mis.scss */
 .m-l-n-xxs {
   margin-left: -1px;
 }
 
-/* line 241, ../scss/app.mis.scss */
+/* line 246, ../scss/app.mis.scss */
 .m-l-n-xs {
   margin-left: -5px;
 }
 
-/* line 242, ../scss/app.mis.scss */
+/* line 247, ../scss/app.mis.scss */
 .m-l-n-sm {
   margin-left: -10px;
 }
 
-/* line 243, ../scss/app.mis.scss */
+/* line 248, ../scss/app.mis.scss */
 .m-l-n {
   margin-left: -15px;
 }
 
-/* line 244, ../scss/app.mis.scss */
+/* line 249, ../scss/app.mis.scss */
 .m-l-n-md {
   margin-left: -20px;
 }
 
-/* line 245, ../scss/app.mis.scss */
+/* line 250, ../scss/app.mis.scss */
 .m-l-n-lg {
   margin-left: -30px;
 }
 
-/* line 246, ../scss/app.mis.scss */
+/* line 251, ../scss/app.mis.scss */
 .m-l-n-xl {
   margin-left: -40px;
 }
 
-/* line 247, ../scss/app.mis.scss */
+/* line 252, ../scss/app.mis.scss */
 .m-l-n-xxl {
   margin-left: -50px;
 }
 
-/* line 249, ../scss/app.mis.scss */
+/* line 254, ../scss/app.mis.scss */
 .m-t-none {
   margin-top: 0 !important;
 }
 
-/* line 250, ../scss/app.mis.scss */
+/* line 255, ../scss/app.mis.scss */
 .m-t-xxs {
   margin-top: 1px;
 }
 
-/* line 251, ../scss/app.mis.scss */
+/* line 256, ../scss/app.mis.scss */
 .m-t-xs {
   margin-top: 5px;
 }
 
-/* line 252, ../scss/app.mis.scss */
+/* line 257, ../scss/app.mis.scss */
 .m-t-sm {
   margin-top: 10px;
 }
 
-/* line 253, ../scss/app.mis.scss */
+/* line 258, ../scss/app.mis.scss */
 .m-t {
   margin-top: 15px;
 }
 
-/* line 254, ../scss/app.mis.scss */
+/* line 259, ../scss/app.mis.scss */
 .m-t-md {
   margin-top: 20px;
 }
 
-/* line 255, ../scss/app.mis.scss */
+/* line 260, ../scss/app.mis.scss */
 .m-t-lg {
   margin-top: 30px;
 }
 
-/* line 256, ../scss/app.mis.scss */
+/* line 261, ../scss/app.mis.scss */
 .m-t-xl {
   margin-top: 40px;
 }
 
-/* line 257, ../scss/app.mis.scss */
+/* line 262, ../scss/app.mis.scss */
 .m-t-xxl {
   margin-top: 50px;
 }
 
-/* line 259, ../scss/app.mis.scss */
+/* line 264, ../scss/app.mis.scss */
 .m-t-n-xxs {
   margin-top: -1px;
 }
 
-/* line 260, ../scss/app.mis.scss */
+/* line 265, ../scss/app.mis.scss */
 .m-t-n-xs {
   margin-top: -5px;
 }
 
-/* line 261, ../scss/app.mis.scss */
+/* line 266, ../scss/app.mis.scss */
 .m-t-n-sm {
   margin-top: -10px;
 }
 
-/* line 262, ../scss/app.mis.scss */
+/* line 267, ../scss/app.mis.scss */
 .m-t-n {
   margin-top: -15px;
 }
 
-/* line 263, ../scss/app.mis.scss */
+/* line 268, ../scss/app.mis.scss */
 .m-t-n-md {
   margin-top: -20px;
 }
 
-/* line 264, ../scss/app.mis.scss */
+/* line 269, ../scss/app.mis.scss */
 .m-t-n-lg {
   margin-top: -30px;
 }
 
-/* line 265, ../scss/app.mis.scss */
+/* line 270, ../scss/app.mis.scss */
 .m-t-n-xl {
   margin-top: -40px;
 }
 
-/* line 266, ../scss/app.mis.scss */
+/* line 271, ../scss/app.mis.scss */
 .m-t-n-xxl {
   margin-top: -50px;
 }
 
-/* line 268, ../scss/app.mis.scss */
+/* line 273, ../scss/app.mis.scss */
 .m-r-none {
   margin-right: 0 !important;
 }
 
-/* line 269, ../scss/app.mis.scss */
+/* line 274, ../scss/app.mis.scss */
 .m-r-xxs {
   margin-right: 1px;
 }
 
-/* line 270, ../scss/app.mis.scss */
+/* line 275, ../scss/app.mis.scss */
 .m-r-xs {
   margin-right: 5px;
 }
 
-/* line 271, ../scss/app.mis.scss */
+/* line 276, ../scss/app.mis.scss */
 .m-r-sm {
   margin-right: 10px;
 }
 
-/* line 272, ../scss/app.mis.scss */
+/* line 277, ../scss/app.mis.scss */
 .m-r {
   margin-right: 15px;
 }
 
-/* line 273, ../scss/app.mis.scss */
+/* line 278, ../scss/app.mis.scss */
 .m-r-md {
   margin-right: 20px;
 }
 
-/* line 274, ../scss/app.mis.scss */
+/* line 279, ../scss/app.mis.scss */
 .m-r-lg {
   margin-right: 30px;
 }
 
-/* line 275, ../scss/app.mis.scss */
+/* line 280, ../scss/app.mis.scss */
 .m-r-xl {
   margin-right: 40px;
 }
 
-/* line 276, ../scss/app.mis.scss */
+/* line 281, ../scss/app.mis.scss */
 .m-r-xxl {
   margin-right: 50px;
 }
 
-/* line 278, ../scss/app.mis.scss */
+/* line 283, ../scss/app.mis.scss */
 .m-r-n-xxs {
   margin-right: -1px;
 }
 
-/* line 279, ../scss/app.mis.scss */
+/* line 284, ../scss/app.mis.scss */
 .m-r-n-xs {
   margin-right: -5px;
 }
 
-/* line 280, ../scss/app.mis.scss */
+/* line 285, ../scss/app.mis.scss */
 .m-r-n-sm {
   margin-right: -10px;
 }
 
-/* line 281, ../scss/app.mis.scss */
+/* line 286, ../scss/app.mis.scss */
 .m-r-n {
   margin-right: -15px;
 }
 
-/* line 282, ../scss/app.mis.scss */
+/* line 287, ../scss/app.mis.scss */
 .m-r-n-md {
   margin-right: -20px;
 }
 
-/* line 283, ../scss/app.mis.scss */
+/* line 288, ../scss/app.mis.scss */
 .m-r-n-lg {
   margin-right: -30px;
 }
 
-/* line 284, ../scss/app.mis.scss */
+/* line 289, ../scss/app.mis.scss */
 .m-r-n-xl {
   margin-right: -40px;
 }
 
-/* line 285, ../scss/app.mis.scss */
+/* line 290, ../scss/app.mis.scss */
 .m-r-n-xxl {
   margin-right: -50px;
 }
 
-/* line 287, ../scss/app.mis.scss */
+/* line 292, ../scss/app.mis.scss */
 .m-b-none {
   margin-bottom: 0 !important;
 }
 
-/* line 288, ../scss/app.mis.scss */
+/* line 293, ../scss/app.mis.scss */
 .m-b-xxs {
   margin-bottom: 1px;
 }
 
-/* line 289, ../scss/app.mis.scss */
+/* line 294, ../scss/app.mis.scss */
 .m-b-xs {
   margin-bottom: 5px;
 }
 
-/* line 290, ../scss/app.mis.scss */
+/* line 295, ../scss/app.mis.scss */
 .m-b-sm {
   margin-bottom: 10px;
 }
 
-/* line 291, ../scss/app.mis.scss */
+/* line 296, ../scss/app.mis.scss */
 .m-b {
   margin-bottom: 15px;
 }
 
-/* line 292, ../scss/app.mis.scss */
+/* line 297, ../scss/app.mis.scss */
 .m-b-md {
   margin-bottom: 20px;
 }
 
-/* line 293, ../scss/app.mis.scss */
+/* line 298, ../scss/app.mis.scss */
 .m-b-lg {
   margin-bottom: 30px;
 }
 
-/* line 294, ../scss/app.mis.scss */
+/* line 299, ../scss/app.mis.scss */
 .m-b-xl {
   margin-bottom: 40px;
 }
 
-/* line 295, ../scss/app.mis.scss */
+/* line 300, ../scss/app.mis.scss */
 .m-b-xxl {
   margin-bottom: 50px;
 }
 
-/* line 297, ../scss/app.mis.scss */
+/* line 302, ../scss/app.mis.scss */
 .m-b-n-xxs {
   margin-bottom: -1px;
 }
 
-/* line 298, ../scss/app.mis.scss */
+/* line 303, ../scss/app.mis.scss */
 .m-b-n-xs {
   margin-bottom: -5px;
 }
 
-/* line 299, ../scss/app.mis.scss */
+/* line 304, ../scss/app.mis.scss */
 .m-b-n-sm {
   margin-bottom: -10px;
 }
 
-/* line 300, ../scss/app.mis.scss */
+/* line 305, ../scss/app.mis.scss */
 .m-b-n {
   margin-bottom: -15px;
 }
 
-/* line 301, ../scss/app.mis.scss */
+/* line 306, ../scss/app.mis.scss */
 .m-b-n-md {
   margin-bottom: -20px;
 }
 
-/* line 302, ../scss/app.mis.scss */
+/* line 307, ../scss/app.mis.scss */
 .m-b-n-lg {
   margin-bottom: -30px;
 }
 
-/* line 303, ../scss/app.mis.scss */
+/* line 308, ../scss/app.mis.scss */
 .m-b-n-xl {
   margin-bottom: -40px;
 }
 
-/* line 304, ../scss/app.mis.scss */
+/* line 309, ../scss/app.mis.scss */
 .m-b-n-xxl {
   margin-bottom: -50px;
 }
 
-/* line 306, ../scss/app.mis.scss */
+/* line 311, ../scss/app.mis.scss */
 .w-sn {
   width: 20px;
 }
 
-/* line 309, ../scss/app.mis.scss */
+/* line 314, ../scss/app.mis.scss */
 .w-xxs {
   width: 60px;
 }
 
-/* line 312, ../scss/app.mis.scss */
+/* line 317, ../scss/app.mis.scss */
 .w-xs {
   width: 90px;
 }
 
-/* line 315, ../scss/app.mis.scss */
+/* line 320, ../scss/app.mis.scss */
 .w-sm {
   width: 150px;
 }
 
-/* line 318, ../scss/app.mis.scss */
+/* line 323, ../scss/app.mis.scss */
 .w {
   width: 200px;
 }
 
-/* line 321, ../scss/app.mis.scss */
+/* line 326, ../scss/app.mis.scss */
 .w-md {
   width: 240px;
 }
 
-/* line 324, ../scss/app.mis.scss */
+/* line 329, ../scss/app.mis.scss */
 .w-lg {
   width: 280px;
 }
 
-/* line 327, ../scss/app.mis.scss */
+/* line 332, ../scss/app.mis.scss */
 .w-xl {
   width: 320px;
 }
 
-/* line 330, ../scss/app.mis.scss */
+/* line 335, ../scss/app.mis.scss */
 .w-xxl {
   width: 360px;
 }
 
-/* line 333, ../scss/app.mis.scss */
+/* line 338, ../scss/app.mis.scss */
 .w-full {
   width: 100%;
 }
 
-/* line 336, ../scss/app.mis.scss */
+/* line 341, ../scss/app.mis.scss */
 .w-auto {
   width: auto;
 }
 
-/* line 339, ../scss/app.mis.scss */
+/* line 344, ../scss/app.mis.scss */
 .h-auto {
   height: auto;
 }
 
-/* line 342, ../scss/app.mis.scss */
+/* line 347, ../scss/app.mis.scss */
 .h-full {
   height: 100%;
 }
 
-/* line 346, ../scss/app.mis.scss */
+/* line 351, ../scss/app.mis.scss */
 .img-full {
   width: 100%;
 }
-/* line 348, ../scss/app.mis.scss */
+/* line 353, ../scss/app.mis.scss */
 .img-full img {
   width: 100%;
 }
 
-/* line 353, ../scss/app.mis.scss */
+/* line 358, ../scss/app.mis.scss */
 .scrollable {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-/* line 357, ../scss/app.mis.scss */
+/* line 362, ../scss/app.mis.scss */
 .scrollable.hover {
   overflow-y: hidden !important;
 }
-/* line 359, ../scss/app.mis.scss */
+/* line 364, ../scss/app.mis.scss */
 .scrollable.hover:hover {
   overflow: visible !important;
   overflow-y: auto !important;
 }
-/* line 366, ../scss/app.mis.scss */
+/* line 371, ../scss/app.mis.scss */
 .smart .scrollable {
   overflow-y: auto !important;
 }
 
-/* line 372, ../scss/app.mis.scss */
+/* line 377, ../scss/app.mis.scss */
 .scroll-x, .scroll-y {
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 373, ../scss/app.mis.scss */
+/* line 378, ../scss/app.mis.scss */
 .scroll-y {
   overflow-y: auto;
 }
 
-/* line 374, ../scss/app.mis.scss */
+/* line 379, ../scss/app.mis.scss */
 .scroll-x {
   overflow-x: auto;
 }
 
-/* line 376, ../scss/app.mis.scss */
+/* line 381, ../scss/app.mis.scss */
 .hover-action {
   display: none;
 }
 
-/* line 379, ../scss/app.mis.scss */
+/* line 384, ../scss/app.mis.scss */
 .hover-rotate {
   -webkit-transition: all 0.2s ease-in-out 0.1s;
   transition: all 0.2s ease-in-out 0.1s;
 }
 
-/* line 385, ../scss/app.mis.scss */
+/* line 390, ../scss/app.mis.scss */
 .hover-anchor:hover > .hover-action,
 .hover-anchor:focus > .hover-action,
 .hover-anchor:active > .hover-action {
   display: inherit;
 }
-/* line 388, ../scss/app.mis.scss */
+/* line 393, ../scss/app.mis.scss */
 .hover-anchor:hover > .hover-rotate,
 .hover-anchor:focus > .hover-rotate,
 .hover-anchor:active > .hover-rotate {
@@ -1190,204 +1210,204 @@ a:focus {
 
 /*desktop*/
 @media screen and (min-width: 992px) {
-  /* line 396, ../scss/app.mis.scss */
+  /* line 401, ../scss/app.mis.scss */
   .col-lg-2-4 {
     width: 20.000%;
     float: left;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* line 401, ../scss/app.mis.scss */
+  /* line 406, ../scss/app.mis.scss */
   .hidden-sm.show {
     display: inherit !important;
   }
 }
 /*phone*/
 @media (max-width: 767px) {
-  /* line 406, ../scss/app.mis.scss */
+  /* line 411, ../scss/app.mis.scss */
   .w-auto-xs {
     width: auto;
   }
 
-  /* line 407, ../scss/app.mis.scss */
+  /* line 412, ../scss/app.mis.scss */
   .shift {
     display: none !important;
   }
 
-  /* line 408, ../scss/app.mis.scss */
+  /* line 413, ../scss/app.mis.scss */
   .shift.in {
     display: block !important;
   }
 
-  /* line 409, ../scss/app.mis.scss */
+  /* line 414, ../scss/app.mis.scss */
   .row-2 [class*="col"] {
     width: 50%;
     float: left;
   }
 
-  /* line 410, ../scss/app.mis.scss */
+  /* line 415, ../scss/app.mis.scss */
   .row-2 .col-0 {
     clear: none;
   }
 
-  /* line 411, ../scss/app.mis.scss */
+  /* line 416, ../scss/app.mis.scss */
   .row-2 li:nth-child(odd) {
     clear: left;
     margin-left: 0;
   }
 
-  /* line 412, ../scss/app.mis.scss */
+  /* line 417, ../scss/app.mis.scss */
   .text-center-xs {
     text-align: center;
   }
 
-  /* line 413, ../scss/app.mis.scss */
+  /* line 418, ../scss/app.mis.scss */
   .text-left-xs {
     text-align: left;
   }
 
-  /* line 414, ../scss/app.mis.scss */
+  /* line 419, ../scss/app.mis.scss */
   .text-right-xs {
     text-align: right;
   }
 
-  /* line 415, ../scss/app.mis.scss */
+  /* line 420, ../scss/app.mis.scss */
   .no-border-xs {
     border-width: 0;
   }
 
-  /* line 416, ../scss/app.mis.scss */
+  /* line 421, ../scss/app.mis.scss */
   .pull-none-xs {
     float: none !important;
   }
 
-  /* line 417, ../scss/app.mis.scss */
+  /* line 422, ../scss/app.mis.scss */
   .pull-right-xs {
     float: right !important;
   }
 
-  /* line 418, ../scss/app.mis.scss */
+  /* line 423, ../scss/app.mis.scss */
   .pull-left-xs {
     float: left !important;
   }
 
-  /* line 419, ../scss/app.mis.scss */
+  /* line 424, ../scss/app.mis.scss */
   .dropdown-menu.pull-none-xs {
     left: 0;
   }
 
-  /* line 420, ../scss/app.mis.scss */
+  /* line 425, ../scss/app.mis.scss */
   .hidden-xs.show {
     display: inherit !important;
   }
 
-  /* line 421, ../scss/app.mis.scss */
+  /* line 426, ../scss/app.mis.scss */
   .p-lg, .p-md, .wrapper-lg, .wrapper-md {
     padding: 15px;
   }
 
-  /* line 422, ../scss/app.mis.scss */
+  /* line 427, ../scss/app.mis.scss */
   .padder-lg, .padder-md {
     padding-left: 15px;
     padding-right: 15px;
   }
 
-  /* line 423, ../scss/app.mis.scss */
+  /* line 428, ../scss/app.mis.scss */
   .p-l-n {
     padding-left: 0;
   }
 
-  /* line 424, ../scss/app.mis.scss */
+  /* line 429, ../scss/app.mis.scss */
   .p-l-xs {
     padding-left: 5px;
   }
 
-  /* line 425, ../scss/app.mis.scss */
+  /* line 430, ../scss/app.mis.scss */
   .p-l-sm {
     padding-left: 15px;
   }
 
-  /* line 426, ../scss/app.mis.scss */
+  /* line 431, ../scss/app.mis.scss */
   .p-l-md {
     padding-left: 20px;
   }
 
-  /* line 427, ../scss/app.mis.scss */
+  /* line 432, ../scss/app.mis.scss */
   .p-l-lg {
     padding-left: 30px;
   }
 
-  /* line 428, ../scss/app.mis.scss */
+  /* line 433, ../scss/app.mis.scss */
   .p-r-n {
     padding-right: 0;
   }
 
-  /* line 429, ../scss/app.mis.scss */
+  /* line 434, ../scss/app.mis.scss */
   .p-r-xs {
     padding-right: 5px;
   }
 
-  /* line 430, ../scss/app.mis.scss */
+  /* line 435, ../scss/app.mis.scss */
   .p-r-sm {
     padding-right: 15px;
   }
 
-  /* line 431, ../scss/app.mis.scss */
+  /* line 436, ../scss/app.mis.scss */
   .p-r-md {
     padding-right: 20px;
   }
 
-  /* line 432, ../scss/app.mis.scss */
+  /* line 437, ../scss/app.mis.scss */
   .p-r-lg {
     padding-right: 30px;
   }
 
-  /* line 433, ../scss/app.mis.scss */
+  /* line 438, ../scss/app.mis.scss */
   .p-t-n {
     padding-top: 0;
   }
 
-  /* line 434, ../scss/app.mis.scss */
+  /* line 439, ../scss/app.mis.scss */
   .p-t-xs {
     padding-top: 5px;
   }
 
-  /* line 435, ../scss/app.mis.scss */
+  /* line 440, ../scss/app.mis.scss */
   .p-t-sm {
     padding-top: 15px;
   }
 
-  /* line 436, ../scss/app.mis.scss */
+  /* line 441, ../scss/app.mis.scss */
   .p-t-md {
     padding-top: 20px;
   }
 
-  /* line 437, ../scss/app.mis.scss */
+  /* line 442, ../scss/app.mis.scss */
   .p-t-lg {
     padding-top: 30px;
   }
 
-  /* line 438, ../scss/app.mis.scss */
+  /* line 443, ../scss/app.mis.scss */
   .p-b-n {
     padding-bottom: 0;
   }
 
-  /* line 439, ../scss/app.mis.scss */
+  /* line 444, ../scss/app.mis.scss */
   .p-b-xs {
     padding-bottom: 5px;
   }
 
-  /* line 440, ../scss/app.mis.scss */
+  /* line 445, ../scss/app.mis.scss */
   .p-b-sm {
     padding-bottom: 15px;
   }
 
-  /* line 441, ../scss/app.mis.scss */
+  /* line 446, ../scss/app.mis.scss */
   .p-b-md {
     padding-bottom: 20px;
   }
 
-  /* line 442, ../scss/app.mis.scss */
+  /* line 447, ../scss/app.mis.scss */
   .p-b-lg {
     padding-bottom: 30px;
   }

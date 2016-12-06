@@ -1,4 +1,6 @@
-app.controller('SysMenuCtrl',['$scope','$http',function ($scope,$http) {
+app.controller('SysMenuEditCtrl',['$scope','$http','$state','$stateParams',function ($scope,$http,$state,$stateParams) {
+
+    console.log($stateParams);
 
     /**
      * 表格的配置

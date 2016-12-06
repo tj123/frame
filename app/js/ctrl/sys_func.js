@@ -1,4 +1,4 @@
-app.controller('SysMenuEditCtrl',['$scope','$http',function ($scope,$http) {
+app.controller('SysFunctionCtrl',['$scope','$http','$state',function ($scope,$http,$state) {
 
     /**
      * 表格的配置
@@ -26,6 +26,13 @@ app.controller('SysMenuEditCtrl',['$scope','$http',function ($scope,$http) {
         }
         return names.join(' , ');
     }
+
+    $scope.edit = function (item) {
+        $state.go('app.sys.funcEdit',item);
+        console.log($state);
+
+        console.log(item);
+    };
 
     /**
      * 扫描功能
