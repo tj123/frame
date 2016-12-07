@@ -1,4 +1,4 @@
-package com.shundian.frame.model.sys;
+package com.shundian.frame.api.po.sys;
 
 import lombok.Getter;
 import lombok.Setter;

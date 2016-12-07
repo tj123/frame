@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shundian.frame.mapper.sys.FunctionModuleMapper">
 
-    <update id="updateModule" parameterType="com.shundian.frame.model.sys.FunctionModule">
+    <update id="updateModule" parameterType="com.shundian.frame.api.po.sys.FunctionModule">
         update tsys_function_module set name = #{name},key_ = #{key},uid = #{uid} where function_id = #{functonId} and class = #{clazz}
     </update>
 
-    <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.model.sys.FunctionModule" >
+    <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.api.po.sys.FunctionModule" >
         select count(1) from tsys_function_module where uid = #{uid} and class != #{clazz}
     </select>
 

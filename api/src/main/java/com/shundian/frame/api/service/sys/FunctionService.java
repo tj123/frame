@@ -1,4 +1,4 @@
-package com.shundian.frame.api.sys;
+package com.shundian.frame.api.service.sys;
 
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;

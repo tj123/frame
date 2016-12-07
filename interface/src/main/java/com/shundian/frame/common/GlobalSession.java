@@ -1,7 +1,6 @@
 package com.shundian.frame.common;
 
-import com.shundian.frame.envm.UserTypeEnum;
-import lombok.Data;
+import com.shundian.frame.api.envm.UserTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 

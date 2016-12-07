@@ -2,8 +2,6 @@ package com.shundian.frame.common.function.sys;
 
 
 import com.shundian.frame.common.BaseFunction;
-import com.shundian.frame.envm.ProjectTypeEnum;
-import com.shundian.lib.function.FunctionType;
 
 /**
  * Created by TJ on 2016/7/15.

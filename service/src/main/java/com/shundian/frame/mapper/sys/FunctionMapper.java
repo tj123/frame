@@ -1,7 +1,7 @@
 package com.shundian.frame.mapper.sys;
 
 
-import com.shundian.frame.model.sys.Function;
+import com.shundian.frame.api.po.sys.Function;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

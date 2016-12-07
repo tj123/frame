@@ -1,7 +1,7 @@
 package com.shundian.frame.common;
 
 
-import com.shundian.frame.envm.ProjectTypeEnum;
+import com.shundian.frame.api.envm.ProjectTypeEnum;
 import com.shundian.lib.function.FunctionType;
 
 /**

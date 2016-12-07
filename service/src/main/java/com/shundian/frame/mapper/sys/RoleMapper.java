@@ -1,7 +1,7 @@
 package com.shundian.frame.mapper.sys;
 
 
-import com.shundian.frame.model.sys.Role;
+import com.shundian.frame.api.po.sys.Role;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

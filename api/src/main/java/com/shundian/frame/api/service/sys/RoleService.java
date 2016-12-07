@@ -1,13 +1,8 @@
-package com.shundian.frame.api.sys;
+package com.shundian.frame.api.service.sys;
 
-import com.shundian.frame.model.sys.Role;
+import com.shundian.frame.api.po.sys.Role;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
-import com.shundian.lib.function.FunctionType;
-import com.shundian.lib.function.ModuleType;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -27,4 +22,11 @@ public interface RoleService {
      * @throws Exception
      */
     Role list(String id) throws Exception;
+
+    /**
+     * 添加角色
+     * @param role
+     * @throws Exception
+     */
+    void add(Role role) throws Exception;
 }

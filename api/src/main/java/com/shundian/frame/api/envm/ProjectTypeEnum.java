@@ -1,4 +1,4 @@
-package com.shundian.frame.envm;
+package com.shundian.frame.api.envm;
 
 import com.shundian.lib.function.ProjectType;
 

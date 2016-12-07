@@ -1,46 +1,58 @@
-app.controller('SysRoleCtrl',['$scope','$http',function ($scope,$http) {
+(function (angular, $, app) {
+  app.controller('SysRoleCtrl', ['$scope', '$http', function ($scope, $http) {
 
-	/**
-	 * 表格的配置
-	 * @type {{name: string, method: string, url: string}}
-	 */
-	$scope.option = {
-		name:'$grid',
-		method:'POST',
-		url:'sys/func',
+    /**
+     * 表格的配置
+     * @type {{name: string, method: string, url: string}}
+     */
+    $scope.option = {
+      name: '$grid',
+      method: 'POST',
+      url: 'sys/func',
 
-	};
-
-	/**
-	 * 解析 模块数据
-	 * @param mds
-	 * @returns {string}
-	 */
-	$scope.parseModule = function (mds) {
-		mds.sort(function(md1,md2){
-			return md1.id > md2.id;
-		});
-		var names = [];
-		for(var i in mds){
-			names.push(mds[i].name);
-		}
-		return names.join(' , ');
-	}
-
-	/**
-	 * 扫描功能
-	 */
-	$scope.scanFunction = function () {
-		$http.get('http://localhost/sys/func/scan').then(function () {
-			$scope.$grid.loadPage(1);
-		});
-	}
-
-	var gd = $scope.gd = {};
-
-	gd.row = ['1','2','3','4'];
+    };
 
 
+  }]);
+
+  app.controller('SysRoleAddCtrl', ['$scope', '$http', '$state', '$stateParams', function ($scope, $http, $state, $stateParams) {
+
+    var role = $scope.role = {};
+
+    // $http.post('sys/func/list',{
+    // 	id: $stateParams.id
+    // })
+    // 	.success(function (d) {
+    // 		if(d.status){
+    // 			$.extend(func,d.data);
+    // 		}
+    // 	});
+
+    $scope.submit = function(){
+
+      $http.post('sys/role/add',role)
+        .success(function (d) {
+          if(d.status){
+            //$state.go('app.sys.role');
+          }else{
+            if(d.error){
+              var e = d.error;
+              for(var i in e){
+                console.log($scope.form);
+              }
+            }
+            console.error(d);
+          }
+        });
+
+    };
+
+    $scope.canl = function (d) {
+      console.log(d);
+      console.log($scope.form);
+    }
 
 
-}]);
+  }]);
+
+})(window.angular, jQuery, app);

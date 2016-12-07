@@ -1,4 +1,4 @@
-package com.shundian.frame.model.sys;
+package com.shundian.frame.api.po.sys;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,11 +6,10 @@ import lombok.Setter;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
 
-@Setter
 @Getter
-public class Role implements Serializable {
+@Setter
+public class Config implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,8 +19,10 @@ public class Role implements Serializable {
 
     private String name;
 
-    private String uiSref;
+    private String value;
 
-    private Date operateTime;
+    private String comment;
+
+
 
 }

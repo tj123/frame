@@ -1,6 +1,6 @@
-package com.shundian.frame.model.sys;
+package com.shundian.frame.api.po.sys;
 
-import com.shundian.frame.envm.ProjectTypeEnum;
+import com.shundian.frame.api.envm.ProjectTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 

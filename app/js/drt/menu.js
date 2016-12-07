@@ -10,7 +10,7 @@
             angular.element(this).addClass('active').siblings('.menu-item').removeClass('active');
           });
 
-          $document.bind('click',function () {
+          $document.bind('click', function () {
             //item.removeClass('active');
           });
         }

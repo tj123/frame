@@ -1,6 +1,6 @@
 package com.shundian.frame.controller.sys;
 
-import com.shundian.frame.api.sys.FunctionService;
+import com.shundian.frame.api.service.sys.FunctionService;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.ConfigFunction;
 import com.shundian.lib.Result;

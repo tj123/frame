@@ -1,6 +1,6 @@
 package com.shundian.frame.mapper;
 
-import com.shundian.frame.model.City;
+import com.shundian.frame.api.po.City;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

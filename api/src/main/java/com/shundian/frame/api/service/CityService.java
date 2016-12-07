@@ -1,6 +1,6 @@
-package com.shundian.frame.service;
+package com.shundian.frame.api.service;
 
-import com.shundian.frame.model.City;
+import com.shundian.frame.api.po.City;
 
 import java.util.List;
 

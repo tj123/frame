@@ -1,0 +1,70 @@
+<div class="content-body animated fadeInUp" ng-controller="SysRoleAddCtrl">
+  <div class="wrapper-sm p-l-sm p-r-sm p-b-n">
+    <ol class="breadcrumb row text-xs m-b-xs">
+      <span><i class="fa fa-circle-o p-r-xs"></i>当前位置：</span>
+      <li>系统管理</li>
+      <li><a ui-sref="app.sys.role">角色管理</a></li>
+      <li>角色添加</li>
+    </ol>
+  </div>
+  <div class="panel panel-default wrapper-md">
+    <div class="panel-heading">
+      <h1 class="h3">角色添加</h1>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" name="form" ng-submit="submit()" method="post">
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$touched}">
+          <label class="col-sm-2 control-label">角色名</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">
+              <input name="name" ng-minlength="2" ng-maxlength="32" required type="text" class="form-control" ng-model="role.name">
+            </p>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">链接(ui-sref)</label>
+          <div class="col-sm-10">
+            <p class="form-control-static">
+              <input type="text" class="form-control" ng-model="role.uiSref">
+            </p>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">角色授权</label>
+          <div class="panel-group col-sm-10" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" ng-click="auth && (auth = false );auth||(auth = true)" href="javascript:;"
+                     aria-expanded="true" aria-controls="collapseOne">
+                    角色授权
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse in" ng-class="{'collapse':auth}" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                  moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                  Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                  shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                  proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                  aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <a ui-sref="app.sys.role" class="btn btn-default">取消</a>
+            <input type="submit" ng-disabled="form.$invalid " class="m-l-xs btn btn-primary" value="保存"/>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -18511,7 +18511,7 @@ var inputType = {
           var valid = element(by.binding('myForm.input.$valid'));
           var input = element(by.model('text'));
 
-          it('should initialize to model', function() {
+          it(po, function() {
             expect(text.getText()).toContain('guest');
             expect(valid.getText()).toContain('true');
           });
