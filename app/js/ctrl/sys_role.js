@@ -6,10 +6,7 @@
      * @type {{name: string, method: string, url: string}}
      */
     $scope.option = {
-      name: '$grid',
-      method: 'POST',
-      url: 'sys/func',
-
+      url: 'sys/role',
     };
 
 

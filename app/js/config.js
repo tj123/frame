@@ -70,6 +70,15 @@
             }]
           }
         })
+        .state('app.role', {
+          url: '/role',
+          templateUrl: 'tpl/sys_role.html',
+          resolve: {
+            deps: ['$ocLazyLoad', function (ld) {
+              return ld.load(['js/ctrl/sys_role.js', 'css/sdgrid.css']);
+            }]
+          }
+        })
     }])
 })(app);
 
