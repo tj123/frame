@@ -1,5 +1,6 @@
 package com.shundian.frame.controller.sys;
 
+import com.shundian.frame.api.entity.sys.FunctionModule;
 import com.shundian.frame.api.service.sys.FunctionService;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.FuncFunction;
@@ -52,6 +53,28 @@ public class FunctionController {
         Result<Map<String, Object>> result = new Result<Map<String, Object>>();
         try {
             result.ok(functionService.list(id));
+        } catch (Exception e) {
+            result.error("错误", log, e);
+        }
+        return result;
+    }
+
+    @RequestMapping("/list_m")
+    public Result<?> edit() {
+        Result<List<FunctionModule>> result = new Result<List<FunctionModule>>();
+        try {
+            result.ok(functionService.findModules());
+        } catch (Exception e) {
+            result.error("错误", log, e);
+        }
+        return result;
+    }
+
+    @RequestMapping("/list_f")
+    public Result<?> list_f() {
+        Result<List<com.shundian.frame.api.entity.sys.Function>> result = new Result<List<com.shundian.frame.api.entity.sys.Function>>();
+        try {
+            result.ok(functionService.findFunctions());
         } catch (Exception e) {
             result.error("错误", log, e);
         }

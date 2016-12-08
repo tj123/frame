@@ -314,7 +314,7 @@
       }])
     .constant('JQ_CONFIG', {
       footable: ['js/lib/jquery/footable/footable.all.min.js', 'js/lib/jquery/footable/footable.core.css'],
-      sdGrid: []
+      nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css']
       //footable: ['js/lib/jquery/footablev3/footable.js', 'js/lib/jquery/footablev3/footable.bootstrap.css']
       //footable: ['js/lib/jquery/footablev2/footable.js', 'js/lib/jquery/footablev2/footable.core.css']
     })

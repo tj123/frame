@@ -1,6 +1,6 @@
 package com.shundian.frame.api.service.sys;
 
-import com.shundian.frame.api.po.sys.Role;
+import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 
@@ -14,19 +14,19 @@ public interface RoleService {
      * @return
      * @throws Exception
      */
-    PageResult<Role> list(Page page) throws Exception;
+    PageResult<RolePo> list(Page page) throws Exception;
 
     /**
      * 根据id列出
      * @return
      * @throws Exception
      */
-    Role list(String id) throws Exception;
+    RolePo list(String id) throws Exception;
 
     /**
      * 添加角色
-     * @param role
+     * @param po
      * @throws Exception
      */
-    void add(Role role) throws Exception;
+    void add(RolePo po) throws Exception;
 }

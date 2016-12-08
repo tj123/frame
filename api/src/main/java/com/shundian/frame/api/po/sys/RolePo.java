@@ -1,15 +1,20 @@
 package com.shundian.frame.api.po.sys;
 
+import com.shundian.frame.api.dto.sys.RoleDto;
+import com.shundian.lib.common.bean.BasePo;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
-@Getter
 @Setter
-public class Config implements Serializable {
+@Getter
+@Table(name = "tsys_role")
+public class RolePo extends BasePo<RoleDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,10 +24,8 @@ public class Config implements Serializable {
 
     private String name;
 
-    private String value;
+    private String uiSref;
 
-    private String comment;
-
-
+    private Date operateTime;
 
 }

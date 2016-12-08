@@ -1,9 +1,9 @@
 package com.shundian.frame.controller;
 
 import com.shundian.frame.api.dto.sys.RoleDto;
+import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.frame.api.service.sys.RoleService;
 import com.shundian.frame.common.function.sys.RoleFunction;
-import com.shundian.frame.api.po.sys.Role;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.Result;
@@ -25,7 +25,7 @@ public class RoleController {
 
     @RequestMapping
     public Result<?> list(Page page) {
-        Result<PageResult<Role>> result = new Result<PageResult<Role>>();
+        Result<PageResult<RolePo>> result = new Result<PageResult<RolePo>>();
         try {
             result.ok(service.list(page));
         } catch (Exception e) {

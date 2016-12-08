@@ -140,6 +140,76 @@
 
 							}
 						};
+
+					/**
+					 *更新条数显示
+					 */
+					var pages = function(jq,page,total){
+						var pg = jq.find('.foot .pages');
+						pg.empty();
+						var pre = $('<a href="javascript:void(0);" class="previous">&lt;上一页</a>').appendTo(pg);
+						if(page == 1){
+							pre.addClass('disable');
+						}else{
+							pre.on('click',function(){
+								load(jq,page - 1);
+							});
+						}
+						var show = function(start,stop,p){
+							if(stop){
+								for(var i = start ;i<=stop;i++){
+									var a = $('<a href="javascript:void(0);" class="page"></a>').text(i).appendTo(pg);
+									if(i != p){
+										a.on('click',function(){
+											load(jq,$(this).data('pg'));
+										}).data('pg',i);
+									}else{
+										a.addClass('active');
+									}
+								}
+							}else{
+								$('<a href="javascript:void(0);" class="page"></a>').text(start).appendTo(pg).on('click',function(){
+									load(jq,$(this).data('pg'));
+								}).data('pg',start);
+							}
+						};
+						var showMore = function(){
+							$('<span class="more">...</span>').appendTo(pg);
+						};
+						if( total <= PAGE_DIVIDE + 1 || page <= PAGE_DIVIDE -3){
+							if(total > PAGE_DIVIDE +1){
+								show(1,PAGE_DIVIDE,page);
+								showMore();
+								show(total);
+							}else{
+								show(1,total,page);
+							}
+						}else if(page > PAGE_DIVIDE-3 && page < total -PAGE_DIVIDE + 3){
+							show(1);
+							showMore();
+							if(page + 3 >= total){
+								show(page - 3,total,page);
+							}else {
+								show(page - 3,page +3,page);
+								showMore();
+								show(total);
+							}
+						}else if(page >= total - PAGE_DIVIDE + 3){
+							show(1);
+							showMore();
+							show(total-PAGE_DIVIDE,total,page);
+						}
+						var nxt = $('<a href="javascript:void(0);" class="next">下一页&gt;</a>').appendTo(pg);
+						if(page == total){
+							nxt.addClass('disable');
+						}else{
+							nxt.on('click',function(){
+								load(jq,page + 1);
+							});
+						}
+
+					};
+
 					init();
 					scope.$watch((option.name || '$grid') + '.size', function () {
 						loadPage(Math.ceil(currentSn/$grid.size));

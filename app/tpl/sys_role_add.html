@@ -3,7 +3,7 @@
     <ol class="breadcrumb row text-xs m-b-xs">
       <span><i class="fa fa-circle-o p-r-xs"></i>当前位置：</span>
       <li>系统管理</li>
-      <li><a ui-sref="app.sys.role">角色管理</a></li>
+      <li><a ui-sref="app.sys.rolePo">角色管理</a></li>
       <li>角色添加</li>
     </ol>
   </div>
@@ -18,7 +18,7 @@
           <label class="col-sm-2 control-label">角色名</label>
           <div class="col-sm-10">
             <p class="form-control-static">
-              <input name="name" ng-minlength="2" ng-maxlength="32" required type="text" class="form-control" ng-model="role.name">
+              <input name="name" ng-minlength="2" ng-maxlength="32" required type="text" class="form-control" ng-model="rolePo.name">
             </p>
           </div>
         </div>
@@ -27,24 +27,24 @@
           <label class="col-sm-2 control-label">链接(ui-sref)</label>
           <div class="col-sm-10">
             <p class="form-control-static">
-              <input type="text" class="form-control" ng-model="role.uiSref">
+              <input type="text" class="form-control" ng-model="rolePo.uiSref">
             </p>
           </div>
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <label class="col-sm-2 control-label">角色授权</label>
-          <div class="panel-group col-sm-10" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel-group col-sm-10" id="accordion" rolePo="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
+              <div class="panel-heading" rolePo="tab" id="headingOne">
                 <h4 class="panel-title">
-                  <a role="button" ng-click="auth && (auth = false );auth||(auth = true)" href="javascript:;"
+                  <a rolePo="button" ng-click="auth && (auth = false );auth||(auth = true)" href="javascript:;"
                      aria-expanded="true" aria-controls="collapseOne">
                     角色授权
                   </a>
                 </h4>
               </div>
-              <div id="collapseOne" class="panel-collapse in" ng-class="{'collapse':auth}" role="tabpanel" aria-labelledby="headingOne">
+              <div id="collapseOne" class="panel-collapse in" ng-class="{'collapse':auth}" rolePo="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
                   moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.

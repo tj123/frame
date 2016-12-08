@@ -9,7 +9,7 @@
   <script src="angular.js"></script>
   <script src="jquery.js"></script>
   <script>
-    angular.module('app',[]).controller('HelloCtrl',function ($scope,$http) {
+    angular.module('app',[]).controller('HelloCtrl',functionPo ($scope,$http) {
       $scope.a = 'world';
 
       $http({
@@ -19,7 +19,7 @@
           page:2,
           size:5
         }
-      }).success(function (data) {
+      }).success(functionPo (data) {
         console.log(data);
       })
 
@@ -32,7 +32,7 @@
         page:2,
         size:5
       },
-      success:function (e) {
+      success:functionPo (e) {
         console.log(e);
       }
     });

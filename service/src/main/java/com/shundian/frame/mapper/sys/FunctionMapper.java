@@ -1,19 +1,22 @@
 package com.shundian.frame.mapper.sys;
 
 
-import com.shundian.frame.api.po.sys.Function;
+import com.shundian.frame.api.entity.sys.Function;
+import com.shundian.frame.api.po.sys.FunctionPo;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
-public interface FunctionMapper extends Mapper<Function> {
+public interface FunctionMapper extends Mapper<FunctionPo> {
 
-    Integer selectDuplicate(Function function) throws Exception;
+    Integer selectDuplicate(FunctionPo functionPo) throws Exception;
 
-    void updateFunction(Function function) throws Exception;
+    void updateFunction(FunctionPo functionPo) throws Exception;
 
     List<Map<String,Object>> list(Map<String, String> keywords) throws Exception;
+
+    List<Function> selectFunction(FunctionPo po);
 
 }
 

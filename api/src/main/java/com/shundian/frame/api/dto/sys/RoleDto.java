@@ -1,9 +1,8 @@
 package com.shundian.frame.api.dto.sys;
 
-import com.shundian.frame.api.po.sys.Role;
+import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.lib.common.bean.BaseDto;
-import com.shundian.lib.common.bean.BlankCurrent;
-import com.shundian.lib.common.bean.DatePattern;
+import com.shundian.lib.common.bean.convert.BlankCurrent;
 import com.shundian.lib.common.bean.validate.NotBlank;
 import com.shundian.lib.common.bean.validate.Validate;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Validate
-public class RoleDto extends BaseDto<Role> {
+public class RoleDto extends BaseDto<RolePo> {
 
     private String id;
 
@@ -21,7 +20,6 @@ public class RoleDto extends BaseDto<Role> {
 
     private String uiSref;
 
-    @DatePattern
     @BlankCurrent
     private String operateTime;
 

@@ -2,13 +2,15 @@ package com.shundian.frame.service.impl.sys;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shundian.frame.api.entity.sys.Function;
+import com.shundian.frame.api.entity.sys.FunctionModule;
+import com.shundian.frame.api.po.sys.FunctionPo;
 import com.shundian.frame.api.service.sys.FunctionService;
 import com.shundian.frame.common.PageUtil;
 import com.shundian.frame.api.envm.ProjectTypeEnum;
 import com.shundian.frame.mapper.sys.FunctionMapper;
 import com.shundian.frame.mapper.sys.FunctionModuleMapper;
-import com.shundian.frame.api.po.sys.Function;
-import com.shundian.frame.api.po.sys.FunctionModule;
+import com.shundian.frame.api.po.sys.FunctionModulePo;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.exception.CannotConvertException;
@@ -44,36 +46,36 @@ public class FunctionServiceImpl implements FunctionService {
             Class<? extends FunctionType> functionClass = entry.getKey();
             List<Class<? extends ModuleType>> moduleClasses = entry.getValue();
             FunctionType<?> functionType = functionClass.newInstance();
-            Function function = new Function();
-            function.setUid(functionType.getId());
-            List<Function> funcs = mapper.select(function);
+            FunctionPo functionPo = new FunctionPo();
+            functionPo.setUid(functionType.getId());
+            List<FunctionPo> funcs = mapper.select(functionPo);
             if (funcs == null || funcs.isEmpty() || funcs.size() == 0) {
-                function.setClazz(functionClass.getName());
-                function.setName(functionType.getName());
-                function.setUiSref(functionType.getUiSref());
-                function.setProject(EnumUtil.valueOf(ProjectTypeEnum.class, String.valueOf(functionType.getProject())));
-                function.setIsShow(true);
-                function.setOrder(new Random().nextInt(20));
-                function.setId(UuidUtil.getUUID());
-                mapper.insert(function);
+                functionPo.setClazz(functionClass.getName());
+                functionPo.setName(functionType.getName());
+                functionPo.setUiSref(functionType.getUiSref());
+                functionPo.setProject(EnumUtil.valueOf(ProjectTypeEnum.class, String.valueOf(functionType.getProject())));
+                functionPo.setIsShow(true);
+                functionPo.setOrder(new Random().nextInt(20));
+                functionPo.setId(UuidUtil.getUUID());
+                mapper.insert(functionPo);
             } else {
-                Function dbFunction = null;
+                FunctionPo dbFunctionPo = null;
                 if (funcs.size() > 1) {
                     throw new Exception("功能 " + functionType.getName() + " uid 重复！");
                 }
-                for (Function func : funcs) {
+                for (FunctionPo func : funcs) {
                     if (func.getClazz().equals(functionClass.getName())) {
-                        dbFunction = func;
+                        dbFunctionPo = func;
                     }
                 }
-                if (dbFunction != null) {
-                    function.setId(dbFunction.getId());
-                    if ((!functionType.getName().equals(dbFunction.getName())
-                            || !functionType.getUiSref().equals(dbFunction.getUiSref()))) {
-                        function.setClazz(functionClass.getName());
-                        function.setName(functionType.getName());
-                        function.setUiSref(functionType.getUiSref());
-                        mapper.updateFunction(function);
+                if (dbFunctionPo != null) {
+                    functionPo.setId(dbFunctionPo.getId());
+                    if ((!functionType.getName().equals(dbFunctionPo.getName())
+                            || !functionType.getUiSref().equals(dbFunctionPo.getUiSref()))) {
+                        functionPo.setClazz(functionClass.getName());
+                        functionPo.setName(functionType.getName());
+                        functionPo.setUiSref(functionType.getUiSref());
+                        mapper.updateFunction(functionPo);
                     }
                 } else {
                     throw new Exception("功能 " + functionType.getName() + " uid 重复！");
@@ -84,29 +86,29 @@ public class FunctionServiceImpl implements FunctionService {
                 if (module.getId() == 0) {
                     throw new Exception("模块 id 0 为保留 id！");
                 }
-                FunctionModule functionModule = new FunctionModule();
-                functionModule.setFunctionId(function.getId());
-                functionModule.setName(module.getName());
-                functionModule.setKey(module.getKey());
-                functionModule.setClazz(moduleClass.getName());
-                functionModule.setUid(module.getId());
-                if (functionModuleMapper.selectDuplicate(functionModule) > 0) {
-                    throw new Exception("模块 " + functionModule.getName() + " uid 重复！");
+                FunctionModulePo functionModulePo = new FunctionModulePo();
+                functionModulePo.setFunctionId(functionPo.getId());
+                functionModulePo.setName(module.getName());
+                functionModulePo.setKey(module.getKey());
+                functionModulePo.setClazz(moduleClass.getName());
+                functionModulePo.setUid(module.getId());
+                if (functionModuleMapper.selectDuplicate(functionModulePo) > 0) {
+                    throw new Exception("模块 " + functionModulePo.getName() + " uid 重复！");
                 }
-                FunctionModule select = new FunctionModule();
-                select.setFunctionId(functionModule.getFunctionId());
-                select.setUid(functionModule.getUid());
-                List<FunctionModule> select1 = functionModuleMapper.select(select);
+                FunctionModulePo select = new FunctionModulePo();
+                select.setFunctionId(functionModulePo.getFunctionId());
+                select.setUid(functionModulePo.getUid());
+                List<FunctionModulePo> select1 = functionModuleMapper.select(select);
                 if (select1 == null || select1.isEmpty() || select1.size() == 0) {
-                    functionModuleMapper.insert(functionModule);
+                    functionModuleMapper.insert(functionModulePo);
                 } else if (select1.size() == 1) {
-                    FunctionModule selectModule = select1.get(0);
-                    if (!functionModule.getKey().equals(selectModule.getKey()) ||
-                            !functionModule.getName().equals(selectModule.getName())) {
-                        functionModuleMapper.updateModule(functionModule);
+                    FunctionModulePo selectModule = select1.get(0);
+                    if (!functionModulePo.getKey().equals(selectModule.getKey()) ||
+                            !functionModulePo.getName().equals(selectModule.getName())) {
+                        functionModuleMapper.updateModule(functionModulePo);
                     }
                 } else {
-                    throw new Exception("模块 " + functionModule.getName() + " 错误！");
+                    throw new Exception("模块 " + functionModulePo.getName() + " 错误！");
                 }
             }
 
@@ -163,6 +165,16 @@ public class FunctionServiceImpl implements FunctionService {
             return list.get(0);
         }
         return new HashMap<String, Object>();
+    }
+
+    @Override
+    public List<FunctionModule> findModules() throws Exception {
+        return functionModuleMapper.selectFunctionModule(null);
+    }
+
+    @Override
+    public List<Function> findFunctions() throws Exception {
+        return mapper.selectFunction(null);
     }
 
 }

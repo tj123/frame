@@ -3,9 +3,9 @@ package com.shundian.frame.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.shundian.frame.mapper.CityMapper;
 import com.shundian.frame.api.po.City;
 import com.shundian.frame.api.service.CityService;
+import com.shundian.frame.mapper.CityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +33,7 @@ public class CityServiceImpl  implements CityService{
         List<City> cities = cityMapper.selectAll();
 
         System.out.println(page);
+
 
         return cities;
 	}

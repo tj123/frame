@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "tsys_function")
-public class Function implements Serializable{
+public class FunctionPo implements Serializable{
 
 	@Id
 	@GeneratedValue(generator = "UUID")

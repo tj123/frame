@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Table(name = "tsys_function_module")
-public class FunctionModule{
+public class FunctionModulePo {
 
 	@Id
 	@GeneratedValue(generator = "UUID")

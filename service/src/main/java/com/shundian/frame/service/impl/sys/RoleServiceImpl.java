@@ -1,10 +1,10 @@
 package com.shundian.frame.service.impl.sys;
 
 
+import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.frame.api.service.sys.RoleService;
 import com.shundian.frame.common.PageUtil;
 import com.shundian.frame.mapper.sys.RoleMapper;
-import com.shundian.frame.api.po.sys.Role;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import lombok.extern.slf4j.Slf4j;
@@ -19,20 +19,20 @@ public class RoleServiceImpl implements RoleService {
     private RoleMapper mapper;
 
     @Override
-    public PageResult<Role> list(Page page) throws Exception {
-        PageUtil<Role> util = new PageUtil<>();
+    public PageResult<RolePo> list(Page page) throws Exception {
+        PageUtil<RolePo> util = new PageUtil<>();
         util.startPage(page);
         return util.assembleResult(mapper.selectAll());
     }
 
     @Override
-    public Role list(String id) throws Exception {
+    public RolePo list(String id) throws Exception {
         return null;
     }
 
     @Override
-    public void add(Role role) throws Exception {
-        mapper.insert(role);
+    public void add(RolePo rolePo) throws Exception {
+        mapper.insert(rolePo);
     }
 
 }
