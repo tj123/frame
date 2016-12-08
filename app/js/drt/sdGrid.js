@@ -13,7 +13,7 @@
 						trLink = table.hasClass('grid-link'),
 						$grid = scope[option.name || '$grid'] = {};
 					$grid.size = option.size || 5;
-					var currentPage = 1,currentSn = 1,
+					var currentPage = 1, currentSn = 1,
 						totalPage = 1,
 						init = function () {
 							$loading.appendTo(tbody);
@@ -63,11 +63,11 @@
 									var d = dt.data;
 									$grid.rows = d.rows || [];
 									$grid.total = d.total;
-									totalPage = Math.ceil(parseInt(d.total)/parseInt($grid.size));
-									if(currentPage >= totalPage)
+									totalPage = Math.ceil(parseInt(d.total) / parseInt($grid.size));
+									if (currentPage >= totalPage)
 										currentPage = totalPage;
 									currentSn = (currentPage - 1) * $grid.size;
-									updateFoot();
+									updateFoot(totalPage,currentPage);
 								} else {
 									error();
 								}
@@ -81,13 +81,13 @@
 							loadPage(parseInt(angular.element(e.target).text()));
 						},
 						next = $grid.next = function () {
-							if($next.hasClass('disable'))
-								return;
+							//if (eles.nxt.isDisabled())
+								//return;
 							loadPage(++currentPage);
 						},
 						previous = $grid.previous = function () {
-							if($previous.hasClass('disable'))
-								return;
+							//if (eles.pre.isDisabled())
+								//return;
 							loadPage(--currentPage);
 						},
 						first = $grid.first = function () {
@@ -102,125 +102,181 @@
 						morePrevious = $grid.morePrevious = function () {
 							loadPage(currentPage - 3);
 						},
-						reload = $grid.reload = $grid.refresh = $grid.search = function (val,sort) {
-							loadPage(undefined,val,sort);
-						},
-						$previous = $gridFoot.find('.previous'),
-						$first = $gridFoot.find('.first'),
-						$morePre = $gridFoot.find('.more-pre'),
-						$pages = $gridFoot.find('.page'),
-						$moreNext = $gridFoot.find('.more-next'),
-						$last = $gridFoot.find('.last'),
-						$next = $gridFoot.find('.next'),
-						$all = $gridFoot.find('.btn'),
-						updateFoot = function () {
-							$last.text(totalPage);
-							$all.show().removeClass('active').removeClass('disable').parent().show();
-							if(currentPage == 1){
-								$previous.addClass('disable');
-								$first.addClass('active');
-							}
-							if(currentPage == totalPage){
-								$next.addClass('disable');
-								$last.addClass('active');
-							}
-							if(currentPage <= 2){
-								$morePre.parent().hide();
-								$pages.last().parent().hide();
-							}
-							if(currentPage >= totalPage - 1){
-								$moreNext.parent().hide();
-								$pages.first().parent().hide();
-							}
-							if((currentPage >2) && (currentPage < totalPage - 1)){
-								$pages.first().parent().hide();
-								$pages.last().parent().hide();
-							}
-							if(totalPage < $pages.length + 4){
-
-							}
+						reload = $grid.reload = $grid.refresh = $grid.search = function (val, sort) {
+							loadPage(undefined, val, sort);
 						};
-
-					/**
-					 *更新条数显示
-					 */
-					var pages = function(jq,page,total){
-						var pg = jq.find('.foot .pages');
-						pg.empty();
-						var pre = $('<a href="javascript:void(0);" class="previous">&lt;上一页</a>').appendTo(pg);
-						if(page == 1){
-							pre.addClass('disable');
-						}else{
-							pre.on('click',function(){
-								load(jq,page - 1);
-							});
-						}
-						var show = function(start,stop,p){
-							if(stop){
-								for(var i = start ;i<=stop;i++){
-									var a = $('<a href="javascript:void(0);" class="page"></a>').text(i).appendTo(pg);
-									if(i != p){
-										a.on('click',function(){
-											load(jq,$(this).data('pg'));
-										}).data('pg',i);
-									}else{
-										a.addClass('active');
-									}
-								}
-							}else{
-								$('<a href="javascript:void(0);" class="page"></a>').text(start).appendTo(pg).on('click',function(){
-									load(jq,$(this).data('pg'));
-								}).data('pg',start);
-							}
-						};
-						var showMore = function(){
-							$('<span class="more">...</span>').appendTo(pg);
-						};
-						if( total <= PAGE_DIVIDE + 1 || page <= PAGE_DIVIDE -3){
-							if(total > PAGE_DIVIDE +1){
-								show(1,PAGE_DIVIDE,page);
-								showMore();
-								show(total);
-							}else{
-								show(1,total,page);
-							}
-						}else if(page > PAGE_DIVIDE-3 && page < total -PAGE_DIVIDE + 3){
-							show(1);
-							showMore();
-							if(page + 3 >= total){
-								show(page - 3,total,page);
-							}else {
-								show(page - 3,page +3,page);
-								showMore();
-								show(total);
-							}
-						}else if(page >= total - PAGE_DIVIDE + 3){
-							show(1);
-							showMore();
-							show(total-PAGE_DIVIDE,total,page);
-						}
-						var nxt = $('<a href="javascript:void(0);" class="next">下一页&gt;</a>').appendTo(pg);
-						if(page == total){
-							nxt.addClass('disable');
-						}else{
-							nxt.on('click',function(){
-								load(jq,page + 1);
-							});
-						}
-
+					var footEle = function (el) {
+						this[0] = el[0];
+						this.atv = true;
+						this.dis = true;
 					};
+
+					footEle.prototype = {
+						constructor: footEle,
+						active: function () {
+							var e = this;
+							//if (e.dis) {
+								angular.element(e[0]).removeClass('disable');
+								e.dis = false;
+							//}
+							//if (!e.atv) {
+								angular.element(e[0]).addClass('active');
+								e.atv = true;
+							//}
+						},
+						disable: function () {
+							var e = this;
+							//if (e.atv) {
+								angular.element(e[0]).removeClass('active');
+								e.atv = false;
+							//}
+							//if (!e.dis) {
+								angular.element(e[0]).removeClass('disable');
+								e.dis = true;
+							//}
+						},
+						isDisabled: function () {
+							return this.dis;
+						},
+						recover: function () {
+							var e = this;
+							//if (e.atv) {
+								angular.element(e[0]).removeClass('active');
+								e.atv = false;
+							//}
+							//if (e.dis) {
+								angular.element(e[0]).removeClass('disable');
+								e.dis = false;
+							//}
+						},
+						hide: function () {
+							angular.element(this[0]).parent().hide();
+						},
+						show: function () {
+							angular.element(this[0]).parent().show();
+						},
+						text: function (t) {
+							angular.element(this[0]).text(t);
+						}
+					};
+					var btns = $gridFoot.find('.btn');
+					var eles = {
+						pre: new footEle(btns.first()),
+						nxt: new footEle(btns.last()),
+						num: [],
+						morePre: new footEle(btns.eq(2)),
+						moreNext: new footEle(btns.eq(btns.length - 2)),
+						all: function (fun) {
+							var e = this;
+							for (var i in e.num) {
+								e.num[i][fun]();
+							}
+							e.morePre[fun]();
+							e.moreNext[fun]();
+							e.$index = 0;
+						},
+						$index: 0,
+						next: function () {
+							var e = this, rtn = e.num[e.$index++];
+							if (e.$index >= e.num.length) e.$index = e.num.length - 1;
+							return rtn;
+						},
+						show: function (start, stop) {
+							var e = this;
+							if (stop) {
+								for (var i = start; i <= stop; i++) {
+									e.show(i);
+								}
+							} else {
+								if(start < 1) start = 1;
+								if (start == 1) e.$index = 0;
+								if (start == totalPage) e.$index = e.num.length - 1;
+								var next = eles.next();
+									next.show();
+									next.text(start);
+									(start == currentPage) && next.active();
+							}
+						}
+					};
+
+					for(var i =1;i<btns.length -1;i++){
+						if((i == 2) || (i == btns.length - 3))continue;
+						eles.num.push(new footEle(btns.eq(i)));
+					}
+
+					var updateFoot = function (total,current) {
+						eles.all('recover');
+						eles.all('hide');
+						rightView(current,total);
+					}
+
+					var lend = Math.round(eles.num.length/2);
+
+
+					var leftView = function (current,total) {
+						eles.show(1, eles.num.length );
+						eles.moreNext.show();
+						eles.show(total);
+					};
+
+					var rightView = function (current,total) {
+						eles.show(1);
+						eles.morePre.show();
+						eles.show(total - eles.num.length, total);
+						eles.show(total);
+					}
+
+					var centerView = function (current,total) {
+						// if(current == 5)
+						// 	debugger
+						eles.show(1);
+						eles.morePre.show();
+						eles.show(current - lend,current + lend);
+						eles.moreNext.show();
+						eles.show(total)
+					}
+
+
+					var updateFoot1 = function (total,current) {
+						eles.all('recover');
+						eles.all('hide');
+						//debugger
+						if (current <= lend) {
+							if (total > eles.num.length  + 1) {
+								eles.show(1, eles.num.length );
+								eles.moreNext.show();
+								eles.show(total);
+							} else {
+								eles.show(1, total);
+							}
+						} else if ((current > eles.num.length - lend) &&
+							(current < total - eles.num.length - lend)) {
+							if (total > eles.num.length + 1) {
+								eles.show(1, eles.num.length);
+								eles.moreNext.show();
+								eles.show(total);
+							} else {
+								show(1, total);
+							}
+						} else if (current >= total - eles.num.length + 3) {
+							eles.show(1);
+							eles.morePre.show();
+							eles.show(total - eles.num.length, total);
+						}
+					};
+
 
 					init();
 					scope.$watch((option.name || '$grid') + '.size', function () {
-						loadPage(Math.ceil(currentSn/$grid.size));
+						loadPage(Math.ceil(currentSn / $grid.size));
 					});
 
 
-					console.log($.param({a: 'sdfsdf', "bs": 'sdfsdfsdf'}));
-
-					console.log($http);
-					console.log(tbody);
-					console.log(el);
+					// console.log($.param({a: 'sdfsdf', "bs": 'sdfsdfsdf'}));
+					//
+					// console.log($http);
+					// console.log(tbody);
+					// console.log(el);
 				}
 			};
 		}]);

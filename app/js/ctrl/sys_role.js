@@ -7,6 +7,7 @@
      */
     $scope.option = {
       url: 'sys/role',
+      size:1
     };
 
 
