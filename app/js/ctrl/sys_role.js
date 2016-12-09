@@ -6,8 +6,7 @@
      * @type {{name: string, method: string, url: string}}
      */
     $scope.option = {
-      url: 'sys/role',
-      size:1
+      url: 'sys/role'
     };
 
     $scope.auth = function (id) {

@@ -14,7 +14,7 @@
       })
       .state('app.sys', {
         url: 'sys',
-        templateUrl: 'sys.html'
+        template: '<ui-view></ui-view>'
       })
       .state('app.dep', {
         url: 'dep',
@@ -29,7 +29,9 @@
         templateUrl: 'tpl/sys_func.html',
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
-            return ld.load(['js/ctrl/sys_func.js', 'css/sdgrid.css']);
+            return ld.load('sd.grid').then(function () {
+              return ld.load('js/ctrl/sys_func.js');
+            });
           }]
         }
       })
