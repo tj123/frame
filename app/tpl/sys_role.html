@@ -13,7 +13,7 @@
           <h1 class="h3">角色管理</h1>
         </div>
         <div class="panel-body b-b b-light">
-          <input ng-model="hehe" type="text" class="grid-search-input form-control input-sm w-sm inline m-r"/>
+          <input ng-model="$grid.keyword" type="text" class="grid-search-input form-control input-sm w-sm inline m-r"/>
           <a href="javascript:;" class="btn btn-primary">搜索</a>
           <div class="pull-right">
             <a href="javascript:;" ui-sref="app.sys.roleAdd" class="btn btn-primary">添加</a>
@@ -38,7 +38,7 @@
               <td>{{item.uiSref}}</td>
               <td>{{item.operateTime}}</td>
               <td class="text-center">
-                <a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info" href="">授权</a>|<a
+                <a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info"  data-toggle="modal" data-target="#myModal" ng-click="auth(item.id)">授权</a>|<a
                   class="wrapper-xs text-info" href="">删除</a>
               </td>
             </tr>
@@ -87,10 +87,9 @@
   </div>
 
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
+  <button  id="authBtn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <span class="panel" ui-select=""></span>
   </button>
-
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" rolePo="dialog" aria-labelledby="myModalLabel">
@@ -108,6 +107,7 @@
               <input class="form-control input-sm inline w-sm m-r" type="text"> <a href="javascript:;"
                                                                                    class="btn btn-primary">搜索已授权</a>
               <div ui-jq="nestable" class="dd">
+
                 <ol class="dd-list">
                   <li class="dd-item" data-id="1">
                     <div class="dd-handle">Item 1</div>
@@ -141,6 +141,7 @@
                     </ol>
                   </li>
                 </ol>
+
               </div>
             </div>
 
@@ -148,6 +149,7 @@
               <input class="form-control input-sm inline w-sm m-r" type="text"> <a href="javascript:;"
                                                                                    class="btn btn-primary">搜索未授权</a>
               <div ui-jq="nestable" class="dd">
+
                 <ol class="dd-list">
                   <li class="dd-item dd3-item" data-id="13">
                     <div class="dd-handle dd3-handle">Drag</div>
@@ -176,6 +178,7 @@
                     </ol>
                   </li>
                 </ol>
+
               </div>
             </div>
           </div>

@@ -7,13 +7,13 @@
     'ngSanitize',
     'ngTouch',
     'ngStorage',
-    //'sdGrid',
     'ui.router',
     //'ui.bootstrap',
     //'ui.load',
     'ui.jq',
     //'ui.validate',
     'oc.lazyLoad'
+    //'sd.grid'
   ])
     .config(['$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$httpProvider',
       function ($controllerProvider, $compileProvider, $filterProvider, $provide, $httpProvider) {
@@ -303,62 +303,14 @@
 
         $rootScope.$on('$stateChangeStart',
           function (e, toState, toParams, fromState, fromParams) {
-            console.log();
-            console.log(e.currentScope);
-            // if(e.currentScope != null){
-            //     e.currentScope.animate = 'fadeInOut';
-            //     e.preventDefault();
-            // }
+
 
           });
       }])
-    .constant('JQ_CONFIG', {
-      footable: ['js/lib/jquery/footable/footable.all.min.js', 'js/lib/jquery/footable/footable.core.css'],
-      nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css']
-      //footable: ['js/lib/jquery/footablev3/footable.js', 'js/lib/jquery/footablev3/footable.bootstrap.css']
-      //footable: ['js/lib/jquery/footablev2/footable.js', 'js/lib/jquery/footablev2/footable.core.css']
-    })
-    .config(['$ocLazyLoadProvider', function ($ocLazyLoadProvider) {
-      // We configure ocLazyLoad to use the lib script.js as the async loader
-      $ocLazyLoadProvider.config({
-        debug: false,
-        events: true,
-        modules: [{
-          name: 'ngGrid',
-          files: [
-            'js/lib/modules/ng-grid/ng-grid.min.js',
-            'js/lib/modules/ng-grid/ng-grid.min.css',
-            'js/lib/modules/ng-grid/theme.css'
-          ]
-        }, {
-          name: 'ui.select',
-          files: [
-            'js/lib/modules/angular-ui-select/select.min.js',
-            'js/lib/modules/angular-ui-select/select.min.css'
-          ]
-        }, {
-          name: 'angularFileUpload',
-          files: [
-            'js/lib/modules/angular-file-upload/angular-file-upload.min.js'
-          ]
-        }, {
-          name: 'ui.calendar',
-          files: ['js/lib/modules/angular-ui-calendar/calendar.js']
-        }, {
-          name: 'ngImgCrop',
-          files: [
-            'js/lib/modules/ngImgCrop/ng-img-crop.js',
-            'js/lib/modules/ngImgCrop/ng-img-crop.css'
-          ]
-        }
-          // ,{
-          //   name:'sdGrid',
-          //   files:['js/drt/sdgrid.js','css/sdgrid.css']
-          // }
-        ]
-      });
+    .config(['$ocLazyLoadProvider', 'MODULE_LIB', function ($ocLazyLoadProvider, MODULE_LIB) {
+      $ocLazyLoadProvider.config({debug: false, events: true, modules: MODULE_LIB});
     }]);
 
 
-})(window, window.angular, jQuery, undefined);
+})(window, window.angular, jQuery);
 

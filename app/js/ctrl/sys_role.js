@@ -10,6 +10,10 @@
       size:1
     };
 
+    $scope.auth = function (id) {
+      console.log(id);
+    };
+
 
   }]);
 
@@ -44,6 +48,7 @@
         });
 
     };
+
 
     $scope.canl = function (d) {
       console.log(d);
