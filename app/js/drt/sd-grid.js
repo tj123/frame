@@ -1,6 +1,6 @@
 (function (angular, $, undefined) {
-  angular.module('sd.grid',[]).directive('sdGrid', ['$timeout', '$window', '$document', '$http',
-    function ($timeout, $window, $document, $http) {
+  angular.module('sd.grid',[]).directive('sdGrid', ['$timeout', '$window', '$document', '$http','$q',
+    function ($timeout, $window, $document, $http,$q) {
       return {
         restrict: 'A',
         link: function (scope, el, attr) {
@@ -17,8 +17,9 @@
             totalPage = 1,
             init = function () {
               $loading.appendTo(tbody);
-              loadPage(1);
+              var pro = loadPage(1);
               $gridFoot.parent().parent('td').attr('colspan', columnLen);
+              return pro;
             },
             $loading = angular.element('<tr style="display: none;">'
               + '<td class="grid-loading text-center" colspan="' + columnLen + '">'
@@ -45,6 +46,7 @@
              */
             val, sort,
             loadPage = $grid.loadPage = function (page, value, sortAsc) {
+              var defer = $q.defer();
               val = value;
               sort = sortAsc;
               if (angular.isString(val)) data.keyword = val;
@@ -68,14 +70,18 @@
                     currentPage = totalPage;
                   currentSn = (currentPage - 1) * $grid.size;
                   updateFoot(totalPage, currentPage);
+                  defer.resolve();
                 } else {
                   error();
+                  defer.reject();
                 }
                 loadComplete();
               }).error(function (e) {
                 loadComplete();
                 error(e);
+                defer.reject();
               });
+              return defer.promise;
             };
             $grid.go = function (e) {
               loadPage(parseInt(angular.element(e.target).text()));
@@ -221,9 +227,9 @@
             if (total <= eles.num.length + 1) {
               allView();
             } else {
-              if (current <= lend) {
+              if (current <= lend +1 ) {
                 leftView();
-              } else if (current > lend && current < total - lend) {
+              } else if (current > lend + 1  && current < total - lend) {
                 centerView();
               } else {
                 rightView();
@@ -238,9 +244,11 @@
           };
 
           init();
-          scope.$watch((option.name || '$grid') + '.size', function () {
+          scope.$watch((option.name || '$grid') + '.size', function (odv,nev) {
+            if(odv == nev) return;
             loadPage(Math.ceil(currentSn / $grid.size));
           });
+
 
 
         }
