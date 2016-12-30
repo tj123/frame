@@ -187,7 +187,7 @@ public class FunctionServiceImpl implements FunctionService {
     @Override
     public Map<String, Object> listAll(String name) throws Exception {
 //        System.out.println(lscrmFunctionPrivilegeMapper.readAllPrivileges(0));
-        System.out.println(new ObjectMapper().writeValueAsString(lscrmFunctionPrivilegeMapper.readAllPrivileges(0)));
+//        System.out.println(new ObjectMapper().writeValueAsString(lscrmFunctionPrivilegeMapper.readAllPrivileges(0)));
         System.out.println(new ObjectMapper().writeValueAsString(functionModuleMapper.listAll(null,null,null)));
         return null;
     }

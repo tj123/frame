@@ -67,38 +67,26 @@
   <!-- 嵌套查询 -->
   <sql id="searchModule">
     select id,uid,parent_id,order_,name from tsys_function where 1 = 1
-    <if test="name != null">
+<!--    <if test="name != null">
       and name like concat('%',#{name},'%')
     </if>
     <if test="project != null">
       and project = #{project}
-    </if>
+    </if>-->
   </sql>
 
   <!--suppress MybatisMapperXmlInspection -->
-  <select id="selectChildModule" resultMap="childSearchFunction">
+  <select id="selectChildModule" parameterType="string" resultMap="searchFunction">
     <include refid="searchModule"></include>
     and parent_id = #{id}
   </select>
 
-  <resultMap id="searchFunctionMap" type="com.shundian.frame.api.entity.sys.SearchFunction">
+  <resultMap id="searchFunction" type="com.shundian.frame.api.entity.sys.SearchFunction">
     <id property="id" column="id"></id>
     <result property="uid" column="uid"></result>
     <result property="order" column="order_"></result>
     <result property="parentId" column="parent_id"></result>
     <result property="name" column="name"></result>
-  </resultMap>
-
-  <resultMap id="childSearchFunction" type="com.shundian.frame.api.entity.sys.SearchFunction" extends="searchFunctionMap">
-    <collection property="children"
-                javaType="java.util.ArrayList"
-                column="id"
-                ofType="com.shundian.frame.api.entity.sys.SearchFunction"
-                select="selectChildModule">
-    </collection>
-  </resultMap>
-
-  <resultMap id="searchFunction" type="com.shundian.frame.api.entity.sys.SearchFunction" extends="childSearchFunction">
     <collection property="children"
                 javaType="java.util.ArrayList"
                 column="id"
@@ -109,7 +97,7 @@
 
   <select id="listAll" resultMap="searchFunction">
     <include refid="searchModule"></include>
-    and parent_id is null
+    and (parent_id is null or trim(parent_id) = '')
   </select>
 
 
