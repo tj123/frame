@@ -14,7 +14,13 @@ public class SearchFunction {
 
     private String id;
 
+    private Integer uid;
+
     private String name;
+
+    private String parentId;
+
+    private Integer order;
 
     private List<SearchFunction> children;
 

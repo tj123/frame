@@ -3,33 +3,33 @@
 <mapper namespace="com.shundian.frame.mapper.sys.RoleMapper">
 
 
-    <select id="list" resultType="java.util.Map">
+  <select id="list" resultType="java.util.Map">
 
-    </select>
-    
-    
-    <resultMap id="roleFunctionModuleResult" type="com.shundian.frame.api.entity.sys.Role">
-
-        <id property="id" column="id"></id>
-
-        <result property="name" column="name"></result>
-
-        <result property="uiSref" column="ui_sref"></result>
-
-        <result property="operateTime" column="operate_time"></result>
-
-        <association property="modules" javaType="com.shundian.frame.api.po.sys.FunctionModulePo">
-
-            <id property="id" column="md_id"></id>
-            <id property="uid" column="md_uid"></id>
-            <id property="functionId" column="md_fid"></id>
-            <id property="clazz" column="md_cls"></id>
-            <id property="key" column="md_ky"></id>
-            <id property="name" column="md_name"></id>
-
-        </association>
+  </select>
 
 
-    </resultMap>
+  <resultMap id="roleFunctionModuleResult" type="com.shundian.frame.api.entity.sys.Role">
+
+    <id property="id" column="id"></id>
+
+    <result property="name" column="name"></result>
+
+    <result property="uiSref" column="ui_sref"></result>
+
+    <result property="operateTime" column="operate_time"></result>
+
+    <association property="modules" javaType="com.shundian.frame.api.po.sys.FunctionModulePo">
+
+      <id property="id" column="md_id"></id>
+      <id property="uid" column="md_uid"></id>
+      <id property="functionId" column="md_fid"></id>
+      <id property="clazz" column="md_cls"></id>
+      <id property="key" column="md_ky"></id>
+      <id property="name" column="md_name"></id>
+
+    </association>
+
+
+  </resultMap>
 
 </mapper>

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 功能对象
+ * 功能模块对象
  */
 @Setter
 @Getter

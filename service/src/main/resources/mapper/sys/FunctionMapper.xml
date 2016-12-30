@@ -2,53 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shundian.frame.mapper.sys.FunctionMapper">
 
-    <update id="updateFunction" parameterType="com.shundian.frame.api.po.sys.FunctionPo">
+  <update id="updateFunction" parameterType="com.shundian.frame.api.po.sys.FunctionPo">
         update tsys_function set name = #{name} , ui_sref = #{uiSref} where class = #{clazz}
     </update>
 
-    <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.api.po.sys.FunctionPo">
+  <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.api.po.sys.FunctionPo">
         select count(1) from tsys_function where `class` = #{clazz} and `uid` = #{uid} and `name` != #{name}
     </select>
 
-    <select id="list" resultType="java.util.Map" parameterType="map">
-        select id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project,
-        concat('[',group_concat(concat('{"n":"',moduleName,'","k":"',`key`,'","i":"',muid,'"}')),']') module
-        from (
-        SELECT f.id,f.uid,f.parent_id,p.name parentName,f.class,f.name,f.ui_sref,f.order_ "order",f.icon,f.alias,f.is_show,f.project,
-        m.name moduleName,m.key_ "key",m.uid "muid"
-        FROM tsys_function f
-        left join tsys_function p on f.parent_id = p.id
-        left join tsys_function_module m on f.id = m.function_id
-        ) d <if test="id != null">where id = #{id} </if>
-        group by id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project
-    </select>
+  <select id="list" resultType="java.util.Map" parameterType="map">
+    select id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project,
+    concat('[',group_concat(concat('{"n":"',moduleName,'","k":"',`key`,'","i":"',muid,'"}')),']') module
+    from (
+    SELECT f.id,f.uid,f.parent_id,p.name parentName,f.class,f.name,f.ui_sref,f.order_
+    "order",f.icon,f.alias,f.is_show,f.project,
+    m.name moduleName,m.key_ "key",m.uid "muid"
+    FROM tsys_function f
+    left join tsys_function p on f.parent_id = p.id
+    left join tsys_function_module m on f.id = m.function_id
+    ) d
+    <if test="id != null">where id = #{id}</if>
+    group by id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project
+  </select>
 
-    <!-- 一对多映射 -->
-    <resultMap id="functionPoResult" type="com.shundian.frame.api.po.sys.FunctionModulePo">
-        <id property="id" column="m_id"></id>
-        <result property="uid" column="m_uid"></result>
-        <result property="functionId" column="id"></result>
-        <result property="clazz" column="m_class"></result>
-        <result property="key" column="m_key"></result>
-        <result property="name" column="m_name"></result>
-    </resultMap>
+  <!-- 一对多映射 -->
+  <resultMap id="functionPoResult" type="com.shundian.frame.api.po.sys.FunctionModulePo">
+    <id property="id" column="m_id"></id>
+    <result property="uid" column="m_uid"></result>
+    <result property="functionId" column="id"></result>
+    <result property="clazz" column="m_class"></result>
+    <result property="key" column="m_key"></result>
+    <result property="name" column="m_name"></result>
+  </resultMap>
 
-    <resultMap id="functionResult" type="com.shundian.frame.api.entity.sys.Function">
-        <id property="id" column="id" ></id>
-        <result property="uid" column="uid"></result>
-        <result property="parentId" column="parent_id"></result>
-        <result property="clazz" column="class"></result>
-        <result property="name" column="name"></result>
-        <result property="uiSref" column="ui_sref"></result>
-        <result property="order" column="order_"></result>
-        <result property="icon" column="icon"></result>
-        <result property="alias" column="alias"></result>
-        <result property="isShow" column="is_show"></result>
-        <result property="project" column="project"></result>
-        <collection property="modules" resultMap="functionPoResult"></collection>
-    </resultMap>
+  <resultMap id="functionResult" type="com.shundian.frame.api.entity.sys.Function">
+    <id property="id" column="id"></id>
+    <result property="uid" column="uid"></result>
+    <result property="parentId" column="parent_id"></result>
+    <result property="clazz" column="class"></result>
+    <result property="name" column="name"></result>
+    <result property="uiSref" column="ui_sref"></result>
+    <result property="order" column="order_"></result>
+    <result property="icon" column="icon"></result>
+    <result property="alias" column="alias"></result>
+    <result property="isShow" column="is_show"></result>
+    <result property="project" column="project"></result>
+    <collection property="modules" resultMap="functionPoResult"></collection>
+  </resultMap>
 
-    <select id="selectFunction" resultMap="functionResult" parameterType="com.shundian.frame.api.po.sys.FunctionPo">
+  <select id="selectFunction" resultMap="functionResult" parameterType="com.shundian.frame.api.po.sys.FunctionPo">
         select f.id,f.uid,f.parent_id,f.class,f.`name`,f.ui_sref,f.order_ ,f.icon,f.alias,f.is_show,f.project,
             m.id m_id,m.uid m_uid,m.class m_class,m.key_ m_key,m.`name` m_name
          from tsys_function f left join tsys_function_module m on f.id = m.function_id

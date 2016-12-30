@@ -1,6 +1,5 @@
 package com.shundian.frame.mapper.sys;
 
-import com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeEntity;
 import com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeTree;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,7 +12,5 @@ public interface LscrmFunctionPrivilegeMapper {
 
 
     List<LscrmFunctionPrivilegeTree> readAllPrivileges(@Param("subSystemId")int subSystemId);
-
-    List<LscrmFunctionPrivilegeEntity> selectSubPrivileges(@Param("id")int id);
 
 }
