@@ -5,7 +5,8 @@
    */
     .constant('JQ_LIB', {
       footable: ['js/lib/jquery/footable/footable.all.min.js', 'js/lib/jquery/footable/footable.core.css'],
-      nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css']
+      nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css'],
+      jstree:['js/lib/jquery/jstree/jstree.min.js','js/lib/jquery/jstree/themes/default/style.min.css']
     })
     /**
      * angular 模块库

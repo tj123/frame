@@ -4,13 +4,14 @@ package com.shundian.frame.service.impl.sys;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shundian.frame.api.entity.sys.Function;
 import com.shundian.frame.api.entity.sys.FunctionModule;
+import com.shundian.frame.api.envm.ProjectTypeEnum;
+import com.shundian.frame.api.po.sys.FunctionModulePo;
 import com.shundian.frame.api.po.sys.FunctionPo;
 import com.shundian.frame.api.service.sys.FunctionService;
 import com.shundian.frame.common.PageUtil;
-import com.shundian.frame.api.envm.ProjectTypeEnum;
 import com.shundian.frame.mapper.sys.FunctionMapper;
 import com.shundian.frame.mapper.sys.FunctionModuleMapper;
-import com.shundian.frame.api.po.sys.FunctionModulePo;
+import com.shundian.frame.mapper.sys.LscrmFunctionPrivilegeMapper;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.exception.CannotConvertException;
@@ -37,6 +38,9 @@ public class FunctionServiceImpl implements FunctionService {
 
     @Autowired
     private FunctionModuleMapper functionModuleMapper;
+
+    @Autowired
+    private LscrmFunctionPrivilegeMapper lscrmFunctionPrivilegeMapper;
 
     /**
      * 插入数据并判断是否存在是否重复
@@ -117,6 +121,9 @@ public class FunctionServiceImpl implements FunctionService {
 
     @Override
     public List<Map<String,Object>> list(Map<String,String> conditions) throws Exception {
+
+
+
         List<Map<String, Object>> list = mapper.list(conditions);
         list.forEach(map -> {
             try {
@@ -175,6 +182,13 @@ public class FunctionServiceImpl implements FunctionService {
     @Override
     public List<Function> findFunctions() throws Exception {
         return mapper.selectFunction(null);
+    }
+
+    @Override
+    public Map<String, Object> listAll(String name) throws Exception {
+        System.out.println(lscrmFunctionPrivilegeMapper.readAllPrivileges(0));
+        System.out.println(new ObjectMapper().writeValueAsString(lscrmFunctionPrivilegeMapper.readAllPrivileges(0)));
+        return null;
     }
 
 }

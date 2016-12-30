@@ -47,4 +47,12 @@ public interface FunctionService {
     List<FunctionModule> findModules() throws Exception;
 
     List<Function> findFunctions() throws Exception;
+
+    /**
+     * 列出所有的
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    Map<String, Object> listAll(String name) throws Exception;
 }

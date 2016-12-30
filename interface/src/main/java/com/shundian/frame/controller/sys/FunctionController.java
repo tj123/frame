@@ -59,6 +59,17 @@ public class FunctionController {
         return result;
     }
 
+    @RequestMapping("/list/all")
+    public Result<?> allFunction(String name) {
+        Result<Map<String, Object>> result = new Result<Map<String, Object>>();
+        try {
+            result.ok(functionService.listAll(name));
+        } catch (Exception e) {
+            result.error("错误", log, e);
+        }
+        return result;
+    }
+
     @RequestMapping("/list_m")
     public Result<?> edit() {
         Result<List<FunctionModule>> result = new Result<List<FunctionModule>>();

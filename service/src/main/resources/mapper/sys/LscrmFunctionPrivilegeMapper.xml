@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shundian.frame.mapper.sys.LscrmFunctionPrivilegeMapper">
+
+  <cache
+      eviction="FIFO"
+      flushInterval="60000"
+      size="1024"
+      readOnly="true"/>
+
+  <resultMap id="LscrmFunctionPrivilegeResult" type="com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeEntity">
+    <id property="id" column="id"/>
+    <result property="createId" column="create_id"/>
+    <result property="updateId" column="update_id"/>
+    <result property="createTime" column="create_time"/>
+    <result property="updateTime" column="update_time"/>
+    <result property="validity" column="validity"/>
+    <result property="code" column="code"/>
+    <result property="functionName" column="function_name"/>
+    <result property="parentId" column="parent_id"/>
+    <result property="isLeafNode" column="is_leaf_node"/>
+    <result property="subSystemId" column="sub_system_id"/>
+    <result property="isHidden" column="is_hidden"/>
+  </resultMap>
+
+  <resultMap id="SubPrivilegesResult" type="com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeEntity"
+             extends="LscrmFunctionPrivilegeResult">
+    <collection property="privilegeList" javaType="java.util.ArrayList" column="id"
+                ofType="com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeEntity"
+                select="selectSubPrivileges"></collection>
+  </resultMap>
+
+  <resultMap id="LscrmFunctionPrivilegeTreeResult" type="com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeTree"
+             extends="SubPrivilegesResult">
+    <!--<association property="functionPrivilege" column="id" javaType="LscrmFunctionPrivilegeEntity" resultMap="LscrmFunctionPrivilegeResult"/>-->
+    <collection property="privilegeList" javaType="java.util.ArrayList" column="id"
+                ofType="com.shundian.frame.api.entity.sys.LscrmFunctionPrivilegeEntity"
+                select="selectSubPrivileges"></collection>
+  </resultMap>
+
+  <sql id="tbl_name">
+        lscrm_function_privilege
+    </sql>
+
+  <sql id="role_privilege_tbl_name">
+        lscrm_role_privilege
+    </sql>
+
+  <sql id="select_sql">
+    select id, create_id, update_id, create_time, update_time, validity, code, function_name, parent_id,
+    is_leaf_node, sub_system_id, is_hidden from
+    <include refid="tbl_name"/>
+  </sql>
+
+  <select id="readAllPrivileges" resultMap="LscrmFunctionPrivilegeTreeResult" useCache="true">
+    <include refid="select_sql"/>
+    WHERE parent_id = 0
+    <if test="subSystemId > 0 ">
+      AND sub_system_id= #{subSystemId}
+    </if>
+  </select>
+
+  <select id="selectSubPrivileges" resultMap="SubPrivilegesResult">
+    <include refid="select_sql"/>
+    WHERE parent_id = #{id}
+  </select>
+
+
+</mapper>

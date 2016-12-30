@@ -14,6 +14,97 @@
     };
 
 
+    $scope.treeOption = {
+      core: {
+        data: [{
+          text: "Root node",
+          children: [{
+            text: "Child node 1"
+          }, {
+            text: "Child node 2"
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'hehe node',
+          children:[{
+            text:'我要你在我身旁'
+          },{
+            text:'这夜的风儿吹'
+          }]
+        },{
+          text:'我的啊是'
+        },{
+          text:'我的啊是'
+        },{
+          text:'我的啊是'
+        },{
+          text:'我的啊是'
+        }],
+        // multiple:false,
+        // animation:1
+      },
+      checkbox: {
+        keep_selected_style: true
+      },
+      plugins: ["wholerow", "checkbox"]
+    };
+
+
   }]);
 
   app.controller('SysRoleAddCtrl', ['$scope', '$http', '$state', '$stateParams', function ($scope, $http, $state, $stateParams) {
@@ -29,16 +120,16 @@
     // 		}
     // 	});
 
-    $scope.submit = function(){
+    $scope.submit = function () {
 
-      $http.post('sys/role/add',role)
+      $http.post('sys/role/add', role)
         .success(function (d) {
-          if(d.status){
+          if (d.status) {
             //$state.go('app.sys.role');
-          }else{
-            if(d.error){
+          } else {
+            if (d.error) {
               var e = d.error;
-              for(var i in e){
+              for (var i in e) {
                 console.log($scope.form);
               }
             }
