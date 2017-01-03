@@ -54,5 +54,5 @@ public interface FunctionService {
      * @return
      * @throws Exception
      */
-    Map<String, Object> listAll(String name) throws Exception;
+    List<Map<String, Object>> listAll(String name) throws Exception;
 }

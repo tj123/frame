@@ -66,7 +66,9 @@
 
   <!-- 嵌套查询 -->
   <sql id="searchModule">
-    select id,uid,parent_id,order_,name from tsys_function where 1 = 1
+    select f.id,f.parent_id,f.name,m.id m_id,m.name m_name from tsys_function f
+    left join tsys_function_module m on
+    m.function_id = f.id where 1 = 1
 <!--    <if test="name != null">
       and name like concat('%',#{name},'%')
     </if>
@@ -78,13 +80,11 @@
   <!--suppress MybatisMapperXmlInspection -->
   <select id="selectChildModule" parameterType="string" resultMap="searchFunction">
     <include refid="searchModule"></include>
-    and parent_id = #{id}
+    and parent_id = #{id} order by order_ asc
   </select>
 
   <resultMap id="searchFunction" type="com.shundian.frame.api.entity.sys.SearchFunction">
     <id property="id" column="id"></id>
-    <result property="uid" column="uid"></result>
-    <result property="order" column="order_"></result>
     <result property="parentId" column="parent_id"></result>
     <result property="name" column="name"></result>
     <collection property="children"
@@ -93,11 +93,17 @@
                 ofType="com.shundian.frame.api.entity.sys.SearchFunction"
                 select="selectChildModule">
     </collection>
+    <collection property="modules" resultMap="moduleResult"></collection>
+  </resultMap>
+  
+  <resultMap id="moduleResult" type="com.shundian.frame.api.entity.sys.SearchFunctionModule">
+    <id property="id" column="m_id"></id>
+    <result property="name" column="m_name"></result>
   </resultMap>
 
   <select id="listAll" resultMap="searchFunction">
     <include refid="searchModule"></include>
-    and (parent_id is null or trim(parent_id) = '')
+    and (parent_id is null or trim(parent_id) = '') order by order_ asc
   </select>
 
 

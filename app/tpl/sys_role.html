@@ -18,7 +18,7 @@
           <div class="pull-right">
             <a href="javascript:;" ui-sref="app.sys.roleAdd" class="btn btn-primary">添加</a>
           </div>
-
+        
         </div>
         <div>
           <table class="table m-b-none grid-link">
@@ -38,7 +38,8 @@
               <td>{{item.uiSref}}</td>
               <td>{{item.operateTime}}</td>
               <td class="text-center">
-                <a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info"  data-toggle="modal" data-target="#myModal" ng-click="auth(item.id)">授权</a>|<a
+                <a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info" data-toggle="modal"
+                                                                  data-target="#myModal" ng-click="auth(item.id)">授权</a>|<a
                   class="wrapper-xs text-info" href="">删除</a>
               </td>
             </tr>
@@ -56,18 +57,30 @@
                     <option value="30">每页 30 条</option>
                   </select>
                   <ul class="inline grid-foot">
-                    <li><a class="btn btn-xs btn-default previous" ng-click="$grid.previous()" href="javascript:;">&lt;</a></li>
-                    <li><a class="btn btn-xs btn-default first active" ng-click="$grid.first()" href="javascript:;">1</a></li>
-                    <li><a class="btn btn-xs btn-default more more-pre" ng-click="$grid.morePrevious()" href="javascript:;">...</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">4</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">5</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">5</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">7</a></li>
-                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">7</a></li>
-                    <li><a class="btn btn-xs btn-default more more-next" ng-click="$grid.moreNext()" href="javascript:;">...</a></li>
+                    <li><a class="btn btn-xs btn-default previous" ng-click="$grid.previous()" href="javascript:;">
+                      &lt;</a></li>
+                    <li><a class="btn btn-xs btn-default first active" ng-click="$grid.first()"
+                           href="javascript:;">1</a></li>
+                    <li><a class="btn btn-xs btn-default more more-pre" ng-click="$grid.morePrevious()"
+                           href="javascript:;">...</a></li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">4</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">5</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">5</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">6</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">7</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default page" ng-click="$grid.go($event)" href="javascript:;">7</a>
+                    </li>
+                    <li><a class="btn btn-xs btn-default more more-next" ng-click="$grid.moreNext()"
+                           href="javascript:;">...</a></li>
                     <li><a class="btn btn-xs btn-default last" ng-click="$grid.last()" href="javascript:;">20</a></li>
                     <li><a class="btn btn-xs btn-default next" ng-click="$grid.next()" href="javascript:;">&gt;</a></li>
                   </ul>
@@ -77,19 +90,19 @@
             </tfoot>
           </table>
         </div>
-
-
+      
+      
       </div>
-
-
+    
+    
     </div>
-
-
+  
+  
   </div>
-
+  
   <!-- Button trigger modal -->
-  <button  id="authBtn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"></button>
-
+  <button id="authBtn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"></button>
+  
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" rolePo="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" rolePo="document">
@@ -103,59 +116,25 @@
           <h1 class="h5 m-t-none m-b">角色权限列表</h1>
           <div class="row">
             <div class="col-xs-6">
-              <input class="form-control input-sm inline w-sm m-r" type="text"> <a href="javascript:;"
-                                                                                   class="btn btn-primary">搜索已授权</a>
-              <div ui-jq="nestable" class="dd">
-
-                <ol class="dd-list">
-                  <li class="dd-item" data-id="1">
-                    <div class="dd-handle">Item 1</div>
-                  </li>
-                  <li class="dd-item" data-id="2">
-                    <div class="dd-handle">Item 2</div>
-                    <ol class="dd-list">
-                      <li class="dd-item" data-id="3">
-                        <div class="dd-handle">Item 3</div>
-                      </li>
-                      <li class="dd-item" data-id="4">
-                        <div class="dd-handle">Item 4</div>
-                      </li>
-                      <li class="dd-item" data-id="5">
-                        <div class="dd-handle">Item 5</div>
-                        <ol class="dd-list">
-                          <li class="dd-item" data-id="6">
-                            <div class="dd-handle">Item 6</div>
-                          </li>
-                          <li class="dd-item" data-id="7">
-                            <div class="dd-handle">Item 7</div>
-                          </li>
-                          <li class="dd-item" data-id="8">
-                            <div class="dd-handle">Item 8</div>
-                          </li>
-                        </ol>
-                      </li>
-                      <li class="dd-item" data-id="9">
-                        <div class="dd-handle">Item 9</div>
-                      </li>
-                    </ol>
-                  </li>
-                </ol>
-
+              <input class="form-control input-sm inline w-sm m-r" type="text">
+              <a href="javascript:;" class="btn btn-primary">搜索已授权</a>
+              <div ui-jq="jstree" ui-options="authTreeOption" id="authTree" class="">
               </div>
             </div>
-
+            
             <div class="col-xs-6">
-              <input class="form-control input-sm inline w-sm m-r" type="text"> <a href="javascript:;"
-                                                                                   class="btn btn-primary">搜索未授权</a>
-              <div ui-jq="jstree" ui-options="treeOption" class="">
-
-
+              <input class="form-control input-sm inline w-sm m-r" type="text">
+              <a href="javascript:;" class="btn btn-primary">搜索未授权</a>
+              <div ui-jq="jstree" ui-options="treeOption" id="notAuthTree" class="">
               </div>
             </div>
           </div>
           <div class="modal-footer">
+            <button type="button" ng-click="auth.add()" class="btn btn-primary">left</button>
+            <button type="button" ng-click="auth.remove()" class="btn btn-primary">right</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             <button type="button" class="btn btn-primary">保存修改</button>
+
           </div>
         </div>
       </div>
