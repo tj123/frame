@@ -1,40 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
+  <groupId>com.shundian.frame</groupId>
+  <artifactId>frame-api</artifactId>
+  <version>0.0.1</version>
+
+  <packaging>jar</packaging>
+
+  <parent>
     <groupId>com.shundian.frame</groupId>
-    <artifactId>frame-api</artifactId>
+    <artifactId>frame</artifactId>
     <version>0.0.1</version>
-
-    <packaging>jar</packaging>
-
-    <parent>
-        <groupId>com.shundian.frame</groupId>
-        <artifactId>frame</artifactId>
-        <version>0.0.1</version>
-        <relativePath>..</relativePath>
-    </parent>
+    <relativePath>..</relativePath>
+  </parent>
 
 
-    <dependencies>
+  <dependencies>
 
-        <dependency>
-            <groupId>com.shundian.lib</groupId>
-            <artifactId>common-bean</artifactId>
-            <version>0.0.1</version>
-        </dependency>
+    <dependency>
+      <groupId>com.shundian.lib</groupId>
+      <artifactId>common-bean</artifactId>
+      <version>0.0.1</version>
+    </dependency>
 
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>persistence-api</artifactId>
+      <version>1.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-    </dependencies>
+  </dependencies>
 
-    <build>
+  <build>
 
-    </build>
+  </build>
 
 </project>
