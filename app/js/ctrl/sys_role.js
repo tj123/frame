@@ -38,10 +38,14 @@
      */
     var addNode = function (node,originTree,targetTree) {
       //debugger
-      console.log(originTree);
+      // console.log(originTree);
       var parents = node.parents;
+      // targetTree.create_node('#','asdfasdf');
+      // console.log(targetTree);
+      
       for(var i = parents.length - 1;i >=0 ;i--){
         var parent = parents[i];
+        //debugger
         if(parent == '#') continue;
         var nd = targetTree.get_node(parent);
         //console.log(nd);
@@ -49,8 +53,8 @@
           var name = originTree.get_node(parent).text;
           console.log(name);
           console.log(parents[i + 1]);
-          
-          console.log(targetTree.create_node(parents[i + 1],name));//{id:parent,name:originTree.get_node(parent).text}));
+
+          console.log(targetTree.create_node(parents[i + 1],{id:parent,text:name}));//{id:parent,name:originTree.get_node(parent).text}));
         }
         if(i == 0){
           targetTree.create_node(node.parent,node.text);
@@ -80,12 +84,8 @@
   
     $scope.authTreeOption = {
       core: {
-        data:[{
-          text:'sdfsd',
-          children:[{
-            text:'sdfd'
-          }]
-        }],
+        check_callback:true,
+        data:[],
       },
       checkbox: {
         keep_selected_style: true
