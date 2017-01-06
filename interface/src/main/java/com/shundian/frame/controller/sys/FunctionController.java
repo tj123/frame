@@ -60,12 +60,7 @@ public class FunctionController {
     }
 
     @RequestMapping("/list/all")
-    public Object allFunction(String name) {
-        try {
-            return functionService.listAll(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Result<List<Map<String,Object>>> allFunction(String name) {
         Result<List<Map<String,Object>>> result = new Result<List<Map<String,Object>>>();
         try {
             result.ok(functionService.listAll(name));

@@ -69,10 +69,10 @@
     select f.id,f.parent_id,f.name,m.id m_id,m.name m_name from tsys_function f
     left join tsys_function_module m on
     m.function_id = f.id where 1 = 1
-<!--    <if test="name != null">
+<!--   <if test="name != null and name.trim() != ''">
       and name like concat('%',#{name},'%')
-    </if>
-    <if test="project != null">
+    </if>-->
+    <!--<if test="project != null">
       and project = #{project}
     </if>-->
   </sql>
@@ -103,44 +103,52 @@
 
   <select id="listAll" resultMap="searchFunction">
     <include refid="searchModule"></include>
-    and (parent_id is null or trim(parent_id) = '') order by order_ asc
+    and (parent_id is null or trim(parent_id) = '')
+    <if test="name != null and name.trim() != ''">
+      and f.name like concat('%',#{name},'%')
+    </if>
+    order by order_ asc
   </select>
 
+  <!-- 列出角色已有的权限 -->
+  <sql id="selectRoleFunctionModule">
+    select f.id,f.parent_id,f.name,m.id m_id,m.name m_name from tsys_function f
+    left join tsys_function_module m on
+    m.function_id = f.id
+    left join tsys_role_function_module rfm on
+    rfm.function_module_id = m.id
+    left join tsys_role r on
+    r.id = rfm.role_id where 1=1
+    <!--where r.id = '0d72170653c14274b72a7a851ae3da29'-->
+  </sql>
 
+  <!--suppress MybatisMapperXmlInspection -->
+  <select id="selectRoleChildModule" parameterType="string" resultMap="searchFunction">
+    <include refid="selectRoleFunctionModule"></include>
+    and parent_id = #{id} and r.id = #{role} order by order_ asc
+  </select>
 
+  <resultMap id="roleSearchFunction" type="com.shundian.frame.api.entity.sys.SearchFunction">
+    <id property="id" column="id"></id>
+    <result property="parentId" column="parent_id"></result>
+    <result property="name" column="name"></result>
+    <collection property="children"
+                javaType="java.util.ArrayList"
+                column="id"
+                ofType="com.shundian.frame.api.entity.sys.SearchFunction"
+                select="selectRoleChildModule">
+    </collection>
+    <collection property="modules" resultMap="moduleResult"></collection>
+  </resultMap>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <select id="listFunc" resultMap="roleSearchFunction">
+    <include refid="selectRoleFunctionModule"></include>
+    and (parent_id is null or trim(parent_id) = '')
+    <if test="name != null and name.trim() != ''">
+      and f.name like concat('%',#{name},'%')
+    </if>
+    and r.id = #{role} order by order_ asc
+  </select>
 
 
 </mapper>

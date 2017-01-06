@@ -41,4 +41,8 @@
 
   }]);
 
+  app.controller('SysUserAddCtrl',['$scope','$http','$state','$stateParams',function ($scope,$http,$state,$stateParams) {
+
+  }]);
+
 })(window.angular, jQuery, app);

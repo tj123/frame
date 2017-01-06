@@ -16,5 +16,22 @@ public interface FunctionModuleMapper extends Mapper<FunctionModulePo> {
 
     List<FunctionModule> selectFunctionModule(FunctionModulePo functionModulePo) throws Exception;
 
-    List<SearchFunction> listAll(@Param("name") String name,@Param("userId") String userId,@Param("project") String project);
+    /**
+     * 列出所有的功能
+     * @param name
+     * @param userId
+     * @param project
+     * @return
+     * @throws Exception
+     */
+    List<SearchFunction> listAll(@Param("name") String name, @Param("userId") String userId, @Param("project") String project) throws Exception;
+
+    /**
+     * 列出角色所具有的权限
+     * @param role
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    List<SearchFunction> listFunc(@Param("role") String role, @Param("name") String name) throws Exception;
 }

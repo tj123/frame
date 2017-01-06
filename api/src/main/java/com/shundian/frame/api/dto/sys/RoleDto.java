@@ -13,8 +13,6 @@ import lombok.Setter;
 @Validate
 public class RoleDto extends BaseDto<RolePo> {
 
-    private String id;
-
     @NotBlank
     private String name;
 

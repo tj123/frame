@@ -50,7 +50,7 @@
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
             return ld.load('sd.grid').then(function () {
-              return ld.load(['js/ctrl/sys_role.js']);
+              return ld.load(['js/ctrl/sys_role.js','js/svrs/auth.js']);
             });
           }]
         }
@@ -67,6 +67,18 @@
       .state('app.sys.user', {
         url: '/user',
         templateUrl: 'tpl/sys_user.html',
+        resolve: {
+          deps: ['$ocLazyLoad', function (ld) {
+            return ld.load('sd.grid').then(function () {
+              return ld.load(['js/ctrl/sys_user.js']);
+            });
+          }]
+        }
+      })
+
+      .state('app.sys.userAdd', {
+        url: '/user/add',
+        templateUrl: 'tpl/sys_user_add.html',
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
             return ld.load(['js/ctrl/sys_user.js']);

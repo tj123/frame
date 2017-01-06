@@ -184,10 +184,7 @@ public class FunctionServiceImpl implements FunctionService {
   
   @Override
   public List<Map<String, Object>> listAll(String name) throws Exception {
-//        System.out.println(lscrmFunctionPrivilegeMapper.readAllPrivileges(0));
-//        System.out.println(new ObjectMapper().writeValueAsString(lscrmFunctionPrivilegeMapper.readAllPrivileges(0)));
-    //System.out.println(new ObjectMapper().writeValueAsString(functionModuleMapper.listAll(null,null,null)));
-    return checkList(functionModuleMapper.listAll(null, null, null));
+    return checkList(functionModuleMapper.listAll(name, null, null));
   }
   
   /**
@@ -196,7 +193,8 @@ public class FunctionServiceImpl implements FunctionService {
    * @param functions
    * @return
    */
-  List<Map<String, Object>> checkList(List<SearchFunction> functions) {
+  @Override
+  public List<Map<String, Object>> checkList(List<SearchFunction> functions) {
     List<Map<String, Object>> list = new ArrayList<>();
     functions.forEach(func -> {
       Map<String, Object> map = new HashMap<>();

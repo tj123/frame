@@ -8,6 +8,7 @@
   </select>
 
 
+
   <resultMap id="roleFunctionModuleResult" type="com.shundian.frame.api.entity.sys.Role">
 
     <id property="id" column="id"></id>
@@ -31,5 +32,6 @@
 
 
   </resultMap>
+
 
 </mapper>
