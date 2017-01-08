@@ -67,7 +67,20 @@ public class RoleController {
         }
         return result;
     }
-
+    
+    @RequestMapping("/mvfunc")
+    @Module(AddModule.class)
+    public Result<?> removeFunc(String role,@RequestParam("funcs[]") String[] funcs) {
+        Result<Object> result = new Result<Object>();
+        try {
+            service.removeFunc(role,funcs);
+            result.ok();
+        } catch (Exception e) {
+            result.error("错误", log, e);
+        }
+        return result;
+    }
+    
     @RequestMapping("/lstfunc")
     public Result<List<Map<String,Object>>> allFunction(String role,String name) {
         Result<List<Map<String,Object>>> result = new Result<List<Map<String,Object>>>();

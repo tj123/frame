@@ -8,5 +8,12 @@
       (#{item.id},#{item.roleId},#{item.functionModuleId})
     </foreach>
   </insert>
+  
+  <delete id="removeMulti">
+    delete from tsys_role_function_module where role_id = #{role} and function_module_id in
+    <foreach collection="funcs" index="index" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </delete>
 
 </mapper>

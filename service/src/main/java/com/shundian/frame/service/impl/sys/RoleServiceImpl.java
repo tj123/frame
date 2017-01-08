@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -70,8 +71,42 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Map<String, Object>> listFunc(String role,String name) throws Exception {
-        return functionService.checkList(functionModuleMapper.listFunc(role, name));
+        List<String> modules = functionModuleMapper.listModules(role,name);
+        List<Map<String, Object>> funs = functionService.listAll(null);
+        //如果层级较深多递归几次
+        return matchModules(matchModules(matchModules(funs,modules),modules),modules);
     }
-
-
+    
+    @Override
+    public void removeFunc(String role, String[] funcs) throws Exception {
+        if(role == null || role.trim().equals(""))
+            return;
+        if(funcs == null || funcs.length == 0 )
+            return;
+        roleFunctionModuleMapper.removeMulti(role,funcs);
+    }
+    
+    /**
+     * 递归匹配功能模块
+     * @param funs
+     * @param modules
+     * @return
+     */
+    private List<Map<String, Object>> matchModules(List<Map<String, Object>> funs,List<String> modules){
+        Iterator<Map<String, Object>> iterator = funs.iterator();
+        while (iterator.hasNext()) {
+            Map<String, Object> map = iterator.next();
+            List<Map<String, Object>> children = (List<Map<String, Object>>) map.get("children");
+            if(children == null||children.isEmpty() || children.size() == 0){
+                if(!modules.contains(map.get("id"))){
+                    iterator.remove();
+                }
+            }else {
+                matchModules(children,modules);
+            }
+        }
+        return funs;
+    }
+    
+    
 }

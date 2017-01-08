@@ -39,7 +39,7 @@
               <td>{{item.operateTime}}</td>
               <td class="text-center">
                 <a class="wrapper-xs text-info" href="">编辑</a>|<a class="wrapper-xs text-info" data-toggle="modal"
-                                                                  data-target="#myModal" ng-click="auth(item.id)">授权</a>|<a
+                                                                  data-target="#authPanel" ng-click="auth(item.id)">授权</a>|<a
                   class="wrapper-xs text-info" href="">删除</a>
               </td>
             </tr>
@@ -100,41 +100,47 @@
   
   </div>
   
-  <!-- Button trigger modal -->
-  <button id="authBtn" type="button" class="hide btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"></button>
-  
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" rolePo="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="authPanel" tabindex="-1" rolePo="dialog">
     <div class="modal-dialog modal-lg" rolePo="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">角色授权</h4>
+          <h4 class="modal-title">角色授权</h4>
         </div>
         <div class="modal-body p-t-lg">
           <h1 class="h5 m-t-none m-b">角色权限列表</h1>
           <div class="row">
             <div class="col-xs-6">
-              <input ng-model="keyword" class="form-control input-sm inline w-sm m-r" type="text">
-              <a href="javascript:;" ng-click="auth.search()" class="btn btn-primary">搜索已授权</a>
+              <div class="col">
+                <input ng-model="keyword" class="form-control input-sm inline w-sm m-r" type="text">
+                <a href="javascript:;" ng-click="auth()" class="btn btn-primary">搜索已授权</a>
+              </div>
+              <div class="col">
+                <input id="authAll" type="checkbox"> <label for="authAll">全选</label>
+              </div>
               <div ui-jq="jstree" ui-options="authTreeOption" id="authTree" class="">
               </div>
             </div>
             
             <div class="col-xs-6">
-              <input ng-model="allKeyword" class="form-control input-sm inline w-sm m-r" type="text">
-              <a href="javascript:;" ng-click="auth.searchAll()" class="btn btn-primary">搜索未授权</a>
-              <div ui-jq="jstree" ui-options="treeOption" id="notAuthTree" class="">
+              <div class="col">
+                <input ng-model="allKeyword" class="form-control input-sm inline w-sm m-r" type="text">
+                <a href="javascript:;" ng-click="auth()" class="btn btn-primary">搜索未授权</a>
+              </div>
+              <div class="col">
+                <input id="notAuthAll" type="checkbox"> <label for="notAuthAll">全选</label>
+              </div>
+              <div style="min-height: 300px;" ui-jq="jstree" ui-options="treeOption" id="notAuthTree" class="">
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" ng-click="auth.add()" class="btn btn-primary">left</button>
             <button type="button" ng-click="auth.remove()" class="btn btn-primary">right</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" id="authCancel" class="btn btn-default" data-dismiss="modal">取消</button>
             <button type="button" ng-click="auth.save()" class="btn btn-primary">保存修改</button>
-
           </div>
         </div>
       </div>

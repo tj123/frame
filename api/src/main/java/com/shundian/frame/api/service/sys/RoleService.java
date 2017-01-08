@@ -48,4 +48,13 @@ public interface RoleService {
      * @throws Exception
      */
     List<Map<String,Object>> listFunc(String role,String name) throws Exception;
+    
+    /**
+     * 移除角色具有的权限
+     * @param role
+     * @param funcs
+     * @throws Exception
+     */
+    void removeFunc(String role, String[] funcs) throws Exception;
+    
 }

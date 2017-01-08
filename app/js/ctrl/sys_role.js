@@ -12,40 +12,30 @@
     var currentRole,allData,roleData;
 
     var auth = $scope.auth = function (id) {
-      currentRole = id;
-      authService.listRole(currentRole,$scope.keyword).then(function (role) {
-        authService.treeRefresh($('#authTree').jstree(true),role);
-      });
-      authService.listAll().then(function (all) {
-        authService.treeRefresh($('#notAuthTree').jstree(true),all);
+      if(id)currentRole = id;
+      authService.listAll($scope.allKeyword).then(function (all) {
+        authService.listRole(currentRole,$scope.keyword).then(function (role) {
+          authService.removeSameData(all,role);
+          authService.treeRefresh($('#notAuthTree').jstree(true),allData = all);
+          authService.treeRefresh($('#authTree').jstree(true),roleData = role);
+        });
       });
     };
-
+    
     auth.add = function () {
-      var notAuthTree = $('#notAuthTree').jstree(true),
-        authTree = $('#authTree').jstree(true);
-      authService.moveSelect(notAuthTree, authTree);
+      authService.moveSelect($('#notAuthTree').jstree(true), $('#authTree').jstree(true));
     };
 
     auth.remove = function () {
-      var notAuthTree = $('#notAuthTree').jstree(true),
-        authTree = $('#authTree').jstree(true);
-      authService.moveSelect(authTree, notAuthTree);
+      authService.moveSelect($('#authTree').jstree(true), $('#notAuthTree').jstree(true));
     };
 
     auth.save = function () {
-      authService.roleAdd(currentRole, authService.listAllChild($('#authTree').jstree(true)));
-    };
-
-    auth.searchAll = function () {
-      authService.listAll($scope.allKeyword).then(function (all) {
-        authService.treeRefresh($('#notAuthTree').jstree(true),all);
-      });
-    };
-
-    auth.search = function () {
-      authService.listRole(currentRole,$scope.keyword).then(function (role) {
-        authService.treeRefresh($('#authTree').jstree(true),role);
+      var treeData = authService.listAllChild($('#authTree').jstree(true));
+      var originData = authService.listAllDataChild(roleData);
+      var rtn = authService.compareData(originData,treeData);
+      authService.addRemoveData(currentRole,rtn).then(function () {
+        $('#authCancel').trigger('click');
       });
     };
 
@@ -64,8 +54,7 @@
     $scope.treeOption = {
       core: {
         check_callback: true,
-        data: function () {
-        },
+        data:[],
       },
       checkbox: {
         keep_selected_style: true

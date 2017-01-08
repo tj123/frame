@@ -2,7 +2,6 @@ package com.shundian.frame.api.service.sys;
 
 import com.shundian.frame.api.entity.sys.Function;
 import com.shundian.frame.api.entity.sys.FunctionModule;
-import com.shundian.frame.api.entity.sys.SearchFunction;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.function.FunctionType;
@@ -56,11 +55,5 @@ public interface FunctionService {
      * @throws Exception
      */
     List<Map<String, Object>> listAll(String name) throws Exception;
-
-    /**
-     * 递归还原节点
-     * @param functions
-     * @return
-     */
-    List<Map<String, Object>> checkList(List<SearchFunction> functions);
+    
 }

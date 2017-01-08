@@ -193,7 +193,6 @@ public class FunctionServiceImpl implements FunctionService {
    * @param functions
    * @return
    */
-  @Override
   public List<Map<String, Object>> checkList(List<SearchFunction> functions) {
     List<Map<String, Object>> list = new ArrayList<>();
     functions.forEach(func -> {
