@@ -49,21 +49,21 @@
 
 
   <build>
-    <plugins>
-      <!-- Spring-Boot插件（用于打包） -->
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <!-- spring热部署-->
-        <dependencies>
-          <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>springloaded</artifactId>
-            <version>1.2.1.RELEASE</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
+    <!--<plugins>-->
+      <!--&lt;!&ndash; Spring-Boot插件（用于打包） &ndash;&gt;-->
+      <!--<plugin>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+        <!--&lt;!&ndash;&lt;!&ndash; spring热部署&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<dependencies>&ndash;&gt;-->
+          <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+            <!--&lt;!&ndash;<groupId>org.springframework</groupId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>springloaded</artifactId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<version>1.2.1.RELEASE</version>&ndash;&gt;-->
+          <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;</dependencies>&ndash;&gt;-->
+      <!--</plugin>-->
+    <!--</plugins>-->
   </build>
 
 </project>

@@ -6,11 +6,11 @@
       .state('app', {
         url: '/',
         templateUrl: 'app.html',
-        resolve: {
-          deps: ['$ocLazyLoad', function (ld) {
-            return ld.load(['css/app.css']);
-          }]
-        }
+        // resolve: {
+        //   deps: ['$ocLazyLoad', function (ld) {
+        //     return ld.load(['css/app.css']);
+        //   }]
+        // }
       })
       .state('app.sys', {
         url: 'sys',
@@ -82,6 +82,16 @@
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
             return ld.load(['js/ctrl/sys_user.js']);
+          }]
+        }
+      })
+
+      .state('login',{
+        url:'/login',
+        templateUrl:'login.html',
+        resolve:{
+          deps:['$ocLazyLoad',function (ld) {
+            return ld.load(['js/ctrl/login.js','js/lib/md5.js']);
           }]
         }
       })

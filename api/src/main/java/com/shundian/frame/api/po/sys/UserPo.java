@@ -6,6 +6,7 @@ import com.shundian.lib.common.bean.BasePo;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -24,6 +25,7 @@ public class UserPo extends BasePo<UserDto> implements Serializable{
 
 	private String password;
 
+	@Column(name = "type")
 	private UserTypeEnum userType;
 
 	private Boolean status;

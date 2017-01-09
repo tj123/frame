@@ -12,58 +12,45 @@
         <h1 class="h3">用户管理</h1>
       </div>
       <div class="panel-body b-b b-light">
-        <div class="advance-search inline">
-          <a href="javascript:;" onclick="$(this).parent().toggleClass('on')" class="btn btn-danger">高级搜索</a>
-          <div class="panel panel-default search-content">
-            <div class="panel-body content-body p-t-lg">
-              <form class="form-horizontal">
-                <div class="form-group">
-                  <div class="col-xs-4 form-label">
-                    <label class="m-t-xs">小摊贩名称</label>
-                  </div>
-                  <div class="col-xs-8">
-                    <input type="text" class="form-control">
+        <div class="advanced-search">
+          <a href="javascript:void(0);" ng-click="$grid.advanced = !$grid.advanced" class="btn btn-danger">高级搜索</a>
+          <div class="search-content-wrapper" style="width: 400px;" ng-show="$grid.advanced">
+            <div class="search-point"><img src="img/searchUparrow.png"></div>
+            <form class="form-horizontal search-content">
+              <div class="form-group p-t-sm">
+                <label for="name" class="form-label text-center col-xs-4">名称</label>
+                <div class="col-xs-8 p-l-n p-r-n m-l-n-xxs">
+                  <input id="name" class="form-control" ng-model="$grid.keywords.name" type="text" placeholder="请输入登录名或姓名"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="department" class="form-label text-center col-xs-4">部门</label>
+                <div class="col-xs-8 p-l-n p-r-n m-l-n-xxs">
+                  <input type="hidden" ng-model="$grid.keywords.departmentid"/>
+                  <input ng-model="department" id="department" ng-change="checkType()"
+                         ui-options="deps" class="form-control content-input" type="text" placeholder="请输入部门名"/>
+                </div>
+              </div>
+              <div class="form-group" ng-init="">
+                <label class="form-label text-center col-xs-4">部门类型</label>
+                <div class="col-xs-8 p-l-n p-r-n m-l-n-xxs">
+                  <div class="form-select">
+                    <a href="javascript:void(0);" ng-click="depTypeSel[it.key] = !depTypeSel[it.key]" ng-init="depTypeSel[it.key] = false" ng-class="{active:depTypeSel[it.key]}" class="select-item">为</a>
+                    <a href="javascript:void(0);" ng-click="depTypeSel[it.key] = !depTypeSel[it.key]" ng-init="depTypeSel[it.key] = false" ng-class="{active:depTypeSel[it.key]}" class="select-item">类型IAEA</a>
+                    <a href="javascript:void(0);" ng-click="depTypeSel[it.key] = !depTypeSel[it.key]" ng-init="depTypeSel[it.key] = false" ng-class="{active:depTypeSel[it.key]}" class="select-item">类玩儿问问型IAEA</a>
+                    <a href="javascript:void(0);" ng-click="depTypeSel[it.key] = !depTypeSel[it.key]" ng-init="depTypeSel[it.key] = false" ng-class="{active:depTypeSel[it.key]}" class="select-item">类为型IAEA</a>
+                    <a href="javascript:void(0);" ng-click="depTypeSel[it.key] = !depTypeSel[it.key]" ng-init="depTypeSel[it.key] = false" ng-class="{active:depTypeSel[it.key]}" class="select-item">类型额IAEA</a>
                   </div>
                 </div>
-                <div class="line line-dashed b-b"></div>
-                <div class="form-group">
-                  <div class="col-xs-4 form-label">
-                    <label class="m-t-xs">小摊贩名称</label>
-                  </div>
-                  <div class="col-xs-8">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="line line-dashed b-b"></div>
-                <div class="form-group">
-                  <div class="col-xs-4 form-label">
-                    <label class="m-t-xs">小摊贩名称</label>
-                  </div>
-                  <div class="col-xs-8">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="line line-dashed b-b"></div>
-                <div class="form-group">
-                  <div class="col-xs-4 form-label">
-                    <label class="m-t-xs">小摊贩名称</label>
-                  </div>
-                  <div class="col-xs-8">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="line line-dashed b-b"></div>
-                <div class="form-group">
-                  <div class="pull-right">
-                    <a href="javascript:;" class="m-r-sm btn btn-primary">搜索</a>
-                    <a href="javascript:;" class="m-r-lg btn btn-default">关闭</a>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
+              <div class="form-group pull-right">
+                <a href="javascript:void(0);" ng-click="advancedSearch()" class="btn btn-primary">搜索</a>
+                <a href="javascript:void(0);" ng-click="$grid.advanced = false" class="btn btn-default">关闭</a>
+              </div>
+            </form>
           </div>
         </div>
-        <input type="text" class="grid-search-input m-l-sm form-control input-sm w-sm inline m-r"/>
+        <input type="text" class="grid-search-input m-l-sm form-control input-sm w-sm inline m-r" placeholder="请输入登录名或姓名"/>
         <a href="javascript:;" class="btn btn-primary">搜索</a>
         <div class="pull-right">
           <a href="javascript:;" ui-sref="app.sys.userAdd" class="btn btn-primary">添加用户</a>
@@ -91,10 +78,10 @@
           </thead>
           <tbody>
           <tr ng-repeat="item in $grid.rows" ng-class="{'grid-even':$even,'grid-odd':$odd}">
-            <td>{{$index + 1}}</td>
+            <td>{{item.$index}}</td>
             <td>{{item.uid}}</td>
-            <td>{{item.name}}</a></td>
-            <td>{{item.project}}</td>
+            <td>{{item.username}}</a></td>
+            <td>{{item.realName}}</td>
             <td>{{item.alias}}</td>
             <td>{{item.parentName}}</td>
             <td><span class="label" ng-class="{'bg-success':item.is_show == 1}" title="Active">{{item.is_show == 1 ?'显示':'不显示' }}</span></td>
