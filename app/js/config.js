@@ -1,7 +1,7 @@
 ;(function (app) {
   app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvide, $urlRouterProvider) {
     //$urlRouterProvider.otherwise('/t3/dep');
-    $urlRouterProvider.otherwise('/dep');
+    $urlRouterProvider.otherwise('/sys/user');
     $stateProvide
       .state('app', {
         url: '/',
@@ -16,9 +16,16 @@
         url: 'sys',
         template: '<ui-view></ui-view>'
       })
-      .state('app.dep', {
-        url: 'dep',
-        templateUrl: 'tpl/sys_dep.html'
+      .state('app.sys.dep', {
+        url: '/dep',
+        templateUrl: 'tpl/sys_dep.html',
+        resolve:{
+          deps:['$ocLazyLoad',function (ld) {
+            return ld.load('sd.grid').then(function () {
+              return ld.load('js/ctrl/sys_dep.js');
+            });
+          }]
+        }
       })
       .state('app.dep2', {
         url: 'dep2',

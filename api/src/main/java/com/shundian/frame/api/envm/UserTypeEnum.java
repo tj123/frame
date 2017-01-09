@@ -7,7 +7,12 @@ import com.shundian.lib.session.UserType;
  */
 public enum UserTypeEnum implements UserType {
 
-    ADMIN("ADN","管理员");
+    ADMIN("ADN","管理员"),
+    DEP_ADMIN("D_ADN","部门管理员"),
+    KEYBOARDER("KBDR","录入员"),
+    INSPECTOR("ISPCTR","巡查员"),
+    ASSESSOR("ASER","审核员"),
+    DEP_MANAGER("D_MG","部门经理");
 
     private String key;
 
