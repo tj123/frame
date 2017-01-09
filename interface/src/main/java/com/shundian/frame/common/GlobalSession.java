@@ -1,6 +1,9 @@
 package com.shundian.frame.common;
 
 import com.shundian.frame.api.envm.UserTypeEnum;
+import com.shundian.frame.api.mis.AreaLevel;
+import com.shundian.frame.api.mis.DepType;
+import com.shundian.lib.session.LibGlobalSession;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +15,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class GlobalSession implements Serializable {
+public class GlobalSession implements LibGlobalSession, Serializable {
 	
 	private static final long serialVersionUID = 7506887334057350480L;
 
@@ -24,7 +27,7 @@ public class GlobalSession implements Serializable {
 	/**
 	 * 当前用户Id  
 	 */
-	private String accountId;
+	private String userId;
 	
 	/**
 	 * 用户类型
@@ -35,11 +38,6 @@ public class GlobalSession implements Serializable {
 	 * 用户真实名称
 	 */
 	private String realName;
-	
-	/**
-	 * 登录名称
-	 */
-	private String username;
 	
 	/**
 	 *用户所在部门Id
@@ -67,23 +65,21 @@ public class GlobalSession implements Serializable {
 	private String parentAreaId;
 	
 	/**
-	 * 顶级区域ID
-	 */
-	private String topAreaId;
-
-	/**
 	 * 用户所在部门的上级部门Id
 	 */
 	private String parentDepartmentId;
-
-	/**
-	 * 用户所在部门类型ID
-	 */
-	private String departmentTypeId;
-
-	/**
-	 * 用户所在部门类型的上级类型ID
-	 */
-	private String parentDepartmentTypeId;
-
+	
+	private DepType departmentType;
+	
+	private AreaLevel areaLevel;
+	
+	@Override
+	public String getKey() throws Exception {
+		return null;
+	}
+	
+	@Override
+	public String getUserId() throws Exception {
+		return null;
+	}
 }
