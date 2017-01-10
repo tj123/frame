@@ -1,5 +1,6 @@
 package com.shundian.frame.controller.sys;
 
+import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.dto.sys.RoleDto;
 import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.frame.api.service.sys.RoleService;
@@ -28,6 +29,16 @@ public class RoleController {
 
     @Autowired
     private RoleService service;
+
+    @Autowired
+    private GlobalSession globalSession;
+
+    @RequestMapping("/test")
+    public Result<?> test(){
+        System.out.println(globalSession.getRealName());
+
+        return null;
+    }
 
     @RequestMapping
     public Result<?> list(Page page) {

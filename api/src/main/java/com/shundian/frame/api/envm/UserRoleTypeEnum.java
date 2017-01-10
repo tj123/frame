@@ -1,11 +1,11 @@
 package com.shundian.frame.api.envm;
 
-import com.shundian.lib.session.UserType;
+import com.shundian.lib.session.UserRoleType;
 
 /**
  * Created by TJ on 2016/12/5.
  */
-public enum UserTypeEnum implements UserType {
+public enum UserRoleTypeEnum implements UserRoleType {
 
     ADMIN("ADN","管理员"),
     DEP_ADMIN("D_ADN","部门管理员"),
@@ -18,7 +18,7 @@ public enum UserTypeEnum implements UserType {
 
     private String value;
 
-    UserTypeEnum(String key,String value){
+    UserRoleTypeEnum(String key, String value){
         this.key = key;
         this.value = value;
     }

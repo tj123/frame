@@ -10,5 +10,8 @@ import java.util.Map;
 public interface UserMapper extends Mapper<UserPo> {
 
     List<Map<String,Object>> list(Map<String, Object> stringObjectMap) throws Exception;
+
+    Map<String,Object> selectUserId(String username) throws Exception;
+
 }
 

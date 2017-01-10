@@ -7,7 +7,7 @@
      * @type {{name: string, method: string, url: string}}
      */
     $scope.option = {
-      url: 'sys/user'
+      url: 'sys/dep'
     };
 
     var $grid = $scope.$grid;

@@ -6,5 +6,9 @@
     select id,username,type,status,department_id,real_name "realName",mobile,email,qq from tsys_user
   </select>
 
+  <select id="selectUserId" resultType="java.util.Map">
+    select id,password from tsys_user where username = #{username} limit 1
+  </select>
+
 
 </mapper>

@@ -1,7 +1,7 @@
 package com.shundian.frame.api.po.sys;
 
-import com.shundian.frame.api.dto.sys.RoleDto;
-import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.dto.sys.DepartmentDto;
+import com.shundian.frame.api.envm.DepartmentType;
 import com.shundian.lib.common.bean.BasePo;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,12 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 @Setter
 @Getter
-@Table(name = "tsys_role")
-public class RolePo extends BasePo<RoleDto> implements Serializable {
+@Table(name = "tsys_department")
+public class DepartmentPo extends BasePo<DepartmentDto> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,12 +22,18 @@ public class RolePo extends BasePo<RoleDto> implements Serializable {
     @GeneratedValue(generator = "UUID")
     private String id;
 
+    private String parentId;
+
+    private String code;
+
     private String name;
 
-    private String entryFunctionId;
+    private DepartmentType type;
 
-    private UserRoleTypeEnum bindType;
+    private Boolean status;
 
-    private Date operateTime;
+    private String address;
+
+    private String areaId;
 
 }

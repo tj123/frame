@@ -2,7 +2,7 @@
 (function (angular, $) {
 
   angular
-    .module('gov')
+    .module('gov',[])
     .controller('OtherUserCtrl', ['$scope', '$http','userService','$q','departmentService','$document',
       function ($scope, $http,userService,$q,departmentService,$document) {
 

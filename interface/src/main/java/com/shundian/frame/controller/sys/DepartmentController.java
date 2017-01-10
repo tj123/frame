@@ -1,9 +1,11 @@
 package com.shundian.frame.controller.sys;
 
-import com.shundian.frame.api.service.sys.FunctionService;
+import com.shundian.frame.api.service.sys.DepartmentService;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.module.SubmitModule;
 import com.shundian.frame.common.function.sys.DepartmentFunction;
+import com.shundian.lib.Page;
+import com.shundian.lib.PageResult;
 import com.shundian.lib.Result;
 import com.shundian.lib.function.Function;
 import com.shundian.lib.function.Module;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequestMapping("/sys/dep")
@@ -19,14 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepartmentController {
 
     @Autowired
-    FunctionService functionService;
+    private DepartmentService service;
 
     @RequestMapping
-    public Result<?> list() {
-        Result<Object> result = new Result<Object>();
-
-
-        return result;
+    public Result<?> list(Page page) {
+        Result<PageResult<Map<String, Object>>> res = new Result<PageResult<Map<String, Object>>>();
+        try {
+            res.ok(service.list(page));
+        } catch (Exception e) {
+            res.error(log, e);
+        }
+        return res;
     }
 
 
@@ -45,7 +52,6 @@ public class DepartmentController {
 
         return res.ok();
     }
-
 
 
 }

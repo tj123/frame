@@ -1,4 +1,4 @@
-package com.shundian.frame.api.mis;
+package com.shundian.frame.api.envm;
 
 import com.shundian.lib.envm.EnumType;
 

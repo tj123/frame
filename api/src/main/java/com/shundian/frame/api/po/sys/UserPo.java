@@ -1,7 +1,7 @@
 package com.shundian.frame.api.po.sys;
 
 import com.shundian.frame.api.dto.sys.UserDto;
-import com.shundian.frame.api.envm.UserTypeEnum;
+import com.shundian.frame.api.envm.UserRoleTypeEnum;
 import com.shundian.lib.common.bean.BasePo;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +26,7 @@ public class UserPo extends BasePo<UserDto> implements Serializable{
 	private String password;
 
 	@Column(name = "type")
-	private UserTypeEnum userType;
+	private UserRoleTypeEnum userType;
 
 	private Boolean status;
 

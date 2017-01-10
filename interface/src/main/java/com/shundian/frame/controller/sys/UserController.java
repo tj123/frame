@@ -1,5 +1,7 @@
 package com.shundian.frame.controller.sys;
 
+import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.service.sys.EnumService;
 import com.shundian.frame.api.service.sys.UserService;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.UserFunction;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -23,6 +26,9 @@ public class UserController {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private EnumService enumService;
 
 
     @RequestMapping
@@ -36,6 +42,17 @@ public class UserController {
         return result;
     }
 
+
+    @RequestMapping("/tps")
+    public Result<?> types() {
+        Result<List<Map<String, Object>>> res = new Result<List<Map<String, Object>>>();
+        try {
+            res.ok(enumService.convertEnum(UserRoleTypeEnum.class));
+        } catch (Exception e) {
+            res.error(log, e);
+        }
+        return res;
+    }
 
     @RequestMapping("/scan")
     @Module(ScanModule.class)

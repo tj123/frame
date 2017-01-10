@@ -1,6 +1,6 @@
 package com.shundian.frame.api.dto.sys;
 
-import com.shundian.frame.api.envm.UserTypeEnum;
+import com.shundian.frame.api.envm.UserRoleTypeEnum;
 import com.shundian.frame.api.po.sys.UserPo;
 import com.shundian.lib.common.bean.BaseDto;
 import com.shundian.lib.common.bean.validate.*;
@@ -22,7 +22,7 @@ public class UserDto extends BaseDto<UserPo> {
     private String password;
 
     @NotBlank
-    @InEnum(UserTypeEnum.class)
+    @InEnum(UserRoleTypeEnum.class)
     private String userType;
 
     @Assert({"0","1"})
