@@ -4,10 +4,10 @@ import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.dto.sys.UserDto;
 import com.shundian.frame.api.service.sys.UserService;
 import com.shundian.lib.Result;
+import com.shundian.lib.authorize.Authorize;
+import com.shundian.lib.authorize.AuthorizeType;
+import com.shundian.lib.authorize.ErrorCode;
 import com.shundian.lib.common.bean.validate.impl.NotValidException;
-import com.shundian.lib.permission.ErrorCodeEnum;
-import com.shundian.lib.permission.Permission;
-import com.shundian.lib.permission.PermissionTypeEnum;
 import com.shundian.lib.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/sys")
-@Permission(PermissionTypeEnum.LOGIN)
+@Authorize(AuthorizeType.LOGIN)
 public class MainController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class MainController {
 
 
     @RequestMapping("/login")
-    @Permission(PermissionTypeEnum.ALL)
+    @Authorize(AuthorizeType.ALL)
     public Result<?> login(UserDto dto) {
         Result<Map<String, Object>> result = new Result<Map<String, Object>>();
         try {
@@ -46,14 +46,14 @@ public class MainController {
     }
 
     @RequestMapping("/cksesn")
-    @Permission(PermissionTypeEnum.ALL)
+    @Authorize(AuthorizeType.ALL)
     public Result<?> checkSession() {
         Result<Map<String, Object>> res = new Result<Map<String, Object>>();
         try {
             if(StringUtil.isNotBlank(session.getUserId())){
                 res.ok();
             }else {
-                res.error(ErrorCodeEnum.NEED_RE_LOGIN);
+                res.error(ErrorCode.NEED_RE_LOGIN);
             }
         } catch (Exception e) {
             res.error(log, e);
