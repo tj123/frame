@@ -25,23 +25,6 @@ public class GlobalSession implements LibGlobalSession, Serializable {
 
     private static final long serialVersionUID = 7506887334057350480L;
 
-    public void copy(GlobalSession session){
-        try {
-            setUserId(session.getUserId());
-        } catch (Exception e) {
-            log.error("id错误",e);
-        }
-        setUserRoleTypes(session.getUserRoleTypes());
-        setRealName(session.getRealName());
-        setDepartmentId(session.getDepartmentId());
-        setDepartmentCode(session.getDepartmentCode());
-        setDepartmentName(session.getDepartmentName());
-        setAreaId(session.getAreaId());
-        setParentAreaId(session.getParentAreaId());
-        setAreaId(session.getAreaId());
-        setParentAreaId(session.getParentDepartmentId());
-    }
-
     /**
      * 当前用户Id
      */

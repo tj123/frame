@@ -26,6 +26,7 @@
         app.value = $provide.value;
         app.CONTEXT = 'http://localhost/';
         //修改 $http 的默认数据提交方式
+        $httpProvider.defaults.withCredentials = true;
         $httpProvider.interceptors.push(function ($q) {
           return {
             request: function (config) {
@@ -54,8 +55,9 @@
           };
         });
       }])
-    .controller('AppCtrl', ['$scope', '$localStorage', '$window', '$timeout',
-      function ($scope, $localStorage, $window, $timeout) {
+    .controller('AppCtrl', ['$scope', '$localStorage', '$window', '$timeout','$state',
+      function ($scope, $localStorage, $window, $timeout,$state) {
+        app.$state = $state;
         // add 'ie' classes to html
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
