@@ -20,7 +20,7 @@ public class LoginLogFunction extends BaseFunction {
 
     @Override
     public String getUiSref() {
-        return "sys.log";
+        return "app.sys.log";
     }
 
     @Override

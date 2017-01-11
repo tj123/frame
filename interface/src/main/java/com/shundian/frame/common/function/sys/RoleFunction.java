@@ -20,7 +20,7 @@ public class RoleFunction extends BaseFunction {
 
     @Override
     public String getUiSref() {
-        return "sys.role";
+        return "app.sys.role";
     }
 
     @Override

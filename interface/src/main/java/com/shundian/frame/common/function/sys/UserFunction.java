@@ -20,7 +20,7 @@ public class UserFunction extends BaseFunction {
 
     @Override
     public String getUiSref() {
-        return "sys.user";
+        return "app.sys.user";
     }
 
     @Override

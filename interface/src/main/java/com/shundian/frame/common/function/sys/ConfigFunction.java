@@ -20,7 +20,7 @@ public class ConfigFunction extends BaseFunction {
 
     @Override
     public String getUiSref() {
-        return "sys.cfg";
+        return "app.sys.cfg";
     }
 
     @Override

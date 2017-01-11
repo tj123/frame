@@ -18,7 +18,7 @@ public class FuncFunction extends BaseFunction {
 
     @Override
     public String getUiSref() {
-        return "sys.func";
+        return "app.sys.func";
     }
 
     @Override

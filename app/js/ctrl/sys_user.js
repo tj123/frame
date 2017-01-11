@@ -1,5 +1,5 @@
 (function (angular, $, app) {
-  app.controller('SysUserCtrl', ['$scope', '$http', '$state', function ($scope, $http, $state) {
+  app.controller('SysUserCtrl', ['$scope', '$http', '$state','$rootScope', function ($scope, $http, $state,$rootScope) {
 
     /**
      * 表格的配置
@@ -11,6 +11,11 @@
 
     var $grid = $scope.$grid;
 
+    
+    $scope.update = function () {
+      $rootScope.$broadcast('funcUpdate',{hehhehe:'asdfasdfasd'});
+      console.log('update');
+    }
 
 
   }]);

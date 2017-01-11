@@ -18,6 +18,8 @@ public class AuthFunction {
 
     private String name;
 
+    private String uiSref;
+    
     private List<AuthFunctionModule> modules;
 
 }
