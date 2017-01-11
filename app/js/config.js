@@ -103,6 +103,11 @@
         }
       })
 
+      .state('app.noperm',{
+        url:'noperm',
+        templateUrl:'tpl/noperm.html'
+      })
+
   }])
 })(app);
 

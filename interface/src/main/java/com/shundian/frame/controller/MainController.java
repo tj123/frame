@@ -2,6 +2,7 @@ package com.shundian.frame.controller;
 
 import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.dto.sys.UserDto;
+import com.shundian.frame.api.entity.sys.AuthFunction;
 import com.shundian.frame.api.service.sys.UserService;
 import com.shundian.frame.common.function.sys.SystemManageFunction;
 import com.shundian.lib.Result;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -54,6 +56,21 @@ public class MainController {
     @RequestMapping("/cksesn")
     public Result<?> checkSession() {
         return new Result<Object>().ok();
+    }
+
+    /**
+     * 获取用户所具有的权限
+     * @return
+     */
+    @RequestMapping("/auths")
+    public Result<?> auths() {
+        Result<List<AuthFunction>> result = new Result<List<AuthFunction>>();
+        try {
+            result.ok(service.getAuths(session.getUserId()));
+        } catch (Exception e) {
+            result.error(log, e);
+        }
+        return result;
     }
 
 

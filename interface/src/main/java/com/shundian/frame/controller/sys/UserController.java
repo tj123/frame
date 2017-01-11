@@ -1,5 +1,6 @@
 package com.shundian.frame.controller.sys;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.frame.api.service.sys.EnumService;
@@ -39,6 +40,9 @@ public class UserController {
     public Result<?> list(Page page) {
         Result<PageResult<Map<String, Object>>> result = new Result<PageResult<Map<String, Object>>>();
         try {
+            System.out.println(session.getAreaId());
+            System.out.println(session.getUserId());
+            System.out.println(new ObjectMapper().writeValueAsString(session.getAuthorization()));
             result.ok(service.list(page));
         } catch (Exception e) {
             result.error("出错", log, e);

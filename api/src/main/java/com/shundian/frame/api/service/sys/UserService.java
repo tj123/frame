@@ -1,9 +1,11 @@
 package com.shundian.frame.api.service.sys;
 
 import com.shundian.frame.api.common.GlobalSession;
+import com.shundian.frame.api.entity.sys.AuthFunction;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +25,11 @@ public interface UserService {
 
 
     PageResult<Map<String,Object>> list(Page page) throws Exception;
+
+    /**
+     * 获取用户所具有的权限
+     * @return
+     * @throws Exception
+     */
+    List<AuthFunction> getAuths(String userId) throws Exception;
 }

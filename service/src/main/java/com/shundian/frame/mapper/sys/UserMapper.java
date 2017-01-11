@@ -1,6 +1,7 @@
 package com.shundian.frame.mapper.sys;
 
 
+import com.shundian.frame.api.entity.sys.AuthFunction;
 import com.shundian.frame.api.po.sys.UserPo;
 import com.shundian.lib.function.MiniFunction;
 import tk.mybatis.mapper.common.Mapper;
@@ -15,5 +16,7 @@ public interface UserMapper extends Mapper<UserPo> {
     Map<String,Object> selectUserId(String username) throws Exception;
 
     List<MiniFunction> getFunctions(String userId) throws Exception;
+
+    List<AuthFunction> getUserAuths(String userId) throws Exception;
 }
 

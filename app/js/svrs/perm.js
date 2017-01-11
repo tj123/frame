@@ -23,7 +23,7 @@
               $state.go('login');
               console.log('u=' + encodeURIComponent(window.location.href));
             } else if (dat.errorCode == '902') {
-              $state.go('noperm');
+              $state.go('app.noperm');
             } else if (dat.errorCode == '908') {
               window.location.hash = '#' + dat.url;
             }

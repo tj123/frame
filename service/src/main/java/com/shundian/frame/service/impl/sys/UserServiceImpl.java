@@ -2,6 +2,7 @@ package com.shundian.frame.service.impl.sys;
 
 
 import com.shundian.frame.api.common.GlobalSession;
+import com.shundian.frame.api.entity.sys.AuthFunction;
 import com.shundian.frame.api.po.sys.DepartmentPo;
 import com.shundian.frame.api.po.sys.UserPo;
 import com.shundian.frame.api.service.sys.UserService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -31,6 +33,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private DepartmentMapper departmentMapper;
 
+    private static final String TRIM = "com.shundian.frame.common.function.";
 
     @Override
     public Map<String, Object> login(String username, String password, GlobalSession session) throws Exception {
@@ -54,6 +57,18 @@ public class UserServiceImpl implements UserService {
         PageUtil<Map<String, Object>> pageUtil = new PageUtil<>();
         pageUtil.startPage(page);
         return pageUtil.assembleResult(mapper.list(page.assembleSearch()));
+    }
+
+    @Override
+    public List<AuthFunction> getAuths(String userId) throws Exception {
+        List<AuthFunction> userAuths = mapper.getUserAuths(userId);
+        for (AuthFunction userAuth : userAuths) {
+            String key = userAuth.getKey();
+            if(key != null){
+                userAuth.setKey(key.replace(TRIM,"").replaceAll("Function$","").trim());
+            }
+        }
+        return userAuths;
     }
 
 
