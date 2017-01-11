@@ -3,10 +3,12 @@ package com.shundian.frame.controller;
 import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.dto.sys.UserDto;
 import com.shundian.frame.api.service.sys.UserService;
+import com.shundian.frame.common.function.sys.SystemManageFunction;
 import com.shundian.lib.Result;
 import com.shundian.lib.authorize.Authorize;
 import com.shundian.lib.authorize.AuthorizeType;
 import com.shundian.lib.common.bean.validate.impl.NotValidException;
+import com.shundian.lib.function.Function;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys")
 @Authorize(AuthorizeType.LOGIN)
+@Function(SystemManageFunction.class)
 public class MainController {
 
     @Autowired

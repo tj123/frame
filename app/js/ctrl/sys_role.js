@@ -80,6 +80,8 @@
 
     $scope.submit = function () {
 
+      console.log(role);
+
       $http.post('sys/role/add', role)
         .success(function (d) {
           if (d.status) {

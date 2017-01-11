@@ -61,7 +61,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
        //bean.setTypeAliasesPackage("tk.mybatis.springboot.po");
-       bean.setTypeAliasesPackage("com.shundian.frame.po");
+       bean.setTypeAliasesPackage("com.shundian.frame.api");
 
         //分页插件
         PageHelper pageHelper = new PageHelper();

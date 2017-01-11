@@ -1,12 +1,15 @@
 package com.shundian.frame.api.po.sys;
 
 import com.shundian.frame.api.envm.ProjectTypeEnum;
-import com.shundian.lib.common.bean.convert.BlankCurrent;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -41,7 +44,6 @@ public class FunctionPo implements Serializable{
 	
 	private ProjectTypeEnum project;
 
-	@BlankCurrent
-	private String operateTime;
+	private Date operateTime;
 
 }

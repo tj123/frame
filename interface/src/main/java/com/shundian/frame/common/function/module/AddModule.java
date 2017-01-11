@@ -7,7 +7,7 @@ public class AddModule implements ModuleType {
 
 	@Override
 	public Short getId() {
-		return 1;
+		return 7;
 	}
 
 	public String getKey() {

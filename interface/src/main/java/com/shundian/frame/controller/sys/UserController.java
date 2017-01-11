@@ -1,5 +1,6 @@
 package com.shundian.frame.controller.sys;
 
+import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.frame.api.service.sys.EnumService;
 import com.shundian.frame.api.service.sys.UserService;
@@ -29,6 +30,9 @@ public class UserController {
 
     @Autowired
     private EnumService enumService;
+
+    @Autowired
+    private GlobalSession session;
 
 
     @RequestMapping

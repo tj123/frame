@@ -10,6 +10,7 @@ import com.shundian.frame.mapper.sys.DepartmentMapper;
 import com.shundian.frame.mapper.sys.UserMapper;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
+import com.shundian.lib.authorize.Authorization;
 import com.shundian.lib.common.bean.validate.impl.NotValidException;
 import com.shundian.lib.util.PasswordUtil;
 import com.shundian.lib.util.StringUtil;
@@ -53,16 +54,15 @@ public class UserServiceImpl implements UserService {
         PageUtil<Map<String, Object>> pageUtil = new PageUtil<>();
         pageUtil.startPage(page);
         return pageUtil.assembleResult(mapper.list(page.assembleSearch()));
-
     }
 
 
-    public void updateSession(String userId, GlobalSession session) {
+    public void updateSession(String userId, GlobalSession session) throws Exception {
         UserPo po = mapper.selectByPrimaryKey(userId);
+        session.setAuthorization(new Authorization(mapper.getFunctions(userId)));
         session.setRealName(po.getRealName());
         session.setDepartmentId(po.getDepartmentId());
         session.setUserId(userId);
-        //session.setUserRoleTypes("");
         System.out.println(session);
         String departmentId = session.getDepartmentId();
         if (StringUtil.isNotBlank(departmentId)) {
@@ -71,8 +71,5 @@ public class UserServiceImpl implements UserService {
                 session.setDepartmentCode(departmentPo.getCode());
             }
         }
-        System.out.println(session.getRealName());
-        System.out.println(session.getDepartmentId());
-        //System.out.println(session.getUserId());
     }
 }
