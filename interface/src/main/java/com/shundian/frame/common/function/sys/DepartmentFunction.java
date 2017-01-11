@@ -23,5 +23,10 @@ public class DepartmentFunction extends BaseFunction {
         return "sys.dep";
     }
 
+    @Override
+    public String getEntry() {
+        return "sys/dep";
+    }
+
 
 }

@@ -23,4 +23,9 @@ public class LoginLogFunction extends BaseFunction {
         return "sys.log";
     }
 
+    @Override
+    public String getEntry() {
+        return "sys/log";
+    }
+
 }

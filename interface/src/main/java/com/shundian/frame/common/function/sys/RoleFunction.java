@@ -23,4 +23,9 @@ public class RoleFunction extends BaseFunction {
         return "sys.role";
     }
 
+    @Override
+    public String getEntry() {
+        return "sys/role";
+    }
+
 }

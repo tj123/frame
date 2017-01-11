@@ -23,4 +23,9 @@ public class UserFunction extends BaseFunction {
         return "sys.user";
     }
 
+    @Override
+    public String getEntry() {
+        return "sys/user";
+    }
+
 }

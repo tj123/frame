@@ -1,8 +1,9 @@
 package com.shundian.frame.api.common;
 
 import com.shundian.frame.api.envm.AreaLevel;
-import com.shundian.lib.session.LibGlobalSession;
-import com.shundian.lib.session.UserRoleType;
+import com.shundian.lib.authorize.Authorization;
+import com.shundian.lib.session.Session;
+import com.shundian.lib.session.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import java.util.List;
 @Getter
 @Component
 @SessionScope
-public class GlobalSession implements LibGlobalSession, Serializable {
+public class GlobalSession implements Session, Serializable {
 
     private static final long serialVersionUID = 7506887334057350480L;
 
@@ -33,7 +34,12 @@ public class GlobalSession implements LibGlobalSession, Serializable {
     /**
      * 用户类型
      */
-    private List<UserRoleType> userRoleTypes;
+    private List<UserRole> userRoleTypes;
+
+    /**
+     * 用户具有的权限
+     */
+    private Authorization authorization;
 
     /**
      * 用户真实名称
@@ -72,11 +78,5 @@ public class GlobalSession implements LibGlobalSession, Serializable {
 
 
     private AreaLevel areaLevel;
-
-    @Override
-    public String getUserId() throws Exception {
-        return null;
-    }
-
 
 }

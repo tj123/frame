@@ -23,5 +23,10 @@ public class ConfigFunction extends BaseFunction {
         return "sys.cfg";
     }
 
+    @Override
+    public String getEntry() {
+        return "sys/cfg";
+    }
+
 
 }

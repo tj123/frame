@@ -1,6 +1,6 @@
 package com.shundian.frame.config;
 
-import com.shundian.lib.authorize.AuthorizeInterceptor;
+import com.shundian.lib.authorize.interceptor.AuthorizeInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 

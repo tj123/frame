@@ -21,4 +21,9 @@ public class FuncFunction extends BaseFunction {
         return "sys.func";
     }
 
+    @Override
+    public String getEntry() {
+        return "sys/func";
+    }
+
 }

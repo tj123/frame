@@ -27,6 +27,8 @@ public class FunctionPo implements Serializable{
 	
 	private String uiSref;
 
+	private String entry;
+
 	@Column(name = "order_")
 	private Integer order;
 	

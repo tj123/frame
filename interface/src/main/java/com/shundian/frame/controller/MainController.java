@@ -6,9 +6,7 @@ import com.shundian.frame.api.service.sys.UserService;
 import com.shundian.lib.Result;
 import com.shundian.lib.authorize.Authorize;
 import com.shundian.lib.authorize.AuthorizeType;
-import com.shundian.lib.authorize.ErrorCode;
 import com.shundian.lib.common.bean.validate.impl.NotValidException;
-import com.shundian.lib.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,25 +38,19 @@ public class MainController {
         } catch (NotValidException e) {
             result.error(e);
         } catch (Exception e) {
-            result.error("错误", log, e);
+            result.error(log, e);
         }
         return result;
     }
 
+    /**
+     * 检测 session
+     *
+     * @return
+     */
     @RequestMapping("/cksesn")
-    @Authorize(AuthorizeType.ALL)
     public Result<?> checkSession() {
-        Result<Map<String, Object>> res = new Result<Map<String, Object>>();
-        try {
-            if(StringUtil.isNotBlank(session.getUserId())){
-                res.ok();
-            }else {
-                res.error(ErrorCode.NEED_RE_LOGIN);
-            }
-        } catch (Exception e) {
-            res.error(log, e);
-        }
-        return res;
+        return new Result<Object>().ok();
     }
 
 
