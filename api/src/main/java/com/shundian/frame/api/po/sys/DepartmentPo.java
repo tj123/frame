@@ -3,6 +3,7 @@ package com.shundian.frame.api.po.sys;
 import com.shundian.frame.api.dto.sys.DepartmentDto;
 import com.shundian.frame.api.envm.DepartmentType;
 import com.shundian.lib.common.bean.BasePo;
+import com.shundian.lib.common.bean.convert.BlankCurrent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,4 +37,6 @@ public class DepartmentPo extends BasePo<DepartmentDto> implements Serializable 
 
     private String areaId;
 
+    @BlankCurrent
+    private String operateTime;
 }

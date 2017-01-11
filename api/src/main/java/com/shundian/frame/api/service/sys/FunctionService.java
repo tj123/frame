@@ -1,7 +1,5 @@
 package com.shundian.frame.api.service.sys;
 
-import com.shundian.frame.api.entity.sys.Function;
-import com.shundian.frame.api.entity.sys.FunctionModule;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.function.FunctionType;
@@ -44,9 +42,6 @@ public interface FunctionService {
      */
     Map<String, Object> list(String id) throws Exception;
 
-    List<FunctionModule> findModules() throws Exception;
-
-    List<Function> findFunctions() throws Exception;
 
     /**
      * 列出所有的

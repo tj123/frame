@@ -1,8 +1,9 @@
 package com.shundian.frame.api.dto.sys;
 
-import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.frame.api.po.sys.UserPo;
 import com.shundian.lib.common.bean.BaseDto;
+import com.shundian.lib.common.bean.convert.BlankCurrent;
 import com.shundian.lib.common.bean.validate.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,7 @@ public class UserDto extends BaseDto<UserPo> {
     private String password;
 
     @NotBlank
-    @InEnum(UserRoleTypeEnum.class)
+    @InEnum(UserRoleType.class)
     private String userType;
 
     @Assert({"0","1"})
@@ -43,4 +44,7 @@ public class UserDto extends BaseDto<UserPo> {
 
     @QQ
     private String qq;
+
+    @BlankCurrent
+    private String operateTime;
 }

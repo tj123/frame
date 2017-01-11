@@ -1,7 +1,7 @@
 package com.shundian.frame.api.po.sys;
 
 import com.shundian.frame.api.dto.sys.RoleDto;
-import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.lib.common.bean.BasePo;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +27,7 @@ public class RolePo extends BasePo<RoleDto> implements Serializable {
 
     private String entryFunctionId;
 
-    private UserRoleTypeEnum bindType;
+    private UserRoleType bindUserRole;
 
     private Date operateTime;
 

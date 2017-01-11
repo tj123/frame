@@ -1,6 +1,6 @@
 package com.shundian.frame.api.dto.sys;
 
-import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.lib.common.bean.BaseDto;
 import com.shundian.lib.common.bean.convert.BlankCurrent;
@@ -20,8 +20,8 @@ public class RoleDto extends BaseDto<RolePo> {
 
     private String entryFunctionId;
 
-    @InEnum(UserRoleTypeEnum.class)
-    private String bindType;
+    @InEnum(UserRoleType.class)
+    private String bindUserRole;
 
     @BlankCurrent
     private String operateTime;

@@ -31,14 +31,7 @@ public class RoleController {
     private RoleService service;
 
     @Autowired
-    private GlobalSession globalSession;
-
-    @RequestMapping("/test")
-    public Result<?> test(){
-        System.out.println(globalSession.getRealName());
-
-        return null;
-    }
+    private GlobalSession session;
 
     @RequestMapping
     public Result<?> list(Page page) {
@@ -46,7 +39,7 @@ public class RoleController {
         try {
             result.ok(service.list(page));
         } catch (Exception e) {
-            result.error("错误", log, e);
+            result.error(log, e);
         }
         return result;
     }
@@ -58,47 +51,47 @@ public class RoleController {
         try {
             service.add(dto.po());
             result.ok();
-        } catch (NotValidException e){
+        } catch (NotValidException e) {
             result.error(e);
         } catch (Exception e) {
-            result.error("错误", log, e);
+            result.error(log, e);
         }
         return result;
     }
 
     @RequestMapping("/addfunc")
     @Module(AddModule.class)
-    public Result<?> addFunc(String role,@RequestParam("funcs[]") String[] funcs) {
+    public Result<?> addFunc(String role, @RequestParam("funcs[]") String[] funcs) {
         Result<Object> result = new Result<Object>();
         try {
-            service.addFunc(role,funcs);
+            service.addFunc(role, funcs);
             result.ok();
         } catch (Exception e) {
-            result.error("错误", log, e);
+            result.error(log, e);
         }
         return result;
     }
-    
+
     @RequestMapping("/mvfunc")
     @Module(AddModule.class)
-    public Result<?> removeFunc(String role,@RequestParam("funcs[]") String[] funcs) {
+    public Result<?> removeFunc(String role, @RequestParam("funcs[]") String[] funcs) {
         Result<Object> result = new Result<Object>();
         try {
-            service.removeFunc(role,funcs);
+            service.removeFunc(role, funcs);
             result.ok();
         } catch (Exception e) {
-            result.error("错误", log, e);
+            result.error(log, e);
         }
         return result;
     }
-    
+
     @RequestMapping("/lstfunc")
-    public Result<List<Map<String,Object>>> allFunction(String role,String name) {
-        Result<List<Map<String,Object>>> result = new Result<List<Map<String,Object>>>();
+    public Result<List<Map<String, Object>>> allFunction(String role, String name) {
+        Result<List<Map<String, Object>>> result = new Result<List<Map<String, Object>>>();
         try {
-            result.ok(service.listFunc(role,name));
+            result.ok(service.listFunc(role, name));
         } catch (Exception e) {
-            result.error("错误", log, e);
+            result.error(log, e);
         }
         return result;
     }

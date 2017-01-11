@@ -2,8 +2,6 @@ package com.shundian.frame.service.impl.sys;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shundian.frame.api.entity.sys.Function;
-import com.shundian.frame.api.entity.sys.FunctionModule;
 import com.shundian.frame.api.entity.sys.SearchFunction;
 import com.shundian.frame.api.entity.sys.SearchFunctionModule;
 import com.shundian.frame.api.envm.ProjectTypeEnum;
@@ -13,7 +11,6 @@ import com.shundian.frame.api.service.sys.FunctionService;
 import com.shundian.frame.common.PageUtil;
 import com.shundian.frame.mapper.sys.FunctionMapper;
 import com.shundian.frame.mapper.sys.FunctionModuleMapper;
-import com.shundian.frame.mapper.sys.LscrmFunctionPrivilegeMapper;
 import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.exception.CannotConvertException;
@@ -37,9 +34,7 @@ public class FunctionServiceImpl implements FunctionService {
   
   @Autowired
   private FunctionModuleMapper functionModuleMapper;
-  
-  @Autowired
-  private LscrmFunctionPrivilegeMapper lscrmFunctionPrivilegeMapper;
+
   
   /**
    * 插入数据并判断是否存在是否重复
@@ -56,6 +51,7 @@ public class FunctionServiceImpl implements FunctionService {
         functionPo.setClazz(functionClass.getName());
         functionPo.setName(functionType.getName());
         functionPo.setUiSref(functionType.getUiSref());
+        functionPo.setEntry(functionType.getEntry());
         functionPo.setProject(EnumUtil.valueOf(ProjectTypeEnum.class, String.valueOf(functionType.getProject())));
         functionPo.setIsShow(true);
         functionPo.setOrder(new Random().nextInt(20));
@@ -170,16 +166,6 @@ public class FunctionServiceImpl implements FunctionService {
       return list.get(0);
     }
     return new HashMap<String, Object>();
-  }
-  
-  @Override
-  public List<FunctionModule> findModules() throws Exception {
-    return functionModuleMapper.selectFunctionModule(null);
-  }
-  
-  @Override
-  public List<Function> findFunctions() throws Exception {
-    return mapper.selectFunction(null);
   }
   
   @Override

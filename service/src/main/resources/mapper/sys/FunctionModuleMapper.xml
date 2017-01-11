@@ -1,86 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shundian.frame.mapper.sys.FunctionModuleMapper">
-  
+
   <cache
       eviction="FIFO"
       flushInterval="60000"
       size="1024"
       readOnly="true"/>
-  
+
   <update id="updateModule" parameterType="com.shundian.frame.api.po.sys.FunctionModulePo">
         update tsys_function_module set name = #{name},key_ = #{key},uid = #{uid} where function_id = #{functonId} and class = #{clazz}
     </update>
 
-  <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.api.po.sys.FunctionModulePo" useCache="false">
+  <select id="selectDuplicate" resultType="integer" parameterType="com.shundian.frame.api.po.sys.FunctionModulePo"
+          useCache="false">
         select count(1) from tsys_function_module where uid = #{uid} and class != #{clazz}
     </select>
 
-  <!-- 一对一映射关系 -->
-  <resultMap id="functionModuleResult" type="com.shundian.frame.api.entity.sys.FunctionModule">
-
-    <id property="id" column="id"></id>
-    <result property="uid" column="uid"></result>
-    <result property="functionId" column="function_id"></result>
-    <result property="clazz" column="class"></result>
-    <result property="key" column="key_"></result>
-    <result property="name" column="name"></result>
-
-    <association property="function" javaType="com.shundian.frame.api.po.sys.FunctionPo">
-      <id property="id" column="function_id"></id>
-      <result property="uid" column="f_uid"></result>
-      <result property="parentId" column="f_pid"></result>
-      <result property="clazz" column="f_class"></result>
-      <result property="name" column="f_name"></result>
-      <result property="uiSref" column="ui_sref"></result>
-      <result property="order" column="order_"></result>
-      <result property="icon" column="icon"></result>
-      <result property="alias" column="alias"></result>
-      <result property="isShow" column="is_show"></result>
-      <result property="project" column="project"></result>
-    </association>
-
-  </resultMap>
-
-  <select id="selectFunctionModule" resultMap="functionModuleResult"
-          parameterType="com.shundian.frame.api.po.sys.FunctionModulePo" useCache="false">
-    select m.id,m.uid,m.function_id,m.class,m.key_,m.`name` ,
-    f.uid f_uid,f.class f_class,f.`name` f_name,f.ui_sref,f.order_,f.icon,f.alias,f.is_show,f.project,
-    f.parent_id
-    from
-    tsys_function_module m left join tsys_function f on f.id = m.function_id
-    where 1 = 1
-    <if test="id != null">
-      and m.id = #{id}
-    </if>
-    <if test="uid != null">
-      and m.uid = #{id}
-    </if>
-    <if test="functionId != null">
-      and m.function_id = #{functionId}
-    </if>
-    <if test="clazz != null">
-      and m.class = #{clazz}
-    </if>
-    <if test="key != null">
-      and m.key_ = #{key}
-    </if>
-    <if test="name != null">
-      and m.name = #{name}
-    </if>
-  </select>
 
   <!-- 嵌套查询 -->
   <sql id="searchModule">
     select f.id,f.parent_id,f.name,m.id m_id,m.name m_name from tsys_function f
     left join tsys_function_module m on
     m.function_id = f.id where 1 = 1
-<!--   <if test="name != null and name.trim() != ''">
-      and name like concat('%',#{name},'%')
-    </if>-->
-    <!--<if test="project != null">
-      and project = #{project}
-    </if>-->
   </sql>
 
   <!--suppress MybatisMapperXmlInspection -->
@@ -101,7 +43,7 @@
     </collection>
     <collection property="modules" resultMap="moduleResult"></collection>
   </resultMap>
-  
+
   <resultMap id="moduleResult" type="com.shundian.frame.api.entity.sys.SearchFunctionModule">
     <id property="id" column="m_id"></id>
     <result property="name" column="m_name"></result>
@@ -115,7 +57,7 @@
     </if>
     order by order_ asc
   </select>
-  
+
   <select id="listModules" resultType="java.lang.String" useCache="false">
     select fm.id from tsys_role_function_module rfm
     left join tsys_function_module fm

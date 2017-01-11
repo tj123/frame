@@ -6,6 +6,8 @@ import com.shundian.lib.common.bean.validate.Validate;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Setter
 @Getter
 @Validate
@@ -24,5 +26,7 @@ public class DepartmentDto extends BaseDto<DepartmentPo> {
     private String address;
 
     private String areaId;
+
+    private Date operateTime;
 
 }

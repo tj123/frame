@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.shundian.frame.conf;
+package com.shundian.frame.config;
 
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.plugin.Interceptor;
@@ -52,6 +52,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class MyBatisConfig implements TransactionManagementConfigurer {
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     DataSource dataSource;
 

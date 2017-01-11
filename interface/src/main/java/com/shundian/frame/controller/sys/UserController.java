@@ -1,6 +1,6 @@
 package com.shundian.frame.controller.sys;
 
-import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.frame.api.service.sys.EnumService;
 import com.shundian.frame.api.service.sys.UserService;
 import com.shundian.frame.common.function.module.ScanModule;
@@ -47,7 +47,7 @@ public class UserController {
     public Result<?> types() {
         Result<List<Map<String, Object>>> res = new Result<List<Map<String, Object>>>();
         try {
-            res.ok(enumService.convertEnum(UserRoleTypeEnum.class));
+            res.ok(enumService.convertEnum(UserRoleType.class));
         } catch (Exception e) {
             res.error(log, e);
         }

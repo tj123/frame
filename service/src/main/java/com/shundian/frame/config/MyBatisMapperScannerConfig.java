@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.shundian.frame.conf;
+package com.shundian.frame.config;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;

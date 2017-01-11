@@ -1,13 +1,11 @@
 package com.shundian.frame.controller.sys;
 
-import com.shundian.frame.api.service.sys.MenuService;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.LoginLogFunction;
 import com.shundian.lib.Result;
 import com.shundian.lib.function.Function;
 import com.shundian.lib.function.Module;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sys/log")
 @Function(LoginLogFunction.class)
 public class LoginLogController {
-
-    @Autowired
-    private MenuService menuService;
 
 //    @RequestMapping
 //    public Result<?> list(Page page) {

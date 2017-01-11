@@ -1,4 +1,4 @@
-package com.shundian.frame.conf;
+package com.shundian.frame.config;
 
 //@Configuration
 //@EnableTransactionManagement

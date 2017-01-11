@@ -1,6 +1,7 @@
 package com.shundian.frame.api.po.sys;
 
 import com.shundian.frame.api.envm.ProjectTypeEnum;
+import com.shundian.lib.common.bean.convert.BlankCurrent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,5 +41,7 @@ public class FunctionPo implements Serializable{
 	
 	private ProjectTypeEnum project;
 
+	@BlankCurrent
+	private String operateTime;
 
 }

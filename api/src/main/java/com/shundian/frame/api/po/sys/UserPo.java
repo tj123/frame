@@ -1,7 +1,7 @@
 package com.shundian.frame.api.po.sys;
 
 import com.shundian.frame.api.dto.sys.UserDto;
-import com.shundian.frame.api.envm.UserRoleTypeEnum;
+import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.lib.common.bean.BasePo;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -26,7 +27,7 @@ public class UserPo extends BasePo<UserDto> implements Serializable{
 	private String password;
 
 	@Column(name = "type")
-	private UserRoleTypeEnum userType;
+	private UserRoleType userType;
 
 	private Boolean status;
 
@@ -40,6 +41,6 @@ public class UserPo extends BasePo<UserDto> implements Serializable{
 
 	private String qq;
 
-
+	private Date operateTime;
 
 }

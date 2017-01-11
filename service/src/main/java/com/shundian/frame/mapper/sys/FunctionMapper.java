@@ -1,7 +1,6 @@
 package com.shundian.frame.mapper.sys;
 
 
-import com.shundian.frame.api.entity.sys.Function;
 import com.shundian.frame.api.po.sys.FunctionPo;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -16,7 +15,6 @@ public interface FunctionMapper extends Mapper<FunctionPo> {
 
     List<Map<String,Object>> list(Map<String, String> keywords) throws Exception;
 
-    List<Function> selectFunction(FunctionPo po);
 
 }
 
