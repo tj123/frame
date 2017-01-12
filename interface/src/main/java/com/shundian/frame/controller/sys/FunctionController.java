@@ -1,6 +1,7 @@
 package com.shundian.frame.controller.sys;
 
 import com.shundian.frame.api.service.sys.FunctionService;
+import com.shundian.frame.common.function.module.EditModule;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.FuncFunction;
 import com.shundian.lib.Page;
@@ -48,6 +49,7 @@ public class FunctionController {
     }
 
     @RequestMapping("/list")
+    @Module(EditModule.class)
     public Result<?> edit(String id) {
         Result<Map<String, Object>> result = new Result<Map<String, Object>>();
         try {

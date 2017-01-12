@@ -28,19 +28,17 @@
   </select>
 
   <resultMap id="authFunction" type="com.shundian.frame.api.entity.sys.AuthFunction">
-    <id property="id" column="id"></id>
-    <result property="key" column="key"></result>
+    <id property="key" column="key"></id>
     <result property="name" column="name"></result>
     <result property="uiSref" column="ui_sref"></result>
     <collection property="modules" ofType="com.shundian.frame.api.entity.sys.AuthFunctionModule">
-      <id property="id" column="m_id"></id>
-      <result property="key" column="m_key"></result>
+      <id property="key" column="m_key"></id>
       <result property="name" column="m_name"></result>
     </collection>
   </resultMap>
 
   <select id="getUserAuths" resultMap="authFunction">
-    select f.uid id,f.class "key",f.ui_sref,f.name,fm.uid m_id,fm.key_ m_key,fm.name m_name from tsys_user_role ur
+    select f.class "key",f.ui_sref,f.name,fm.class m_key,fm.name m_name from tsys_user_role ur
       left join tsys_role_function_module rfm on ur.role_id = rfm.role_id
       left join tsys_function_module fm on fm.id = rfm.function_module_id
       left join tsys_function f on f.id = fm.function_id

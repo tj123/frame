@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 
 @Service
 @Slf4j
@@ -57,6 +58,9 @@ public class FunctionServiceImpl implements FunctionService {
                 functionPo.setOrder(new Random().nextInt(20));
                 functionPo.setId(UuidUtil.getUUID());
                 functionPo.setOperateTime(new Date());
+                if(!Pattern.compile("Function$").matcher(functionPo.getClazz()).find()){
+                    throw new Exception("功能 " + functionPo.getName() + "命名：" +functionPo.getClazz() + " 不符合要求 应以 Function 结束");
+                }
                 mapper.insert(functionPo);
             } else {
                 FunctionPo dbFunctionPo = null;
@@ -92,6 +96,9 @@ public class FunctionServiceImpl implements FunctionService {
                 functionModulePo.setKey(module.getKey());
                 functionModulePo.setClazz(moduleClass.getName());
                 functionModulePo.setUid(module.getId());
+                if(!Pattern.compile("Module$").matcher(functionModulePo.getClazz()).find()){
+                    throw new Exception("模块 " + functionModulePo.getName() + "命名：" +functionModulePo.getClazz() + " 不符合要求 应以 Module 结束");
+                }
                 if (functionModuleMapper.selectDuplicate(functionModulePo) > 0) {
                     throw new Exception("模块 " + functionModulePo.getName() + " -> " + functionModulePo.getClazz() + " uid 重复！");
                 }

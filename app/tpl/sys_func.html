@@ -66,7 +66,7 @@
         <input type="text" class="grid-search-input m-l-sm form-control input-sm w-sm inline m-r"/>
         <a href="javascript:;" class="btn btn-primary">搜索</a>
         <div class="pull-right">
-          <a href="javascript:;" ng-click="scanFunction()" func-md="SCAN" class="btn btn-primary">扫描功能</a>
+          <a href="javascript:;" ng-click="scanFunction()" func-md="Scan" class="btn btn-primary">扫描功能</a>
         </div>
 
       </div>
@@ -86,7 +86,7 @@
             <th class="text-center" grid-hide="md">注解类</th>
             <th class="text-center" grid-hide="sm">模块</th>
             <th class="text-center" grid-hide="sm">链接(ui-sref)</th>
-            <th class="text-center">操作</th>
+            <th class="text-center">操作<span func-md="Edit">编辑</span></th>
           </tr>
           </thead>
           <tbody>
@@ -104,7 +104,7 @@
             <td>{{parseModule(item.module)}}</td>
             <td>{{item.ui_sref}}</td>
             <td class="text-center">
-              <a class="wrapper-xs text-info" ui-sref="app.sys.funcEdit({id:item.id})">编辑</a>|<a class="wrapper-xs text-info" href="">删除</a>
+              <a class="wrapper-xs text-info" func-md="Edit" ui-sref="app.sys.funcEdit({id:item.id})">编辑</a><span func-md="Edit">|</span><a class="wrapper-xs text-info" href="">删除</a>
             </td>
           </tr>
           </tbody>

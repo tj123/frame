@@ -3,6 +3,7 @@ package com.shundian.frame.service.impl.sys;
 
 import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.entity.sys.AuthFunction;
+import com.shundian.frame.api.entity.sys.AuthFunctionModule;
 import com.shundian.frame.api.po.sys.DepartmentPo;
 import com.shundian.frame.api.po.sys.UserPo;
 import com.shundian.frame.api.service.sys.UserService;
@@ -13,6 +14,7 @@ import com.shundian.lib.Page;
 import com.shundian.lib.PageResult;
 import com.shundian.lib.authorize.Authorization;
 import com.shundian.lib.common.bean.validate.impl.NotValidException;
+import com.shundian.lib.function.DefaultModule;
 import com.shundian.lib.util.PasswordUtil;
 import com.shundian.lib.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +35,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private DepartmentMapper departmentMapper;
 
-    private static final String TRIM = "com.shundian.frame.common.function.";
+    private static final String FUNCTION_TRIM = "com.shundian.frame.common.function.";
+    private static final String MODULE_TRIM = "com.shundian.frame.common.function.module.";
 
     @Override
     public Map<String, Object> login(String username, String password, GlobalSession session) throws Exception {
@@ -65,7 +68,17 @@ public class UserServiceImpl implements UserService {
         for (AuthFunction userAuth : userAuths) {
             String key = userAuth.getKey();
             if(key != null){
-                userAuth.setKey(key.replace(TRIM,"").replaceAll("Function$","").trim());
+                userAuth.setKey(key.replace(FUNCTION_TRIM,"").replaceAll("Function$","").trim());
+            }
+            for (AuthFunctionModule authFunctionModule : userAuth.getModules()) {
+                String moduleKey = authFunctionModule.getKey();
+                if(moduleKey != null){
+                    if(DefaultModule.class.getTypeName().equals(moduleKey)){
+                        authFunctionModule.setKey("Default");
+                    }else{
+                        authFunctionModule.setKey(moduleKey.replace(MODULE_TRIM,"").replaceAll("Module$","").trim());
+                    }
+                }
             }
         }
         return userAuths;

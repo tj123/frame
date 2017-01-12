@@ -10,8 +10,6 @@ import lombok.Setter;
 @Getter
 public class AuthFunctionModule {
 
-    private Short id;
-
     private String key;
 
     private String name;

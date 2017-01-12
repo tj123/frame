@@ -1,5 +1,5 @@
 ;(function (window, angular, $, undefined) {
-  
+
   var app = window.app = angular.module('app', [
     'ngAnimate',
     'ngCookies',
@@ -58,18 +58,19 @@
     .controller('AppCtrl', ['$scope', '$localStorage', '$window', '$timeout', '$state',
       function ($scope, $localStorage, $window, $timeout, $state) {
         app.$state = $state;
+
         // add 'ie' classes to html
         var isIE = !!navigator.userAgent.match(/MSIE/i);
         isIE && angular.element($window.document.body).addClass('ie');
         isSmartDevice($window) && angular.element($window.document.body).addClass('smart');
-        
+
         function isSmartDevice($window) {
           // Adapted from http://www.detectmobilebrowsers.com
           var ua = $window['navigator']['userAgent'] || $window['navigator']['vendor'] || $window['opera'];
           // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
           return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
         }
-        
+
         /**
          *屏幕的处理
          */
@@ -77,7 +78,7 @@
           w = w || angular.element($window).width();
           return new screen.fn.init(w);
         };
-        
+
         screen.prototype = screen.fn = {
           constructor: screen,
           init: function (w) {
@@ -96,9 +97,9 @@
             return this.w > 1200;
           }
         };
-        
+
         screen.fn.init.prototype = screen.fn;
-        
+
         var setting = $scope.setting = {},
           //顶部导航
           _header = setting.header = {
@@ -250,12 +251,12 @@
               }
             }
           };
-        
+
         $scope.alert = function (a) {
           alert(a);
         };
-        
-        
+
+
         /**
          * 屏幕尺寸变化处理
          */
@@ -277,7 +278,7 @@
           }, 400);
         });
         resize();
-        
+
         /**
          * 设置的保存
          */
@@ -292,37 +293,37 @@
         } else {
           $localStorage.setting = setting;
         }
-        
+
         $scope.$watch('setting', function () {
           $localStorage.setting = setting;
         }, true);
-        
+
       }])
-    .run(['$rootScope', '$state', '$stateParams', 'permService','$timeout',
-      function ($rootScope, $state, $stateParams, permService,$timeout) {
+    .run(['$rootScope', '$state', '$stateParams', 'funcService', '$timeout',
+      function ($rootScope, $state, $stateParams, funcService, $timeout) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-        permService.loadAuths();
-        $rootScope.$on('$stateChangeStart',
-          function (e, toState, toParams, fromState, fromParams) {
-            
-          });
-        
+        funcService.loadAuths();
+        var currentFunc;
         $rootScope.$on('$stateChangeSuccess',
           function (e, toState, toParams, fromState, fromParams) {
             $timeout(function () {
-              var func = permService.funcUiSref(toState.name);
-              $rootScope.$broadcast('funcUpdate',func);
-              $rootScope.$broadcast('funcMdUpdate',func);
-            },0);
-            
-            
+              currentFunc = funcService.funcUiSref(toState.name);
+              $rootScope.$broadcast('funcUpdate', currentFunc);
+              $rootScope.$broadcast('funcMdUpdate', currentFunc);
+            }, 50);
           });
+        $rootScope.$on('sdGridLoadComplete', function () {
+          $timeout(function () {
+            $rootScope.$broadcast('funcUpdate', currentFunc);
+            $rootScope.$broadcast('funcMdUpdate', currentFunc);
+          }, 50);
+        });
       }])
     .config(['$ocLazyLoadProvider', 'MODULE_LIB', function ($ocLazyLoadProvider, MODULE_LIB) {
       $ocLazyLoadProvider.config({debug: false, events: true, modules: MODULE_LIB});
     }]);
-  
-  
+
+
 })(window, window.angular, jQuery);
 

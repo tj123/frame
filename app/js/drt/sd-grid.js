@@ -1,6 +1,6 @@
 (function (angular, $, undefined) {
-  angular.module('sd.grid',[]).directive('sdGrid', ['$timeout', '$window', '$document', '$http','$q',
-    function ($timeout, $window, $document, $http,$q) {
+  angular.module('sd.grid', []).directive('sdGrid', ['$timeout', '$window', '$document', '$http', '$q', '$rootScope',
+    function ($timeout, $window, $document, $http, $q, $rootScope) {
       return {
         restrict: 'A',
         link: function (scope, el, attr) {
@@ -35,10 +35,13 @@
               tbody.find('tr').show();
               $loading.hide();
               trLink && table.addClass('grid-link');
+              scope.$emit('sdGridLoadComplete');
             },
             error = function (e) {
-              console.error('出错');
-              console.error(e);
+              if (e && !e.errorCode) {
+                console.error('出错');
+                console.error(e);
+              }
             },
             /**
              * 加载页面
@@ -83,35 +86,35 @@
               });
               return defer.promise;
             };
-            $grid.go = function (e) {
-              loadPage(parseInt(angular.element(e.target).text()));
-            };
-            $grid.next = function () {
-              if (eles.nxt.isDisabled()) return;
-              loadPage(++currentPage);
-            };
-            $grid.previous = function () {
-              if (eles.pre.isDisabled())return;
-              loadPage(--currentPage);
-            };
-            $grid.first = function () {
-              loadPage(1);
-            };
-            $grid.last = function () {
-              loadPage(totalPage);
-            };
-            $grid.moreNext = function () {
-              loadPage(currentPage + 3);
-            };
-            $grid.morePrevious = function () {
-              loadPage(currentPage - 3);
-            };
-            $grid.reload = $grid.refresh = $grid.search = function (val, sort) {
-              loadPage(undefined, val, sort);
-            };
-            $grid.sort = function () {
-              loadPage(undefined,undefined,sort);
-            };
+          $grid.go = function (e) {
+            loadPage(parseInt(angular.element(e.target).text()));
+          };
+          $grid.next = function () {
+            if (eles.nxt.isDisabled()) return;
+            loadPage(++currentPage);
+          };
+          $grid.previous = function () {
+            if (eles.pre.isDisabled())return;
+            loadPage(--currentPage);
+          };
+          $grid.first = function () {
+            loadPage(1);
+          };
+          $grid.last = function () {
+            loadPage(totalPage);
+          };
+          $grid.moreNext = function () {
+            loadPage(currentPage + 3);
+          };
+          $grid.morePrevious = function () {
+            loadPage(currentPage - 3);
+          };
+          $grid.reload = $grid.refresh = $grid.search = function (val, sort) {
+            loadPage(undefined, val, sort);
+          };
+          $grid.sort = function () {
+            loadPage(undefined, undefined, sort);
+          };
           var footEle = function (el) {
             this[0] = el[0];
           };
@@ -131,7 +134,7 @@
             isDisabled: function () {
               return angular.element(this[0]).hasClass('disable');
             },
-            enable:function () {
+            enable: function () {
               angular.element(this[0]).removeClass('disable');
             },
             recover: function () {
@@ -227,28 +230,27 @@
             if (total <= eles.num.length + 1) {
               allView();
             } else {
-              if (current <= lend +1 ) {
+              if (current <= lend + 1) {
                 leftView();
-              } else if (current > lend + 1  && current < total - lend) {
+              } else if (current > lend + 1 && current < total - lend) {
                 centerView();
               } else {
                 rightView();
               }
             }
-            if(current == 1){
+            if (current == 1) {
               eles.pre.disable();
             }
-            if(current == total){
+            if (current == total) {
               eles.nxt.disable();
             }
           };
 
           init();
-          scope.$watch((option.name || '$grid') + '.size', function (odv,nev) {
-            if(odv == nev) return;
+          scope.$watch((option.name || '$grid') + '.size', function (odv, nev) {
+            if (odv == nev) return;
             loadPage(Math.ceil(currentSn / $grid.size));
           });
-
 
 
         }

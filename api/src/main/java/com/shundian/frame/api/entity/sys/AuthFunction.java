@@ -12,8 +12,6 @@ import java.util.List;
 @Getter
 public class AuthFunction {
 
-    private Short id;
-
     private String key;
 
     private String name;
