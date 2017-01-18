@@ -23,9 +23,6 @@ public class FunctionModulePo {
 
 	@Column(name = "class")
 	private String clazz;
-
-	@Column(name = "key_")
-	private String key;
 	
 	private String name;
 

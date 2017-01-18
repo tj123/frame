@@ -93,7 +93,6 @@ public class FunctionServiceImpl implements FunctionService {
                 FunctionModulePo functionModulePo = new FunctionModulePo();
                 functionModulePo.setFunctionId(functionPo.getId());
                 functionModulePo.setName(module.getName());
-                functionModulePo.setKey(module.getKey());
                 functionModulePo.setClazz(moduleClass.getName());
                 functionModulePo.setUid(module.getId());
                 if(!Pattern.compile("Module$").matcher(functionModulePo.getClazz()).find()){
@@ -110,7 +109,7 @@ public class FunctionServiceImpl implements FunctionService {
                     functionModuleMapper.insert(functionModulePo);
                 } else if (select1.size() == 1) {
                     FunctionModulePo selectModule = select1.get(0);
-                    if (!functionModulePo.getKey().equals(selectModule.getKey()) ||
+                    if (!functionModulePo.getClazz().equals(selectModule.getClazz()) ||
                             !functionModulePo.getName().equals(selectModule.getName())) {
                         functionModuleMapper.updateModule(functionModulePo);
                     }
@@ -142,8 +141,8 @@ public class FunctionServiceImpl implements FunctionService {
                     objectMap.remove("n");
                     objectMap.put("id", Short.valueOf((String) objectMap.get("i")));
                     objectMap.remove("i");
-                    objectMap.put("key", objectMap.get("k"));
-                    objectMap.remove("k");
+                    objectMap.put("key", objectMap.get("c"));
+                    objectMap.remove("c");
                 }
                 map.put("module", mds);
             } catch (IOException e) {

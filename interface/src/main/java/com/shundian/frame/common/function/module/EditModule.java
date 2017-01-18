@@ -10,10 +10,6 @@ public class EditModule implements ModuleType {
 		return 3;
 	}
 
-	public String getKey() {
-		return "EDT";
-	}
-
 	public String getName() {
 		return "修改";
 	}

@@ -10,10 +10,6 @@ public class SubmitModule implements ModuleType {
 		return 5;
 	}
 
-	public String getKey() {
-		return "SBMT";
-	}
-
 	public String getName() {
 		return "提交";
 	}

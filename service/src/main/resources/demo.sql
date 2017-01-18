@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 100118
+Source Server         : local_mysql
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : demo
 
 Target Server Type    : MYSQL
-Target Server Version : 100118
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-01-12 01:21:44
+Date: 2017-01-18 17:50:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -5050,13 +5050,13 @@ CREATE TABLE `tsys_function` (
 -- ----------------------------
 -- Records of tsys_function
 -- ----------------------------
-INSERT INTO `tsys_function` VALUES ('1125da2d0bc14e1686882909ab919ce5', '3', 'ed10e0cb40e740e495481d88cfc265a4', 'com.shundian.frame.common.function.sys.UserFunction', '用户管理', 'app.sys.user', null, '5', null, null, '1', 'FRAME', '2017-01-11 05:39:26');
-INSERT INTO `tsys_function` VALUES ('19d95a58157f4010b58166cb9144e00b', '1', 'ed10e0cb40e740e495481d88cfc265a4', 'com.shundian.frame.common.function.sys.FuncFunction', '功能管理', 'app.sys.func', null, '8', null, null, '1', 'FRAME', '2017-01-11 05:39:26');
-INSERT INTO `tsys_function` VALUES ('53a07081a6214c2db37e9e2529f0a84a', '5', 'ed10e0cb40e740e495481d88cfc265a4', 'com.shundian.frame.common.function.sys.ConfigFunction', '参数配置管理', 'app.sys.cfg', null, '16', null, null, '1', 'FRAME', '2017-01-11 05:39:26');
-INSERT INTO `tsys_function` VALUES ('8352648b03224023b57429aa08c1764d', '2', 'ed10e0cb40e740e495481d88cfc265a4', 'com.shundian.frame.common.function.sys.DepartmentFunction', '部门管理', 'app.sys.dep', null, '3', null, null, '1', 'FRAME', '2017-01-11 05:39:26');
-INSERT INTO `tsys_function` VALUES ('87e2c953e3184cbeb8788195154bf63e', '7', 'ed10e0cb40e740e495481d88cfc265a4', 'com.shundian.frame.common.function.sys.RoleFunction', '角色管理', 'app.sys.role', null, '8', null, null, '1', 'FRAME', '2017-01-11 05:39:26');
-INSERT INTO `tsys_function` VALUES ('e93e4969138f49348f05e2f582ab7f8a', '6', 'ed10e0cb40e740e495481d88cfc265a4', 'com.shundian.frame.common.function.sys.LoginLogFunction', '登录日志管理', 'app.sys.log', null, '0', null, null, '1', 'FRAME', '2017-01-11 05:39:26');
-INSERT INTO `tsys_function` VALUES ('ed10e0cb40e740e495481d88cfc265a4', '8', null, 'com.shundian.frame.common.function.sys.SystemManageFunction', '系统管理', 'sys', 'sys', '13', null, null, '1', 'FRAME', '2017-01-11 20:42:57');
+INSERT INTO `tsys_function` VALUES ('09866a7404ed407e88c6de3ba5ddbec5', '3', '54063ebef56348b89759af21943275c0', 'com.shundian.frame.common.function.sys.UserFunction', '用户管理', 'app.sys.user', null, '3', null, null, '1', 'FRAME', '2017-01-11 14:25:57');
+INSERT INTO `tsys_function` VALUES ('1c35ad6a799b4acabaa8628fcbbbb915', '2', '54063ebef56348b89759af21943275c0', 'com.shundian.frame.common.function.sys.DepartmentFunction', '部门管理', 'app.sys.dep', null, '11', null, null, '1', 'FRAME', '2017-01-11 14:35:31');
+INSERT INTO `tsys_function` VALUES ('54063ebef56348b89759af21943275c0', '8', null, 'com.shundian.frame.common.function.sys.SystemManageFunction', '系统管理', 'sys', 'sys', '11', null, null, '1', 'FRAME', '2017-01-11 14:51:59');
+INSERT INTO `tsys_function` VALUES ('60b233e6bc104304989c0c0524de309a', '6', '54063ebef56348b89759af21943275c0', 'com.shundian.frame.common.function.sys.LoginLogFunction', '登录日志管理', 'app.sys.log', null, '17', null, null, '1', 'FRAME', '2017-01-11 14:34:11');
+INSERT INTO `tsys_function` VALUES ('96de8cd30b514106b9fdc409351ead31', '7', '54063ebef56348b89759af21943275c0', 'com.shundian.frame.common.function.sys.RoleFunction', '角色管理', 'app.sys.role', null, '5', null, null, '1', 'FRAME', '2017-01-11 14:25:58');
+INSERT INTO `tsys_function` VALUES ('d5027add7a3e49b49a7e7dbd725bca3d', '5', '54063ebef56348b89759af21943275c0', 'com.shundian.frame.common.function.sys.ConfigFunction', '参数配置管理', 'app.sys.cfg', null, '1', null, null, '1', 'FRAME', '2017-01-11 14:25:57');
+INSERT INTO `tsys_function` VALUES ('ea07856504354f419592d531a167e09e', '1', '54063ebef56348b89759af21943275c0', 'com.shundian.frame.common.function.sys.FuncFunction', '功能管理', 'app.sys.func', null, '7', null, null, '1', 'FRAME', '2017-01-11 14:37:26');
 
 -- ----------------------------
 -- Table structure for tsys_function_module
@@ -5067,28 +5067,28 @@ CREATE TABLE `tsys_function_module` (
   `function_id` varchar(32) NOT NULL,
   `uid` int(8) DEFAULT NULL,
   `class` varchar(255) NOT NULL,
-  `key_` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `functionId` (`function_id`,`key_`,`uid`,`class`) USING BTREE
+  UNIQUE KEY `functionId` (`function_id`,`uid`,`class`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tsys_function_module
 -- ----------------------------
-INSERT INTO `tsys_function_module` VALUES ('1e056a22655b465cbe2ee7861be097b8', '8352648b03224023b57429aa08c1764d', '5', 'com.shundian.frame.common.function.module.SubmitModule', 'SBMT', '提交');
-INSERT INTO `tsys_function_module` VALUES ('2d194b8a181b4af0a9f54acfc44e2cc7', '8352648b03224023b57429aa08c1764d', '6', 'com.shundian.frame.common.function.module.ScanModule', 'SCAN', '扫描');
-INSERT INTO `tsys_function_module` VALUES ('2f31668a44d0420ea79b4a2c7ac83614', '87e2c953e3184cbeb8788195154bf63e', '1', 'com.shundian.lib.function.DefaultModule', 'DFT', '默认');
-INSERT INTO `tsys_function_module` VALUES ('32e922bab48146a9b93bfd369cd2c166', '19d95a58157f4010b58166cb9144e00b', '6', 'com.shundian.frame.common.function.module.ScanModule', 'SCAN', '扫描');
-INSERT INTO `tsys_function_module` VALUES ('51375133b42e4ee69d21d94d91780efa', '53a07081a6214c2db37e9e2529f0a84a', '6', 'com.shundian.frame.common.function.module.ScanModule', 'SCAN', '扫描');
-INSERT INTO `tsys_function_module` VALUES ('79d57a6926ff405da23ed1baa0d66f41', '19d95a58157f4010b58166cb9144e00b', '1', 'com.shundian.lib.function.DefaultModule', 'DFT', '默认');
-INSERT INTO `tsys_function_module` VALUES ('87d7fadf5cc343cfa8b8e134a1dae6a1', '87e2c953e3184cbeb8788195154bf63e', '7', 'com.shundian.frame.common.function.module.AddModule', 'ADD', '添加');
-INSERT INTO `tsys_function_module` VALUES ('aa2360ad94f94466b929da0855359999', 'ed10e0cb40e740e495481d88cfc265a4', '1', 'com.shundian.lib.function.DefaultModule', 'DFT', '默认');
-INSERT INTO `tsys_function_module` VALUES ('b3505498bcce4577b2beaf98d5488143', '1125da2d0bc14e1686882909ab919ce5', '6', 'com.shundian.frame.common.function.module.ScanModule', 'SCAN', '扫描');
-INSERT INTO `tsys_function_module` VALUES ('b7c19c254bae4253a18d0a92200bdf8a', 'e93e4969138f49348f05e2f582ab7f8a', '6', 'com.shundian.frame.common.function.module.ScanModule', 'SCAN', '扫描');
-INSERT INTO `tsys_function_module` VALUES ('dce57be3381948c8a59b00fdf2f4a0a8', '53a07081a6214c2db37e9e2529f0a84a', '1', 'com.shundian.lib.function.DefaultModule', 'DFT', '默认');
-INSERT INTO `tsys_function_module` VALUES ('e1da71e1749146349b243f12124eb1ec', '1125da2d0bc14e1686882909ab919ce5', '1', 'com.shundian.lib.function.DefaultModule', 'DFT', '默认');
-INSERT INTO `tsys_function_module` VALUES ('febf2fe962454272ac52fcf466048e30', '8352648b03224023b57429aa08c1764d', '1', 'com.shundian.lib.function.DefaultModule', 'DFT', '默认');
+INSERT INTO `tsys_function_module` VALUES ('06b401de37a74d3cae76b8a82c46095f', '1c35ad6a799b4acabaa8628fcbbbb915', '6', 'com.shundian.frame.common.function.module.ScanModule', '扫描');
+INSERT INTO `tsys_function_module` VALUES ('28e64662520b47ddba386527ce2c58b1', '96de8cd30b514106b9fdc409351ead31', '7', 'com.shundian.frame.common.function.module.AddModule', '添加');
+INSERT INTO `tsys_function_module` VALUES ('2c7bfcd7699f4a17acf9b0faff132e72', '60b233e6bc104304989c0c0524de309a', '6', 'com.shundian.frame.common.function.module.ScanModule', '扫描');
+INSERT INTO `tsys_function_module` VALUES ('563fdcc0f5bd49968e0dee380ede2495', '09866a7404ed407e88c6de3ba5ddbec5', '1', 'com.shundian.lib.function.DefaultModule', '默认');
+INSERT INTO `tsys_function_module` VALUES ('673919b3414348308f15368e087b3c39', 'd5027add7a3e49b49a7e7dbd725bca3d', '1', 'com.shundian.lib.function.DefaultModule', '默认');
+INSERT INTO `tsys_function_module` VALUES ('681c79f444e74598b304e032d9ce33c8', 'ea07856504354f419592d531a167e09e', '3', 'com.shundian.frame.common.function.module.EditModule', '修改');
+INSERT INTO `tsys_function_module` VALUES ('6d272807c0a74abea274c3e1d0c1eee7', 'ea07856504354f419592d531a167e09e', '1', 'com.shundian.lib.function.DefaultModule', '默认');
+INSERT INTO `tsys_function_module` VALUES ('9cf4a766d2534173b47bac49b5ff41c2', 'ea07856504354f419592d531a167e09e', '6', 'com.shundian.frame.common.function.module.ScanModule', '扫描');
+INSERT INTO `tsys_function_module` VALUES ('bcf0ea3b3e294ae4b516a5805f83db9e', '96de8cd30b514106b9fdc409351ead31', '1', 'com.shundian.lib.function.DefaultModule', '默认');
+INSERT INTO `tsys_function_module` VALUES ('c17da734cbc24efa8594686c84c403f1', '1c35ad6a799b4acabaa8628fcbbbb915', '5', 'com.shundian.frame.common.function.module.SubmitModule', '提交');
+INSERT INTO `tsys_function_module` VALUES ('ca8f7e66fa3a45e6841700134a2ded75', '1c35ad6a799b4acabaa8628fcbbbb915', '1', 'com.shundian.lib.function.DefaultModule', '默认');
+INSERT INTO `tsys_function_module` VALUES ('cfe7a4372ab64667a70c52903f309897', '09866a7404ed407e88c6de3ba5ddbec5', '6', 'com.shundian.frame.common.function.module.ScanModule', '扫描');
+INSERT INTO `tsys_function_module` VALUES ('d944c41f89864127a47769a4deee3160', '54063ebef56348b89759af21943275c0', '1', 'com.shundian.lib.function.DefaultModule', '默认');
+INSERT INTO `tsys_function_module` VALUES ('fea8d7d4c4314c9c80faadae652e9725', 'd5027add7a3e49b49a7e7dbd725bca3d', '6', 'com.shundian.frame.common.function.module.ScanModule', '扫描');
 
 -- ----------------------------
 -- Table structure for tsys_role
@@ -5107,8 +5107,8 @@ CREATE TABLE `tsys_role` (
 -- ----------------------------
 -- Records of tsys_role
 -- ----------------------------
-INSERT INTO `tsys_role` VALUES ('06cf693af33044da9bc6339ac4835a37', '管理员', null, null, '2017-01-11 20:44:41');
-INSERT INTO `tsys_role` VALUES ('4d3725d24f53412f80b5eeeac6f81e9d', '测试员', null, null, '2017-01-11 20:54:33');
+INSERT INTO `tsys_role` VALUES ('5e0f461e9362402884e6dbc96dc1d7c2', '测试员', null, null, '2017-01-11 15:01:01');
+INSERT INTO `tsys_role` VALUES ('75f273e55fcd4669ab591abc58951e44', '系统管理员', null, null, '2017-01-11 14:47:15');
 
 -- ----------------------------
 -- Table structure for tsys_role_function_module
@@ -5125,38 +5125,20 @@ CREATE TABLE `tsys_role_function_module` (
 -- ----------------------------
 -- Records of tsys_role_function_module
 -- ----------------------------
-INSERT INTO `tsys_role_function_module` VALUES ('c816343b646545978a637c9bdc07061b', '06cf693af33044da9bc6339ac4835a37', '1e056a22655b465cbe2ee7861be097b8');
-INSERT INTO `tsys_role_function_module` VALUES ('b42775010e454a87b2008af747eafca8', '06cf693af33044da9bc6339ac4835a37', '2d194b8a181b4af0a9f54acfc44e2cc7');
-INSERT INTO `tsys_role_function_module` VALUES ('ec083f0e17014edcb87ba98d55c6fbb9', '06cf693af33044da9bc6339ac4835a37', '2f31668a44d0420ea79b4a2c7ac83614');
-INSERT INTO `tsys_role_function_module` VALUES ('c2e64b191d7440a4a96d9ef724e123e6', '06cf693af33044da9bc6339ac4835a37', '32e922bab48146a9b93bfd369cd2c166');
-INSERT INTO `tsys_role_function_module` VALUES ('306f5bc440d94d0ea25f1ccc49855360', '06cf693af33044da9bc6339ac4835a37', '51375133b42e4ee69d21d94d91780efa');
-INSERT INTO `tsys_role_function_module` VALUES ('381ad8413d3a4f2e97e9f9e75e49fedb', '06cf693af33044da9bc6339ac4835a37', '79d57a6926ff405da23ed1baa0d66f41');
-INSERT INTO `tsys_role_function_module` VALUES ('b3f142ada0b04859996ee971e5ac53a2', '06cf693af33044da9bc6339ac4835a37', '87d7fadf5cc343cfa8b8e134a1dae6a1');
-INSERT INTO `tsys_role_function_module` VALUES ('2f429146349d400d936565e4c1ca3eaa', '06cf693af33044da9bc6339ac4835a37', 'b3505498bcce4577b2beaf98d5488143');
-INSERT INTO `tsys_role_function_module` VALUES ('6066bd28fba4449cbc5c7bdf7cbd5905', '06cf693af33044da9bc6339ac4835a37', 'b7c19c254bae4253a18d0a92200bdf8a');
-INSERT INTO `tsys_role_function_module` VALUES ('3b5b59b12eb948c79807023a8ff907d9', '06cf693af33044da9bc6339ac4835a37', 'dce57be3381948c8a59b00fdf2f4a0a8');
-INSERT INTO `tsys_role_function_module` VALUES ('e3550d6e0a664b169fbf4d8e3e2c1b1c', '06cf693af33044da9bc6339ac4835a37', 'e1da71e1749146349b243f12124eb1ec');
-INSERT INTO `tsys_role_function_module` VALUES ('bdbcb389ec5b42608edaf31f5d3160a9', '06cf693af33044da9bc6339ac4835a37', 'febf2fe962454272ac52fcf466048e30');
-INSERT INTO `tsys_role_function_module` VALUES ('ee9b7b204cf5453da0ef66315ca4242d', '0d72170653c14274b72a7a851ae3da29', '1915b1af76634c0da3818b448c1aef22');
-INSERT INTO `tsys_role_function_module` VALUES ('26ec9b595eb84135b753c687a4d2d7c0', '0d72170653c14274b72a7a851ae3da29', '82dc5f1d0590479da345dc596cc82666');
-INSERT INTO `tsys_role_function_module` VALUES ('492541cd57674b77a117ef8866c5d72e', '0d72170653c14274b72a7a851ae3da29', 'ccc8ea63e79f47d89f326586418f5d60');
-INSERT INTO `tsys_role_function_module` VALUES ('383d100867774a99a4ecac5b7ccf99c3', '0d72170653c14274b72a7a851ae3da29', 'f4ecbcb038004c3d8c265d552b703473');
-INSERT INTO `tsys_role_function_module` VALUES ('533d8edd14304693aefc1738ff87c913', '19b8a50b6613423b9c0dd1e4965e1980', 'ccc8ea63e79f47d89f326586418f5d60');
-INSERT INTO `tsys_role_function_module` VALUES ('c97f0aebcce84dedb893883307950e63', '2fc09c7f57874fe183e2a5f8c8bd629f', '1915b1af76634c0da3818b448c1aef22');
-INSERT INTO `tsys_role_function_module` VALUES ('8a11263c87b042c6817322afa2434d38', '37f10d86f57e4fe0a6dbfc12d0e29173', '1915b1af76634c0da3818b448c1aef22');
-INSERT INTO `tsys_role_function_module` VALUES ('1325adc26737438e91999388afb45a5b', '37f10d86f57e4fe0a6dbfc12d0e29173', '8fa262d873544d0684f7c9a8eefb03a7');
-INSERT INTO `tsys_role_function_module` VALUES ('d7c0262f9b2942d4a2e93918fe7d7c70', '37f10d86f57e4fe0a6dbfc12d0e29173', 'e5978560125a4536a13e3b24aa580edc');
-INSERT INTO `tsys_role_function_module` VALUES ('33acd2b7c9204240b222a2023d21f185', '4d3725d24f53412f80b5eeeac6f81e9d', '79d57a6926ff405da23ed1baa0d66f41');
-INSERT INTO `tsys_role_function_module` VALUES ('1846a7b89f444b59a4b75c1f5903a2c0', '4d3725d24f53412f80b5eeeac6f81e9d', 'b3505498bcce4577b2beaf98d5488143');
-INSERT INTO `tsys_role_function_module` VALUES ('55e209fc5d4648008386c6d755379997', '4d3725d24f53412f80b5eeeac6f81e9d', 'e1da71e1749146349b243f12124eb1ec');
-INSERT INTO `tsys_role_function_module` VALUES ('a87ef3006e944406b29e9f86aee8779e', '52b46853170b4727b5f2e6f9b4b0dea3', '1915b1af76634c0da3818b448c1aef22');
-INSERT INTO `tsys_role_function_module` VALUES ('22619c3f989d4a19924fb3bc8c248cb8', '5e8ca4d0f1444e39a5c23d3438737a9b', '1915b1af76634c0da3818b448c1aef22');
-INSERT INTO `tsys_role_function_module` VALUES ('8eaaa8d9ec3444949c3c39ead2b25e65', '5e8ca4d0f1444e39a5c23d3438737a9b', '8fa262d873544d0684f7c9a8eefb03a7');
-INSERT INTO `tsys_role_function_module` VALUES ('a9bd5e065b5648419cd2f608ca291e70', '5e8ca4d0f1444e39a5c23d3438737a9b', 'd1c9218f73a447fab749723a522e728d');
-INSERT INTO `tsys_role_function_module` VALUES ('4b757bd5e9c045529aa3c23114e68113', '5e8ca4d0f1444e39a5c23d3438737a9b', 'd4366a0aac5f481e83fe92376f6d2743');
-INSERT INTO `tsys_role_function_module` VALUES ('e9ce2a750a1043469dbaf3e8de46e7fc', '5e8ca4d0f1444e39a5c23d3438737a9b', 'e5978560125a4536a13e3b24aa580edc');
-INSERT INTO `tsys_role_function_module` VALUES ('e2d089000fae43edb590c84e604401e3', '73c360775802418e93911f819d50ffdb', '1915b1af76634c0da3818b448c1aef22');
-INSERT INTO `tsys_role_function_module` VALUES ('ff60767c14b149c5962ca79c83378d15', '9c4590a5a0ac431880b04446623418c2', '1915b1af76634c0da3818b448c1aef22');
+INSERT INTO `tsys_role_function_module` VALUES ('dc7376a4b591411fae3caa2937cab1a1', '5e0f461e9362402884e6dbc96dc1d7c2', '6d272807c0a74abea274c3e1d0c1eee7');
+INSERT INTO `tsys_role_function_module` VALUES ('dc31b611dc414827b3e1447a887e3929', '75f273e55fcd4669ab591abc58951e44', '06b401de37a74d3cae76b8a82c46095f');
+INSERT INTO `tsys_role_function_module` VALUES ('39a4f0b5fc2943878f3a0564401d92b0', '75f273e55fcd4669ab591abc58951e44', '28e64662520b47ddba386527ce2c58b1');
+INSERT INTO `tsys_role_function_module` VALUES ('a42357923f3b49a7a1ff3a864c69b46f', '75f273e55fcd4669ab591abc58951e44', '2c7bfcd7699f4a17acf9b0faff132e72');
+INSERT INTO `tsys_role_function_module` VALUES ('073fd68448414464af89d161b884d467', '75f273e55fcd4669ab591abc58951e44', '563fdcc0f5bd49968e0dee380ede2495');
+INSERT INTO `tsys_role_function_module` VALUES ('467fe00b189742e5953d4e94bb4d84c5', '75f273e55fcd4669ab591abc58951e44', '673919b3414348308f15368e087b3c39');
+INSERT INTO `tsys_role_function_module` VALUES ('3643e57ca04f44d288d9e7dfcfc9377e', '75f273e55fcd4669ab591abc58951e44', '681c79f444e74598b304e032d9ce33c8');
+INSERT INTO `tsys_role_function_module` VALUES ('255de22f03124549b617c1187f266d86', '75f273e55fcd4669ab591abc58951e44', '6d272807c0a74abea274c3e1d0c1eee7');
+INSERT INTO `tsys_role_function_module` VALUES ('2e2d561f8bdd4bf8a2044b5df155cf21', '75f273e55fcd4669ab591abc58951e44', '9cf4a766d2534173b47bac49b5ff41c2');
+INSERT INTO `tsys_role_function_module` VALUES ('9b599f8bdeac4375b22bfd23556bb59d', '75f273e55fcd4669ab591abc58951e44', 'bcf0ea3b3e294ae4b516a5805f83db9e');
+INSERT INTO `tsys_role_function_module` VALUES ('11e09b239a554db38ae0c37e9374390c', '75f273e55fcd4669ab591abc58951e44', 'c17da734cbc24efa8594686c84c403f1');
+INSERT INTO `tsys_role_function_module` VALUES ('2ecf99ab4d5f4ae993a61926a44ac93b', '75f273e55fcd4669ab591abc58951e44', 'ca8f7e66fa3a45e6841700134a2ded75');
+INSERT INTO `tsys_role_function_module` VALUES ('fd51efbd4d3d41fc9d6f59b8b3afd009', '75f273e55fcd4669ab591abc58951e44', 'cfe7a4372ab64667a70c52903f309897');
+INSERT INTO `tsys_role_function_module` VALUES ('b0bd8acfaac7466ba622f42538453005', '75f273e55fcd4669ab591abc58951e44', 'fea8d7d4c4314c9c80faadae652e9725');
 
 -- ----------------------------
 -- Table structure for tsys_user
@@ -5181,7 +5163,8 @@ CREATE TABLE `tsys_user` (
 -- ----------------------------
 -- Records of tsys_user
 -- ----------------------------
-INSERT INTO `tsys_user` VALUES ('23423', 'adm', '6422D54371EB9A8B6E9BE04E033A324CF9BD02A19324A0B0DBFEA95E', 'ADMIN', '1', '234234', 'asdfasdfa', '13131', '23423@ee.com', '12313', '2017-01-11 05:40:02');
+INSERT INTO `tsys_user` VALUES ('23423', '234234', 'sdfasdf', 'ADMIN', '1', '234234', 'asdfasdfa', '13131', '23423@ee.com', '12313', '2017-01-11 05:40:02');
+INSERT INTO `tsys_user` VALUES ('234234234', 'adm', '6422D54371EB9A8B6E9BE04E033A324CF9BD02A19324A0B0DBFEA95E', null, null, null, '我是谁', null, null, null, '2017-01-11 09:35:00');
 INSERT INTO `tsys_user` VALUES ('asdfasdfasdfsd', 'admin', '6422D54371EB9A8B6E9BE04E033A324CF9BD02A19324A0B0DBFEA95E', 'ADMIN', '1', '234234', '2342342', '34234', '23423', '423423423', '2017-01-11 05:40:02');
 
 -- ----------------------------
@@ -5213,5 +5196,6 @@ CREATE TABLE `tsys_user_role` (
 -- ----------------------------
 -- Records of tsys_user_role
 -- ----------------------------
-INSERT INTO `tsys_user_role` VALUES ('1232312', 'asdfasdfasdfsd', '06cf693af33044da9bc6339ac4835a37');
-INSERT INTO `tsys_user_role` VALUES ('asdfwefe', '23423', '4d3725d24f53412f80b5eeeac6f81e9d');
+INSERT INTO `tsys_user_role` VALUES ('234234', 'asdfasdfasdfsd', '5e0f461e9362402884e6dbc96dc1d7c2');
+INSERT INTO `tsys_user_role` VALUES ('sdfasdfasfw', '234234234', '5e0f461e9362402884e6dbc96dc1d7c2');
+INSERT INTO `tsys_user_role` VALUES ('sdfasdfwefaef', 'asdfasdfasdfsd', '75f273e55fcd4669ab591abc58951e44');

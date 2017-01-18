@@ -12,11 +12,11 @@
 
   <select id="list" resultType="java.util.Map" parameterType="map">
     select id,uid,parent_id,parentName,class,name,ui_sref,`order`,icon,alias,is_show,project,
-    concat('[',group_concat(concat('{"n":"',moduleName,'","k":"',`key`,'","i":"',muid,'"}')),']') module
+    concat('[',group_concat(concat('{"n":"',moduleName,'","c":"',`m_class`,'","i":"',muid,'"}')),']') module
     from (
     SELECT f.id,f.uid,f.parent_id,p.name parentName,f.class,f.name,f.ui_sref,f.order_
     "order",f.icon,f.alias,f.is_show,f.project,
-    m.name moduleName,m.key_ "key",m.uid "muid"
+    m.name moduleName,m.class m_class,m.uid "muid"
     FROM tsys_function f
     left join tsys_function p on f.parent_id = p.id
     left join tsys_function_module m on f.id = m.function_id

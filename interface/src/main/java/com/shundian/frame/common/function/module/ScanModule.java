@@ -10,10 +10,6 @@ public class ScanModule implements ModuleType {
 		return 6;
 	}
 
-	public String getKey() {
-		return "SCAN";
-	}
-
 	public String getName() {
 		return "扫描";
 	}

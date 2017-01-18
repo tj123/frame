@@ -3,7 +3,7 @@ package com.shundian.frame.api.envm;
 import com.shundian.lib.function.ProjectType;
 
 /**
- * Created by TJ on 2016/12/5.
+ * 工程项目
  */
 public enum ProjectTypeEnum implements ProjectType {
 

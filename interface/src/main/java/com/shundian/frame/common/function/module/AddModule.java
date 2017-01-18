@@ -10,10 +10,6 @@ public class AddModule implements ModuleType {
 		return 7;
 	}
 
-	public String getKey() {
-		return "ADD";
-	}
-
 	public String getName() {
 		return "添加";
 	}

@@ -10,10 +10,6 @@ public class ViewModule implements ModuleType {
 		return 4;
 	}
 
-	public String getKey() {
-		return "VEW";
-	}
-
 	public String getName() {
 		return "查看";
 	}

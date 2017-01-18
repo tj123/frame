@@ -10,10 +10,6 @@ public class DeleteModule implements ModuleType {
 		return 2;
 	}
 
-	public String getKey() {
-		return "DEL";
-	}
-
 	public String getName() {
 		return "刪除";
 	}
