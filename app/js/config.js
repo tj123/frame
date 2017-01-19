@@ -88,7 +88,9 @@
         templateUrl: 'tpl/sys_user_add.html',
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
-            return ld.load(['js/ctrl/sys_user.js']);
+            return ld.load(['imgUploader']).then(function () {
+              return ld.load(['js/ctrl/sys_user.js']);
+            });
           }]
         }
       })

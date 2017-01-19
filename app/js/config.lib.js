@@ -6,7 +6,9 @@
     .constant('JQ_LIB', {
       footable: ['js/lib/jquery/footable/footable.all.min.js', 'js/lib/jquery/footable/footable.core.css'],
       nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css'],
-      jstree:['js/lib/jquery/jstree/jstree.js','js/lib/jquery/jstree/themes/default/style.min.css']
+      jstree:['js/lib/jquery/jstree/jstree.js','js/lib/jquery/jstree/themes/default/style.min.css'],
+      imgupldr:['js/lib/jquery/imgupldr/imgupldr.js','css/imguploader.css','js/lib/jquery/jquery.form.min.js',
+        'js/lib/highslide/highslide-full.min.js','js/lib/highslide/highslide.css']
     })
     /**
      * angular 模块库
@@ -29,6 +31,10 @@
     }, {
       name: 'sd.grid',
       files: ['js/drt/sd-grid.js', 'css/sdgrid.css']
+    },{
+      name:'imgUploader',
+      files:['js/drt/img-uploader.js','css/imguploader.css','js/lib/jquery/jquery.form.min.js',
+      'js/lib/highslide/highslide-full.min.js','js/lib/highslide/highslide.css']
     }])
 })(app);
 

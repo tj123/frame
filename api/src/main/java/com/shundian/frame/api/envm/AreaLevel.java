@@ -19,11 +19,11 @@ public enum AreaLevel implements EnumType {
     this.level = level;
   }
   
-  private Integer level;
+  private final Integer level;
   
-  private String key;
+  private final String key;
   
-  private String value;
+  private final String value;
   
   @Override
   public String getKey() {

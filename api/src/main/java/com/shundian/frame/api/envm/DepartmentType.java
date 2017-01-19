@@ -7,7 +7,7 @@ import com.shundian.lib.envm.EnumType;
  */
 public enum DepartmentType implements EnumType {
     /**
-     *Food and Drug Administration
+     * Food and Drug Administration
      */
     FDA("FDA", "食药局"),
 
@@ -21,10 +21,10 @@ public enum DepartmentType implements EnumType {
      */
     PSB("PSB", "公安厅/公安局/派出所");
 
-    private String key;
-    private String value;
+    private final String key;
+    private final String value;
 
-    private DepartmentType(String key, String value) {
+    DepartmentType(String key, String value) {
         this.key = key;
         this.value = value;
     }

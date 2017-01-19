@@ -13,9 +13,9 @@ public enum ProjectTypeEnum implements ProjectType {
         this.key = key;
         this.name = name;
     }
-    private String key;
+    private final String key;
 
-    private String name;
+    private final String name;
 
     @Override
     public String getKey() {

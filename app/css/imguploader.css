@@ -1,0 +1,27 @@
+/* line 4, ../scss/imguploader.scss */
+.img-uploader .uploader-item {
+  height: 100px;
+  min-width: 100px;
+  max-width: 200px;
+  border: 1px solid #a8a8a8;
+  position: relative;
+  display: inline-block;
+  margin: 0 2px;
+  float: left;
+}
+/* line 13, ../scss/imguploader.scss */
+.img-uploader .uploader-item .uploader-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: #ee5058;
+}
+/* line 19, ../scss/imguploader.scss */
+.img-uploader .uploader-item.uploader-add {
+  font-size: 25px;
+  width: 100px;
+  cursor: pointer;
+  line-height: 100px;
+}
+
+/*# sourceMappingURL=imguploader.css.map */

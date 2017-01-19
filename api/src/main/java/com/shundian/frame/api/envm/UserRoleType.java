@@ -14,9 +14,9 @@ public enum UserRoleType implements UserRole {
     ASSESSOR("ASER","审核员"),
     DEP_MANAGER("D_MG","部门经理");
 
-    private String key;
+    private final String key;
 
-    private String value;
+    private final String value;
 
     UserRoleType(String key, String value){
         this.key = key;
