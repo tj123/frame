@@ -7,18 +7,18 @@
   </style>
   <div class="col-sm-6 col-sm-offset-4 col-md-5 col-md-offset-5 col-lg-4 col-lg-offset-6 panel panel-default">
     <form name="login" ng-submit="submit()" class="panel-body">
-      <div class="form-group row p-t-md" ng-class="{'has-error':login.username.$invalid  && login.userName.$touched}">
+      <div class="form-group row p-t-md" ng-class="{'has-error':login.username.$invalid  && login.username.$touched}">
         <label for="username" class="col-sm-3 control-label text-center">用户名</label>
         <div  class="col-sm-9">
-          <input type="text" name="username" value="admin" ng-required="true" ng-model="user.username" class="form-control" id="username">
-          <span ng-show="login.username.$error.required && login.userName.$touched" class="m-b-none ft-md error">请输入用户名</span>
-          <span ng-show="true" class="m-b-none ft-md error">用户名或密码错误</span>
+          <input type="text" name="username" ng-change="nopError = false" ng-required="true" ng-model="user.username" class="form-control" id="username">
+          <span ng-show="login.username.$error.required && login.username.$touched" class="m-b-none ft-md error">请输入用户名</span>
+          <span ng-show="nopError" class="m-b-none ft-md error">用户名或密码错误</span>
         </div>
       </div>
       <div class="form-group row"  ng-class="{'has-error':login.password.$invalid  && login.password.$touched}">
         <label for="password" class="col-sm-3 control-label text-center">密码</label>
         <div class="col-sm-9">
-          <input type="password" value="111111" name="password" ng-required="true" ng-model="user.password" class="form-control" id="password">
+          <input type="password" ng-change="nopError = false" name="password" ng-required="true" ng-model="user.password" class="form-control" id="password">
           <span ng-show="login.password.$error.required && login.password.$touched" class="m-b-none ft-md error">请输入密码</span>
         </div>
       </div>

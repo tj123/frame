@@ -8,7 +8,8 @@
       nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css'],
       jstree:['js/lib/jquery/jstree/jstree.js','js/lib/jquery/jstree/themes/default/style.min.css'],
       imgupldr:['js/lib/highslide/highslide-with-gallery.js','js/lib/jquery/imgupldr/imgupldr.js',
-        'css/imguploader.css','js/lib/jquery/jquery.form.min.js', 'js/lib/highslide/highslide.css']
+        'css/imguploader.css','js/lib/jquery/jquery.form.min.js', 'js/lib/highslide/highslide.css'],
+      chosen:         ['js/lib/jquery/chosen/chosen.jquery.min.js', 'js/lib/jquery/chosen/chosen.css'],
     })
     /**
      * angular 模块库

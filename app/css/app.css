@@ -877,11 +877,16 @@ a.bg-light:hover {
 }
 
 /* line 87, ../scss/app.color.scss */
+.error {
+  color: #a94442;
+}
+
+/* line 91, ../scss/app.color.scss */
 .text-white {
   color: #fff;
 }
 
-/* line 90, ../scss/app.color.scss */
+/* line 94, ../scss/app.color.scss */
 .text-muted {
   color: #99a6ad;
 }
