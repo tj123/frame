@@ -59,13 +59,11 @@ public class FileController {
             }
             if (!support) throw new Exception("不支持的文件类型");
             String randomName = UUID.randomUUID().toString().replaceAll("-", "") + extend;
-            File saveFile = new File(uploadDir.getDirectory() + File.separator + randomName);
-            if (!saveFile.exists()) {
-                saveFile.mkdirs();
+            File sourcePath = new File(uploadDir.getDirectory() + File.separator);
+            File saveFile = new File(sourcePath,randomName);
+            if (!sourcePath.exists()) {
+                sourcePath.mkdirs();
             }
-            File canonicalFile = saveFile.getCanonicalFile();
-            System.out.println(canonicalFile);
-
             file.transferTo(saveFile);
             map.put("name", randomName);
             if (log.isDebugEnabled()) {
@@ -120,13 +118,14 @@ public class FileController {
             while ((i = is.read(b)) != -1) {
                 os.write(b, 0, i);
             }
-        } catch (Exception e) {
-            log.debug("加载失败", e);
+        } catch (FileNotFoundException e) {
             try {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             } catch (IOException ioe) {
                 log.debug("加载失败", ioe);
             }
+        } catch (Exception e) {
+            log.debug("加载失败", e);
         } finally {
             try {
                 if (is != null)

@@ -7,8 +7,8 @@
       footable: ['js/lib/jquery/footable/footable.all.min.js', 'js/lib/jquery/footable/footable.core.css'],
       nestable: ['js/lib/jquery/nestable/jquery.nestable.js', 'js/lib/jquery/nestable/nestable.css'],
       jstree:['js/lib/jquery/jstree/jstree.js','js/lib/jquery/jstree/themes/default/style.min.css'],
-      imgupldr:['js/lib/jquery/imgupldr/imgupldr.js','css/imguploader.css','js/lib/jquery/jquery.form.min.js',
-        'js/lib/highslide/highslide-full.min.js','js/lib/highslide/highslide.css']
+      imgupldr:['js/lib/highslide/highslide-with-gallery.js','js/lib/jquery/imgupldr/imgupldr.js',
+        'css/imguploader.css','js/lib/jquery/jquery.form.min.js', 'js/lib/highslide/highslide.css']
     })
     /**
      * angular 模块库
@@ -34,7 +34,7 @@
     },{
       name:'imgUploader',
       files:['js/drt/img-uploader.js','css/imguploader.css','js/lib/jquery/jquery.form.min.js',
-      'js/lib/highslide/highslide-full.min.js','js/lib/highslide/highslide.css']
+      'js/lib/highslide/highslide-with-gallery.js','js/lib/highslide/highslide.css']
     }])
 })(app);
 

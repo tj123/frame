@@ -321,7 +321,7 @@
         });
       }])
     .config(['$ocLazyLoadProvider', 'MODULE_LIB', function ($ocLazyLoadProvider, MODULE_LIB) {
-      $ocLazyLoadProvider.config({debug: false, events: true, modules: MODULE_LIB});
+      $ocLazyLoadProvider.config({debug: true, events: true, modules: MODULE_LIB});
     }]);
 
 

@@ -39,8 +39,6 @@
 
   var fn = ImageUploader.prototype = {constructor: ImageUploader};
 
-  var hsInited = false;
-
   fn.init = function () {
     var self = this;
     this.selectBtn.on('click', function (e) {
@@ -54,36 +52,11 @@
       $.error('此插件依赖jQuery Form！');
       return;
     }
-    if (self.cfg.preview && !hsInited) {
+    if (self.cfg.preview) {
       if (!window.hs) {
         $.error('预览依赖highslide插件！');
         return;
       }
-      hs.align = 'center';
-      hs.transitions = ['expand', 'crossfade'];
-      hs.fadeInOut = true;
-      hs.dimmingOpacity = 0.8;
-      hs.outlineType = 'rounded-white';
-      hs.captionEval = 'this.thumb.alt';
-      hs.marginBottom = 105; // make room for the thumbstrip and the controls
-      hs.numberPosition = 'caption';
-      hs.addSlideshow({
-        interval: 5000,
-        repeat: false,
-        useControls: true,
-        overlayOptions: {
-          className: 'text-controls',
-          position: 'bottom center',
-          relativeTo: 'viewport',
-          offsetY: -60
-        },
-        thumbstrip: {
-          position: 'bottom center',
-          mode: 'horizontal',
-          relativeTo: 'viewport'
-        }
-      });
-      hsInited = true;
     }
   };
 
@@ -232,9 +205,9 @@
   UploadFile.prototype = {
     constructor: UploadFile,
     init: function () {
-      var self = this, upldr = self.upldr, $el = upldr.el, $add = $el.find('.upldr-add'), $item = self.el = $('<div class="upldr-item"></div>'),
-        $close = $('<a class="upldr-close" href="javascript:void(0);"><img src="img/img-colse.png"/></a>'),
-        $img = $('<a href="javascript:void(0);" class="upldr-img"><img src="img/loading.gif" ></a>');
+      var self = this, upldr = self.upldr, $el = upldr.el, $add = $el.find('.uploader-add'), $item = self.el = $('<div class="uploader-item"></div>'),
+        $close = $('<a class="uploader-close fa fa-close" href="javascript:void(0);"></a>'),
+        $img = $('<a href="javascript:void(0);" class="uploader-img"><img src="img/loading.gif" ></a>');
       $close.appendTo($item);
       $img.appendTo($item);
       $close.on('click', function () {

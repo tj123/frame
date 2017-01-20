@@ -80,31 +80,31 @@ skin : {
 	controls:
 		'<div class="highslide-controls"><ul>'+
 			'<li class="highslide-previous">'+
-				'<a href="#" title="{hs.lang.previousTitle}">'+
+				'<a href="javascript:void(0);" title="{hs.lang.previousTitle}">'+
 				'<span>{hs.lang.previousText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-play">'+
-				'<a href="#" title="{hs.lang.playTitle}">'+
+				'<a href="javascript:void(0);" title="{hs.lang.playTitle}">'+
 				'<span>{hs.lang.playText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-pause">'+
-				'<a href="#" title="{hs.lang.pauseTitle}">'+
+				'<a href="javascript:void(0);" title="{hs.lang.pauseTitle}">'+
 				'<span>{hs.lang.pauseText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-next">'+
-				'<a href="#" title="{hs.lang.nextTitle}">'+
+				'<a href="javascript:void(0);" title="{hs.lang.nextTitle}">'+
 				'<span>{hs.lang.nextText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-move">'+
-				'<a href="#" title="{hs.lang.moveTitle}">'+
+				'<a href="javascript:void(0);" title="{hs.lang.moveTitle}">'+
 				'<span>{hs.lang.moveText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-full-expand">'+
-				'<a href="#" title="{hs.lang.fullExpandTitle}">'+
+				'<a href="javascript:void(0);" title="{hs.lang.fullExpandTitle}">'+
 				'<span>{hs.lang.fullExpandText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-close">'+
-				'<a href="#" title="{hs.lang.closeTitle}" >'+
+				'<a href="javascript:void(0);" title="{hs.lang.closeTitle}" >'+
 				'<span>{hs.lang.closeText}</span></a>'+
 			'</li>'+
 		'</ul></div>'
@@ -112,19 +112,19 @@ skin : {
 	contentWrapper:
 		'<div class="highslide-header"><ul>'+
 			'<li class="highslide-previous">'+
-				'<a href="#" title="{hs.lang.previousTitle}" onclick="return hs.previous(this)">'+
+				'<a href="javascript:void(0);" title="{hs.lang.previousTitle}" onclick="return hs.previous(this)">'+
 				'<span>{hs.lang.previousText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-next">'+
-				'<a href="#" title="{hs.lang.nextTitle}" onclick="return hs.next(this)">'+
+				'<a href="javascript:void(0);" title="{hs.lang.nextTitle}" onclick="return hs.next(this)">'+
 				'<span>{hs.lang.nextText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-move">'+
-				'<a href="#" title="{hs.lang.moveTitle}" onclick="return false">'+
+				'<a href="javascript:void(0);" title="{hs.lang.moveTitle}" onclick="return false">'+
 				'<span>{hs.lang.moveText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-close">'+
-				'<a href="#" title="{hs.lang.closeTitle}" onclick="return hs.close(this)">'+
+				'<a href="javascript:void(0);" title="{hs.lang.closeTitle}" onclick="return hs.close(this)">'+
 				'<span>{hs.lang.closeText}</span></a>'+
 			'</li>'+
 		'</ul></div>'+

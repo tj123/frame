@@ -71,19 +71,19 @@ skin : {
 	contentWrapper:
 		'<div class="highslide-header"><ul>'+
 			'<li class="highslide-previous">'+
-				'<a href="#" title="{hs.lang.previousTitle}" onclick="return hs.previous(this)">'+
+				'<a href="javascript:void(0);" title="{hs.lang.previousTitle}" onclick="return hs.previous(this)">'+
 				'<span>{hs.lang.previousText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-next">'+
-				'<a href="#" title="{hs.lang.nextTitle}" onclick="return hs.next(this)">'+
+				'<a href="javascript:void(0);" title="{hs.lang.nextTitle}" onclick="return hs.next(this)">'+
 				'<span>{hs.lang.nextText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-move">'+
-				'<a href="#" title="{hs.lang.moveTitle}" onclick="return false">'+
+				'<a href="javascript:void(0);" title="{hs.lang.moveTitle}" onclick="return false">'+
 				'<span>{hs.lang.moveText}</span></a>'+
 			'</li>'+
 			'<li class="highslide-close">'+
-				'<a href="#" title="{hs.lang.closeTitle}" onclick="return hs.close(this)">'+
+				'<a href="javascript:void(0);" title="{hs.lang.closeTitle}" onclick="return hs.close(this)">'+
 				'<span>{hs.lang.closeText}</span></a>'+
 			'</li>'+
 		'</ul></div>'+
