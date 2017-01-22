@@ -19,8 +19,8 @@
       .state('app.sys.dep', {
         url: '/dep',
         templateUrl: 'tpl/sys_dep.html',
-        resolve:{
-          deps:['$ocLazyLoad',function (ld) {
+        resolve: {
+          deps: ['$ocLazyLoad', function (ld) {
             return ld.load('sd.grid').then(function () {
               return ld.load('js/ctrl/sys_dep.js');
             });
@@ -57,7 +57,7 @@
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
             return ld.load('sd.grid').then(function () {
-              return ld.load(['js/ctrl/sys_role.js','js/svrs/auth.js']);
+              return ld.load(['js/ctrl/sys_role.js', 'js/svrs/auth.js']);
             });
           }]
         }
@@ -88,26 +88,26 @@
         templateUrl: 'tpl/sys_user_add.html',
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
-            return ld.load(['imgUploader']).then(function () {
-              return ld.load(['js/ctrl/sys_user.js']);
-            });
+            // return ld.load(['imgUploader']).then(function () {
+            return ld.load(['js/ctrl/sys_user.js', 'validate', 'js/lib/md5.js','ui.select']);
+            // });
           }]
         }
       })
 
-      .state('login',{
-        url:'/login',
-        templateUrl:'login.html',
-        resolve:{
-          deps:['$ocLazyLoad',function (ld) {
-            return ld.load(['js/ctrl/login.js','js/lib/md5.js']);
+      .state('login', {
+        url: '/login',
+        templateUrl: 'login.html',
+        resolve: {
+          deps: ['$ocLazyLoad', function (ld) {
+            return ld.load(['js/ctrl/login.js', 'js/lib/md5.js']);
           }]
         }
       })
 
-      .state('app.noperm',{
-        url:'noperm',
-        templateUrl:'tpl/noperm.html'
+      .state('app.noperm', {
+        url: 'noperm',
+        templateUrl: 'tpl/noperm.html'
       })
 
   }])

@@ -36,6 +36,15 @@
       name:'imgUploader',
       files:['js/drt/img-uploader.js','css/imguploader.css','js/lib/jquery/jquery.form.min.js',
       'js/lib/highslide/highslide-with-gallery.js','js/lib/highslide/highslide.css']
+    },{
+      name:'validate',
+      files:['js/drt/validate.js']
+    },{
+      name: 'ui.select',
+      files: [
+        'js/lib/modules/angular-ui-select/select.min.js',
+        'js/lib/modules/angular-ui-select/select.min.css'
+      ]
     }])
 })(app);
 

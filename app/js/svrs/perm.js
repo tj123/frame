@@ -12,12 +12,20 @@
           },
           
           response: function (resp) {
-            
+
             var headers = resp.headers();
             if (/application\/json/i.test(headers['Content-Type'] || headers['content-type'])) {
               var dat = resp.data, $state = app.$state;
               if (dat.errorCode == '901' || dat.errorCode == '903') {
-                $state && $state.go('login');
+                var time = setTimeout(function () {
+                  $state = app.$state;
+                  $state && $state.go('login');
+                },1000);
+                //$state && $state.go('login');
+                if($state){
+                  clearTimeout(time);
+                  $state.go('login');
+                }
                 console.log('u=' + encodeURIComponent(window.location.href));
               } else if (dat.errorCode == '902') {
                 $state.go('app.noperm');
