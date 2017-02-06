@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -27,5 +28,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         PageUtil<Map<String, Object>> pageUtil = new PageUtil<>();
         pageUtil.startPage(page);
         return pageUtil.assembleResult(mapper.list(page.assembleSearch()));
+    }
+
+    @Override
+    public List<Map<String, Object>> search(String name, int lmt) throws Exception {
+        return mapper.search(name,lmt);
     }
 }

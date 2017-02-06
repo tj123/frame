@@ -4,6 +4,7 @@ import com.shundian.frame.api.common.GlobalSession;
 import com.shundian.frame.api.envm.UserRoleType;
 import com.shundian.frame.api.service.sys.EnumService;
 import com.shundian.frame.api.service.sys.UserService;
+import com.shundian.frame.common.function.module.AddModule;
 import com.shundian.frame.common.function.module.ScanModule;
 import com.shundian.frame.common.function.sys.UserFunction;
 import com.shundian.lib.Page;
@@ -49,6 +50,18 @@ public class UserController {
 
     @RequestMapping("/tps")
     public Result<?> types() {
+        Result<List<Map<String, Object>>> res = new Result<List<Map<String, Object>>>();
+        try {
+            res.ok(enumService.convertEnum(UserRoleType.class));
+        } catch (Exception e) {
+            res.error(log, e);
+        }
+        return res;
+    }
+
+    @RequestMapping("/add")
+    @Module(AddModule.class)
+    public Result<?> add() {
         Result<List<Map<String, Object>>> res = new Result<List<Map<String, Object>>>();
         try {
             res.ok(enumService.convertEnum(UserRoleType.class));

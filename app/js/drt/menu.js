@@ -5,14 +5,14 @@
         restrict: 'C',
         link: function (scope, el) {
           var item = el.find('.menu-item');
-          // item.bind('click', function (e) {
-          //   e.stopPropagation();
-          //   angular.element(this).addClass('active');//.siblings('.menu-item').removeClass('active');
-          // });
+          item.bind('click', function (e) {
+            e.stopPropagation();
+            angular.element(this).addClass('active');//.siblings('.menu-item').removeClass('active');
+          });
 
-          // $document.bind('click', function () {
-          //   //item.removeClass('active');
-          // });
+          $document.bind('click', function () {
+            //item.removeClass('active');
+          });
         }
       };
     }]);

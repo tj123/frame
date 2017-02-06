@@ -89,7 +89,7 @@
         resolve: {
           deps: ['$ocLazyLoad', function (ld) {
             // return ld.load(['imgUploader']).then(function () {
-            return ld.load(['js/ctrl/sys_user.js', 'validate', 'js/lib/md5.js','ui.select']);
+            return ld.load(['js/ctrl/sys_user.js', 'validate', 'js/lib/md5.js','ui.select','js/svrs/dep.js']);
             // });
           }]
         }
