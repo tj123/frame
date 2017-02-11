@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class AuthFunctionModule {
-
+    
+    private static final long serialVersionUID = 1L;
+    
     private String key;
 
     private String name;

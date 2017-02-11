@@ -11,7 +11,9 @@ import java.util.List;
 @Setter
 @Getter
 public class SearchFunction {
-
+    
+    private static final long serialVersionUID = 1L;
+    
     private String id;
 
     private String name;

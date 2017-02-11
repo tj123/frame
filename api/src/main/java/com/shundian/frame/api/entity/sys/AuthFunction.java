@@ -3,6 +3,7 @@ package com.shundian.frame.api.entity.sys;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,8 +11,10 @@ import java.util.List;
  */
 @Setter
 @Getter
-public class AuthFunction {
-
+public class AuthFunction implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    
     private String key;
 
     private String name;

@@ -26,8 +26,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
-@Service
 @Slf4j
+@Service
 public class FunctionServiceImpl implements FunctionService {
 
     @Autowired

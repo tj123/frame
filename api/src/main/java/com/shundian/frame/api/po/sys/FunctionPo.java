@@ -15,7 +15,9 @@ import java.util.Date;
 @Setter
 @Table(name = "tsys_function")
 public class FunctionPo implements Serializable{
-
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(generator = "UUID")
 	private String id;

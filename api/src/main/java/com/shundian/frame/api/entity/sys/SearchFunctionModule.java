@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SearchFunctionModule {
-
+    
+    private static final long serialVersionUID = 1L;
+    
     private String id;
 
     private String name;

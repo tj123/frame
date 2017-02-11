@@ -1,7 +1,7 @@
 package com.shundian.frame.service.impl.sys;
 
 
-import com.shundian.frame.api.common.GlobalSession;
+import com.shundian.frame.api.common.FakeGlobalSession;
 import com.shundian.frame.api.entity.sys.AuthFunction;
 import com.shundian.frame.api.entity.sys.AuthFunctionModule;
 import com.shundian.frame.api.po.sys.DepartmentPo;
@@ -35,11 +35,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private DepartmentMapper departmentMapper;
 
-    private static final String FUNCTION_TRIM = "com.shundian.frame.common.function.";
-    private static final String MODULE_TRIM = "com.shundian.frame.common.function.module.";
+    private static final String FUNCTION_TRIM = "com.shundian.frame.api.common.function.";
+    private static final String MODULE_TRIM = "com.shundian.frame.api.common.function.module.";
 
     @Override
-    public Map<String, Object> login(String username, String password, GlobalSession session) throws Exception {
+    public Map<String, Object> login(String username, String password) throws Exception {
+        FakeGlobalSession session = new FakeGlobalSession();
         Map<String, Object> userIdPassword = mapper.selectUserId(username);
         if (StringUtil.isBlank(userIdPassword))
             throw new NotValidException("username", 1, "用户名或密码错误！");
@@ -52,7 +53,10 @@ public class UserServiceImpl implements UserService {
             throw new NotValidException("username", 1, "用户名或密码错误！");
         updateSession(userId, session);
         map.put("name", session.getRealName());
-        return map;
+        Map<String,Object> rtn = new HashMap<String,Object>();
+        rtn.put("response",map);
+        rtn.put("_fakeSession",session);
+        return rtn;
     }
 
     @Override
@@ -85,7 +89,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public void updateSession(String userId, GlobalSession session) throws Exception {
+    public void updateSession(String userId, FakeGlobalSession session) throws Exception {
         UserPo po = mapper.selectByPrimaryKey(userId);
         session.setAuthorization(new Authorization(mapper.getFunctions(userId)));
         session.setRealName(po.getRealName());

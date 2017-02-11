@@ -6,9 +6,8 @@ tmp
 bower_components/
 npm-debug.log
 .sass-cache
-target
-api/target
-interface/target
-service/target
+*target
 *.iml
-
+*.project
+*.settings/
+*.classpath

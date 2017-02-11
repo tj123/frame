@@ -17,7 +17,9 @@ import java.util.Date;
 @Setter
 @Table(name = "tsys_user")
 public class UserPo extends BasePo<UserDto> implements Serializable{
-
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(generator = "UUID")
 	private String id;
