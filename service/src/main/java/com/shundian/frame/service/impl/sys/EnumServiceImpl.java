@@ -1,10 +1,10 @@
 package com.shundian.frame.service.impl.sys;
 
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.shundian.frame.api.service.sys.EnumService;
 import com.shundian.lib.envm.EnumType;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 
 @Slf4j
-@Service
+@Service(version = "1.0.0")
 public class EnumServiceImpl implements EnumService {
 
   @Override

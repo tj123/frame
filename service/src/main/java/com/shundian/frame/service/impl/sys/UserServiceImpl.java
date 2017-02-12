@@ -1,6 +1,7 @@
 package com.shundian.frame.service.impl.sys;
 
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.shundian.frame.api.common.FakeGlobalSession;
 import com.shundian.frame.api.entity.sys.AuthFunction;
 import com.shundian.frame.api.entity.sys.AuthFunctionModule;
@@ -19,14 +20,13 @@ import com.shundian.lib.util.PasswordUtil;
 import com.shundian.lib.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@Service
+@Service(version = "1.0.0")
 public class UserServiceImpl implements UserService {
 
     @Autowired

@@ -16,17 +16,17 @@
 
   <dependencies>
   
-    <!-- 装配Spring-Boot基础环境  -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-  
-    <!-- 使用Spring-MVC -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
+    <!--&lt;!&ndash; 装配Spring-Boot基础环境  &ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.boot</groupId>-->
+      <!--<artifactId>spring-boot-starter</artifactId>-->
+    <!--</dependency>-->
+  <!---->
+    <!--&lt;!&ndash; 使用Spring-MVC &ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.boot</groupId>-->
+      <!--<artifactId>spring-boot-starter-web</artifactId>-->
+    <!--</dependency>-->
   
     <dependency>
       <groupId>com.shundian.lib</groupId>

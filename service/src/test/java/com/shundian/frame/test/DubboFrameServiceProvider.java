@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 
-public class FrameServiceProvider {
+public class DubboFrameServiceProvider {
   
   public static void main(String[] args) throws IOException {
     ClassPathXmlApplicationContext context =

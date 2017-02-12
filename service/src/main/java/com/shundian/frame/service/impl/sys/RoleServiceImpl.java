@@ -1,6 +1,7 @@
 package com.shundian.frame.service.impl.sys;
 
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.shundian.frame.api.po.sys.RoleFunctionModulePo;
 import com.shundian.frame.api.po.sys.RolePo;
 import com.shundian.frame.api.service.sys.FunctionService;
@@ -14,7 +15,6 @@ import com.shundian.lib.PageResult;
 import com.shundian.lib.util.UuidUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@Service
+@Service(version = "1.0.0")
 public class RoleServiceImpl implements RoleService {
 
     @Autowired

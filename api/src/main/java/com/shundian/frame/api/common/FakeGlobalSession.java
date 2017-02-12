@@ -6,7 +6,6 @@ import com.shundian.lib.session.Session;
 import com.shundian.lib.session.UserRole;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * Session 对象；后台登录后才能使用
  */
-@Slf4j
+//@Slf4j
 @Setter
 @Getter
 public class FakeGlobalSession implements Session, Serializable {

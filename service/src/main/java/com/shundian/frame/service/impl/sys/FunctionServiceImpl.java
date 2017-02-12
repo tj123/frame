@@ -1,6 +1,7 @@
 package com.shundian.frame.service.impl.sys;
 
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shundian.frame.api.entity.sys.SearchFunction;
 import com.shundian.frame.api.entity.sys.SearchFunctionModule;
@@ -20,14 +21,13 @@ import com.shundian.lib.util.EnumUtil;
 import com.shundian.lib.util.UuidUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
 
 @Slf4j
-@Service
+@Service(version = "1.0.0")
 public class FunctionServiceImpl implements FunctionService {
 
     @Autowired
