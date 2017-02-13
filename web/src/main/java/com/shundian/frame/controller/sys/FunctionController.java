@@ -32,7 +32,7 @@ import java.util.Map;
 @Function(FuncFunction.class)
 public class FunctionController {
     
-    @Reference
+    @Reference(version = "1.0.0")
     private FunctionService functionService;
 
     @Autowired

@@ -37,12 +37,7 @@
       <groupId>com.shundian.lib</groupId>
       <artifactId>common-bean</artifactId>
     </dependency>
-  
-    <dependency>
-      <groupId>com.shundian.lib</groupId>
-      <artifactId>web-lib</artifactId>
-    </dependency>
-
+    
     <dependency>
       <groupId>javax.persistence</groupId>
       <artifactId>persistence-api</artifactId>

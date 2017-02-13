@@ -28,7 +28,7 @@ import java.util.Map;
 @Function(SystemManageFunction.class)
 public class MainController {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private UserService service;
 
     @Autowired

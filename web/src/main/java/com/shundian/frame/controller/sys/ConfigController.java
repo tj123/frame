@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Function(ConfigFunction.class)
 public class ConfigController {
 
-    @Reference
+    @Reference(version = "1.0.0")
     FunctionService functionService;
 
 

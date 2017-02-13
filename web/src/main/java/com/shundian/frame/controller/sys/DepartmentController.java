@@ -25,7 +25,7 @@ import java.util.Map;
 @Function(DepartmentFunction.class)
 public class DepartmentController {
     
-    @Reference
+    @Reference(version = "1.0.0")
     private DepartmentService service;
 
     @RequestMapping

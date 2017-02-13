@@ -28,7 +28,7 @@ import java.util.Map;
 @Function(RoleFunction.class)
 public class RoleController {
     
-    @Reference
+    @Reference(version = "1.0.0")
     private RoleService service;
 
     @Autowired

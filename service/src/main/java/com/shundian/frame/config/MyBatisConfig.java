@@ -24,15 +24,12 @@
 
 package com.shundian.frame.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -53,7 +50,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.*.*.mapper")
+//@MapperScan("com.shundian.frame.mapper")
 public class MyBatisConfig implements TransactionManagementConfigurer {
   
   @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -81,7 +78,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
     //添加XML目录
     ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
     try {
-      bean.setMapperLocations(resolver.getResources("classpath:mapper/**/*.xml"));
+      bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
       return bean.getObject();
     } catch (Exception e) {
       e.printStackTrace();
@@ -98,12 +95,6 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
   @Override
   public PlatformTransactionManager annotationDrivenTransactionManager() {
     return new DataSourceTransactionManager(dataSource);
-  }
-  
-  @Bean
-  @ConfigurationProperties(prefix = "spring.datasource")
-  public DataSource dataSource() {
-    return new DruidDataSource();
   }
   
 }

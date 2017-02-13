@@ -1,5 +1,6 @@
 package com.shundian.frame.controller.sys;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.shundian.frame.api.common.function.module.AddModule;
 import com.shundian.frame.api.common.function.module.ScanModule;
 import com.shundian.frame.api.common.function.sys.UserFunction;
@@ -26,10 +27,10 @@ import java.util.Map;
 @Function(UserFunction.class)
 public class UserController {
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private UserService service;
-
-    @Autowired
+    
+    @Reference(version = "1.0.0")
     private EnumService enumService;
 
     @Autowired
