@@ -3,6 +3,7 @@ package com.shundian.frame.api.entity.sys;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Setter
 @Getter
-public class SearchFunction {
+public class SearchFunction implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
