@@ -1,119 +1,189 @@
-(function (angular, $, undefined) {
-  angular.module('sd.grid', []).directive('sdGrid', ['$timeout', '$window', '$document', '$http', '$q', '$rootScope',
-    function ($timeout, $window, $document, $http, $q, $rootScope) {
+;(function (angular, $, undefined) {
+  angular.module('sd.grid', []).directive('sdGrid', ['$timeout', '$window', '$document', '$http',
+    function ($timeout, $window, $document, $http) {
       return {
         restrict: 'A',
         link: function (scope, el, attr) {
+
           var option = scope.$eval(attr.sdGrid),
             table = el.find('table'),
             thead = table.find('thead'),
             tbody = table.find('tbody'),
             columnLen = thead.find('th').length,
-            $gridFoot = table.find('.grid-foot'),
+            $gridFoot = el.find('.grid-foot'),
             trLink = table.hasClass('grid-link'),
             $grid = scope[option.name || '$grid'] = {};
-          $grid.size = option.size || 5;
-          var currentPage = 1, currentSn = 1,
-            totalPage = 1,
-            init = function () {
-              $loading.appendTo(tbody);
-              var pro = loadPage(1);
-              $gridFoot.parent().parent('td').attr('colspan', columnLen);
-              return pro;
-            },
-            $loading = angular.element('<tr style="display: none;">'
-              + '<td class="grid-loading text-center" colspan="' + columnLen + '">'
-              + '<i class="fa fa-refresh"></i>'
+          $grid.size = option.size || 8;
+          $grid.advanced = false;
+          $grid.sortVal = '';
+          var keywords = $grid.keywords = {};
+          var currentPage = 1, currentSn = 1, totalPage = 1, advanced = false, asc = 'asc';
+          var $loading = angular.element('<tr style="display: none;">'
+            + '<td class="grid-loading text-center" colspan="' + columnLen + '">'
+            + '<i class="fa fa-refresh"></i>'
+            + '</td>'
+            + '</tr>');
+          var $noResult = angular.element('<tr style="display:none;" class="none no-result">'
+              + '<td colspan="' + columnLen + '">'
+              + '没有相关结果！'
               + '</td>'
               + '</tr>'),
-            loading = function () {
+            init = function () {
+              $loading.appendTo(tbody);
+              $noResult.appendTo(tbody).hide();
+              loadPage(1);
+              $gridFoot.parent().parent('td').attr('colspan', columnLen);
+            };
+
+          var loading = function () {
               table.removeClass('grid-link');
               tbody.find('tr').hide();
+              //$loading.css('height', $grid.size * 20 + 'px').css('line-height', $grid.size * 20 + 'px');
               $loading.show();
             },
             loadComplete = function () {
-              tbody.find('tr').show();
+              tbody.find('tr').not('.no-result').show();
               $loading.hide();
               trLink && table.addClass('grid-link');
-              scope.$emit('sdGridLoadComplete');
             },
             error = function (e) {
-              if (e && !e.errorCode) {
-                console.error('出错');
-                console.error(e);
+              console.error('出错');
+              console.error(e);
+            };
+          /**
+           * 加载页面
+           */
+          var loadPage = function (page) {
+            if(!$grid.sortVal){
+              var stDft = el.find('th.sortable[grid-sort-default]');
+              if(stDft.length == 1){
+                stDft.trigger('click');
+                return;
               }
-            },
-            /**
-             * 加载页面
-             * @type {$grid.loadPage}
-             */
-            val, sort,
-            loadPage = $grid.loadPage = function (page, value, sortAsc) {
-              var defer = $q.defer();
-              val = value;
-              sort = sortAsc;
-              if (angular.isString(val)) data.keyword = val;
-              if (angular.isObject(val)) data.keywords = val;
-              if (sort) data.sort = sort;
-              if (page && page > 0) currentPage = page;
-              if (!currentPage) currentPage = 1;
-              var data = {page: currentPage, size: $grid.size};
-              loading();
-              $http({
-                url: option.url,
-                method: option.method || 'POST',
-                data: data
-              }).success(function (dt) {
+            }
+            $noResult.hide();
+            if (page && page > 0) currentPage = page;
+            if (!currentPage) currentPage = 1;
+            var data = {page: currentPage, size: $grid.size};
+            if (!advanced && $grid.keyword) {
+              data.keyword = $grid.keyword;
+            } else if (advanced && $grid.keywords) {
+              var dks = data.keywords = {}, kws = $grid.keywords;
+              for (var i in kws) {
+                if (angular.isString(kws[i])) {
+                  dks[i] = kws[i];
+                } else {
+                  dks[i] = JSON.stringify(kws[i]);
+                }
+              }
+            }
+            if ($grid.sortVal && angular.isString($grid.sortVal)) {
+              data.sort = $grid.sortVal;
+              data.asc = asc == 'asc' ? 'asc' : 'desc';
+            }
+            loading();
+            $http({url: option.url, method: option.method || 'POST', data: data})
+              .success(function (dt) {
                 if (dt.status === true) {
                   var d = dt.data;
-                  $grid.rows = d.rows || [];
                   $grid.total = d.total;
                   totalPage = Math.ceil(parseInt(d.total) / parseInt($grid.size));
-                  if (currentPage >= totalPage)
+                  if (currentPage > totalPage) {
                     currentPage = totalPage;
+                    if (totalPage != 0) {
+                      loadPage();
+                      return;
+                    }
+                  }
+                  $grid.rows = d.rows || [];
                   currentSn = (currentPage - 1) * $grid.size;
+                  for (var i in $grid.rows) {
+                    $grid.rows[i]['$index'] = (currentPage - 1) * $grid.size + parseInt(i) + 1;
+                  }
+                  if ($grid.rows.length === 0) {
+                    $noResult.show();
+                  }
                   updateFoot(totalPage, currentPage);
-                  defer.resolve();
+                  if($grid.sortVal == ''){
+                    el.find('th.sortable').addClass('sort-disabled');
+                  }
+                  if ($grid.advanced === true)
+                    $grid.advanced = false;
                 } else {
                   error();
-                  defer.reject();
                 }
                 loadComplete();
               }).error(function (e) {
-                loadComplete();
-                error(e);
-                defer.reject();
-              });
-              return defer.promise;
-            };
+              loadComplete();
+              error(e);
+            });
+          };
+          /**
+           * 指定页面
+           * @param e 必须为 event
+           */
           $grid.go = function (e) {
             loadPage(parseInt(angular.element(e.target).text()));
           };
+          /**
+           * 下一页
+           */
           $grid.next = function () {
             if (eles.nxt.isDisabled()) return;
             loadPage(++currentPage);
           };
+          /**
+           * 前一页
+           */
           $grid.previous = function () {
             if (eles.pre.isDisabled())return;
             loadPage(--currentPage);
           };
+          /**
+           * 第一页
+           */
           $grid.first = function () {
             loadPage(1);
           };
+          /**
+           * 最后一页
+           */
           $grid.last = function () {
             loadPage(totalPage);
           };
+          /**
+           * 后 3 页
+           */
           $grid.moreNext = function () {
             loadPage(currentPage + 3);
           };
+          /**
+           * 前 3 页
+           */
           $grid.morePrevious = function () {
             loadPage(currentPage - 3);
           };
-          $grid.reload = $grid.refresh = $grid.search = function (val, sort) {
-            loadPage(undefined, val, sort);
+          /**
+           * 刷新页面
+           * @type {$grid.search}
+           */
+          $grid.reload = $grid.refresh = $grid.search = function () {
+            advanced = $grid.advanced;
+            loadPage(1);
           };
-          $grid.sort = function () {
-            loadPage(undefined, undefined, sort);
+          /**
+           * 排序
+           * @param sort 名称
+           * @param ac 方向
+           */
+          $grid.sort = function (sort, ac) {
+            if (angular.isString(sort)) {
+              $grid.sortVal = sort;
+            }
+            if (ac && angular.isString(ac) && $.trim(ac) != '') {
+              asc = ac;
+            }
+            loadPage(1);
           };
           var footEle = function (el) {
             this[0] = el[0];
@@ -246,12 +316,74 @@
             }
           };
 
-          init();
-          scope.$watch((option.name || '$grid') + '.size', function (odv, nev) {
-            if (odv == nev) return;
-            loadPage(Math.ceil(currentSn / $grid.size));
+          el.find('th.sortable').bind('click', function (e) {
+            var elm = angular.element(this);
+            if (elm.hasClass('desc') || !elm.hasClass('asc')) {
+              asc = 'asc';
+              elm.removeClass('desc').addClass('asc');
+            } else {
+              asc = 'desc';
+              elm.removeClass('asc').addClass('desc');
+            }
+            var sort = elm.attr('grid-sort').toString();
+            if ($.trim(sort) == '') {
+              throw new Error('grid-sort 不能为空');
+            }
+            elm.removeClass('sort-disabled').siblings().addClass('sort-disabled');
+            $grid.sort(sort);
           });
 
+          el.find('.advanced-search .search-content-wrapper').bind('click', function (e) {
+            e.stopPropagation();
+          });
+
+          $document
+          /**
+           * 阻止事件冒泡
+           */
+            .bind('click', function (e) {
+              var ck = angular.element(e.target);
+              if (ck.hasClass('search-label') ||
+                ck.hasClass('ui-menu-item')) {
+                return;
+              }
+              if ($grid.advanced) {
+                $grid.advanced = false;
+                scope.$apply();
+              }
+            })
+            .bind('keydown', function (e) {
+              if (e && e.keyCode == 27) {
+                if ($grid.advanced) {
+                  $grid.advanced = false;
+                  scope.$apply();
+                }
+              } else if (e && e.keyCode == 13) {
+                var adv =angular.element('.advanced-search');
+                if($grid.advanced){
+                  adv.find('.grid-search-btn').trigger('click');
+                }else{
+                  adv.nextAll('.grid-search-btn').trigger('click');
+                }
+              } else if (e && e.keyCode == 39) {
+                if (!angular.element(e.target).is('input'))
+                  $grid.next();
+              } else if (e && e.keyCode == 37) {
+                if (!angular.element(e.target).is('input'))
+                  $grid.previous();
+              } else if (e && e.keyCode == 192) {
+                $grid.advanced = !$grid.advanced;
+                scope.$apply();
+              }
+            });
+
+
+          scope.$watch((option.name || '$grid') + '.size', function (newVal, oldVal) {
+            if (newVal != oldVal)
+              loadPage(Math.ceil(currentSn / $grid.size));
+          });
+
+          init();
 
         }
       };
