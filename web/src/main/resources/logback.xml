@@ -2,6 +2,8 @@
 
 <configuration>
 	
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	
 	<!-- 文件输出格式 -->
 	<property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
 	<!-- test文件路径 -->
@@ -11,17 +13,17 @@
 	
 	<!-- 开发环境 -->
 	<springProfile name="dev">
-		<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-			<encoder>
-				<pattern>${PATTERN}</pattern>
-			</encoder>
-		</appender>
-		
-		<logger name="com.shundian.frame" level="debug"/>
-	
-		<root level="info">
-			<appender-ref ref="CONSOLE" />
-		</root>
+		<!--<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+			<!--<encoder>-->
+				<!--<pattern>${PATTERN}</pattern>-->
+			<!--</encoder>-->
+		<!--</appender>-->
+		<!---->
+		<!--<logger name="com.shundian.frame" level="debug"/>-->
+		<!---->
+		<!--<root level="info">-->
+			<!--<appender-ref ref="CONSOLE" />-->
+		<!--</root>-->
 	</springProfile>
 	
 	<!-- 测试环境 -->
@@ -82,5 +84,5 @@
 			<appender-ref ref="CONSOLE" />
 		</root>
 	</springProfile>
-	
+
 </configuration>

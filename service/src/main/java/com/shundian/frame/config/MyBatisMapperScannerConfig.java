@@ -46,18 +46,13 @@ public class MyBatisMapperScannerConfig {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        //mapperScannerConfigurer.setBasePackage("tk.mybatis.springboot.mapper");
-        mapperScannerConfigurer.setBasePackage("com.shundian.frame.mapper");
+        mapperScannerConfigurer.setBasePackage("tk.mybatis.springboot.mapper");
         Properties properties = new Properties();
-
-        //properties.setProperty("mappers", "tk.mybatis.springboot.util.MyMapper");
-
-
+//        properties.setProperty("mappers", "com.shundian.frame.mapper");
         properties.setProperty("notEmpty", "false");
         properties.setProperty("IDENTITY", "MYSQL");
         mapperScannerConfigurer.setProperties(properties);
         return mapperScannerConfigurer;
     }
-
 
 }
