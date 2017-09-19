@@ -7,6 +7,22 @@ import java.util.Map;
  */
 public interface UserService {
 
-    Map<String,Object> test() throws Exception;
+    Map<String, Object> test() throws Exception;
 
+    /**
+     * 列出用户列表
+     *
+     * @return
+     * @throws Exception
+     */
+    Map<String, Object> list() throws Exception;
+
+    /**
+     * 获取用户权限
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    Map<String, Object> auth(String userId) throws Exception;
 }

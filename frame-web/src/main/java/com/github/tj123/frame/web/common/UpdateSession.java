@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
  * Created by TJ on 2017/9/19.
  */
 @Component
-public class UpdateSession implements
-    UpdateSessionListener, UpdateAuthorizeListener {
+public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeListener {
 
     public void onUpdateAuthorization() {
         System.out.println("update auth");
