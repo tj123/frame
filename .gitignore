@@ -1,13 +1,24 @@
-logs/*
-!.gitkeep
-node_modules/
-tmp
+target/
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
 .idea
-bower_components/
-npm-debug.log
-.sass-cache
-*target
+*.iws
 *.iml
-*.project
-*.settings/
-*.classpath
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

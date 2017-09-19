@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";AAWE,eAAO;EACL,WAAW,EAAC,KAAK;;;AAGnB,sBAAc;EACZ,YAAY,EAAC,IAAI;;;AACjB,kCAAW;EACT,UAAU,EAAC,KAAK;;;AAQpB,wBAAgB;EACd,OAAO,ECfK,GAAG;;;ADgBf,2BAAI;EACF,gBAAgB,EAAE,IAAI;EEqJ1B,kBAAkB,EAAE,6BAAO;EAC3B,UAAU,EAAE,6BAAO;EFpJf,sBAAsB,EAAE,UAAU;EAClC,cAAc,EAAE,UAAU;;;AAQhC,yBAA0B;;EAItB,iBAAS;IACP,WAAW,EAAE,KAAK;;;EAGpB,eAAO;IACL,WAAW,EAAC,IAAI;;;EAGlB,wBAAgB;IACd,sBAAsB,EAAE,IAAI;IAC5B,cAAc,EAAE,IAAI",
-"sources": ["../scss/app.header.scss","../scss/app.variable.scss","../scss/app.mixin.scss"],
-"names": [],
-"file": "app.header.css"
-}
