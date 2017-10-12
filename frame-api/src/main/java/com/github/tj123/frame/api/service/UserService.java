@@ -14,8 +14,10 @@ public interface UserService {
      *
      * @return
      * @throws Exception
+     * @param page
+     * @param size
      */
-    Map<String, Object> list() throws Exception;
+    Map<String, Object> list(Integer page, Integer size) throws Exception;
 
     /**
      * 获取用户权限

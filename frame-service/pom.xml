@@ -27,7 +27,24 @@
 			<groupId>com.github.tj123.frame</groupId>
 			<artifactId>frame-api</artifactId>
 		</dependency>
-
+		
+		<!--<dependency>-->
+			<!--<groupId>com.github.tj123</groupId>-->
+			<!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
+		<!--</dependency>-->
+		
+		<dependency>
+			<groupId>com.github.tj123.common</groupId>
+			<artifactId>common-page</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.tj123.common</groupId>
+			<artifactId>common-mybatis</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>io.dubbo.springboot</groupId>
 			<artifactId>spring-boot-starter-dubbo</artifactId>

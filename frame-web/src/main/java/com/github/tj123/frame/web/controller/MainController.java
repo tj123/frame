@@ -7,7 +7,6 @@ import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.service.UserService;
 import com.github.tj123.frame.web.common.Session;
-import com.github.tj123.frame.web.common.unit.Dep;
 import com.github.tj123.frame.web.common.unit.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +18,7 @@ import java.util.Map;
 /**
  * Created by TJ on 2017/9/19.
  */
+@Authorize(AuthorizeType.ALL)
 @Function
 @RestController
 @RequestMapping("/sys")
@@ -37,16 +37,20 @@ public class MainController {
     }
 
     @Module(User.class)
-    @RequestMapping(value = "/user" ,method = RequestMethod.POST)
-    public Map<String,Object> userList() throws Exception{
-        return userService.list();
+    @RequestMapping("/users")
+    public Map<String,Object> userList(Integer page,Integer size) throws Exception{
+        System.out.println("page");
+        System.out.println(page);
+        System.out.println("size");
+        System.out.println(size);
+        return userService.list(page,size);
     }
 
-    @Module(Dep.class)
-    @RequestMapping(value = "/dep" ,method = RequestMethod.POST)
-    public Map<String,Object> depList() throws Exception{
-        return userService.list();
-    }
+//    @Module(Dep.class)
+//    @RequestMapping(value = "/dep" ,method = RequestMethod.POST)
+//    public Map<String,Object> depList() throws Exception{
+//        return userService.list();
+//    }
 
     @Authorize(AuthorizeType.LOGIN)
     @RequestMapping(value = "/auth" ,method = RequestMethod.POST)

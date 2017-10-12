@@ -60,6 +60,12 @@
         <artifactId>spring-boot-starter-dubbo</artifactId>
         <version>1.0.0.4</version>
       </dependency>
+  
+      <dependency>
+        <groupId>com.github.tj123</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>0.0.1</version>
+      </dependency>
 
 
     </dependencies>
