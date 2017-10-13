@@ -1,5 +1,9 @@
 package com.github.tj123.frame.api.service;
 
+import com.github.tj123.frame.api.common.PageRequest;
+import com.github.tj123.frame.api.common.PageResponse;
+import com.github.tj123.frame.api.po.UserPo;
+
 import java.util.Map;
 
 /**
@@ -14,10 +18,9 @@ public interface UserService {
      *
      * @return
      * @throws Exception
-     * @param page
-     * @param size
+     * @param request
      */
-    Map<String, Object> list(Integer page, Integer size) throws Exception;
+    PageResponse<UserPo> list(PageRequest request) throws Exception;
 
     /**
      * 获取用户权限
