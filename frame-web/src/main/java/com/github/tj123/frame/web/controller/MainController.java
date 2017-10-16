@@ -7,15 +7,14 @@ import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
+import com.github.tj123.frame.api.dto.UserDto;
 import com.github.tj123.frame.api.po.UserPo;
 import com.github.tj123.frame.api.service.UserService;
 import com.github.tj123.frame.web.common.Session;
+import com.github.tj123.frame.web.common.unit.Add;
 import com.github.tj123.frame.web.common.unit.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -41,9 +40,24 @@ public class MainController {
     }
 
     @Module(User.class)
-    @RequestMapping("/users")
+    @GetMapping("/users")
     public PageResponse<UserPo> userList(@RequestParam Map<String,Object> page) throws Exception{
         return userService.list(PageRequest.create(page));
+    }
+
+    @Module({User.class, Add.class})
+    @PostMapping("/user")
+    public void userAdd(@RequestBody UserDto user) throws Exception{
+        UserPo userPo = user.toPo();
+        userPo.setPassword("sfaasdfasdfsd");
+        userService.add(userPo);
+    }
+
+    @Module({User.class, Add.class})
+    @PostMapping("/user/update")
+    public void userUpdate(@RequestBody UserDto user) throws Exception{
+        UserPo userPo = user.toPo();
+        userService.update(userPo);
     }
 
 //    @Module(Dep.class)

@@ -1,32 +1,30 @@
-package com.github.tj123.frame.api.po;
+package com.github.tj123.frame.api.dto;
 
-import com.github.tj123.common.Po;
-import com.github.tj123.frame.api.dto.UserDto;
+import com.github.tj123.common.Dto;
+import com.github.tj123.common.convert.BlankCurrent;
+import com.github.tj123.frame.api.po.UserPo;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by TJ on 2017/10/12.
  */
 @Data
-@Table(name = "s_user")
-public class UserPo implements Po<UserDto>, Serializable{
+public class UserDto implements Dto<UserPo>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(generator = "UUID")
     private String id;
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String username;
 
+    @NotBlank
     private String password;
 
     private String sex;
@@ -41,7 +39,8 @@ public class UserPo implements Po<UserDto>, Serializable{
 
     private String phone;
 
-    private Date lastLogin;
+    @BlankCurrent
+    private String lastLogin;
 
     private String cardNo;
 

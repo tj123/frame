@@ -59,4 +59,15 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> auth(String userId) throws Exception {
         return null;
     }
+
+    @Override
+    public void add(UserPo userPo) throws Exception {
+        mapper.insert(userPo);
+    }
+
+    @Override
+    public void update(UserPo userPo) throws Exception {
+        mapper.updateByPrimaryKeySelective(userPo);
+    }
+
 }

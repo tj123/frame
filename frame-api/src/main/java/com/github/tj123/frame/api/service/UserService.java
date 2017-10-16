@@ -30,4 +30,8 @@ public interface UserService {
      * @throws Exception
      */
     Map<String, Object> auth(String userId) throws Exception;
+
+    void add(UserPo userPo) throws Exception;
+
+    void update(UserPo userPo) throws Exception;
 }
