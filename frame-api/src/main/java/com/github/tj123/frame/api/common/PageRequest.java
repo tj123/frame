@@ -23,6 +23,7 @@ public class PageRequest extends HashMap<String, Object>{
     public static PageRequest create(Map<String, Object> map) {
         PageRequest pageRequest = new PageRequest();
         if (map == null) {
+            pageRequest.defaultValue();
             return pageRequest;
         }
         for (Entry<String, Object> entry : map.entrySet()) {
