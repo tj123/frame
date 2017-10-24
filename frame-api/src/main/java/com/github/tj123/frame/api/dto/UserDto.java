@@ -44,4 +44,12 @@ public class UserDto implements Dto<UserPo>, Serializable {
 
     private String cardNo;
 
+    private String createById;
+
+    private String updateById;
+
+    private String createTime;
+
+    private String updateTime;
+
 }
