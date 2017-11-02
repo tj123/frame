@@ -33,11 +33,11 @@ public class MainController {
     @Autowired
     Session session;
 
-    @Authorize(AuthorizeType.ALL)
-    @RequestMapping
-    public Map<String,Object> test() throws Exception {
-        return userService.test();
-    }
+//    @Authorize(AuthorizeType.ALL)
+//    @RequestMapping
+//    public Map<String,Object> test() throws Exception {
+//        return userService.test();
+//    }
 
     @Module(User.class)
     @GetMapping("/users")
