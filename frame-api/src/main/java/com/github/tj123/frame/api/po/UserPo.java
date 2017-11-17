@@ -35,7 +35,7 @@ public class UserPo implements Po<UserDto>, Serializable{
 
     private String email;
 
-    private String department_id;
+    private String departmentId;
 
     private String tel;
 

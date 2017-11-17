@@ -1,7 +1,7 @@
-package com.github.tj123.frame.api.dto;
+package com.github.tj123.frame.api.dto.sys;
 
 import com.github.tj123.common.Dto;
-import com.github.tj123.frame.api.po.UserPo;
+import com.github.tj123.frame.api.po.sys.DepPo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by TJ on 2017/10/12.
  */
 @Data
-public class DepDto implements Dto<UserPo>, Serializable {
+public class DepDto implements Dto<DepPo>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

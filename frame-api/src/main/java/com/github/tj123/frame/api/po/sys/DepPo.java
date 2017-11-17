@@ -1,7 +1,7 @@
-package com.github.tj123.frame.api.po;
+package com.github.tj123.frame.api.po.sys;
 
 import com.github.tj123.common.Po;
-import com.github.tj123.frame.api.dto.UserDto;
+import com.github.tj123.frame.api.dto.sys.DepDto;
 import lombok.Data;
 
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "s_dep")
-public class DepPo implements Po<UserDto>, Serializable{
+public class DepPo implements Po<DepDto>, Serializable{
 
     private static final long serialVersionUID = 1L;
 

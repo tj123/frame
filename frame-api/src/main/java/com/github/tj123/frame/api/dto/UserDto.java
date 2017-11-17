@@ -33,7 +33,7 @@ public class UserDto implements Dto<UserPo>, Serializable {
 
     private String email;
 
-    private String department_id;
+    private String departmentId;
 
     private String tel;
 

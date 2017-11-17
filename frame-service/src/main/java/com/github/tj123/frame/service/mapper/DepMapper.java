@@ -1,6 +1,6 @@
 package com.github.tj123.frame.service.mapper;
 
-import com.github.tj123.frame.api.po.DepPo;
+import com.github.tj123.frame.api.po.sys.DepPo;
 import com.github.tj123.frame.service.common.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

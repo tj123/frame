@@ -18,4 +18,6 @@ public class Session {
 
     private String name;
 
+    private String depId;
+
 }

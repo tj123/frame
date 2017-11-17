@@ -3,9 +3,11 @@ package com.github.tj123.frame.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
+import com.github.tj123.frame.api.common.exception.MessageException;
 import com.github.tj123.frame.api.po.UserPo;
 import com.github.tj123.frame.api.service.UserService;
 import com.github.tj123.frame.service.common.PageUtils;
+import com.github.tj123.frame.service.common.PasswordUtil;
 import com.github.tj123.frame.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +25,22 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> map = new HashMap<>();
         map.put("aaa", "haha");
         return map;
+    }
+
+    @Override
+    public String login(String userName, String password) throws Exception {
+        if (userName == null || userName.trim().equals(""))
+            throw new MessageException("请输入用户名");
+        if (password == null || password.trim().equals(""))
+            throw new MessageException("请输入密码");
+        Map<String, Object> map = mapper.selectUser(userName);
+        String userId = (String) map.get("id");
+        String dbPassword = (String) map.get("password");
+        if (dbPassword == null || dbPassword.trim().equals(""))
+            throw new MessageException("用户名或密码错误");
+        if (!PasswordUtil.isMatch(password, dbPassword))
+            throw new MessageException("用户名或密码错误");
+        return userId;
     }
 
     @Override
