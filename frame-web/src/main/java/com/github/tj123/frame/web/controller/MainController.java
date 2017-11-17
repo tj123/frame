@@ -50,8 +50,10 @@ public class MainController {
 
     @PostMapping("/login")
     @Authorize(AuthorizeType.ALL)
-    public Map<String, Object> login(String userName, String password) throws Exception {
-        updateSession.onUpdateSession(userService.login(userName, password));
+    public Map<String, Object> login(String username,String password) throws Exception {
+        System.out.println(username);
+        System.out.println(password);
+        updateSession.onUpdateSession(userService.login(username, password));
         Map<String, Object> map = new HashMap();
         AccessToken token = new AccessToken(session.getUserId(), "frame",
                 authProperties.getKey(), authProperties.getIv());
