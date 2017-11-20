@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService {
         if (password == null || password.trim().equals(""))
             throw new MessageException("请输入密码");
         Map<String, Object> map = mapper.selectUser(userName);
+        if(map == null)
+            throw new MessageException("用户名或密码错误");
         String userId = (String) map.get("id");
         String dbPassword = (String) map.get("password");
         if (dbPassword == null || dbPassword.trim().equals(""))
@@ -86,6 +88,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(UserPo userPo) throws Exception {
         mapper.updateByPrimaryKeySelective(userPo);
+    }
+
+    @Override
+    public Map<String, Object> getInfo(String userId) throws Exception {
+        UserPo userPo = mapper.selectByPrimaryKey(userId);
+        if(userPo != null){
+            return userPo.toMap();
+        }
+        return new HashMap<>();
     }
 
 }

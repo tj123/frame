@@ -42,4 +42,12 @@ public interface UserService {
     void add(UserPo userPo) throws Exception;
 
     void update(UserPo userPo) throws Exception;
+
+    /**
+     * 更加 userid 获取所有用户信息
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    Map<String,Object> getInfo(String userId) throws Exception;
 }

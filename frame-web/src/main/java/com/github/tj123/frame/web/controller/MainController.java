@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.AuthProperties;
 import com.github.tj123.common.auth.AuthorizeType;
 import com.github.tj123.common.auth.annotation.Authorize;
-import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.common.auth.token.AccessToken;
 import com.github.tj123.frame.api.common.PageRequest;
@@ -28,7 +27,7 @@ import java.util.Map;
  * Created by TJ on 2017/9/19.
  */
 @Authorize(AuthorizeType.ALL)
-@Function
+//@Function(User.class)
 @RestController
 @RequestMapping("/sys")
 public class MainController {
@@ -50,21 +49,21 @@ public class MainController {
 
     @PostMapping("/login")
     @Authorize(AuthorizeType.ALL)
-    public Map<String, Object> login(String username,String password) throws Exception {
-        System.out.println(username);
-        System.out.println(password);
+    public Map<String, Object> login(String username, String password,Boolean keep) throws Exception {
         updateSession.onUpdateSession(userService.login(username, password));
         Map<String, Object> map = new HashMap();
         AccessToken token = new AccessToken(session.getUserId(), "frame",
                 authProperties.getKey(), authProperties.getIv());
-        map.put("key", token.encrypt());
+        if(Boolean.TRUE.equals(keep)){
+            map.put("key", token.encrypt());
+        }
         return map;
     }
 
     @PostMapping("/dict")
     @Authorize(AuthorizeType.LOGIN)
     public List<Map<String, Object>> dict(String type, String code) throws Exception {
-        return dictService.getDict(type,code,session.getDepId());
+        return dictService.getDict(type, code, session.getDepId());
     }
 
     @Module(User.class)

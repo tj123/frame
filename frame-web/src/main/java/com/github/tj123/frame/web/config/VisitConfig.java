@@ -2,11 +2,12 @@ package com.github.tj123.frame.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-//@Profile("dev")
+@Profile({"dev","test"})
 @Configuration
 public class VisitConfig {
 
@@ -14,7 +15,7 @@ public class VisitConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://localhost:8000"); // 1
+        corsConfiguration.addAllowedOrigin("http://localhost:9080"); // 1
         corsConfiguration.addAllowedHeader("*");
 //        corsConfiguration.addAllowedOrigin("*"); // 2
         corsConfiguration.addAllowedMethod("*"); // 3
