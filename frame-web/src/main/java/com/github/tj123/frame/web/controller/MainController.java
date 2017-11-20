@@ -15,6 +15,7 @@ import com.github.tj123.frame.api.service.UserService;
 import com.github.tj123.frame.web.common.Session;
 import com.github.tj123.frame.web.common.UpdateSession;
 import com.github.tj123.frame.web.common.unit.Add;
+import com.github.tj123.frame.web.common.unit.Edit;
 import com.github.tj123.frame.web.common.unit.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ public class MainController {
     @Authorize(AuthorizeType.ALL)
     public Map<String, Object> login(String username, String password,Boolean keep) throws Exception {
         updateSession.onUpdateSession(userService.login(username, password));
+        updateSession.onUpdateAuthorization();
         Map<String, Object> map = new HashMap();
         AccessToken token = new AccessToken(session.getUserId(), "frame",
                 authProperties.getKey(), authProperties.getIv());
@@ -80,7 +82,7 @@ public class MainController {
         userService.add(userPo);
     }
 
-    @Module({User.class, Add.class})
+    @Module({User.class, Edit.class})
     @PostMapping("/user/update")
     public void userUpdate(@RequestBody UserDto user) throws Exception {
         UserPo userPo = user.toPo();
@@ -94,7 +96,7 @@ public class MainController {
 //    }
 
     @Authorize(AuthorizeType.LOGIN)
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    @GetMapping("/auth")
     public Map<String, Object> auth() throws Exception {
         return userService.auth(session.getUserId());
     }
