@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-24 17:54:32
+Date: 2017-11-20 18:04:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,7 +60,7 @@ CREATE TABLE `s_func` (
   `id` varchar(32) NOT NULL,
   `uid` varchar(255) DEFAULT NULL,
   `parent_uid` varchar(255) DEFAULT NULL,
-  `key` varchar(255) DEFAULT NULL,
+  `key_` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -69,6 +69,10 @@ CREATE TABLE `s_func` (
 -- ----------------------------
 -- Records of s_func
 -- ----------------------------
+INSERT INTO `s_func` VALUES ('5d8052c9fb9f40f8bac48eae13005565', '1-4', '1', 'usr-add', '添加', '用户管理-添加');
+INSERT INTO `s_func` VALUES ('7e30dc410d9b4a0b87957881d82bf98d', '1', null, 'usr', '用户管理', '用户管理');
+INSERT INTO `s_func` VALUES ('b162524a4b1749cdb9e4243f95303264', '3', null, 'dep', '部门管理', '部门管理');
+INSERT INTO `s_func` VALUES ('b3ec2eaa90f54ff78c2be4e05490e24e', '30', null, 'func', '哈哈管理', '哈哈管理');
 
 -- ----------------------------
 -- Table structure for s_role
@@ -134,6 +138,7 @@ INSERT INTO `s_user` VALUES ('ae5efce8950543979d708b7de29f9d3c', '的发生的',
 INSERT INTO `s_user` VALUES ('ae70fa1c727b4be8aed3c237252fb77f', 'asdfasdf', 'sfaasdfasdfsd', null, 'asdfasdfas', '啊是短发', null, '阿斯顿', '阿斯达斯', '2017-10-16 17:05:56', '啊是短发', 'asdg', null, null, null, null, null);
 INSERT INTO `s_user` VALUES ('ae82f3f304ef462796b427a25f5c9f10', '发生大幅阿斯顿', 'sfaasdfasdfsd', null, '啊是短发说的发生的', 'asdfasdf', null, '啊是短发速度asdfas', '啊是短发说的发生的', '2017-10-16 17:06:16', '啊是短发', '阿斯达', null, null, null, null, null);
 INSERT INTO `s_user` VALUES ('asd', 'fasd', 'fasd', 'fas', 'dfas', 'gasd', 'ga', 'asdgasdg', 'gasd', '2017-10-03 15:36:33', 'asdg', 'asdg', 'asdga', null, null, null, null);
+INSERT INTO `s_user` VALUES ('asdfasdfa', 'admin', '9ACE0D0DED977ECA0BD5C367CC0337071CC689E0FE5032A8F511EE90', 'asdf', 'asdf', 'asdf', 'asdf', 'asdfas', 'asdf', '2017-11-20 03:40:22', 'asdfas', 'dfasdf', 'asdfasd', null, null, null, null);
 INSERT INTO `s_user` VALUES ('asdg', 'asd', 'gasd', 'agsd', 'hasd', 'hasd', 'hasdha', 'sdh', 'asdha', '2017-10-10 15:35:57', 'asdha', 'sdhasd', 'hasdh', null, null, null, null);
 INSERT INTO `s_user` VALUES ('asdga', 'sdasdh', 'asdhas', 'dhasd', 'hasd', 'hasd', 'hasdh', 'asdhas', 'asdha', '2017-10-16 15:36:45', 'asdhas', 'dhasdhas', 'asdhasdh', null, null, null, null);
 INSERT INTO `s_user` VALUES ('asdgas', 'dhas', 'dha', 'sdha', 'sdh', 'asdh', 'asd', 'has', 'dhas', '2017-10-10 15:37:14', 'asd', 'hasd', 'has', null, null, null, null);
