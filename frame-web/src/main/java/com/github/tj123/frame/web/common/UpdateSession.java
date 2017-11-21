@@ -4,11 +4,13 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.AuthorizeSessionImpl;
 import com.github.tj123.common.auth.UpdateAuthorizeListener;
 import com.github.tj123.common.auth.UpdateSessionListener;
+import com.github.tj123.common.auth.mini.MiniModals;
 import com.github.tj123.frame.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,8 +31,10 @@ public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeList
 
     public void onUpdateAuthorization() {
         try {
-            Map<String, Object> auth = userService.auth(session.getUserId());
-
+            List<Map<String, Object>> auth = userService.auth(session.getUserId());
+            MiniModals miniModals = new MiniModals();
+            miniModals.readFromDb(auth);
+            authorizeSession.setAuth(miniModals);
         } catch (Exception e) {
             log.error("auth error",e);
         }

@@ -97,7 +97,7 @@ public class MainController {
 
     @Authorize(AuthorizeType.LOGIN)
     @GetMapping("/auth")
-    public Map<String, Object> auth() throws Exception {
+    public List<Map<String, Object>> auth() throws Exception {
         return userService.auth(session.getUserId());
     }
 

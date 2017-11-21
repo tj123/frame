@@ -12,6 +12,7 @@ import com.github.tj123.frame.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,8 +77,8 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public Map<String, Object> auth(String userId) throws Exception {
-        return null;
+    public List<Map<String, Object>> auth(String userId) throws Exception {
+        return mapper.auth(userId);
     }
 
     @Override

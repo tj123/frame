@@ -7,5 +7,10 @@
     SELECT id,`password` FROM `s_user` where username = #{userName} limit 1
   </select>
   
+  <!-- 调试 所用权限向用户展示 -->
+  <select id="auth" resultType="java.util.Map">
+    select uid "id",key_ "key" from s_func
+  </select>
+
 
 </mapper>

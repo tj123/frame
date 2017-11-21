@@ -4,6 +4,7 @@ import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.po.UserPo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,7 +38,7 @@ public interface UserService {
      * @return
      * @throws Exception
      */
-    Map<String, Object> auth(String userId) throws Exception;
+    List<Map<String, Object>> auth(String userId) throws Exception;
 
     void add(UserPo userPo) throws Exception;
 
