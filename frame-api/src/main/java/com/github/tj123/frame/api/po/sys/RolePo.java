@@ -4,11 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by TJ on 2017/9/20.
@@ -16,8 +16,8 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-@Table(name = "s_func")
-public class FunctionPo implements Serializable{
+@Table(name = "s_role")
+public class RolePo implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -25,15 +25,16 @@ public class FunctionPo implements Serializable{
     @GeneratedValue(generator = "UUID")
     private String id;
 
-    private String uid;
-
-    private String parentUid;
-
-    @Column(name = "key_")
-    private String key;
-
     private String name;
 
-    private String fullName;
+    private String description;
+
+    private String createById;
+
+    private String updateById;
+
+    private Date createTime;
+
+    private Date updateTime;
 
 }

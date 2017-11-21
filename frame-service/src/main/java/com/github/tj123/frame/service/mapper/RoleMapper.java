@@ -12,12 +12,9 @@ import java.util.Map;
  * Created by TJ on 2017/10/12.
  */
 @Mapper
-public interface FuncMapper extends BaseMapper<FunctionPo>{
+public interface RoleMapper extends BaseMapper<FunctionPo>{
 
-
-    @Select("select id,uid,parent_uid parentId,key_ \"key\",name,full_name fullName from s_func")
+    @Select("SELECT r.id,r.name,r.description FROM s_role r")
     List<Map<String,Object>> list();
 
-    @Select("SELECT id,uid,parent_uid pUid,`name` FROM s_func")
-    List<Map<String,Object>> listAll();
 }

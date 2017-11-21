@@ -5,11 +5,13 @@ import com.github.tj123.common.auth.AuthorizeType;
 import com.github.tj123.common.auth.UnitModals;
 import com.github.tj123.common.auth.annotation.Authorize;
 import com.github.tj123.common.auth.annotation.Function;
+import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.common.auth.db.DbModals;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.service.FuncService;
 import com.github.tj123.frame.web.common.unit.Func;
+import com.github.tj123.frame.web.common.unit.Scan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +21,12 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/10/24. */
+
+//如果没有任何授权信息
 @Authorize(AuthorizeType.ALL)
-@Function(Func.class)
+
 @RestController
+@Function(Func.class)
 @RequestMapping("/sys/func")
 public class FuncController {
 
@@ -39,14 +42,9 @@ public class FuncController {
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
 
     @GetMapping("/scan")
+    @Module(Scan.class)
     public void scan() throws Exception{
         service.scan(new DbModals(UnitModals.scan(requestMappingHandlerMapping)).toListMap());
-    }
-
-    @GetMapping("/scand")
-    public DbModals scanData() throws Exception {
-        UnitModals unitModals = UnitModals.scan(requestMappingHandlerMapping);
-        return new DbModals(unitModals);
     }
 
 }

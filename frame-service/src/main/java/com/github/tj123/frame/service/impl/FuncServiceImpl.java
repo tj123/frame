@@ -21,6 +21,8 @@ import java.util.Map;
 @Service
 public class FuncServiceImpl implements FuncService {
 
+    @Autowired
+    FuncMapper mapper;
 
     @Override
     public PageResponse<Map<String, Object>> list(PageRequest request) throws Exception {
@@ -94,40 +96,10 @@ public class FuncServiceImpl implements FuncService {
 
     }
 
-    @Autowired
-    FuncMapper mapper;
+    @Override
+    public List<Map<String, Object>> all() throws Exception {
+        return mapper.listAll();
+    }
 
-//    @Override
-//    public Map<String, Object> list(Integer page, Integer size) throws Exception {
-//
-//        if(page == null){
-//            page = 1;
-//        }
-//        if(size == null){
-//            size = 10;
-//        }
-//
-//        Map<String, Object> map = new HashMap<>();
-//
-//
-//        Page<Object> startPage = PageHelper.startPage(page, size);
-//        List<UserPo> list = mapper.selectAll();
-//
-//        map.put("rows", list);
-//
-//        map.put("total", startPage.getTotal());
-//        return map;
-//    }
-
-
-//    @Override
-//    public void add(UserPo userPo) throws Exception {
-//        mapper.insert(userPo);
-//    }
-//
-//    @Override
-//    public void update(UserPo userPo) throws Exception {
-//        mapper.updateByPrimaryKeySelective(userPo);
-//    }
 
 }

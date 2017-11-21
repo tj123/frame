@@ -61,6 +61,13 @@
         <version>1.0.0.4</version>
       </dependency>
   
+      <!-- 在 web 中使用避免出现警告 -->
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+        <version>4.2.1</version>
+      </dependency>
+      
       <dependency>
         <groupId>com.github.tj123</groupId>
         <artifactId>pagehelper-spring-boot-starter</artifactId>
