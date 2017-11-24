@@ -47,6 +47,7 @@ public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeList
             Map<String,Object> map = userService.getInfo(userId);
             session.setUserId(userId);
             session.setDepId((String) map.get("departmentId"));
+            session.setAreaId("0");
         } catch (Exception e) {
             log.error("session error",e);
         }

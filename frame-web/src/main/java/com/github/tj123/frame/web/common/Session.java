@@ -20,4 +20,6 @@ public class Session {
 
     private String depId;
 
+    private String areaId;
+
 }

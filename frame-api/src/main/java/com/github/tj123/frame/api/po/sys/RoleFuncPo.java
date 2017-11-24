@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by TJ on 2017/9/20.
@@ -18,8 +17,8 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-@Table(name = "s_role")
-public class RolePo implements Po<RoleDto>, Serializable {
+@Table(name = "s_role_func")
+public class RoleFuncPo implements Po<RoleDto>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,16 +26,9 @@ public class RolePo implements Po<RoleDto>, Serializable {
     @GeneratedValue(generator = "UUID")
     private String id;
 
-    private String name;
+    private String roleId;
 
-    private String description;
+    private String funcId;
 
-    private String createById;
-
-    private String updateById;
-
-    private Date createTime;
-
-    private Date updateTime;
 
 }
