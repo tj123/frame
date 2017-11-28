@@ -44,6 +44,7 @@ public class DictServiceImpl implements DictService {
                     map.put("key", String.valueOf(key == null ? constant : key));
                     Object value = clazz.getMethod("getValue").invoke(constant);
                     map.put("val", value == null ? "" : String.valueOf(value));
+                    list.add(map);
                 }
             } catch (Exception e) {
                 log.error("获取枚举失败", e);

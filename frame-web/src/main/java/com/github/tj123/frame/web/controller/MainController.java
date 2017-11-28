@@ -57,7 +57,7 @@ public class MainController {
         return map;
     }
 
-    @PostMapping("/dict")
+    @GetMapping("/dict")
     @Authorize(AuthorizeType.LOGIN)
     public List<Map<String, Object>> dict(String type, String code) throws Exception {
         return dictService.getDict(type, code, session.getDepId());

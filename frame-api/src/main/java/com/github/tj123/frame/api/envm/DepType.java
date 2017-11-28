@@ -15,14 +15,14 @@ public enum DepType implements ConvertibleEnum {
 
     EDUCATION("EDU","省/市 教育局"),
 
-    FDA("FDA", "省/市/(区/县)/(镇/街)/(社区/村) 食药 监局/所");
+    FDA("FDA", "省/市/(区/县)/(镇/街)/(社区/村) 食药监局/所");
 
     private final String key;
-    private final String name;
+    private final String value;
 
-    DepType(String key, String name) {
+    DepType(String key, String value) {
         this.key = key;
-        this.name = name;
+        this.value = value;
     }
 
     @Override
@@ -30,7 +30,7 @@ public enum DepType implements ConvertibleEnum {
         return key;
     }
 
-    public String getName() {
-        return name;
+    public String getValue() {
+        return value;
     }
 }
