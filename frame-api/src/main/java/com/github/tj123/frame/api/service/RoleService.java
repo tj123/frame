@@ -22,4 +22,6 @@ public interface RoleService {
     PageResponse<Map<String, Object>> list(PageRequest request) throws Exception;
 
     void add(RolePo po, List<String> roles) throws Exception;
+
+    List<Map<String,Object>> allRoles() throws Exception;
 }

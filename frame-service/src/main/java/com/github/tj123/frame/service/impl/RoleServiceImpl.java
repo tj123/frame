@@ -61,5 +61,10 @@ public class RoleServiceImpl implements RoleService {
 
     }
 
+    @Override
+    public List<Map<String, Object>> allRoles() throws Exception {
+        return mapper.list();
+    }
+
 
 }

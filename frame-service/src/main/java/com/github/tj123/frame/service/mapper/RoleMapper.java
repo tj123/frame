@@ -16,5 +16,4 @@ public interface RoleMapper extends BaseMapper<RolePo>{
 
     @Select("SELECT r.id,r.name,r.description FROM s_role r")
     List<Map<String,Object>> list();
-
 }

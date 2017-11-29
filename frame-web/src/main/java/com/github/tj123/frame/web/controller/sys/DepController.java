@@ -5,6 +5,7 @@ import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.service.DepService;
+import com.github.tj123.frame.api.service.RoleService;
 import com.github.tj123.frame.web.common.Session;
 import com.github.tj123.frame.web.common.unit.Dep;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class DepController {
     @Reference
     DepService service;
 
+    @Reference
+    RoleService roleService;
+
     @GetMapping
     public PageResponse<Map<String, Object>> list(@RequestParam Map<String, Object> map) throws Exception {
         return service.list(PageRequest.create(map));
@@ -39,6 +43,11 @@ public class DepController {
     @GetMapping("/areas")
     public List<Map<String,Object>> areas() throws Exception {
         return service.areas(session.getAreaId());
+    }
+
+    @GetMapping("/arls")
+    public List<Map<String,Object>> allRoles() throws Exception {
+        return roleService.allRoles();
     }
 
 
