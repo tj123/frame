@@ -13,9 +13,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/9/19.
- */
 @Slf4j
 @Component
 public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeListener {

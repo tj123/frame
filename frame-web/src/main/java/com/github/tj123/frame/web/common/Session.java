@@ -5,9 +5,6 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-/**
- * Created by TJ on 2017/9/20.
- */
 @Setter
 @Getter
 @Component

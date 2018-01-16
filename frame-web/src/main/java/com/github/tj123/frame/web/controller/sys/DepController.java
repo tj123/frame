@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/10/24.
- */
 //@Authorize(AuthorizeType.ALL)
 @Function(Dep.class)
 @RestController

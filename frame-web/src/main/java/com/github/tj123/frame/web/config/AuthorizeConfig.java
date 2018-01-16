@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- * Created by TJ on 2017/9/19.
- */
 @Slf4j
 @ResponseBody
 @ControllerAdvice
