@@ -97,13 +97,6 @@ public class MainController {
         userService.update(userPo);
     }
 
-//    @Module(Dep.class)
-//    @RequestMapping(value = "/dep" ,method = RequestMethod.POST)
-//    public Map<String,Object> depList() throws Exception{
-//        return userService.list();
-//    }
-
-    @Authorize(AuthorizeType.LOGIN)
     @GetMapping("/auth")
     public List<Map<String, Object>> auth() throws Exception {
         return userService.auth(session.getUserId());

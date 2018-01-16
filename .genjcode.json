@@ -1,0 +1,53 @@
+{
+  "jdbc": {
+    "url": "localhost",
+    "db": "frame",
+    "username": "root",
+    "password": "123456"
+  },
+  "project": {
+    "package": "com.github.tj123.frame",
+    "code": [
+      {
+        "name": "dto",
+        "folder": "frame-api/src/main/java",
+        "package": "api.pojo.dto"
+      },
+      {
+        "name": "po",
+        "folder": "frame-api/src/main/java",
+        "package": "api.pojo.po"
+      },
+      {
+        "name": "service",
+        "folder": "frame-api/src/main/java",
+        "package": "api.service"
+      },
+      {
+        "name": "serviceImpl",
+        "folder": "frame-service/src/main/java",
+        "package": "service.impl"
+      },
+      {
+        "name": "controller",
+        "folder": "frame-web/src/main/java",
+        "package": "web.controller"
+      },
+      {
+        "name": "mapper",
+        "folder": "frame-service/src/main/java",
+        "package": "service.mapper"
+      },
+      {
+        "name": "mapperXml",
+        "folder": "frame-service/src/main/resources",
+        "package": "mapper"
+      },
+      {
+        "name": "common",
+        "folder": "frame-api/src/main/java",
+        "package": "api.common"
+      }
+    ]
+  }
+}

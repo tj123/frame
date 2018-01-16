@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.tj123.frame.service.mapper.SUserMapper">
+
+  <select id="list" resultType="java.util.Map" >
+    select
+      id,
+      username,
+      password,
+      sex,
+      qq,
+      email,
+      department_id departmentId,
+      tel,
+      phone,
+      last_login lastLogin,
+      name,
+      card_no cardNo,
+      comment,
+      create_by_id createById,
+      update_by_id updateById,
+      create_time createTime,
+      update_time updateTime
+    from s_user
+  </select>
+
+</mapper>
