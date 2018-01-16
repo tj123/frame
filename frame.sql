@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-11-24 17:53:27
+Date: 2018-01-16 16:06:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4974,7 +4974,7 @@ CREATE TABLE `s_dep` (
   `name` varchar(255) NOT NULL,
   `type` varchar(32) DEFAULT NULL,
   `area_id` varchar(32) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL COMMENT '这是要给注释哦os',
   `create_by_id` varchar(32) DEFAULT NULL,
   `update_by_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
@@ -4985,6 +4985,9 @@ CREATE TABLE `s_dep` (
 -- ----------------------------
 -- Records of s_dep
 -- ----------------------------
+INSERT INTO `s_dep` VALUES ('08e7f0f91f604fac81b49b1df9d97cbb', '我的妈呀', null, null, null, null, null, '2018-01-11 11:11:43', '2018-01-11 11:11:43');
+INSERT INTO `s_dep` VALUES ('68d9c8c350274ca08ffb3a9a9292074b', '我的妈呀', null, null, null, null, null, null, null);
+INSERT INTO `s_dep` VALUES ('69fe04dc31f64168a14ae80940669bd2', '我的妈呀', null, null, null, null, null, null, null);
 INSERT INTO `s_dep` VALUES ('asdf', 'asdf', 'asdf', 'asdf', 'adsfa', 'dsfa', 'sdfasdf', '2017-10-09 17:52:59', '2017-10-23 17:53:02');
 
 -- ----------------------------
@@ -4993,8 +4996,9 @@ INSERT INTO `s_dep` VALUES ('asdf', 'asdf', 'asdf', 'asdf', 'adsfa', 'dsfa', 'sd
 DROP TABLE IF EXISTS `s_dep_role`;
 CREATE TABLE `s_dep_role` (
   `id` varchar(32) NOT NULL,
-  `department_id` varchar(32) NOT NULL,
+  `dep_id` varchar(32) NOT NULL,
   `role_id` varchar(32) NOT NULL,
+  `auth_dep_id` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5163,6 +5167,7 @@ CREATE TABLE `s_user_role` (
   `id` varchar(32) NOT NULL,
   `user_id` varchar(32) NOT NULL,
   `role_id` varchar(32) NOT NULL,
+  `auth_user_id` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
