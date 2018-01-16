@@ -8,9 +8,6 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-/**
- * Created by TJ on 2017/10/12.
- */
 @Setter
 @Getter
 @ToString

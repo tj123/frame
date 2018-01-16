@@ -8,9 +8,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
-/**
- * Created by TJ on 2017/10/12.
- */
 @Data
 public class UserDto implements Dto<UserPo>, Serializable {
 

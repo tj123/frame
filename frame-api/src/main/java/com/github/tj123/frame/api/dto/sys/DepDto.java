@@ -6,9 +6,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * Created by TJ on 2017/10/12.
- */
 @Data
 public class DepDto implements Dto<DepPo>, Serializable {
 

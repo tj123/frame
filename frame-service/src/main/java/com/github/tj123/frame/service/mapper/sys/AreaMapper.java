@@ -6,9 +6,6 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/10/12.
- */
 @Mapper
 public interface AreaMapper {
 

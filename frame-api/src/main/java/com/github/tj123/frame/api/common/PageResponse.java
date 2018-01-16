@@ -6,9 +6,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by TJ on 2017/10/13.
- */
 @Getter
 @Setter
 public class PageResponse<T> implements Serializable {

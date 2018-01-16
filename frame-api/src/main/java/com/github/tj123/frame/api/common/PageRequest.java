@@ -5,9 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/10/13.
- */
 @Slf4j
 public class PageRequest extends HashMap<String, Object>{
 

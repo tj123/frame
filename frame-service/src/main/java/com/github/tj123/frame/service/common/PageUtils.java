@@ -9,9 +9,6 @@ import com.github.tj123.frame.api.common.PageResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by TJ on 2017/10/13.
- */
 public class PageUtils {
 
     public static <T> PageResponse<T> query(PageRequest request, PageQuery<T> query) throws Exception {

@@ -11,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-/**
- * Created by TJ on 2017/9/20.
- */
 @Setter
 @Getter
 @ToString

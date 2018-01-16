@@ -2,9 +2,6 @@ package com.github.tj123.frame.api.envm;
 
 import com.github.tj123.common.convert.ConvertibleEnum;
 
-/**
- * Created by TJ on 2017/10/24.
- */
 public enum DepType implements ConvertibleEnum {
 
     ADMIN("ADM", "系统管理"),

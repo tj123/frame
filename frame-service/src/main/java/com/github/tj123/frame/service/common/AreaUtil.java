@@ -2,9 +2,6 @@ package com.github.tj123.frame.service.common;
 
 import static com.github.tj123.frame.api.envm.AreaType.*;
 
-/**
- * Created by TJ on 2017/11/24.
- */
 public class AreaUtil {
 
     /**

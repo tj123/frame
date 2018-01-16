@@ -6,9 +6,6 @@ import com.github.tj123.frame.api.common.PageResponse;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/9/19.
- */
 public interface FuncService {
 
     /**

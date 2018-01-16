@@ -2,9 +2,6 @@ package com.github.tj123.frame.service.common;
 
 import java.util.UUID;
 
-/**
- * Created by TJ on 2017/11/20.
- */
 public class UuidUtil {
 
     /**

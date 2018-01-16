@@ -1,8 +1,5 @@
 package com.github.tj123.frame.api.envm;
 
-/**
- * Created by TJ on 2017/10/24.
- */
 public enum AreaType {
 
     ROOT("RT", "系统", 0, 0),

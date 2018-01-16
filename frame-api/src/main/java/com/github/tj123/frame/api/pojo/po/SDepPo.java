@@ -1,20 +1,23 @@
-package com.github.tj123.frame.api.po.sys;
+package com.github.tj123.frame.api.pojo.po;
 
 import com.github.tj123.common.Po;
-import com.github.tj123.frame.api.dto.sys.DepDto;
-import lombok.Data;
-
+import com.github.tj123.frame.api.pojo.dto.SDepDto;
+import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Table(name = "s_dep")
-public class DepPo implements Po<DepDto>, Serializable{
+public class SDepPo implements Po<SDepDto>, Serializable {
 
-    private static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -26,6 +29,9 @@ public class DepPo implements Po<DepDto>, Serializable{
 
     private String areaId;
 
+    /**
+     * 这是要给注释哦os
+     */
     private String comment;
 
     private String createById;

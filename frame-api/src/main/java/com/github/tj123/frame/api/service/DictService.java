@@ -3,9 +3,7 @@ package com.github.tj123.frame.api.service;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/11/17.
- */
+
 public interface DictService {
 
 

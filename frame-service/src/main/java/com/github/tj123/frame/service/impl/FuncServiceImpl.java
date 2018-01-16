@@ -15,9 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/9/19.
- */
 @Service
 public class FuncServiceImpl implements FuncService {
 

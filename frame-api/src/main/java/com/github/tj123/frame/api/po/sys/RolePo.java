@@ -12,9 +12,6 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by TJ on 2017/9/20.
- */
 @Setter
 @Getter
 @ToString

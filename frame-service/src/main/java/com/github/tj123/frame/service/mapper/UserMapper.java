@@ -7,9 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/10/12.
- */
+
 @Mapper
 public interface UserMapper extends BaseMapper<UserPo>{
 

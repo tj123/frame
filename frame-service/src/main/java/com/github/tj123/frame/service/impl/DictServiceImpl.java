@@ -9,9 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by TJ on 2017/9/19.
- */
 @Slf4j
 @Service
 public class DictServiceImpl implements DictService {

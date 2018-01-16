@@ -8,9 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-/**
- * Created by TJ on 2017/10/12.
- */
 @Data
 @Table(name = "s_area")
 public class AreaPo implements Po<AreaDto>, Serializable{

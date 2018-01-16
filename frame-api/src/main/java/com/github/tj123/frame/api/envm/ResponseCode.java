@@ -1,8 +1,5 @@
 package com.github.tj123.frame.api.envm;
 
-/**
- * Created by TJ on 2017/10/16.
- */
 public enum ResponseCode {
 
     UNAUTHORIZED(401, "没有访问权限"),

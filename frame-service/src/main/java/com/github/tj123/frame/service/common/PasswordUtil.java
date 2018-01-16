@@ -4,9 +4,6 @@ import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-/**
- * Created by TJ on 2017/1/6.
- */
 public class PasswordUtil {
 
     /**
