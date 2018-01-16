@@ -36,21 +36,18 @@ public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeList
             miniModals.readFromDb(auth);
             authorizeSession.setAuth(miniModals);
         } catch (Exception e) {
-            log.error("auth error",e);
+            log.error("auth error", e);
         }
-
-        System.out.println("update auth");
     }
 
     public void onUpdateSession(String userId) {
         try {
-            Map<String,Object> map = userService.getInfo(userId);
+            Map<String, Object> map = userService.getInfo(userId);
             session.setUserId(userId);
             session.setDepId((String) map.get("departmentId"));
             session.setAreaId("0");
         } catch (Exception e) {
-            log.error("session error",e);
+            log.error("session error", e);
         }
-        System.out.println("update session");
     }
 }

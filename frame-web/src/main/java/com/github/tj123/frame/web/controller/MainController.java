@@ -2,7 +2,9 @@ package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.AuthProperties;
+import com.github.tj123.common.auth.AuthorizeSessionImpl;
 import com.github.tj123.common.auth.AuthorizeType;
+import com.github.tj123.common.auth.ValidateConfig;
 import com.github.tj123.common.auth.annotation.Authorize;
 import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.common.auth.token.AccessToken;
@@ -12,11 +14,13 @@ import com.github.tj123.frame.api.dto.UserDto;
 import com.github.tj123.frame.api.po.UserPo;
 import com.github.tj123.frame.api.service.DictService;
 import com.github.tj123.frame.api.service.UserService;
+import com.github.tj123.frame.web.common.ControllerUtil;
 import com.github.tj123.frame.web.common.Session;
 import com.github.tj123.frame.web.common.UpdateSession;
 import com.github.tj123.frame.web.common.unit.Add;
 import com.github.tj123.frame.web.common.unit.Edit;
 import com.github.tj123.frame.web.common.unit.User;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,15 +47,24 @@ public class MainController {
     @Autowired
     AuthProperties authProperties;
 
+    @Autowired
+    AuthorizeSessionImpl authorizeSession;
+
     @PostMapping("/login")
     @Authorize(AuthorizeType.ALL)
-    public Map<String, Object> login(String username, String password,Boolean keep) throws Exception {
+    public Map<String, Object> login(HttpServletRequest request, String username, String password, Boolean keep) throws Exception {
         updateSession.onUpdateSession(userService.login(username, password));
         updateSession.onUpdateAuthorization();
         Map<String, Object> map = new HashMap();
-        AccessToken token = new AccessToken(session.getUserId(), "frame",
-                authProperties.getKey(), authProperties.getIv());
-        if(Boolean.TRUE.equals(keep)){
+        ValidateConfig config = authorizeSession.getConfig(request);
+        if (Boolean.TRUE.equals(keep) && config.isEnable()) {
+            AccessToken token = new AccessToken(session.getUserId(), "frame", authProperties.getKey(), authProperties.getIv());
+            if (config.isUserAgent()) {
+                token.setUserAgent(request.getHeader("User-Agent"));
+            }
+            if (config.isIp()) {
+                token.setIp(ControllerUtil.getIp(request));
+            }
             map.put("key", token.encrypt());
         }
         return map;
