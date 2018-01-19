@@ -20,6 +20,7 @@ import com.github.tj123.frame.web.common.UpdateSession;
 import com.github.tj123.frame.web.common.unit.Add;
 import com.github.tj123.frame.web.common.unit.Edit;
 import com.github.tj123.frame.web.common.unit.User;
+import com.github.tj123.frame.web.config.ProjectProperties;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -102,5 +103,13 @@ public class MainController {
         return userService.auth(session.getUserId());
     }
 
+    @Autowired
+    ProjectProperties properties;
+
+    @Authorize(AuthorizeType.ALL)
+    @GetMapping("/version")
+    public String version(){
+        return properties.getVersion() + "  hahahaaa";
+    }
 
 }
