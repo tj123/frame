@@ -6,9 +6,11 @@
   "author": "tj <tang123jian@126.com>",
   "license": "MIT",
   "scripts": {
-    "deploy:test": "node deploy/dtest.js"
+    "deploy:test": "node deploy/dtest.js",
+    "package": "node deploy/package.js frame-web frame-service"
   },
   "dependencies": {
-    "shelljs": "^0.8.0"
+    "shelljs": "^0.8.0",
+    "tar": "^4.3.0"
   }
 }

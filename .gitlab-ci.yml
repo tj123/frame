@@ -13,7 +13,7 @@ cache:
 编译:
   stage: build
   script:
-    - mvn -Pprod clean package
+    - mvn clean package
     - yarn
     - yarn run package
 
