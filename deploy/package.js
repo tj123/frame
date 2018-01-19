@@ -1,12 +1,11 @@
 require('shelljs/global');
 var tar = require('tar');
-var fs = require('fs');
 
 var buld_path = 'build';
 
-
 var files = {
-  'frame-service': ['frame-service/target/*.jar', 'frame-service/target/classes'],
+  // 'frame-service': ['frame-service/target/*.jar', 'frame-service/target/classes'],
+  'frame-service': ['frame-service/target/*.jar'],
   'frame-web': ['frame-web/target/*.jar']
 }
 
@@ -22,6 +21,7 @@ function init() {
  * 打包
  */
 function package(project) {
+  var _pwd = pwd();
   var file = files[project];
   if (!file) {
     echo(`没有找到包${project}`);
@@ -32,11 +32,10 @@ function package(project) {
   cp('-r', file, ph);
   cd(buld_path);
   tar.c({
-      gzip: true
-    },
-    [project]
-  ).pipe(fs.createWriteStream(project + '.tar.gz'));
-  cd('..');
+    gzip: true, sync: true,
+    file: project + '.tar.gz',
+  }, [project]);
+  cd(_pwd);
   rm('-rf', ph);
 }
 
@@ -45,7 +44,6 @@ args.shift();
 args.shift();
 
 init();
-
 for (let arg of args) {
   package(arg);
 }
