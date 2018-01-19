@@ -1,0 +1,14 @@
+{
+  "name": "frame",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tj123/frame",
+  "author": "tj <tang123jian@126.com>",
+  "license": "MIT",
+  "scripts": {
+    "deploy:test": "node deploy/dtest.js"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.0"
+  }
+}
