@@ -17,6 +17,6 @@ public class Func implements Unit {
 
     @Override
     public String getName() {
-        return "哈哈管理";
+        return "功能管理";
     }
 }

@@ -13,7 +13,7 @@ import java.util.Map;
 public interface FuncMapper extends BaseMapper<FunctionPo>{
 
 
-    @Select("select id,uid,parent_uid parentId,key_ \"key\",name,full_name fullName from s_func")
+    @Select("select id,uid,parent_uid parentUid,key_ \"key\",name,full_name fullName from s_func")
     List<Map<String,Object>> list();
 
     @Select("SELECT id,uid,parent_uid pUid,`name` FROM s_func")

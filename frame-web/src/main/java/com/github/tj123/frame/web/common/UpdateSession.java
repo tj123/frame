@@ -1,21 +1,18 @@
 package com.github.tj123.frame.web.common;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.tj123.common.auth.AuthorizeListener;
 import com.github.tj123.common.auth.AuthorizeSessionImpl;
-import com.github.tj123.common.auth.UpdateAuthorizeListener;
-import com.github.tj123.common.auth.UpdateSessionListener;
-import com.github.tj123.common.auth.mini.MiniModals;
 import com.github.tj123.frame.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @Component
-public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeListener {
+public class UpdateSession implements AuthorizeListener {
 
     @Autowired
     AuthorizeSessionImpl authorizeSession;
@@ -28,10 +25,7 @@ public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeList
 
     public void onUpdateAuthorization() {
         try {
-            List<Map<String, Object>> auth = userService.auth(session.getUserId());
-            MiniModals miniModals = new MiniModals();
-            miniModals.readFromDb(auth);
-            authorizeSession.setAuth(miniModals);
+            authorizeSession.setAuth(userService.auth(session.getUserId()));
         } catch (Exception e) {
             log.error("auth error", e);
         }
@@ -43,6 +37,7 @@ public class UpdateSession implements UpdateSessionListener, UpdateAuthorizeList
             session.setUserId(userId);
             session.setDepId((String) map.get("departmentId"));
             session.setAreaId("0");
+            session.setName((String) map.get("name"));
         } catch (Exception e) {
             log.error("session error", e);
         }
