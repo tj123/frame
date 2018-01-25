@@ -22,12 +22,12 @@ public class AreaUtil {
         areaId = deleteLatterZero(areaId.trim());
         int length = areaId.length();
         return length == ROOT.getLength() ? "" :
-                length <= PROVINCIAL.getLength() ? addZeroTo(areaId, PROVINCIAL.getLength()) :
-                        length <= CIVIC.getLength() ? addZeroTo(areaId, CIVIC.getLength()) :
-                                length <= DISTRICT_COUNTY.getLength() ? addZeroTo(areaId, DISTRICT_COUNTY.getLength()) :
-                                        length <= TOWN_STREET.getLength() ? addZeroTo(areaId, TOWN_STREET.getLength()) :
-                                                addZeroTo(areaId, COMMUNITY_VILLAGE.getLength())
-                ;
+            length <= PROVINCIAL.getLength() ? addZeroTo(areaId, PROVINCIAL.getLength()) :
+                length <= CIVIC.getLength() ? addZeroTo(areaId, CIVIC.getLength()) :
+                    length <= DISTRICT_COUNTY.getLength() ? addZeroTo(areaId, DISTRICT_COUNTY.getLength()) :
+                        length <= TOWN_STREET.getLength() ? addZeroTo(areaId, TOWN_STREET.getLength()) :
+                            addZeroTo(areaId, COMMUNITY_VILLAGE.getLength())
+            ;
     }
 
 
