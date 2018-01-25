@@ -2,6 +2,7 @@ package com.github.tj123.frame.api.service;
 
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
+import com.github.tj123.common.auth.DbFunction;
 
 import java.util.List;
 import java.util.Map;
@@ -20,10 +21,10 @@ public interface FuncService {
     /**
      * 扫描功能
      *
-     * @param maps
+     * @param scans
      * @throws Exception
      */
-    void scan(List<Map<String, Object>> maps) throws Exception;
+    void scan(List<DbFunction> scans) throws Exception;
 
 
     /**

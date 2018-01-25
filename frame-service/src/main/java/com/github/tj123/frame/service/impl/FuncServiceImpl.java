@@ -1,9 +1,9 @@
 package com.github.tj123.frame.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.github.tj123.common.auth.compare.AuthorizationCompare;
+import com.github.tj123.common.auth.DbFunction;
+import com.github.tj123.common.auth.compare.AuthorizeCompare;
 import com.github.tj123.common.auth.compare.Compare;
-import com.github.tj123.common.auth.compare.CompareFunction;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.po.sys.FunctionPo;
@@ -28,12 +28,12 @@ public class FuncServiceImpl implements FuncService {
 
 
     @Override
-    public void scan(List<Map<String, Object>> scanList) throws Exception {
+    public void scan(List<DbFunction> scanList) throws Exception {
         List<Map<String, Object>> dbList = mapper.list();
-        AuthorizationCompare.compare(dbList, scanList, new Compare() {
+        AuthorizeCompare.compare(dbList, scanList, new Compare() {
             @Override
-            public void onAddFunction(List<CompareFunction> list) throws Exception {
-                for (CompareFunction func : list) {
+            public void onAddFunction(List<DbFunction> list) throws Exception {
+                for (DbFunction func : list) {
                     FunctionPo po = new FunctionPo();
                     po.setId(func.getId());
                     po.setUid(func.getUid());
@@ -46,8 +46,8 @@ public class FuncServiceImpl implements FuncService {
             }
 
             @Override
-            public void onModifyFunction(List<CompareFunction> list) throws Exception {
-                for (CompareFunction func : list) {
+            public void onModifyFunction(List<DbFunction> list) throws Exception {
+                for (DbFunction func : list) {
                     FunctionPo po = new FunctionPo();
                     po.setId(func.getId());
                     po.setUid(func.getUid());
@@ -60,8 +60,8 @@ public class FuncServiceImpl implements FuncService {
             }
 
             @Override
-            public void onDeleteFunction(List<CompareFunction> list) throws Exception {
-                for (CompareFunction func : list) {
+            public void onDeleteFunction(List<DbFunction> list) throws Exception {
+                for (DbFunction func : list) {
                     mapper.deleteByPrimaryKey(func.getId());
                 }
             }
