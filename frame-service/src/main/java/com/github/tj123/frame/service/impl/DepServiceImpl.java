@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.service.DepService;
-import com.github.tj123.frame.service.common.AreaUtil;
+import com.github.tj123.frame.api.common.utils.AreaUtils;
 import com.github.tj123.frame.service.common.PageUtils;
 import com.github.tj123.frame.service.mapper.DepMapper;
 import com.github.tj123.frame.service.mapper.sys.AreaMapper;
@@ -30,7 +30,7 @@ public class DepServiceImpl implements DepService {
 
     @Override
     public List<Map<String, Object>> areas(String areaId) throws Exception {
-        return areaMapper.areas(AreaUtil.simple(areaId));
+        return areaMapper.areas(AreaUtils.simple(areaId));
     }
 
 

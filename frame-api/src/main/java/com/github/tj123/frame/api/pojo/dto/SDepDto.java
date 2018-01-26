@@ -1,13 +1,14 @@
 package com.github.tj123.frame.api.pojo.dto;
 
-import com.github.tj123.common.DatePattern;
 import com.github.tj123.common.Dto;
+import com.github.tj123.common.convert.BlankCurrent;
 import com.github.tj123.frame.api.pojo.po.SDepPo;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -21,8 +22,10 @@ public class SDepDto implements Dto<SDepPo>, Serializable {
     @NotBlank
     private String name;
 
+    @NotBlank
     private String type;
 
+    @NotBlank
     private String areaId;
 
     /**
@@ -34,10 +37,10 @@ public class SDepDto implements Dto<SDepPo>, Serializable {
 
     private String updateById;
 
-    @DatePattern("yyyy-MM-dd hh:mm:ss")
+    @BlankCurrent
     private String createTime;
 
-    @DatePattern("yyyy-MM-dd hh:mm:ss")
+    @BlankCurrent
     private String updateTime;
 
 }

@@ -1,8 +1,8 @@
-package com.github.tj123.frame.service.common;
+package com.github.tj123.frame.api.common.utils;
 
 import static com.github.tj123.frame.api.envm.AreaType.*;
 
-public class AreaUtil {
+public class AreaUtils {
 
     /**
      * 精简区域 id

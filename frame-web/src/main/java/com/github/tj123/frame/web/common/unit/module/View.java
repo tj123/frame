@@ -1,21 +1,21 @@
-package com.github.tj123.frame.web.common.unit;
+package com.github.tj123.frame.web.common.unit.module;
 
 import com.github.tj123.common.auth.annotation.Unit;
 
-public class Edit implements Unit {
+public class View implements Unit {
 
     @Override
     public Integer getId() {
-        return 6;
+        return 7;
     }
 
     @Override
     public String getKey() {
-        return "edt";
+        return "vew";
     }
 
     @Override
     public String getName() {
-        return "修改";
+        return "查看";
     }
 }

@@ -14,6 +14,7 @@
       create_time createTime,
       update_time updateTime
     from s_dep
+    where area_id = #{areaId}
   </select>
 
 </mapper>

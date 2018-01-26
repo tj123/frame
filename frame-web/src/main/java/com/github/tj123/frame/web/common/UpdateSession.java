@@ -36,7 +36,7 @@ public class UpdateSession implements AuthorizeListener {
             Map<String, Object> map = userService.getInfo(userId);
             session.setUserId(userId);
             session.setDepId((String) map.get("departmentId"));
-            session.setAreaId("0");
+            session.setAreaId("510100");
             session.setName((String) map.get("name"));
         } catch (Exception e) {
             log.error("session error", e);

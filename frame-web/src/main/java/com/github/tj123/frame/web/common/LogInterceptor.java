@@ -37,7 +37,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         } catch (Exception e) {
             log.debug(e.getMessage());
         }
-        log.info("{}({}) 访问 {}({})", session.getName(), ControllerUtil.getIp(request), func, ControllerUtil.getVisitUrl(request));
+        log.info("{}({}) 访问 {}({} {})", session.getName(), ControllerUtil.getIp(request), func, request.getMethod(), ControllerUtil.getVisitUrl(request));
 
 
         return true;
