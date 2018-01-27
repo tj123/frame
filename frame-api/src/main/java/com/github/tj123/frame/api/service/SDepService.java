@@ -4,11 +4,12 @@ import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.po.SDepPo;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SDepService {
 
-    void add(SDepPo po) throws Exception;
+    void add(SDepPo po, List<String> roles) throws Exception;
 
     void del(String id) throws Exception;
 

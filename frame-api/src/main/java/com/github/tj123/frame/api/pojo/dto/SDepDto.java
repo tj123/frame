@@ -28,10 +28,7 @@ public class SDepDto implements Dto<SDepPo>, Serializable {
     @NotBlank
     private String areaId;
 
-    /**
-     * 这是要给注释哦os
-     */
-    private String comment;
+    private String shortName;
 
     private String createById;
 
@@ -40,7 +37,6 @@ public class SDepDto implements Dto<SDepPo>, Serializable {
     @BlankCurrent
     private String createTime;
 
-    @BlankCurrent
     private String updateTime;
 
 }

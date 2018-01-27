@@ -5,16 +5,16 @@
   <select id="list" resultType="java.util.Map" >
     select
       id,
-      name,
-      type,
+      `name`,
+      `type`,
       area_id areaId,
-      comment,
+      short_name shortName,
       create_by_id createById,
       update_by_id updateById,
       create_time createTime,
       update_time updateTime
     from s_dep
-    where area_id = #{areaId}
+    where instr(area_id,#{areaId})
   </select>
 
 </mapper>

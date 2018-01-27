@@ -2,8 +2,6 @@ package com.github.tj123.frame.web.controller.sys;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.AuthorizeSessionImpl;
-import com.github.tj123.common.auth.AuthorizeType;
-import com.github.tj123.common.auth.annotation.Authorize;
 import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.common.PageRequest;
@@ -19,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-
-//如果没有任何授权信息
-@Authorize(AuthorizeType.ALL)
 
 @RestController
 @Function(Func.class)

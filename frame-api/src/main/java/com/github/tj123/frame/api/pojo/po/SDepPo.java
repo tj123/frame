@@ -2,14 +2,15 @@ package com.github.tj123.frame.api.pojo.po;
 
 import com.github.tj123.common.Po;
 import com.github.tj123.frame.api.pojo.dto.SDepDto;
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -29,10 +30,7 @@ public class SDepPo implements Po<SDepDto>, Serializable {
 
     private String areaId;
 
-    /**
-     * 这是要给注释哦os
-     */
-    private String comment;
+    private String shortName;
 
     private String createById;
 
