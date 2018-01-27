@@ -1,7 +1,14 @@
 package com.github.tj123.frame.api.common.utils;
 
+import com.github.tj123.frame.api.common.exception.CannotConvertException;
+import com.github.tj123.frame.api.envm.AreaType;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.regex.Pattern;
+
 import static com.github.tj123.frame.api.envm.AreaType.*;
 
+@Slf4j
 public class AreaUtils {
 
     /**
@@ -12,9 +19,6 @@ public class AreaUtils {
      * 510000 变为 51
      * <p>
      * 510110 结果还是 510110
-     *
-     * @param areaId
-     * @return
      */
     public static String simple(String areaId) {
         if (areaId == null || areaId.trim().equals(""))
@@ -33,9 +37,6 @@ public class AreaUtils {
 
     /**
      * 删除后面的 0
-     *
-     * @param code
-     * @return
      */
     public static String deleteLatterZero(String code) {
         if (code == null)
@@ -45,10 +46,6 @@ public class AreaUtils {
 
     /**
      * 在后面添加 0 到指定长度
-     *
-     * @param code
-     * @param length
-     * @return
      */
     public static String addZeroTo(String code, int length) {
         if (code == null)
@@ -63,4 +60,28 @@ public class AreaUtils {
         return code;
     }
 
+    /**
+     * 根据编码获取类型
+     */
+    public static AreaType areaType(String code) throws CannotConvertException {
+        return EnumUtils.toEnum(AreaType.class, simple(code).length(), "getLength");
+    }
+
+    /**
+     * 是不是上下级关系
+     */
+    public static boolean isParent(String parentCode, String childCode) {
+        if (!Pattern.compile("^" + simple(parentCode)).matcher(childCode).find()) {
+            return false;
+        }
+        try {
+            if (areaType(parentCode).getLevel() + 1 == areaType(childCode).getLevel()) {
+                return true;
+            }
+        } catch (CannotConvertException e) {
+            log.error(e.getMessage());
+        }
+        return false;
+
+    }
 }

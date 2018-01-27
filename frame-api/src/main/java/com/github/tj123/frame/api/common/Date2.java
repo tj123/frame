@@ -80,7 +80,6 @@ public class Date2 extends Date {
      */
     public static final String HHMM = "HH:mm";
 
-    // private Date date;
     private Calendar calen;
     private SimpleDateFormat formatter;
     // 默认的日期格式不能随便修改
@@ -91,8 +90,6 @@ public class Date2 extends Date {
 
     /**
      * 以时间戳的方式初始数据
-     *
-     * @param timestamp
      */
     public Date2(Timestamp timestamp) {
         setTime(timestamp.getTime());
@@ -100,8 +97,6 @@ public class Date2 extends Date {
 
     /**
      * 添加的时间
-     *
-     * @param days
      */
     public Date2(int days) {
         addDay(days);
@@ -109,8 +104,6 @@ public class Date2 extends Date {
 
     /**
      * date 转为date2
-     *
-     * @param date
      */
     public Date2(Date date) {
         setDate(date);
@@ -126,9 +119,6 @@ public class Date2 extends Date {
 
     /**
      * 日期格式
-     *
-     * @param date
-     * @throws ParseException
      */
     public Date2(String date) throws ParseException {
         parse(date, pattern);
@@ -137,7 +127,6 @@ public class Date2 extends Date {
     /**
      * @param date    字符串日期
      * @param pattern 日期的格式
-     * @throws ParseException
      */
     public Date2(String date, String pattern) throws ParseException {
         parse(date, pattern);
@@ -145,8 +134,6 @@ public class Date2 extends Date {
 
     /**
      * 在需要使用时才初始化 节省内存
-     *
-     * @return
      */
     private Calendar getCalendar() {
         if (calen == null) {
@@ -160,8 +147,6 @@ public class Date2 extends Date {
 
     /**
      * 在需要使用时才初始化 节省内存
-     *
-     * @return
      */
     private SimpleDateFormat getFormatter() {
         if (formatter == null) {
@@ -174,9 +159,6 @@ public class Date2 extends Date {
 
     /**
      * 设置它的格式 建议调用时使用 SDate。提示
-     *
-     * @param pattern
-     * @return
      */
     public Date2 setPattern(String pattern) {
         this.pattern = pattern;
