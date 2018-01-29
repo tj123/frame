@@ -11,6 +11,7 @@ import com.github.tj123.frame.service.common.PageUtils;
 import com.github.tj123.frame.service.common.UuidUtil;
 import com.github.tj123.frame.service.mapper.SDepMapper;
 import com.github.tj123.frame.service.mapper.SDepRoleMapper;
+import com.github.tj123.frame.service.mapper.sys.AreaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,9 @@ public class SDepServiceImpl implements SDepService {
 
     @Autowired
     private SDepMapper mapper;
+
+    @Autowired
+    AreaMapper areaMapper;
 
     @Autowired
     SDepRoleMapper depRoleMapper;
@@ -57,8 +61,13 @@ public class SDepServiceImpl implements SDepService {
 
     @Override
     public PageResponse<Map<String, Object>> list(PageRequest request) throws Exception {
-        request.put("areaId", AreaUtils.simple((String)request.get("areaId")));
+        request.put("areaId", AreaUtils.simple((String) request.get("areaId")));
         return PageUtils.query(request, () -> mapper.list(request));
+    }
+
+    @Override
+    public List<Map<String, Object>> areas(String areaId) throws Exception {
+        return areaMapper.areas(AreaUtils.simple(areaId));
     }
 
 }

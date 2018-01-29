@@ -1,11 +1,12 @@
 package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.dto.SUserDto;
-import com.github.tj123.frame.api.pojo.po.SUserPo;
 import com.github.tj123.frame.api.service.SUserService;
+import com.github.tj123.frame.web.common.unit.User;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
+@Function(User.class)
 @RequestMapping("/suser")
 public class SUserController {
 
@@ -42,8 +44,8 @@ public class SUserController {
     }
 
     @GetMapping("/get/{id}")
-    public SUserPo get(@PathVariable String id) throws Exception {
-        return service.get(id);
+    public Map<String, Object> get2(@PathVariable String id) throws Exception {
+        return service.get2(id);
     }
 
     @GetMapping

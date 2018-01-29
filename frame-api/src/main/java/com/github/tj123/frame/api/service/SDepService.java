@@ -19,4 +19,5 @@ public interface SDepService {
 
     PageResponse<Map<String, Object>> list(PageRequest request) throws Exception;
 
+    List<Map<String, Object>> areas(String areaId) throws Exception;
 }

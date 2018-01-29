@@ -33,7 +33,7 @@ public class SUserPo implements Po<SUserDto>, Serializable {
 
     private String email;
 
-    private String departmentId;
+    private String depId;
 
     private String tel;
 
@@ -43,7 +43,7 @@ public class SUserPo implements Po<SUserDto>, Serializable {
 
     private String name;
 
-    private String cardNo;
+    private String idNo;
 
     private String comment;
 

@@ -1,13 +1,15 @@
 package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.dto.SDepDto;
 import com.github.tj123.frame.api.pojo.po.SDepPo;
+import com.github.tj123.frame.api.service.RoleService;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.web.common.Session;
-import org.hibernate.validator.constraints.Length;
+import com.github.tj123.frame.web.common.unit.Dep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@Function(Dep.class)
 @RequestMapping("/sdep")
 public class SDepController {
 
@@ -27,9 +30,11 @@ public class SDepController {
     @Autowired
     Session session;
 
+    @Reference
+    RoleService roleService;
+
     @PutMapping
-    public void add(@Valid SDepDto dto,
-                    @Length(min = 1) @RequestParam("roles[]") List<String> roles,
+    public void add(@Valid SDepDto dto, @RequestParam("roles[]") List<String> roles,
                     BindingResult result) throws Exception {
         if (result.hasErrors()) {
             throw new BindException(result);
@@ -61,9 +66,20 @@ public class SDepController {
         if (!map.containsKey("area")) {
             map.put("areaId", session.getAreaId());
         }
-        map.put("areaId",map.get("area"));
+        map.put("areaId", map.get("area"));
         map.remove("area");
         return service.list(PageRequest.create(map));
     }
+
+    @GetMapping("/areas")
+    public List<Map<String,Object>> areas() throws Exception {
+        return service.areas(session.getAreaId());
+    }
+
+    @GetMapping("/arls")
+    public List<Map<String,Object>> allRoles() throws Exception {
+        return roleService.allRoles();
+    }
+
 
 }

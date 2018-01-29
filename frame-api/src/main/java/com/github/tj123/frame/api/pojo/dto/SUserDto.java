@@ -31,7 +31,7 @@ public class SUserDto implements Dto<SUserPo>, Serializable {
 
     private String email;
 
-    private String departmentId;
+    private String depId;
 
     private String tel;
 
@@ -42,7 +42,7 @@ public class SUserDto implements Dto<SUserPo>, Serializable {
 
     private String name;
 
-    private String cardNo;
+    private String idNo;
 
     private String comment;
 

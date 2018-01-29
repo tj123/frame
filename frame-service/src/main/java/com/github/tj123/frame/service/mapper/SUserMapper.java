@@ -11,6 +11,12 @@ import java.util.Map;
 @Mapper
 public interface SUserMapper extends BaseMapper<SUserPo> {
 
+    Map<String, Object> get(String id);
+
     List<Map<String, Object>> list(PageRequest request);
+
+    Map<String,Object> selectUser(String userName);
+
+    List<Map<String,Object>> auth(String userId);
 
 }
