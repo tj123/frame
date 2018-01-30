@@ -5,12 +5,16 @@ import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.common.exception.MessageException;
 import com.github.tj123.frame.api.common.utils.PasswordUtils;
+import com.github.tj123.frame.api.common.utils.UuidUtils;
 import com.github.tj123.frame.api.pojo.po.SUserPo;
+import com.github.tj123.frame.api.pojo.po.SUserRolePo;
 import com.github.tj123.frame.api.service.SUserService;
 import com.github.tj123.frame.service.common.PageUtils;
 import com.github.tj123.frame.service.mapper.SDepMapper;
 import com.github.tj123.frame.service.mapper.SUserMapper;
+import com.github.tj123.frame.service.mapper.SUserRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -24,11 +28,24 @@ public class SUserServiceImpl implements SUserService {
     @Autowired
     SDepMapper depMapper;
 
+    @Autowired
+    SUserRoleMapper userRoleMapper;
+
     @Override
-    public void add(SUserPo po) throws Exception {
+    @Transactional
+    public void add(SUserPo po, List<String> roles) throws Exception {
         if (po.getPassword() == null || po.getPassword().trim().equals(""))
             po.setPassword(PasswordUtils.encrypt("96e79218965eb72c92a549dd5a330112"));
+        String id = UuidUtils.getUUID();
+        po.setId(id);
         mapper.insert(po);
+        for (String role : roles) {
+            SUserRolePo userRolePo = new SUserRolePo();
+            userRolePo.setUserId(id);
+            userRolePo.setRoleId(role);
+            userRoleMapper.insert(userRolePo);
+        }
+
     }
 
     @Override
@@ -80,6 +97,11 @@ public class SUserServiceImpl implements SUserService {
         if (username == null)
             return true;
         return mapper.isExistUsername(username) > 0;
+    }
+
+    @Override
+    public Map<String, Object> session(String userId) throws Exception {
+        return mapper.session(userId);
     }
 
 

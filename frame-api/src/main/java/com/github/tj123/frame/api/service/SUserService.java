@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface SUserService {
 
-    void add(SUserPo po) throws Exception;
+    void add(SUserPo po, List<String> roles) throws Exception;
 
     void del(String id) throws Exception;
 
@@ -25,4 +25,5 @@ public interface SUserService {
 
     Boolean isExist(String username) throws Exception;
 
+    Map<String,Object> session(String userId) throws Exception;
 }

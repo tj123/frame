@@ -7,7 +7,10 @@ import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.dto.SUserDto;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.api.service.SUserService;
+import com.github.tj123.frame.web.common.Session;
 import com.github.tj123.frame.web.common.unit.User;
+import com.github.tj123.frame.web.config.ProjectProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -28,12 +31,18 @@ public class SUserController {
     @Reference
     private SDepService depService;
 
+    @Autowired
+    Session session;
+
+    @Autowired
+    ProjectProperties projectProperties;
+
     @PutMapping
     public void add(@Valid SUserDto dto, @RequestParam("roles[]") List<String> roles, BindingResult result) throws Exception {
         if (result.hasErrors()) {
             throw new BindException(result);
         }
-        service.add(dto.toPo());
+        service.add(dto.toPo(), roles);
     }
 
     @DeleteMapping("/{id}")
@@ -65,7 +74,7 @@ public class SUserController {
     }
 
     @GetMapping("/dep/search")
-    public List<Map<String,Object>> searchDep(String name) throws Exception{
+    public List<Map<String, Object>> searchDep(String name) throws Exception {
         return depService.search(name);
     }
 
@@ -79,7 +88,12 @@ public class SUserController {
         session.invalidate();
     }
 
-
+    @GetMapping("/session")
+    public Map<String, Object> session() {
+        Map<String, Object> map = session.toMap();
+        map.put("version", projectProperties.getVersion());
+        return map;
+    }
 
 
 }

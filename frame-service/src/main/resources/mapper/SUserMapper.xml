@@ -60,4 +60,20 @@
     select count(1) from s_user where username = #{username}
   </select>
 
+  <select id="session" resultType="java.util.Map">
+    select
+      u.username,
+      u.`name`,
+      u.dep_id depId,
+      d.`name` depName,
+      d.area_id areaId,
+      a.parent_id parentAreaId,
+      d.type depType,
+      a.`name` areaName
+     from s_user u
+    left join s_dep d on u.dep_id = d.id
+    left join s_area a on d.area_id = a.area_id
+    where u.id = #{userId}
+  </select>
+
 </mapper>
