@@ -13,4 +13,7 @@ public interface SDepMapper extends BaseMapper<SDepPo> {
 
     List<Map<String, Object>> list(PageRequest request);
 
+    List<Map<String,Object>> search(String name);
+
+    Map<String,Object> get(String id);
 }

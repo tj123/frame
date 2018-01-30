@@ -15,9 +15,11 @@ public interface SDepService {
 
     void edit(SDepPo po) throws Exception;
 
-    SDepPo get(String id) throws Exception;
+    Map<String,Object> get(String id) throws Exception;
 
     PageResponse<Map<String, Object>> list(PageRequest request) throws Exception;
 
     List<Map<String, Object>> areas(String areaId) throws Exception;
+
+    List<Map<String,Object>> search(String name) throws Exception;
 }

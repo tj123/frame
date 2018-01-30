@@ -1,11 +1,16 @@
-package com.github.tj123.frame.service.common;
+package com.github.tj123.frame.api.common.utils;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Base64;
 
-public class PasswordUtil {
+
+/**
+ * PasswordUtils.isMatch("96e79218965eb72c92a549dd5a330112",
+ * PasswordUtils.encrypt("96e79218965eb72c92a549dd5a330112"))
+ */
+public class PasswordUtils {
 
     /**
      * 加密因子长度
@@ -16,6 +21,13 @@ public class PasswordUtil {
      * 对密码加密
      */
     public static String encrypt(String password) throws Exception {
+        return encrypt(password.getBytes("utf8"));
+    }
+
+    /**
+     * 对密码加密
+     */
+    public static String encrypt(byte[] password) throws Exception {
         byte[] pwd = null;
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_LENGTH];
@@ -23,7 +35,7 @@ public class PasswordUtil {
         MessageDigest md = null;
         md = MessageDigest.getInstance("MD5");
         md.update(salt);
-        md.update(password.getBytes("UTF-8"));
+        md.update(password);
         byte[] digest = md.digest();
         pwd = new byte[digest.length + SALT_LENGTH];
         System.arraycopy(salt, 0, pwd, 0, SALT_LENGTH);

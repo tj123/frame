@@ -1,8 +1,8 @@
-package com.github.tj123.frame.service.common;
+package com.github.tj123.frame.api.common.utils;
 
 import java.util.UUID;
 
-public class UuidUtil {
+public class UuidUtils {
 
     /**
      * uuid 统一生成

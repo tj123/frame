@@ -4,10 +4,11 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.common.exception.MessageException;
+import com.github.tj123.frame.api.common.utils.PasswordUtils;
 import com.github.tj123.frame.api.pojo.po.SUserPo;
 import com.github.tj123.frame.api.service.SUserService;
 import com.github.tj123.frame.service.common.PageUtils;
-import com.github.tj123.frame.service.common.PasswordUtil;
+import com.github.tj123.frame.service.mapper.SDepMapper;
 import com.github.tj123.frame.service.mapper.SUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,8 +21,13 @@ public class SUserServiceImpl implements SUserService {
     @Autowired
     private SUserMapper mapper;
 
+    @Autowired
+    SDepMapper depMapper;
+
     @Override
     public void add(SUserPo po) throws Exception {
+        if (po.getPassword() == null || po.getPassword().trim().equals(""))
+            po.setPassword(PasswordUtils.encrypt("96e79218965eb72c92a549dd5a330112"));
         mapper.insert(po);
     }
 
@@ -53,13 +59,13 @@ public class SUserServiceImpl implements SUserService {
         if (password == null || password.trim().equals(""))
             throw new MessageException("请输入密码");
         Map<String, Object> map = mapper.selectUser(userName);
-        if(map == null)
+        if (map == null)
             throw new MessageException("用户名或密码错误");
         String userId = (String) map.get("id");
         String dbPassword = (String) map.get("password");
         if (dbPassword == null || dbPassword.trim().equals(""))
             throw new MessageException("用户名或密码错误");
-        if (!PasswordUtil.isMatch(password, dbPassword))
+        if (!PasswordUtils.isMatch(password, dbPassword))
             throw new MessageException("用户名或密码错误");
         return userId;
     }
@@ -68,5 +74,13 @@ public class SUserServiceImpl implements SUserService {
     public List<Map<String, Object>> auth(String userId) throws Exception {
         return mapper.auth(userId);
     }
+
+    @Override
+    public Boolean isExist(String username) throws Exception {
+        if (username == null)
+            return true;
+        return mapper.isExistUsername(username) > 0;
+    }
+
 
 }

@@ -56,4 +56,8 @@
       select uid "id",key_ "key" from s_func
   </select>
   
+  <select id="isExistUsername" resultType="java.lang.Integer">
+    select count(1) from s_user where username = #{username}
+  </select>
+
 </mapper>

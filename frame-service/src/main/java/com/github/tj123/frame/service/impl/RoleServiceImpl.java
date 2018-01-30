@@ -7,7 +7,7 @@ import com.github.tj123.frame.api.po.sys.RoleFuncPo;
 import com.github.tj123.frame.api.po.sys.RolePo;
 import com.github.tj123.frame.api.service.RoleService;
 import com.github.tj123.frame.service.common.PageUtils;
-import com.github.tj123.frame.service.common.UuidUtil;
+import com.github.tj123.frame.api.common.utils.UuidUtils;
 import com.github.tj123.frame.service.mapper.RoleFuncMapper;
 import com.github.tj123.frame.service.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +37,13 @@ public class RoleServiceImpl implements RoleService {
     @Override
     @Transactional
     public void add(RolePo po, List<String> roles) throws Exception {
-        String uuid = UuidUtil.getUUID();
+        String uuid = UuidUtils.getUUID();
         po.setId(uuid);
         List<RoleFuncPo> list = new ArrayList<>();
         if(roles != null && !roles.isEmpty()){
             for (String role : roles) {
                 RoleFuncPo funcPo = new RoleFuncPo();
-                funcPo.setId(UuidUtil.getUUID());
+                funcPo.setId(UuidUtils.getUUID());
                 funcPo.setRoleId(uuid);
                 funcPo.setFuncId(role);
                 list.add(funcPo);

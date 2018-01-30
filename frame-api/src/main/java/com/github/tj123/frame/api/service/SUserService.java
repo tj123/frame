@@ -23,4 +23,6 @@ public interface SUserService {
 
     List<Map<String, Object>> auth(String userId) throws Exception;
 
+    Boolean isExist(String username) throws Exception;
+
 }

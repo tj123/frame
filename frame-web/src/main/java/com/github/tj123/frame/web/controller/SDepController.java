@@ -5,7 +5,6 @@ import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.dto.SDepDto;
-import com.github.tj123.frame.api.pojo.po.SDepPo;
 import com.github.tj123.frame.api.service.RoleService;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.web.common.Session;
@@ -57,7 +56,7 @@ public class SDepController {
     }
 
     @GetMapping("/get/{id}")
-    public SDepPo get(@PathVariable String id) throws Exception {
+    public Map<String,Object> get(@PathVariable String id) throws Exception {
         return service.get(id);
     }
 

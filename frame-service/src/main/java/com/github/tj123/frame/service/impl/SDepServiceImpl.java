@@ -8,7 +8,7 @@ import com.github.tj123.frame.api.pojo.po.SDepPo;
 import com.github.tj123.frame.api.pojo.po.SDepRolePo;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.service.common.PageUtils;
-import com.github.tj123.frame.service.common.UuidUtil;
+import com.github.tj123.frame.api.common.utils.UuidUtils;
 import com.github.tj123.frame.service.mapper.SDepMapper;
 import com.github.tj123.frame.service.mapper.SDepRoleMapper;
 import com.github.tj123.frame.service.mapper.sys.AreaMapper;
@@ -33,7 +33,7 @@ public class SDepServiceImpl implements SDepService {
     @Override
     @Transactional
     public void add(SDepPo po, List<String> roles) throws Exception {
-        String id = UuidUtil.getUUID();
+        String id = UuidUtils.getUUID();
         po.setId(id);
         mapper.insert(po);
         for (String role : roles) {
@@ -55,8 +55,8 @@ public class SDepServiceImpl implements SDepService {
     }
 
     @Override
-    public SDepPo get(String id) throws Exception {
-        return mapper.selectByPrimaryKey(id);
+    public Map<String,Object> get(String id) throws Exception {
+        return mapper.get(id);
     }
 
     @Override
@@ -68,6 +68,11 @@ public class SDepServiceImpl implements SDepService {
     @Override
     public List<Map<String, Object>> areas(String areaId) throws Exception {
         return areaMapper.areas(AreaUtils.simple(areaId));
+    }
+
+    @Override
+    public List<Map<String, Object>> search(String name) throws Exception {
+        return mapper.search(name);
     }
 
 }

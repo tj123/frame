@@ -1,14 +1,14 @@
 package com.github.tj123.frame.api.pojo.dto;
 
-import com.github.tj123.common.DatePattern;
 import com.github.tj123.common.Dto;
 import com.github.tj123.common.convert.BlankCurrent;
 import com.github.tj123.frame.api.pojo.po.SUserPo;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -22,7 +22,6 @@ public class SUserDto implements Dto<SUserPo>, Serializable {
     @NotBlank
     private String username;
 
-    @NotBlank
     private String password;
 
     private String sex;
@@ -31,6 +30,7 @@ public class SUserDto implements Dto<SUserPo>, Serializable {
 
     private String email;
 
+    @NotBlank
     private String depId;
 
     private String tel;
@@ -40,6 +40,7 @@ public class SUserDto implements Dto<SUserPo>, Serializable {
     @BlankCurrent
     private String lastLogin;
 
+    @NotBlank
     private String name;
 
     private String idNo;
@@ -50,10 +51,9 @@ public class SUserDto implements Dto<SUserPo>, Serializable {
 
     private String updateById;
 
-    @DatePattern("yyyy-MM-dd hh:mm:ss")
+    @BlankCurrent
     private String createTime;
 
-    @DatePattern("yyyy-MM-dd hh:mm:ss")
     private String updateTime;
 
 }

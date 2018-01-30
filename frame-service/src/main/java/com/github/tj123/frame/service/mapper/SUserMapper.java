@@ -19,4 +19,5 @@ public interface SUserMapper extends BaseMapper<SUserPo> {
 
     List<Map<String,Object>> auth(String userId);
 
+    Integer isExistUsername(String username);
 }
