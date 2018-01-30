@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-01-16 16:06:05
+Date: 2018-01-30 17:57:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4974,7 +4974,7 @@ CREATE TABLE `s_dep` (
   `name` varchar(255) NOT NULL,
   `type` varchar(32) DEFAULT NULL,
   `area_id` varchar(32) DEFAULT NULL,
-  `comment` varchar(255) DEFAULT NULL COMMENT '这是要给注释哦os',
+  `short_name` varchar(255) DEFAULT NULL COMMENT '这是要给注释哦os',
   `create_by_id` varchar(32) DEFAULT NULL,
   `update_by_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
@@ -4986,9 +4986,16 @@ CREATE TABLE `s_dep` (
 -- Records of s_dep
 -- ----------------------------
 INSERT INTO `s_dep` VALUES ('08e7f0f91f604fac81b49b1df9d97cbb', '我的妈呀', null, null, null, null, null, '2018-01-11 11:11:43', '2018-01-11 11:11:43');
+INSERT INTO `s_dep` VALUES ('0ad0edf2f75e4d479263ac8b405b4299', '我玩', 'CHF', '510104', null, 'asdfasdfa', null, '2018-01-29 11:34:44', null);
+INSERT INTO `s_dep` VALUES ('4712619abf8046b983e2d9f1c788c26f', '锦江区检测中心', 'DET', '510104', null, 'asdfasdfa', null, '2018-01-29 09:46:01', null);
+INSERT INTO `s_dep` VALUES ('4bc99760b96349bbbac2f78a49b0d9cd', '啊啊啊', 'ADM', '510104', '是是是', 'asdfasdfa', null, '2018-01-29 11:33:29', null);
+INSERT INTO `s_dep` VALUES ('5db6a72445be4848a87c823460226d9f', '我是', 'ADM', '510104', null, 'asdfasdfa', null, '2018-01-29 11:22:01', null);
 INSERT INTO `s_dep` VALUES ('68d9c8c350274ca08ffb3a9a9292074b', '我的妈呀', null, null, null, null, null, null, null);
 INSERT INTO `s_dep` VALUES ('69fe04dc31f64168a14ae80940669bd2', '我的妈呀', null, null, null, null, null, null, null);
+INSERT INTO `s_dep` VALUES ('83dabdc654084675947f04571fc52396', '搜索', 'CHF', '510100', '', 'asdfasdfa', null, '2018-01-29 11:38:49', null);
 INSERT INTO `s_dep` VALUES ('asdf', 'asdf', 'asdf', 'asdf', 'adsfa', 'dsfa', 'sdfasdf', '2017-10-09 17:52:59', '2017-10-23 17:53:02');
+INSERT INTO `s_dep` VALUES ('b938b340014047f6a3d3194c6269efed', '成都市药检中心', 'DET', '510100', null, 'asdfasdfa', null, '2018-01-29 09:44:08', null);
+INSERT INTO `s_dep` VALUES ('e171918a399e479faff9f438c29d625e', '搜索', 'ADM', '510104', null, 'asdfasdfa', null, '2018-01-29 11:35:47', null);
 
 -- ----------------------------
 -- Table structure for s_dep_role
@@ -4998,13 +5005,29 @@ CREATE TABLE `s_dep_role` (
   `id` varchar(32) NOT NULL,
   `dep_id` varchar(32) NOT NULL,
   `role_id` varchar(32) NOT NULL,
-  `auth_dep_id` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of s_dep_role
 -- ----------------------------
+INSERT INTO `s_dep_role` VALUES ('11b314f22976426881aee353cefa2446', '4712619abf8046b983e2d9f1c788c26f', '7c9253d234e8433193a859dd02d2821e');
+INSERT INTO `s_dep_role` VALUES ('126b1b283c264ebf96cf24d913803953', '5db6a72445be4848a87c823460226d9f', '86a5c00335a44a24b9559ad6342ce625');
+INSERT INTO `s_dep_role` VALUES ('1bc61ee079ef46a19f1da5d5761f7080', '4bc99760b96349bbbac2f78a49b0d9cd', '86a5c00335a44a24b9559ad6342ce625');
+INSERT INTO `s_dep_role` VALUES ('2922d7fc16bd48dc8785d59a167a18fb', 'b938b340014047f6a3d3194c6269efed', '86a5c00335a44a24b9559ad6342ce625');
+INSERT INTO `s_dep_role` VALUES ('4c0eab89591648b19129141f530d2500', '83dabdc654084675947f04571fc52396', 'cc9c691414df4c3fb4e0c6d3370cd481');
+INSERT INTO `s_dep_role` VALUES ('59ccc3624c364e819abf85514b49309e', '83dabdc654084675947f04571fc52396', '7c9253d234e8433193a859dd02d2821e');
+INSERT INTO `s_dep_role` VALUES ('7a3f3c52e2b349c48add32e641e5b69b', '4bc99760b96349bbbac2f78a49b0d9cd', '7c9253d234e8433193a859dd02d2821e');
+INSERT INTO `s_dep_role` VALUES ('7b6ec26f3d6d41648397b3eb821c997a', '5db6a72445be4848a87c823460226d9f', 'cc9c691414df4c3fb4e0c6d3370cd481');
+INSERT INTO `s_dep_role` VALUES ('82b5f7d55f774e3bb7388c81a0c78f00', '4712619abf8046b983e2d9f1c788c26f', '86a5c00335a44a24b9559ad6342ce625');
+INSERT INTO `s_dep_role` VALUES ('c183d0eb13fc446e814772e23a631518', 'e171918a399e479faff9f438c29d625e', '7c9253d234e8433193a859dd02d2821e');
+INSERT INTO `s_dep_role` VALUES ('d0b3c8e7be6b4190820c0cb029121108', '83dabdc654084675947f04571fc52396', '86a5c00335a44a24b9559ad6342ce625');
+INSERT INTO `s_dep_role` VALUES ('d25e541f34b04b4590b19da85b03aabc', '5db6a72445be4848a87c823460226d9f', '7c9253d234e8433193a859dd02d2821e');
+INSERT INTO `s_dep_role` VALUES ('da16ffa265f5492a87f2f238efc70039', '4712619abf8046b983e2d9f1c788c26f', 'cc9c691414df4c3fb4e0c6d3370cd481');
+INSERT INTO `s_dep_role` VALUES ('dbf458591e2b4f4c80874273d73c5fe8', '5db6a72445be4848a87c823460226d9f', '2bd9f913926a4fabb59c0d4d5a4cbde1');
+INSERT INTO `s_dep_role` VALUES ('dc28c01fcd4b433687b6e393ef5632a5', '83dabdc654084675947f04571fc52396', '2bd9f913926a4fabb59c0d4d5a4cbde1');
+INSERT INTO `s_dep_role` VALUES ('fc179d1ef5114486a366e891fd8ed75b', 'b938b340014047f6a3d3194c6269efed', '7c9253d234e8433193a859dd02d2821e');
+INSERT INTO `s_dep_role` VALUES ('fe627caec2f34c9b9cf19d0c1bb9ee30', '0ad0edf2f75e4d479263ac8b405b4299', '86a5c00335a44a24b9559ad6342ce625');
 
 -- ----------------------------
 -- Table structure for s_func
@@ -5023,13 +5046,12 @@ CREATE TABLE `s_func` (
 -- ----------------------------
 -- Records of s_func
 -- ----------------------------
-INSERT INTO `s_func` VALUES ('10d58913105743208076edab8a4620cd', '1-6', '1', 'usr-edt', '修改', '用户管理-修改');
-INSERT INTO `s_func` VALUES ('59b3e7d0d4d34e128068c93f458dd0ca', '30-8', '30', 'func-scan', '扫描', '哈哈管理-扫描');
-INSERT INTO `s_func` VALUES ('5d8052c9fb9f40f8bac48eae13005565', '1-4', '1', 'usr-add', '添加', '用户管理-添加');
-INSERT INTO `s_func` VALUES ('7e30dc410d9b4a0b87957881d82bf98d', '1', null, 'usr', '用户管理', '用户管理');
-INSERT INTO `s_func` VALUES ('ad02dc0dbbb844d8bb1b71e79cdf6154', '2', null, 'rol', '角色管理', '角色管理');
-INSERT INTO `s_func` VALUES ('b162524a4b1749cdb9e4243f95303264', '3', null, 'dep', '部门管理', '部门管理');
-INSERT INTO `s_func` VALUES ('b3ec2eaa90f54ff78c2be4e05490e24e', '30', null, 'func', '哈哈管理', '哈哈管理');
+INSERT INTO `s_func` VALUES ('537fd19e63be40ba80cd0a3bf08cb575', '3', null, 'dep', '部门管理', '部门管理');
+INSERT INTO `s_func` VALUES ('59b3e7d0d4d34e128068c93f458dd0ca', '30-8', '30', 'func-scan', '扫描', '功能管理-扫描');
+INSERT INTO `s_func` VALUES ('b3ec2eaa90f54ff78c2be4e05490e24e', '30', null, 'func', '功能管理', '功能管理');
+INSERT INTO `s_func` VALUES ('b5cf98356761405788bbf0aefdb36220', '5', null, 'ara', '区域管理', '区域管理');
+INSERT INTO `s_func` VALUES ('d57e2129009945bb93fe41c50e1d8234', '2', null, 'rol', '角色管理', '角色管理');
+INSERT INTO `s_func` VALUES ('ffde5ac23fb14d7883adf048b072b945', '1', null, 'usr', '用户管理', '用户管理');
 
 -- ----------------------------
 -- Table structure for s_role
@@ -5050,7 +5072,9 @@ CREATE TABLE `s_role` (
 -- Records of s_role
 -- ----------------------------
 INSERT INTO `s_role` VALUES ('2bd9f913926a4fabb59c0d4d5a4cbde1', '小苹果', '你是我的小苹果', 'asdfasdfa', null, '2017-11-24 11:50:42', null);
+INSERT INTO `s_role` VALUES ('7c9253d234e8433193a859dd02d2821e', '是是是', '巍峨饿死', 'asdfasdfa', null, '2018-01-26 10:39:56', null);
 INSERT INTO `s_role` VALUES ('86a5c00335a44a24b9559ad6342ce625', '呵呵我打', 'sdgasdgasd搜索', 'asdfasdfa', null, '2017-11-24 11:48:42', null);
+INSERT INTO `s_role` VALUES ('cc9c691414df4c3fb4e0c6d3370cd481', '沙发上打工', '啊傻傻的', 'asdfasdfa', null, '2018-01-26 11:17:21', null);
 
 -- ----------------------------
 -- Table structure for s_role_func
@@ -5068,15 +5092,25 @@ CREATE TABLE `s_role_func` (
 -- ----------------------------
 INSERT INTO `s_role_func` VALUES ('0815f7e3154841f9aae2fcd62f0391cc', '2bd9f913926a4fabb59c0d4d5a4cbde1', '7e30dc410d9b4a0b87957881d82bf98d');
 INSERT INTO `s_role_func` VALUES ('308f954a6d4f4bfcb9e8a72a64fb9385', '2bd9f913926a4fabb59c0d4d5a4cbde1', '10d58913105743208076edab8a4620cd');
+INSERT INTO `s_role_func` VALUES ('3465ed9c0730433e945330e2a1201f02', '7c9253d234e8433193a859dd02d2821e', 'b3ec2eaa90f54ff78c2be4e05490e24e');
+INSERT INTO `s_role_func` VALUES ('44d212127e494a1e9e13bd94319a0700', 'cc9c691414df4c3fb4e0c6d3370cd481', '5d8052c9fb9f40f8bac48eae13005565');
 INSERT INTO `s_role_func` VALUES ('472331bf0497470285517b355ce05c46', '86a5c00335a44a24b9559ad6342ce625', 'b162524a4b1749cdb9e4243f95303264');
 INSERT INTO `s_role_func` VALUES ('49490744705340dcabf3df484702c85d', '2bd9f913926a4fabb59c0d4d5a4cbde1', 'b162524a4b1749cdb9e4243f95303264');
+INSERT INTO `s_role_func` VALUES ('4d4c8de9eb684582930b696028792697', 'cc9c691414df4c3fb4e0c6d3370cd481', '10d58913105743208076edab8a4620cd');
+INSERT INTO `s_role_func` VALUES ('4de1f52ec771441b9069095b81bf2761', 'cc9c691414df4c3fb4e0c6d3370cd481', 'b3ec2eaa90f54ff78c2be4e05490e24e');
 INSERT INTO `s_role_func` VALUES ('53d0f38812f6407ea53645b2e63818be', '86a5c00335a44a24b9559ad6342ce625', 'b3ec2eaa90f54ff78c2be4e05490e24e');
 INSERT INTO `s_role_func` VALUES ('685b09ffee1f4e7fbb08d64272d9ad70', '86a5c00335a44a24b9559ad6342ce625', '5d8052c9fb9f40f8bac48eae13005565');
+INSERT INTO `s_role_func` VALUES ('771c571d5d20417999270cd68bbe6599', '7c9253d234e8433193a859dd02d2821e', 'd57e2129009945bb93fe41c50e1d8234');
 INSERT INTO `s_role_func` VALUES ('83c0adadec0c4ac2bd434e320cd18bf3', '86a5c00335a44a24b9559ad6342ce625', '7e30dc410d9b4a0b87957881d82bf98d');
+INSERT INTO `s_role_func` VALUES ('99a377b79d114a46bbfa37a6c8d4fd32', 'cc9c691414df4c3fb4e0c6d3370cd481', '59b3e7d0d4d34e128068c93f458dd0ca');
 INSERT INTO `s_role_func` VALUES ('9ff222bcac28479595004adc60390a28', '86a5c00335a44a24b9559ad6342ce625', 'ad02dc0dbbb844d8bb1b71e79cdf6154');
+INSERT INTO `s_role_func` VALUES ('a28ecf1b41f44369addb8416d8c7e44b', '7c9253d234e8433193a859dd02d2821e', '59b3e7d0d4d34e128068c93f458dd0ca');
+INSERT INTO `s_role_func` VALUES ('c375a0e3b9784c05a7152dbaab6c5d91', '7c9253d234e8433193a859dd02d2821e', 'b5cf98356761405788bbf0aefdb36220');
 INSERT INTO `s_role_func` VALUES ('c7bd852e3b6349f5b72c3abb81332112', '86a5c00335a44a24b9559ad6342ce625', '59b3e7d0d4d34e128068c93f458dd0ca');
+INSERT INTO `s_role_func` VALUES ('c90c55f828a74b26b38c8ee89bfc7114', 'cc9c691414df4c3fb4e0c6d3370cd481', '8b1c6e3ca60b4db8a0a030f68477b510');
 INSERT INTO `s_role_func` VALUES ('d5f0c007f694463ba4048643cc6f4d2f', '86a5c00335a44a24b9559ad6342ce625', '10d58913105743208076edab8a4620cd');
 INSERT INTO `s_role_func` VALUES ('f1c15c0afb744022bbec5847a1a50113', '2bd9f913926a4fabb59c0d4d5a4cbde1', '5d8052c9fb9f40f8bac48eae13005565');
+INSERT INTO `s_role_func` VALUES ('f6e9123a4f804014b6c34551584cdee3', 'cc9c691414df4c3fb4e0c6d3370cd481', '6f4b3ddb147c456cab155a4314d9a826');
 INSERT INTO `s_role_func` VALUES ('f8a23fe327974bbb8344a6ddbf6c69e1', '2bd9f913926a4fabb59c0d4d5a4cbde1', 'ad02dc0dbbb844d8bb1b71e79cdf6154');
 
 -- ----------------------------
@@ -5090,59 +5124,27 @@ CREATE TABLE `s_user` (
   `sex` varchar(8) DEFAULT NULL,
   `qq` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `department_id` varchar(32) DEFAULT NULL,
+  `dep_id` varchar(32) DEFAULT NULL,
   `tel` varchar(32) DEFAULT NULL,
   `phone` varchar(32) DEFAULT NULL,
   `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `name` varchar(255) DEFAULT NULL,
-  `card_no` varchar(32) DEFAULT NULL,
+  `id_no` varchar(32) DEFAULT NULL,
   `comment` varchar(255) DEFAULT NULL,
   `create_by_id` varchar(32) DEFAULT NULL,
   `update_by_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `username` (`username`)
+  UNIQUE KEY `username` (`username`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of s_user
 -- ----------------------------
-INSERT INTO `s_user` VALUES ('060c7bd6b3244856a6311bb35421ae60', '丫丫丫丫', 'sfaasdfasdfsd', null, '丫丫丫丫', '阿斯达斯', null, '阿斯达斯', '啊飒飒的', '2017-10-16 17:28:21', 'asdfas阿斯达斯', '阿斯达斯', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('0ecfcb0a79104dbd912330e0ecdaddeb', '啊是短发说的发生的', 'sfaasdfasdfsd', null, '阿斯达斯', '阿斯达说的', null, '阿斯达斯', 'asdfa啊是短发', '2017-10-16 17:08:14', 'asdfasdf ', '啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('1eb7686fd7b747f083a69d99c54bf906', 'asdAASD', 'sfaasdfasdfsd', null, 'asdfasdf', '阿斯达斯', null, '啊是短发说的发生的', '啊是短发说的发生的asd', '2017-10-16 17:07:21', 'asdA', 'asdfasd啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('29401ec8ad7144eeb65863be0cbb15d2', '阿斯达斯', 'sfaasdfasdfsd', null, '阿斯达斯', 'asd阿斯达斯', null, '阿萨斯', '啊盛大的 ', '2017-10-16 16:50:05', '阿斯达斯', '啊盛大的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('2ef6c70efa1b4dbdbb6480652d280d93', '所发生的', 'sfaasdfasdfsd', null, '啊沙发上', 'asdf啊是短发', null, '啊是短发速度', '阿斯达斯', '2017-10-16 17:51:49', 'asdfasdf', 'asdf啊是短发', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('3b7a302e5b624c63bebc48dc2ce9cb4a', '无法大是大非', 'sfaasdfasdfsd', null, '啊是短发说的发生的as', '啊是短发 ', null, '阿斯达斯', '啊是短发', '2017-10-16 17:06:52', 'asdfasd ', '啊是短发', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('44e66a4602dc446a91a0b6f01bdad3ec', 'asdfasdf', 'sfaasdfasdfsd', null, '啊是短发方式asd', 'asdf阿斯达斯', null, '阿斯达斯', '阿斯达斯', '2017-10-16 17:18:22', '阿斯达斯', '啊是短发', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('5c1ea20dedee452dad544c1604e55199', '说的发生的', 'sfaasdfasdfsd', null, '阿萨法', ' 阿萨斯', null, '阿斯达斯', '啊是短发', '2017-10-16 17:52:34', '啊是短发说的发生的', '阿萨斯', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('5eea1b9f4feb4c0f92bf5ac3f9cfe9d3', '慰问费爱上阿斯达asd', 'sfaasdfasdfsd', null, '阿斯达斯', '啊是短发说的发生的gh', null, '阿斯达斯', '阿斯达斯', '2017-10-16 17:08:43', '阿斯达斯', 'asdgasdhas', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('7767d69e17944c2cb121578a17d4d849', '撒旦', 'sfaasdfasdfsd', null, '啊是短发方式', 'asdfasdf', null, '啊是短发速度asdfasa', '啊是短发说的发生的', '2017-10-16 17:10:04', 'asdfasdf', '啊沙发上', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('92d3a65797d1416dbd6233b266fd62d9', '撒大声的', 'sfaasdfasdfsd', null, '阿斯达斯', '啊沙发上的', null, '啊是短发速度', '啊是短发说的发生的a', '2017-10-16 17:07:39', 'asdfasd', 'asdfasdf', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('9c3ba227382f41809aebbd77569af7a5', '阿斯达斯', 'sfaasdfasdfsd', null, 'asdfasdf', '啊是短发说的发生的', null, '啊是短发说的发生的', 'asdfasdf', '2017-10-16 16:56:58', '啊是短发说的发生的', '啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('ae5efce8950543979d708b7de29f9d3c', '的发生的', 'sfaasdfasdfsd', null, '阿萨法', '啊是短发说的发生的', null, '阿斯顿', '阿斯顿', '2017-10-16 17:06:33', '啊是短发', '啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('ae70fa1c727b4be8aed3c237252fb77f', 'asdfasdf', 'sfaasdfasdfsd', null, 'asdfasdfas', '啊是短发', null, '阿斯顿', '阿斯达斯', '2017-10-16 17:05:56', '啊是短发', 'asdg', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('ae82f3f304ef462796b427a25f5c9f10', '发生大幅阿斯顿', 'sfaasdfasdfsd', null, '啊是短发说的发生的', 'asdfasdf', null, '啊是短发速度asdfas', '啊是短发说的发生的', '2017-10-16 17:06:16', '啊是短发', '阿斯达', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('asd', 'fasd', 'fasd', 'fas', 'dfas', 'gasd', 'ga', 'asdgasdg', 'gasd', '2017-10-03 15:36:33', 'asdg', 'asdg', 'asdga', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdfasdfa', 'admin', '9ACE0D0DED977ECA0BD5C367CC0337071CC689E0FE5032A8F511EE90', 'asdf', 'asdf', 'asdf', 'asdf', 'asdfas', 'asdf', '2017-11-20 03:40:22', 'asdfas', 'dfasdf', 'asdfasd', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdg', 'asd', 'gasd', 'agsd', 'hasd', 'hasd', 'hasdha', 'sdh', 'asdha', '2017-10-10 15:35:57', 'asdha', 'sdhasd', 'hasdh', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdga', 'sdasdh', 'asdhas', 'dhasd', 'hasd', 'hasd', 'hasdh', 'asdhas', 'asdha', '2017-10-16 15:36:45', 'asdhas', 'dhasdhas', 'asdhasdh', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdgas', 'dhas', 'dha', 'sdha', 'sdh', 'asdh', 'asd', 'has', 'dhas', '2017-10-10 15:37:14', 'asd', 'hasd', 'has', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdgasd', 'gasd', 'gasd', 'gasd', 'gas', 'dg', 'asdga', 'sdga', 'sdg', '2017-09-19 15:38:03', 'asd', 'gasd', 'gas', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdgsdsd', 'asdg', 'asdh', 'asdh', 'asdh', 'asdh', 'asdhas', 'asdh', 'asdh', '2017-10-02 15:38:58', 'asdh', 'asdh', 'asdhdh', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdgw', 'asdg', 'asd', 'gasd', 'gasd', 'ga', 'sdgas', 'dga', 'dgas', '2017-10-08 15:36:57', 'asdgasdg', 'asdgasd', 'gasdgasd', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdh', 'asdha', 'sdhas', 'dhasd', 'hasd', 'hasdh', 'asdhas', 'dhas', 'dhasd', '2017-10-23 15:37:37', 'asdh', 'asdh', 'asdhas', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdsd', 'hassd', 'dhash', 'asd', 'has', 'dhas', 'dhas', 'dhas', 'dhasd', '2017-10-12 07:38:49', 'asdhas', 'dhasd', 'hasdh', null, null, null, null);
-INSERT INTO `s_user` VALUES ('asdsds', 'dhsd', 'hasdhasd', 'dh', 'hah', 'dh', 'dh', 'd', 'hd', '2017-10-12 07:38:50', 'asdh', 'asd', 'h', null, null, null, null);
-INSERT INTO `s_user` VALUES ('b97a918c76fd4347870ff2426b1f73c2', '阿斯达', 'sfaasdfasdfsd', null, '阿斯达斯', 'asdf啊是短发', null, '阿斯达斯', '啊是短发', '2017-10-16 17:18:06', '啊是短发', '啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('c130859c740046adafc59fc3f3f44f35', '撒大声的', 'sfaasdfasdfsd', null, '阿斯达斯', 'asdfa阿斯达斯', null, '阿斯达斯', 'asdfa阿斯达斯', '2017-10-16 17:08:00', 'asdfasd', '阿斯达斯', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('c83c708f9ea5416ca719ec87e272314d', '啊是短发说的发生的', 'sfaasdfasdfsd', null, 'asdfasd啊是短发说的发生的', 'asdfasdf', null, 'asdfasdf', '啊是短发说的发生的', '2017-10-16 16:51:02', 'asdfasdf', '阿斯达斯', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('dc9f90fee93b44668bbe6304b3853414', '说的发生的', 'sfaasdfasdfsd', null, '啊是短发说的发生的', '啊是短发', null, 'asdfasdf', '啊是短发说的发生的', '2017-10-16 16:50:48', 'asdfasdf', 'asdfasd', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('ede3b19915b9456abc545f4ef06c3f6a', '发生大幅', 'sfaasdfasdfsd', null, '啊沙发上', '啊沙发上的', null, 'asdfasdf', '啊是短发说的发生的', '2017-10-16 17:11:23', '啊是短发', '啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('f7aaedf392324ed1977b2c7b774762ed', '二个地方', 'sfaasdfasdfsd', null, '啊是短发说的发生的', 'asdfasdf', null, '阿斯达斯', 'asdfa阿斯达斯', '2017-10-16 17:11:49', 'asdfasasdfasdf', 'asdfa啊是短发说的发生的', null, null, null, null, null);
-INSERT INTO `s_user` VALUES ('fasdf', 'asdf', 'asdfa', 'sdfasdf', 'as', 'dfasdf', 'asdf', 'asdfasdf', 'asdfasd', '2017-10-02 15:16:15', 'asdfasd', 'fasd', 'fasdfasd', null, null, null, null);
-INSERT INTO `s_user` VALUES ('gasd', 'gasdg', 'asdgas', 'dga', 'sdg', 'asdga', 'sdgasd', 'gasdg', 'asdg', '2017-10-17 15:35:45', 'asdga', 'sdgasdg', 'asdgasdg', null, null, null, null);
-INSERT INTO `s_user` VALUES ('gasdg', 'asdh', 'asdh', 'asd', 'hasd', 'has', 'dhasd', 'has', 'dha', '2017-10-17 15:37:25', 'asdha', 'sdhas', 'dhasdh', null, null, null, null);
+INSERT INTO `s_user` VALUES ('9af7544066114162a43f233ac1570db6', 'admin', 'KrdZ38ITBmigpTyENeQhUsl5+s/sNP2YfdLM8A', 'female', null, '1232@qq.xom', '0ad0edf2f75e4d479263ac8b405b4299', null, '1356524515', '2018-01-30 09:18:13', '我的名字', '51202120212212', 'asasdfasdg', null, null, '2018-01-30 17:17:16', null);
+INSERT INTO `s_user` VALUES ('bb42df184007421e8ab0239c40e4f85b', '13546845484', 'KrdZ38ITBmigpTyENeQhUsl5+s/sNP2YfdLM8A', 'male', null, 'hehe@ss.com', '08e7f0f91f604fac81b49b1df9d97cbb', null, '13254652166', '2018-01-30 09:17:42', '我是啊啊啊', '51202124521', '这是阿萨斯爱爱时搜索', null, null, '2018-01-30 16:09:22', null);
+INSERT INTO `s_user` VALUES ('f1259bf238ee4fad86787cf80044bba1', 'guest', 'KrdZ38ITBmigpTyENeQhUsl5+s/sNP2YfdLM8A', 'male', null, 'email.com', 'b938b340014047f6a3d3194c6269efed', null, '13526458221', '2018-01-30 09:17:50', '我搜搜', '51012132512202', '你是不是啥', null, null, '2018-01-30 17:03:20', null);
 
 -- ----------------------------
 -- Table structure for s_user_drole
