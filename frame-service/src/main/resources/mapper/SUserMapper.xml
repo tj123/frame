@@ -3,47 +3,16 @@
 <mapper namespace="com.github.tj123.frame.service.mapper.SUserMapper">
   
   <select id="list" resultType="java.util.Map">
-    select
-      id,
-      username,
-      password,
-      sex,
-      qq,
-      email,
-      dep_id depId,
-      tel,
-      phone,
-      last_login lastLogin,
-      name,
-      id_no idNo,
-      comment,
-      create_by_id createById,
-      update_by_id updateById,
-      create_time createTime,
-      update_time updateTime
-    from s_user
+    select u.id,u.`name`,u.username,d.`name` depName
+    from s_user u
+    left join s_dep d on u.dep_id = d.id
   </select>
   
   <select id="get" resultType="java.util.Map">
-    select
-      id,
-      username,
-      password,
-      sex,
-      qq,
-      email,
-      dep_id depId,
-      tel,
-      phone,
-      last_login lastLogin,
-      name,
-      id_no idNo,
-      comment,
-      create_by_id createById,
-      update_by_id updateById,
-      create_time createTime,
-      update_time updateTime
-    from s_user where id = #{id}
+    select u.id, username, sex, qq, email, dep_id depId, tel, phone, `name`, id_no idNo, `comment`, group_concat(r.role_id) roles
+    from s_user u
+    left join s_user_role r on u.id = r.user_id
+    where u.id = #{id}
   </select>
   
   

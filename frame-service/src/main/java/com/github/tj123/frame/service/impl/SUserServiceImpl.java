@@ -60,7 +60,16 @@ public class SUserServiceImpl implements SUserService {
 
     @Override
     public Map<String, Object> get2(String id) throws Exception {
-        return mapper.get(id);
+        Map<String, Object> map = mapper.get(id);
+        if (map == null)
+            return map;
+        String roles = (String) map.get("roles");
+        if (roles == null) {
+            map.put("roles", new String[]{});
+        } else {
+            map.put("roles", roles.split(","));
+        }
+        return map;
     }
 
     @Override

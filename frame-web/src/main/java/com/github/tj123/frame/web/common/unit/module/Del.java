@@ -6,7 +6,7 @@ public class Del implements Unit {
 
     @Override
     public Integer getId() {
-        return 5;
+        return 28;
     }
 
     @Override

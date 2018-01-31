@@ -2,13 +2,18 @@ package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.annotation.Function;
+import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.dto.SUserDto;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.api.service.SUserService;
 import com.github.tj123.frame.web.common.Session;
+import com.github.tj123.frame.web.common.unit.Func;
 import com.github.tj123.frame.web.common.unit.User;
+import com.github.tj123.frame.web.common.unit.module.Add;
+import com.github.tj123.frame.web.common.unit.module.Del;
+import com.github.tj123.frame.web.common.unit.module.Edit;
 import com.github.tj123.frame.web.config.ProjectProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
@@ -37,7 +42,9 @@ public class SUserController {
     @Autowired
     ProjectProperties projectProperties;
 
+
     @PutMapping
+    @Module({Add.class, Func.class})
     public void add(@Valid SUserDto dto, @RequestParam("roles[]") List<String> roles, BindingResult result) throws Exception {
         if (result.hasErrors()) {
             throw new BindException(result);
@@ -45,11 +52,13 @@ public class SUserController {
         service.add(dto.toPo(), roles);
     }
 
+    @Module(Del.class)
     @DeleteMapping("/{id}")
     public void del(@PathVariable String id) throws Exception {
         service.del(id);
     }
 
+    @Module(Edit.class)
     @PatchMapping
     public void edit(SUserDto dto) throws Exception {
         if (dto.getId() == null || dto.getId().trim().equals("")) {

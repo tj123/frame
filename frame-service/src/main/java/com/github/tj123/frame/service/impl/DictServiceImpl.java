@@ -18,7 +18,7 @@ public class DictServiceImpl implements DictService {
 
 
     @Override
-    public List<Map<String, Object>> getDict(String type, String code, String departmentId) throws Exception {
+    public List<Map<String, Object>> getDict(String type, String code, String depId) throws Exception {
         List<Map<String, Object>> list = new ArrayList<>();
         if (code == null || code.trim().equals(""))
             return list;

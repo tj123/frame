@@ -4,14 +4,14 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.common.utils.AreaUtils;
+import com.github.tj123.frame.api.common.utils.UuidUtils;
 import com.github.tj123.frame.api.pojo.po.SDepPo;
 import com.github.tj123.frame.api.pojo.po.SDepRolePo;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.service.common.PageUtils;
-import com.github.tj123.frame.api.common.utils.UuidUtils;
+import com.github.tj123.frame.service.mapper.SAreaMapper;
 import com.github.tj123.frame.service.mapper.SDepMapper;
 import com.github.tj123.frame.service.mapper.SDepRoleMapper;
-import com.github.tj123.frame.service.mapper.sys.AreaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +25,7 @@ public class SDepServiceImpl implements SDepService {
     private SDepMapper mapper;
 
     @Autowired
-    AreaMapper areaMapper;
+    SAreaMapper areaMapper;
 
     @Autowired
     SDepRoleMapper depRoleMapper;
