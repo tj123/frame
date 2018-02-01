@@ -63,7 +63,7 @@ public class SDepController {
     @GetMapping
     public PageResponse<Map<String, Object>> list(@RequestParam Map<String, Object> map) throws Exception {
         if (!map.containsKey("area")) {
-            map.put("areaId", session.getAreaId());
+            map.put("area", session.getAreaId());
         }
         map.put("areaId", map.get("area"));
         map.remove("area");

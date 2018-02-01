@@ -47,7 +47,7 @@ public class Session {
         setParentAreaId((String) map.get("parentAreaId"));
 //        setAreaId("510100");
         try {
-            setDepType(EnumUtils.toEnum(DepType.class, (String) map.get("depType")));
+            setDepType(EnumUtils.toEnum(DepType.class, map.get("depType")));
         } catch (CannotConvertException e) {
             log.warn("枚举值 {} 转换失败", map.get("depType"));
         }

@@ -138,5 +138,13 @@ public class SUserServiceImpl implements SUserService {
         return mapper.session(userId);
     }
 
+    @Override
+    public void changePassword(String userId, String password) throws Exception {
+        SUserPo po = new SUserPo();
+        po.setId(userId);
+        po.setPassword(PasswordUtils.encrypt(password));
+        mapper.updateByPrimaryKeySelective(po);
+    }
+
 
 }

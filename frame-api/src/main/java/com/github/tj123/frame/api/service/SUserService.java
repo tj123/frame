@@ -26,4 +26,6 @@ public interface SUserService {
     Boolean isExist(String username) throws Exception;
 
     Map<String,Object> session(String userId) throws Exception;
+
+    void changePassword(String userId, String password) throws Exception;
 }

@@ -5,6 +5,7 @@ import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
+import com.github.tj123.frame.api.common.exception.MessageException;
 import com.github.tj123.frame.api.pojo.dto.SUserDto;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.api.service.SUserService;
@@ -14,6 +15,7 @@ import com.github.tj123.frame.web.common.unit.User;
 import com.github.tj123.frame.web.common.unit.module.Add;
 import com.github.tj123.frame.web.common.unit.module.Del;
 import com.github.tj123.frame.web.common.unit.module.Edit;
+import com.github.tj123.frame.web.common.unit.module.PassowrdEdit;
 import com.github.tj123.frame.web.config.ProjectProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
@@ -64,7 +66,16 @@ public class SUserController {
         if (dto.getId() == null || dto.getId().trim().equals("")) {
             throw new Exception("id 不能为空!");
         }
-        service.edit(dto.toPo(),roles);
+        service.edit(dto.toPo(), roles);
+    }
+
+    @PatchMapping("/pwd")
+    @Module(PassowrdEdit.class)
+    public void changePwd(String password, String userId) throws Exception {
+        if (password == null || userId == null) {
+            throw new MessageException("密码不能为空");
+        }
+        service.changePassword(userId, password);
     }
 
     @GetMapping("/get/{id}")
@@ -74,6 +85,7 @@ public class SUserController {
 
     @GetMapping
     public PageResponse<Map<String, Object>> list(@RequestParam Map<String, Object> map) throws Exception {
+        map.put("areaId", session.getAreaId());
         return service.list(PageRequest.create(map));
     }
 
