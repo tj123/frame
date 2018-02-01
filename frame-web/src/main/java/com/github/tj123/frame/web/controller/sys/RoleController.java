@@ -37,17 +37,30 @@ public class RoleController {
         return service.list(PageRequest.create(map));
     }
 
-    @PostMapping("/add")
-    public void add(RoleDto dto, @RequestParam("roles[]") List<String> roles) throws Exception {
+    @PutMapping
+    public void add(RoleDto dto, @RequestParam("funs[]") List<String> funs) throws Exception {
         RolePo po = dto.toPo();
         po.setCreateTime(new Date());
         po.setCreateById(session.getUserId());
-        service.add(po, roles);
+        service.add(po, funs);
+    }
+
+    @PatchMapping
+    public void edit(RoleDto dto, @RequestParam("funs[]") List<String> funs) throws Exception {
+        RolePo po = dto.toPo();
+        po.setUpdateById(session.getUserId());
+        po.setUpdateTime(new Date());
+        service.edit(po, funs);
     }
 
     @GetMapping("/allfn")
     public List<Map<String, Object>> allFunc() throws Exception {
         return funcService.all();
+    }
+
+    @GetMapping("/get/{id}")
+    public Map<String, Object> get(@PathVariable String id) throws Exception {
+        return service.get(id);
     }
 
 }

@@ -13,7 +13,7 @@ public interface SUserService {
 
     void del(String id) throws Exception;
 
-    void edit(SUserPo po) throws Exception;
+    void edit(SUserPo po, List<String> roles) throws Exception;
 
     Map<String, Object> get2(String id) throws Exception;
 

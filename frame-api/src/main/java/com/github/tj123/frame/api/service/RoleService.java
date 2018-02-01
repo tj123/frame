@@ -18,7 +18,11 @@ public interface RoleService {
      */
     PageResponse<Map<String, Object>> list(PageRequest request) throws Exception;
 
-    void add(RolePo po, List<String> roles) throws Exception;
+    void add(RolePo po, List<String> funs) throws Exception;
 
     List<Map<String,Object>> allRoles() throws Exception;
+
+    void edit(RolePo po, List<String> funs) throws Exception;
+
+    Map<String,Object> get(String id) throws Exception;
 }

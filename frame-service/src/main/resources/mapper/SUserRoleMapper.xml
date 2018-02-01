@@ -17,5 +17,9 @@
       role_id roleId
     from s_user_role where id = #{id}
   </select>
+  
+  <select id="getUserRole" resultType="java.lang.String">
+    select role_id from s_user_role where user_id = #{id}
+  </select>
 
 </mapper>

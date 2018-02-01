@@ -60,11 +60,11 @@ public class SUserController {
 
     @Module(Edit.class)
     @PatchMapping
-    public void edit(SUserDto dto) throws Exception {
+    public void edit(SUserDto dto, @RequestParam("roles[]") List<String> roles) throws Exception {
         if (dto.getId() == null || dto.getId().trim().equals("")) {
             throw new Exception("id 不能为空!");
         }
-        service.edit(dto.toPo());
+        service.edit(dto.toPo(),roles);
     }
 
     @GetMapping("/get/{id}")

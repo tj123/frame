@@ -5,16 +5,15 @@
   <select id="list" resultType="java.util.Map" >
     select
       id,
-      `name`,
+      d.`name`,
       `type`,
-      area_id areaId,
-      short_name shortName,
-      create_by_id createById,
-      update_by_id updateById,
-      create_time createTime,
-      update_time updateTime
-    from s_dep
-    where instr(area_id,#{areaId})
+      d.area_id areaId,
+			a.`name` areaName,
+      short_name shortName
+    from s_dep d
+		left join s_area a
+		on d.area_id = a.area_id
+    where instr(d.area_id,#{areaId})
   </select>
   
   <select id="search" resultType="java.util.Map">
@@ -22,18 +21,18 @@
   </select>
   
   <select id="get" resultType="java.util.Map">
-    select
-      id,
-      `name`,
-      `type`,
+    SELECT
+      d.id,
+      d.`name`,
+      d.`type`,
       area_id areaId,
       short_name shortName,
-      create_by_id createById,
-      update_by_id updateById,
-      create_time createTime,
-      update_time updateTime
-    from s_dep where
-    id = #{id}
+      group_concat(r.role_id) roles
+    FROM
+      s_dep d
+    LEFT JOIN s_dep_role r ON d.id = r.dep_id
+    WHERE
+      d.id = #{id}
   </select>
 
 </mapper>

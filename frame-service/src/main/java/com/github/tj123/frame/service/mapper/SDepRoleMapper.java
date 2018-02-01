@@ -15,4 +15,5 @@ public interface SDepRoleMapper extends BaseMapper<SDepRolePo> {
 
     List<Map<String, Object>> list(PageRequest request);
 
+    List<String> getDep(String id);
 }

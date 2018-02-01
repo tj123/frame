@@ -48,15 +48,15 @@ public class SDepController {
     }
 
     @PatchMapping
-    public void edit(SDepDto dto) throws Exception {
+    public void edit(SDepDto dto, @RequestParam("roles[]") List<String> roles) throws Exception {
         if (dto.getId() == null || dto.getId().trim().equals("")) {
             throw new Exception("id 不能为空!");
         }
-        service.edit(dto.toPo());
+        service.edit(dto.toPo(), roles);
     }
 
     @GetMapping("/get/{id}")
-    public Map<String,Object> get(@PathVariable String id) throws Exception {
+    public Map<String, Object> get(@PathVariable String id) throws Exception {
         return service.get(id);
     }
 
@@ -71,12 +71,12 @@ public class SDepController {
     }
 
     @GetMapping("/areas")
-    public List<Map<String,Object>> areas() throws Exception {
+    public List<Map<String, Object>> areas() throws Exception {
         return service.areas(session.getAreaId());
     }
 
     @GetMapping("/arls")
-    public List<Map<String,Object>> allRoles() throws Exception {
+    public List<Map<String, Object>> allRoles() throws Exception {
         return roleService.allRoles();
     }
 

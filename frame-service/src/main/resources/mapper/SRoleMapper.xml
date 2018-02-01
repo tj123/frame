@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.tj123.frame.service.mapper.RoleMapper">
+
+  <select id="get" resultType="java.util.Map" >
+    SELECT
+      r.id,
+      r.`name`,
+      r.description,
+      r.create_by_id createById,
+      r.update_by_id updateById,
+      r.create_time createTime,
+      r.update_time updateTime,
+      group_concat(f.func_id) funs
+    FROM
+      s_role r
+    LEFT JOIN s_role_func f ON r.id = f.role_id
+    WHERE
+      r.id = #{id}
+  </select>
+  
+  <select id="list" resultType="java.util.Map">
+    SELECT r.id,r.name,r.description FROM s_role r
+  </select>
+
+</mapper>

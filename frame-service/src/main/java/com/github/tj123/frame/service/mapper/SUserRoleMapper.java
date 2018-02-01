@@ -15,4 +15,5 @@ public interface SUserRoleMapper extends BaseMapper<SUserRolePo> {
 
     List<Map<String, Object>> list(PageRequest request);
 
+    List<String> getUserRole(String id);
 }

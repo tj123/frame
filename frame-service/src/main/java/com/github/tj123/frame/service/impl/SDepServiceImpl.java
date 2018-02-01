@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.common.utils.AreaUtils;
+import com.github.tj123.frame.api.common.utils.CompareUtils;
 import com.github.tj123.frame.api.common.utils.UuidUtils;
 import com.github.tj123.frame.api.pojo.po.SDepPo;
 import com.github.tj123.frame.api.pojo.po.SDepRolePo;
@@ -50,13 +51,45 @@ public class SDepServiceImpl implements SDepService {
     }
 
     @Override
-    public void edit(SDepPo po) throws Exception {
+    @Transactional
+    public void edit(SDepPo po, List<String> roles) throws Exception {
+        List<String> db = depRoleMapper.getDep(po.getId());
+        CompareUtils.compareString(db, roles, new CompareUtils.Compare<String>() {
+            @Override
+            public void onAdd(List<String> content) throws Exception {
+                for (String role : content) {
+                    SDepRolePo rolePo = new SDepRolePo();
+                    rolePo.setDepId(po.getId());
+                    rolePo.setRoleId(role);
+                    depRoleMapper.insert(rolePo);
+                }
+            }
+
+            @Override
+            public void onDel(List<String> content) throws Exception {
+                for (String role : content) {
+                    SDepRolePo rolePo = new SDepRolePo();
+                    rolePo.setDepId(po.getId());
+                    rolePo.setRoleId(role);
+                    depRoleMapper.delete(rolePo);
+                }
+            }
+        });
         mapper.updateByPrimaryKeySelective(po);
     }
 
     @Override
-    public Map<String,Object> get(String id) throws Exception {
-        return mapper.get(id);
+    public Map<String, Object> get(String id) throws Exception {
+        Map<String, Object> map = mapper.get(id);
+        if (map == null)
+            return map;
+        String roles = (String) map.get("roles");
+        if (roles == null) {
+            map.put("roles", new String[]{});
+        } else {
+            map.put("roles", roles.split(","));
+        }
+        return map;
     }
 
     @Override

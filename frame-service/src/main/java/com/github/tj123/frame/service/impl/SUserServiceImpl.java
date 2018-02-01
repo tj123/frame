@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.common.exception.MessageException;
+import com.github.tj123.frame.api.common.utils.CompareUtils;
 import com.github.tj123.frame.api.common.utils.PasswordUtils;
 import com.github.tj123.frame.api.common.utils.UuidUtils;
 import com.github.tj123.frame.api.pojo.po.SUserPo;
@@ -54,7 +55,31 @@ public class SUserServiceImpl implements SUserService {
     }
 
     @Override
-    public void edit(SUserPo po) throws Exception {
+    @Transactional
+    public void edit(SUserPo po, List<String> roles) throws Exception {
+        List<String> db = userRoleMapper.getUserRole(po.getId());
+        CompareUtils.compareString(db, roles, new CompareUtils.Compare<String>() {
+
+            @Override
+            public void onAdd(List<String> content) throws Exception {
+                for (String role : content) {
+                    SUserRolePo rolePo = new SUserRolePo();
+                    rolePo.setUserId(po.getId());
+                    rolePo.setRoleId(role);
+                    userRoleMapper.insert(rolePo);
+                }
+            }
+
+            @Override
+            public void onDel(List<String> content) throws Exception {
+                for (String role : content) {
+                    SUserRolePo rolePo = new SUserRolePo();
+                    rolePo.setUserId(po.getId());
+                    rolePo.setRoleId(role);
+                    userRoleMapper.delete(rolePo);
+                }
+            }
+        });
         mapper.updateByPrimaryKeySelective(po);
     }
 

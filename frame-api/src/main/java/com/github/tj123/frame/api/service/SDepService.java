@@ -13,7 +13,7 @@ public interface SDepService {
 
     void del(String id) throws Exception;
 
-    void edit(SDepPo po) throws Exception;
+    void edit(SDepPo po, List<String> roles) throws Exception;
 
     Map<String,Object> get(String id) throws Exception;
 

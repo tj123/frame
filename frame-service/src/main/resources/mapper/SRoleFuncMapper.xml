@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.tj123.frame.service.mapper.RoleFuncMapper">
+  
+  <select id="getRoleFunc" resultType="java.lang.String">
+      select func_id from s_role_func where role_id = #{id}
+  </select>
+  
+</mapper>
