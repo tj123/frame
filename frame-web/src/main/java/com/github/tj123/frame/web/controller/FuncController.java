@@ -1,4 +1,4 @@
-package com.github.tj123.frame.web.controller.sys;
+package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.AuthorizeSessionImpl;

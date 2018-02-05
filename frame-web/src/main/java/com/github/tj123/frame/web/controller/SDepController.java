@@ -2,6 +2,7 @@ package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.annotation.Function;
+import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.dto.SDepDto;
@@ -9,6 +10,8 @@ import com.github.tj123.frame.api.service.RoleService;
 import com.github.tj123.frame.api.service.SDepService;
 import com.github.tj123.frame.web.common.Session;
 import com.github.tj123.frame.web.common.unit.Dep;
+import com.github.tj123.frame.web.common.unit.module.Add;
+import com.github.tj123.frame.web.common.unit.module.Edit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -33,6 +36,7 @@ public class SDepController {
     RoleService roleService;
 
     @PutMapping
+    @Module(Add.class)
     public void add(@Valid SDepDto dto, @RequestParam("roles[]") List<String> roles,
                     BindingResult result) throws Exception {
         if (result.hasErrors()) {
@@ -48,6 +52,7 @@ public class SDepController {
     }
 
     @PatchMapping
+    @Module(Edit.class)
     public void edit(SDepDto dto, @RequestParam("roles[]") List<String> roles) throws Exception {
         if (dto.getId() == null || dto.getId().trim().equals("")) {
             throw new Exception("id 不能为空!");
@@ -77,7 +82,7 @@ public class SDepController {
 
     @GetMapping("/arls")
     public List<Map<String, Object>> allRoles() throws Exception {
-        return roleService.allRoles();
+        return roleService.allRoles(session.getDepId(),session.getUserId());
     }
 
 

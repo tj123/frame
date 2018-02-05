@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.tj123.frame.service.mapper.FuncMapper">
+  
+  
+  <select id="list" resultType="java.util.Map">
+    select id,uid,parent_uid parentUid,key_ "key",project,`name`,full_name fullName from s_func
+    where 1=1
+    <if test="project != null and project != ''">
+      and project = #{project}
+    </if>
+    order by key_ desc
+  </select>
+  
+  <select id="listAll" resultType="java.util.Map">
+    SELECT id,uid,parent_uid pUid,`name` FROM s_func
+  </select>
+  
+  <select id="allAuth" resultType="java.util.Map">
+    select uid "id",key_ "key" from s_func
+  </select>
+
+</mapper>

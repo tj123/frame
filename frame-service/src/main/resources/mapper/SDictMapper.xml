@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.tj123.frame.service.mapper.SDictMapper">
+
+  <select id="list" resultType="java.util.Map" >
+    select
+      id,
+      name,
+      code,
+      order_,
+      create_by_id createById,
+      create_time createTime,
+      update_by_id updateById,
+      update_time updateTime
+    from s_dict
+  </select>
+
+  <select id="get" resultType="java.util.Map" >
+    select
+      id,
+      name,
+      code,
+      order_,
+      description,
+      create_by_id createById,
+      create_time createTime,
+      update_by_id updateById,
+      update_time updateTime
+    from s_dict where id = #{id}
+  </select>
+
+</mapper>

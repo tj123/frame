@@ -9,6 +9,7 @@ import com.github.tj123.frame.api.po.sys.RoleFuncPo;
 import com.github.tj123.frame.api.po.sys.RolePo;
 import com.github.tj123.frame.api.service.RoleService;
 import com.github.tj123.frame.service.common.PageUtils;
+import com.github.tj123.frame.service.config.SystemProperties;
 import com.github.tj123.frame.service.mapper.RoleFuncMapper;
 import com.github.tj123.frame.service.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     RoleFuncMapper funcMapper;
 
+    @Autowired
+    SystemProperties systemProperties;
 
     @Override
     public PageResponse<Map<String, Object>> list(PageRequest request) throws Exception {
@@ -59,11 +62,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Map<String, Object>> allRoles() throws Exception {
-        return mapper.list();
+    public List<Map<String, Object>> allRoles(String depId, String userId) throws Exception {
+        return systemProperties.isAdmin(userId) ? mapper.listAll() : mapper.listDep(depId);
     }
 
     @Override
+    @Transactional
     public void edit(RolePo po, List<String> funs) throws Exception {
         List<String> db = funcMapper.getRoleFunc(po.getId());
         CompareUtils.compareString(db, funs, new CompareUtils.Compare<String>() {

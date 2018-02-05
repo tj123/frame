@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,6 @@ public class MainController {
     }
 
     @GetMapping("/dict")
-    @Authorize(AuthorizeType.LOGIN)
     public List<Map<String, Object>> dict(String type, String code) throws Exception {
         return dictService.getDict(type, code, session.getDepId());
     }
@@ -62,12 +62,17 @@ public class MainController {
     }
 
     @Autowired
-    ProjectProperties properties;
+    ProjectProperties projectProperties;
 
-    @Authorize(AuthorizeType.ALL)
-    @GetMapping("/version")
-    public String version() {
-        return properties.getVersion() + "  hahahaaa";
+    @GetMapping("/session")
+    public Map<String, Object> session() {
+        Map<String, Object> map = session.toMap();
+        map.put("version", projectProperties.getVersion());
+        return map;
     }
 
+    @PostMapping("/quit")
+    public void quit(HttpSession session) throws Exception {
+        session.invalidate();
+    }
 }

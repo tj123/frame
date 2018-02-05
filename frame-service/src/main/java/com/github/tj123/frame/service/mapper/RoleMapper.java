@@ -13,6 +13,9 @@ public interface RoleMapper extends BaseMapper<RolePo>{
 
     List<Map<String,Object>> list();
 
+    List<Map<String,Object>> listAll();
+
     Map<String,Object> get(String id);
 
+    List<Map<String,Object>> listDep(String depId);
 }

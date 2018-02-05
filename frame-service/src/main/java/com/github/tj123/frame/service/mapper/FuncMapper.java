@@ -3,7 +3,6 @@ package com.github.tj123.frame.service.mapper;
 import com.github.tj123.frame.api.po.sys.FunctionPo;
 import com.github.tj123.frame.service.common.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -13,9 +12,9 @@ import java.util.Map;
 public interface FuncMapper extends BaseMapper<FunctionPo>{
 
 
-    @Select("select id,uid,parent_uid parentUid,key_ \"key\",name,full_name fullName from s_func")
-    List<Map<String,Object>> list();
+    List<Map<String,Object>> list(Map<String,Object> map);
 
-    @Select("SELECT id,uid,parent_uid pUid,`name` FROM s_func")
     List<Map<String,Object>> listAll();
+
+    List<Map<String,Object>> allAuth();
 }

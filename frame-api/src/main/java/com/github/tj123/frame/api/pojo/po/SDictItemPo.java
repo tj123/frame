@@ -1,4 +1,4 @@
-package com.github.tj123.frame.api.po.sys;
+package com.github.tj123.frame.api.pojo.po;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,29 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-@Setter
 @Getter
+@Setter
 @ToString
-@Table(name = "s_func")
-public class FunctionPo implements Serializable{
+@Table(name = "s_dict_item")
+public class SDictItemPo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(generator = "UUID")
     private String id;
 
-    private String uid;
-
-    private String parentUid;
-
-    private String project;
+    private String dictId;
 
     @Column(name = "key_")
     private String key;
 
-    private String name;
+    @Column(name = "value_")
+    private String value;
 
-    private String fullName;
+    @Column(name = "group_")
+    private String group;
 
 }

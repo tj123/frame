@@ -12,6 +12,7 @@ import com.github.tj123.frame.service.common.PageUtils;
 import com.github.tj123.frame.service.mapper.FuncMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +24,15 @@ public class FuncServiceImpl implements FuncService {
 
     @Override
     public PageResponse<Map<String, Object>> list(PageRequest request) throws Exception {
-        return PageUtils.query(request, () -> mapper.list());
+        return PageUtils.query(request, () -> mapper.list(request));
     }
 
 
     @Override
     public void scan(List<DbFunction> scanList) throws Exception {
-        List<Map<String, Object>> dbList = mapper.list();
+        Map<String,Object> map = new HashMap<>();
+        map.put("project","frame");
+        List<Map<String, Object>> dbList = mapper.list(map);
         AuthorizeCompare.compare(dbList, scanList, new Compare() {
             @Override
             public void onAddFunction(List<DbFunction> list) throws Exception {
@@ -41,6 +44,7 @@ public class FuncServiceImpl implements FuncService {
                     po.setKey(func.getKey());
                     po.setName(func.getName());
                     po.setFullName(func.getFullName());
+                    po.setProject("frame");
                     mapper.insert(po);
                 }
             }

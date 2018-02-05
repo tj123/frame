@@ -22,5 +22,14 @@
   <select id="list" resultType="java.util.Map">
     SELECT r.id,r.name,r.description FROM s_role r
   </select>
+  
+  <select id="listAll" resultType="java.util.Map">
+    SELECT r.id,r.name,r.description FROM s_role r
+  </select>
+  
+  <select id="listDep" resultType="java.util.Map">
+    select distinct r.id,r.`name`,r.description from s_dep_role dr join s_role r on dr.role_id = r.id
+    where dr.dep_id = #{depId}
+  </select>
 
 </mapper>

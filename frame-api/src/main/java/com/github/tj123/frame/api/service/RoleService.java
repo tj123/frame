@@ -20,7 +20,7 @@ public interface RoleService {
 
     void add(RolePo po, List<String> funs) throws Exception;
 
-    List<Map<String,Object>> allRoles() throws Exception;
+    List<Map<String,Object>> allRoles(String depId, String userId) throws Exception;
 
     void edit(RolePo po, List<String> funs) throws Exception;
 

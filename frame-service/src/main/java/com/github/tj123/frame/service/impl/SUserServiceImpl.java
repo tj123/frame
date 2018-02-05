@@ -7,10 +7,13 @@ import com.github.tj123.frame.api.common.exception.MessageException;
 import com.github.tj123.frame.api.common.utils.CompareUtils;
 import com.github.tj123.frame.api.common.utils.PasswordUtils;
 import com.github.tj123.frame.api.common.utils.UuidUtils;
+import com.github.tj123.frame.api.envm.DepType;
 import com.github.tj123.frame.api.pojo.po.SUserPo;
 import com.github.tj123.frame.api.pojo.po.SUserRolePo;
 import com.github.tj123.frame.api.service.SUserService;
 import com.github.tj123.frame.service.common.PageUtils;
+import com.github.tj123.frame.service.config.SystemProperties;
+import com.github.tj123.frame.service.mapper.FuncMapper;
 import com.github.tj123.frame.service.mapper.SDepMapper;
 import com.github.tj123.frame.service.mapper.SUserMapper;
 import com.github.tj123.frame.service.mapper.SUserRoleMapper;
@@ -31,6 +34,12 @@ public class SUserServiceImpl implements SUserService {
 
     @Autowired
     SUserRoleMapper userRoleMapper;
+
+    @Autowired
+    FuncMapper funcMapper;
+
+    @Autowired
+    SystemProperties systemProperties;
 
     @Override
     @Transactional
@@ -123,7 +132,7 @@ public class SUserServiceImpl implements SUserService {
 
     @Override
     public List<Map<String, Object>> auth(String userId) throws Exception {
-        return mapper.auth(userId);
+        return systemProperties.isAdmin(userId) ? funcMapper.allAuth() : mapper.auth(userId);
     }
 
     @Override
@@ -135,7 +144,13 @@ public class SUserServiceImpl implements SUserService {
 
     @Override
     public Map<String, Object> session(String userId) throws Exception {
-        return mapper.session(userId);
+        Map<String, Object> map = mapper.session(userId);
+        if (systemProperties.isAdmin(userId)) {
+            map.put("areaId", "0");
+            map.put("parentAreaId", "");
+            map.put("depType", DepType.ADMIN.getKey());
+        }
+        return map;
     }
 
     @Override

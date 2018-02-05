@@ -30,5 +30,12 @@
       full_name fullName
     from s_area where area_id = #{id}
   </select>
+  
+  <select id="areas" resultType="java.util.Map">
+    select area_id areaId,parent_id parentId,`name` from s_area
+    <if test="areaId != null and areaId !=''">
+      where instr(area_id,#{areaId})
+    </if>
+  </select>
 
 </mapper>

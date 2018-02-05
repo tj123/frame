@@ -1,18 +1,11 @@
 package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.github.tj123.common.auth.annotation.Function;
-import com.github.tj123.common.auth.annotation.Module;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
-import com.github.tj123.frame.api.common.utils.AreaUtils;
-import com.github.tj123.frame.api.pojo.dto.SAreaDto;
-import com.github.tj123.frame.api.service.SAreaService;
+import com.github.tj123.frame.api.pojo.dto.SDictDto;
+import com.github.tj123.frame.api.service.SDictService;
 import com.github.tj123.frame.web.common.Session;
-import com.github.tj123.frame.web.common.unit.Area;
-import com.github.tj123.frame.web.common.unit.Dep;
-import com.github.tj123.frame.web.common.unit.module.Add;
-import com.github.tj123.frame.web.common.unit.module.Edit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -21,24 +14,22 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Map;
 
-
 @RestController
-@Function({Dep.class, Area.class})
-@RequestMapping("/sarea")
-public class SAreaController {
+@RequestMapping("/sdict")
+public class SDictController {
 
     @Reference
-    private SAreaService service;
+    private SDictService service;
 
     @Autowired
     Session session;
 
     @PutMapping
-    @Module(Add.class)
-    public void add(@Valid SAreaDto dto, BindingResult result) throws Exception {
+    public void add(@Valid SDictDto dto,BindingResult result) throws Exception {
         if (result.hasErrors()) {
             throw new BindException(result);
         }
+        dto.setCreateById(session.getUserId());
         service.add(dto.toPo());
     }
 
@@ -48,9 +39,8 @@ public class SAreaController {
     }
 
     @PatchMapping
-    @Module(Edit.class)
-    public void edit(SAreaDto dto) throws Exception {
-        if (dto.getAreaId() == null || dto.getAreaId().trim().equals("")) {
+    public void edit(SDictDto dto) throws Exception {
+        if (dto.getId() == null || dto.getId().trim().equals("")) {
             throw new Exception("id 不能为空!");
         }
         service.edit(dto.toPo());
@@ -63,7 +53,6 @@ public class SAreaController {
 
     @GetMapping
     public PageResponse<Map<String, Object>> list(@RequestParam Map<String, Object> map) throws Exception {
-        map.put("areaId", AreaUtils.simple(session.getAreaId()));
         return service.list(PageRequest.create(map));
     }
 

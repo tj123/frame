@@ -22,7 +22,6 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -103,18 +102,5 @@ public class SUserController {
     public Map<String, Object> getDep(String id) throws Exception {
         return depService.get(id);
     }
-
-    @PostMapping("/quit")
-    public void quit(HttpSession session) throws Exception {
-        session.invalidate();
-    }
-
-    @GetMapping("/session")
-    public Map<String, Object> session() {
-        Map<String, Object> map = session.toMap();
-        map.put("version", projectProperties.getVersion());
-        return map;
-    }
-
 
 }

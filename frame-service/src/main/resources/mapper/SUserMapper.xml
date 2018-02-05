@@ -21,9 +21,12 @@
       SELECT id,`password` FROM `s_user` where username = #{userName} limit 1
   </select>
   
-  <!-- 调试 所用权限向用户展示 -->
+  <!-- 调试 所用权限向用户展示 select uid "id",key_ "key" from s_func -->
   <select id="auth" resultType="java.util.Map">
-      select uid "id",key_ "key" from s_func
+      select distinct uid id,key_ "key" from s_user_role ur
+      join s_role_func rf on ur.role_id = rf.role_id
+      join s_func f on f.id = rf.func_id
+      where ur.user_id = #{userId}
   </select>
   
   <select id="isExistUsername" resultType="java.lang.Integer">
