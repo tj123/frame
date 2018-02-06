@@ -10,11 +10,13 @@ import com.github.tj123.frame.api.service.SDictService;
 import com.github.tj123.frame.service.common.PageUtils;
 import com.github.tj123.frame.service.mapper.SDictItemMapper;
 import com.github.tj123.frame.service.mapper.SDictMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+@Slf4j
 @Service
 public class SDictServiceImpl implements SDictService {
 
@@ -133,6 +135,44 @@ public class SDictServiceImpl implements SDictService {
     @Override
     public PageResponse<Map<String, Object>> list(PageRequest request) throws Exception {
         return PageUtils.query(request, () -> mapper.list(request));
+    }
+
+    private String BASE_ENUM_PATH = "com.github.tj123.frame.api.envm.";
+
+
+    @Override
+    public List<Map<String, Object>> getDict(String type, String code, String depId) throws Exception {
+        List<Map<String, Object>> list = new ArrayList<>();
+        if (code == null || code.trim().equals(""))
+            return list;
+        if (type == null) {
+            type = "enum";
+        }
+        type = type.trim();
+        if (!type.equals("enum") && !type.equals("dtbs")) {
+            type = "enum";
+        }
+        if (type.equals("enum")) {
+            try {
+                Class<?> clazz = Class.forName(BASE_ENUM_PATH + code);
+                Object[] constants = clazz.getEnumConstants();
+                for (Object constant : constants) {
+                    if (constant == null)
+                        continue;
+                    Map<String, Object> map = new HashMap<>();
+                    Object key = clazz.getMethod("getKey").invoke(constant);
+                    map.put("key", String.valueOf(key == null ? constant : key));
+                    Object value = clazz.getMethod("getValue").invoke(constant);
+                    map.put("val", value == null ? "" : String.valueOf(value));
+                    list.add(map);
+                }
+            } catch (Exception e) {
+                log.error("获取枚举失败", e);
+            }
+        } else {
+
+        }
+        return list;
     }
 
 }

@@ -1,3 +1,4 @@
+require('shelljs/global');
 var tag = require('./tag');
 
 

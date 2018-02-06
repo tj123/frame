@@ -16,6 +16,10 @@
     <relativePath>../</relativePath>
   </parent>
   
+  <properties>
+    <start-class>com.github.tj123.frame.web.WebApplication</start-class>
+  </properties>
+  
   <dependencies>
     
     <dependency>
@@ -56,13 +60,11 @@
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
-      <version>2.7.0</version>
     </dependency>
     
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
-      <version>2.7.0</version>
     </dependency>
     
     <dependency>
@@ -75,10 +77,12 @@
   
   <build>
     <plugins>
+      
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      
     </plugins>
   </build>
 

@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.tj123.common.auth.AuthorizeSessionImpl;
 import com.github.tj123.common.auth.AuthorizeType;
 import com.github.tj123.common.auth.annotation.Authorize;
-import com.github.tj123.frame.api.service.DictService;
+import com.github.tj123.frame.api.service.SDictService;
 import com.github.tj123.frame.api.service.SUserService;
 import com.github.tj123.frame.web.common.Session;
 import com.github.tj123.frame.web.common.UpdateSession;
@@ -28,7 +28,7 @@ public class MainController {
     SUserService userService;
 
     @Reference
-    DictService dictService;
+    SDictService dictService;
 
     @Autowired
     Session session;

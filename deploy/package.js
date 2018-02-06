@@ -20,7 +20,7 @@ function init() {
 /**
  * 打包
  */
-function package(project) {
+function packagea(project) {
   var _pwd = pwd();
   var file = files[project];
   if (!file) {
@@ -45,7 +45,7 @@ args.shift();
 
 init();
 for (let arg of args) {
-  package(arg);
+  packagea(arg);
 }
 
 

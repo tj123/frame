@@ -1,11 +1,13 @@
 package com.github.tj123.frame.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.tj123.common.auth.annotation.Function;
 import com.github.tj123.frame.api.common.PageRequest;
 import com.github.tj123.frame.api.common.PageResponse;
 import com.github.tj123.frame.api.pojo.vo.DictVo;
 import com.github.tj123.frame.api.service.SDictService;
 import com.github.tj123.frame.web.common.Session;
+import com.github.tj123.frame.web.common.unit.Dict;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Map;
 
+
 @RestController
+@Function(Dict.class)
 @RequestMapping("/sdict")
 public class SDictController {
 
