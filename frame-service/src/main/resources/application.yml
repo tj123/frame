@@ -1,0 +1,38 @@
+
+
+logging:
+  level:
+    org.apache.zookeeper: WARN
+    org.I0Itec.zkclient: WARN
+    com.alibaba.dubbo: WARN
+    com.github.tj123.frame: DEBUG
+
+spring:
+  dubbo:
+    appname: frame-service
+    timeout: 3000
+
+  profiles:
+    active: dev
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+
+
+mybatis:
+  type-aliases-package: com.github.tj123.frame.api.po
+  mapper-locations: classpath:mapper/*.xml
+
+#mapper.mappers=com.github.tj123.frame.service.common.BaseMapper
+mapper:
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+system:
+  admin-ids: ebbe1ac85a6e4d2cb7dccb3b7459f078

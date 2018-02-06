@@ -16,10 +16,6 @@
 		<relativePath>../</relativePath>
 	</parent>
 	
-	<properties>
-		<start-class>com.github.tj123.frame.service.ServiceApplication</start-class>
-	</properties>
-	
 	<dependencies>
 		
 		<dependency>

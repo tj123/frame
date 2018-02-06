@@ -1,0 +1,22 @@
+
+spring:
+  dubbo:
+    appname: frame-web
+    timeout: 3000
+
+  profiles:
+    active: dev
+
+logging:
+  level:
+    org.apache.zookeeper: WARN
+    org.I0Itec.zkclient: WARN
+    com.alibaba.dubbo: WARN
+
+server:
+  context-path: /api/v1
+
+auth:
+  exclude: /error,/swagger-ui.html,/swagger-resources/**,/images/**,/v2/api-docs/**,/configuration/**
+  web-header: ____x_a
+  web-enable: true
