@@ -3,56 +3,8 @@
 require('shelljs/global');
 var ci = require('commander');
 
-function range(val) {
-  return val.split('..').map(Number);
-}
-
-function list(val) {
-  return val.split(',');
-}
-
-function collect(val, memo) {
-  memo.push(val);
-  return memo;
-}
-
-function increaseVerbosity(v, total) {
-  return total + 1;
-}
-
-ci
-  .version('0.1.0')
-  .usage('[options] <params ...>')
-  // .option('-i, --integer <n>', 'An integer argument', parseInt)
-  // .option('-f, --float <n>', 'A float argument', parseFloat)
-  // .option('-r, --range <a>..<b>', 'A range', range)
-  // .option('-l, --list <items>', 'A list', list)
-  // // .option('-o, --optional [value]', 'An optional value')
-  // // .option('-c, --collect [value]', 'A repeatable value', collect, [])
-  // .option('-v, --verbose', 'A value that can be increased', increaseVerbosity, 0);
-
-
-// ci.option('-c, --clean [item]','清除编译产生的文件',(val,mem) => {
-//   mem.push(val);
-//   return mem;
-// },[]);
-
-// ci.option('-C, --compress', '指定要压缩的文件');
-
-// ci.option('-p, --package', '打包');
-
-// ci.command('rmdir <dir> [otherDirs...]')
-//   .action(function (dir, otherDirs) {
-//     console.log('rmdir %s', dir);
-//     console.log(otherDirs);
-//     console.log(ci.env);
-//     // if (otherDirs) {
-//     //   otherDirs.forEach(function (oDir) {
-//     //     console.log('rmdir %s', oDir);
-//     //   });
-//     // }
-//   });
-
+ci.version('0.1.0')
+  .usage('[options] <params ...>');
 
 ci.option('-o, --outDir [dir]', '指定生成文件所在目录,使用相对路径', 'build');
 ci.option('-e, --env [value]', '指定环境 (test,prod)');
@@ -60,6 +12,7 @@ ci.option('-e, --env [value]', '指定环境 (test,prod)');
 ci.command('clean [projects...]')
   .description('清除指定子工程,没有参数清除所用')
   .action(pjs => {
+    console.log('开始清除工程');
     exec('mvn clean');
     if (!pjs || pjs.length == 0) {
       rm('-rf', ci.outDir + '/*');
@@ -72,42 +25,43 @@ ci.command('clean [projects...]')
 
 ci.command('package [projects...]')
   .description('打包指定子工程,没有参数打包所有')
-  .option('-c, --compress', '是否压缩文件')
-  .action((pms,options) => {
+  .option('-c, --compress [value]', '是否压缩文件','true')
+  .action((pms,opt) => {
     var cmd = 'mvn ';
     if (ci.env) {
       cmd += '-P' + ci.env;
     }
-    // exec(cmd + 'package');
-
-    if(options.compress === true){
-
+    exec(cmd + 'package');
+    if(opt.compress == 'true'){
+      require('./compress')(pms,ci.outDir);
     }
-
   });
-// ci.arguments('<cmd> [env]')
-//   .action(function (cmd, env) {
-//     console.log(cmd);
-//     console.log(env);
-//
-//   });
 
+ci.command('version')
+  .description('从git读取版本信息 更新记录到 properties 文件')
+  .option('-p, --path [value]','properties文件所在路径','frame-web/src/main/resources/project.properties')
+  .action((opt) => {
+    require('./version')(opt.path);
+  });
 
-// ci.option('*','asdfasd',env => {
-//
-//   console.log(env);
-// });
+ci.command('tag')
+  .description('用git给当前 commit 打一个tag')
+  .action(() => {
+    var tag = require('./tag');
+    if(!tag.current){
+      tag.tag();
+    }else {
+      console.log(`tag ${tag.current} 已经存在`);
+    }
+  });
+
+ci.command('pushTag')
+  .description('把tag推到服务器上面')
+  .option('-u, --user [value]','git 用户名')
+  .option('-p, --password [value]','git 密码')
+  .action((opt) => {
+    var tag = require('./tag');
+    tag.push(opt.user,opt.password);
+  });
 
 ci.parse(process.argv);
-
-// console.log(ci.clean);
-
-// console.log(' int: %j', ci.integer);
-// console.log(' float: %j', ci.float);
-// console.log(' optional: %j', ci.optional);
-// ci.range = ci.range || [];
-// console.log(' range: %j..%j', ci.range[0], ci.range[1]);
-// console.log(' list: %j', ci.list);
-// console.log(' collect: %j', ci.collect);
-// console.log(' verbosity: %j', ci.verbose);
-// console.log(' args: %j', ci.args);

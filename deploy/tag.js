@@ -96,8 +96,15 @@ function createTag(comment) {
  * 推到 origin
  * @returns {*}
  */
-function pushTag() {
-  return exec('git push origin --tags');
+function pushTag(user,password,server) {
+  if(!server){
+    server = 'origin';
+  }
+  console.log(user);
+  console.log(password);
+  var e  = exec(`git push ${server} --tags`);
+
+  return e;
 }
 
 module.exports = {
