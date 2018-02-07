@@ -100,10 +100,7 @@ function pushTag(user,password,server) {
   if(!server){
     server = 'origin';
   }
-  console.log(user);
-  console.log(password);
   var e  = exec(`git push ${server} --tags`);
-
   return e;
 }
 

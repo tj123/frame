@@ -55,13 +55,14 @@ ci.command('tag')
     }
   });
 
-ci.command('pushTag')
+ci.command('push')
   .description('把tag推到服务器上面')
   .option('-u, --user [value]','git 用户名')
   .option('-p, --password [value]','git 密码')
+  .option('-r, --remote [value]','要推送的服务器','origin')
   .action((opt) => {
     var tag = require('./tag');
-    tag.push(opt.user,opt.password);
+    tag.push(opt.user,opt.password,opt.remote);
   });
 
 ci.parse(process.argv);
