@@ -7,9 +7,12 @@
   "license": "MIT",
   "scripts": {
     "deploy:test": "node deploy/dtest.js",
-    "package": "node deploy/package.js frame-web frame-service"
+    "package:all": "node deploy/package.js frame-web frame-service",
+    "package": "node deploy/package.js",
+    "ci":"node deploy/mvn-ci.js"
   },
   "dependencies": {
+    "commander": "^2.14.0",
     "shelljs": "^0.8.0",
     "tar": "^4.3.0"
   }

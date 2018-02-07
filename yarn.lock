@@ -17,6 +17,10 @@ chownr@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/chownr/download/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
 
+commander@^2.14.0:
+  version "2.14.0"
+  resolved "http://registry.npm.taobao.org/commander/download/commander-2.14.0.tgz#7b25325963e6aace20d3a9285b09379b0c2208b5"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
