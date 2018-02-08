@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 
-tmpDir="/tmp/asfasdgasefdd"
-deployDir="/yuanben/frame"
+tmpDir="<%=tmpDir%>"
+deployDir="<%=deployDir%>"
 
-jar_frame-service="frame-service-1.0.0-SNAPSHOT.jar"
-jar_frame-web="frame-web-1.0.0-SNAPSHOT.jar"
-
+<%for(var file in files){%>jar_<%=file%>="<%=files[file]%>"
+<%}%>
 
 function check_file(){
   eval 'jar=$jar_'$1
@@ -62,33 +61,20 @@ parms=$@
 for parm in ${parms[*]}; do
 
   case $parm in
-  frame-service-test)
-    check_file frame-service
-    stop frame-service
-    remove frame-service
-    extract frame-service
-    start frame-service test
+  <%for(var file in files){%><%=file%>-test)
+    check_file <%=file%>
+    stop <%=file%>
+    remove <%=file%>
+    extract <%=file%>
+    start <%=file%> test
     ;;
-  frame-service)
-    check_file frame-service
-    stop frame-service
-    remove frame-service
-    extract frame-service
-    start frame-service prod
-    ;;frame-web-test)
-    check_file frame-web
-    stop frame-web
-    remove frame-web
-    extract frame-web
-    start frame-web test
-    ;;
-  frame-web)
-    check_file frame-web
-    stop frame-web
-    remove frame-web
-    extract frame-web
-    start frame-web prod
-    ;;
+  <%=file%>)
+    check_file <%=file%>
+    stop <%=file%>
+    remove <%=file%>
+    extract <%=file%>
+    start <%=file%> prod
+    ;;<%}%>
   sleep)
     sleep 30
     ;;

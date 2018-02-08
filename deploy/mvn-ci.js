@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 require('shelljs/global');
-var ci = require('commander');
-var path = require('path');
+const ci = require('commander');
+const path = require('path');
+const _ = require('lodash');
 
 ci.version('0.1.0')
   .usage('[options] <params ...>');
@@ -95,6 +96,19 @@ ci.command('init')
     }
   });
 
+ci.command('create <file...>')
+  .description('根据配置生成初始化文件: sh (shell 脚本 ) yml (gitlab ci 初始化文件)')
+  .action(async(pms, opt) => {
+    try {
+      const render = require('./render');
+      if (-1 != _.indexOf(pms, 'sh')) {
+        await render.projectSh(new render.EjsData(config));
+      }
+    } catch (e) {
+      console.error(e);
+      exit(1);
+    }
+  });
 
 ci.parse(process.argv);
 

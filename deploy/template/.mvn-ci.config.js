@@ -1,6 +1,8 @@
 var config = {
-  project: 'farm',
+  project: 'frame',
   outDir: 'build',
+  tmpDir: '/tmp/asfasdgasefdd',
+  deployDir: '/yuanben/frame',
   version: {
     file: 'frame-web/src/main/resources/project.properties',
     content: function (ver) {
@@ -19,17 +21,13 @@ project.version=${ver}
   configs: [{
     env: 'prod',
     user: 'root',
-    tmpDir: '/tmp/asfasdgasefdd',
     middleServer: '192.168.1.22',
-    targetServer: '192.168.1.25',
-    deployDir: '/yuanben/frame'
+    targetServer: '192.168.1.25'
   }, {
     env: 'test',
     user: 'root',
-    tmpDir: '/tmp/asfasdgasefdd',
     middleServer: '192.168.1.22',
     targetServer: '192.168.1.25',
-    deployDir: '/yuanben/frame'
   }]
 };
 
