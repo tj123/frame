@@ -9,10 +9,11 @@
     "deploy:test": "node deploy/dtest.js",
     "package:all": "node deploy/package.js frame-web frame-service",
     "package": "node deploy/package.js",
-    "ci":"node deploy/mvn-ci.js"
+    "ci": "node deploy/mvn-ci.js"
   },
   "dependencies": {
     "commander": "^2.14.0",
+    "node-ssh": "^5.1.0",
     "shelljs": "^0.8.0",
     "tar": "^4.3.0"
   }
