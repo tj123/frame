@@ -52,6 +52,7 @@ class EjsData {
     this.outDir = cfg.outDir;
     this.tmpDir = cfg.tmpDir;
     this.deployDir = cfg.deployDir;
+    this.configs = cfg.configs;
     this.files = {};
     this.init(cfg);
   }
@@ -64,9 +65,27 @@ class EjsData {
 
 }
 
+async function renderDeploy(data,env){
+  const file = `deploy_${env}.sh`;
+  if(test('-f',file)){
+    console.error(`文件${file}已存在`);
+    exit(1);
+  }
+  const content = await render(path.join(__dirname, 'template/deploy.sh'), data);
+  fs.writeFileSync(file, content);
+}
+
+async function deploySh(data){
+  for(const cfg of data.configs){
+    const sgCfg = Object.assign({},data);
+    sgCfg.config = cfg;
+    await renderDeploy(sgCfg,cfg.env);
+  }
+}
 
 module.exports = {
   render: render,
   projectSh: sh,
-  EjsData: EjsData
+  EjsData: EjsData,
+  deploySh:deploySh
 };

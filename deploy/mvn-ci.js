@@ -97,12 +97,16 @@ ci.command('init')
   });
 
 ci.command('create <file...>')
-  .description('根据配置生成初始化文件: sh (shell 脚本 ) yml (gitlab ci 初始化文件)')
+  .description('根据配置生成初始化文件: sh (shell 脚本 ) yml (gitlab ci 初始化文件) deploy (deploy中间文件)')
   .action(async(pms, opt) => {
     try {
       const render = require('./render');
+      const data = new render.EjsData(config);
       if (-1 != _.indexOf(pms, 'sh')) {
-        await render.projectSh(new render.EjsData(config));
+        await render.projectSh(data);
+      }
+      if(-1 != _.indexOf(pms,'deploy')){
+        await render.deploySh(data);
       }
     } catch (e) {
       console.error(e);

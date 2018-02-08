@@ -22,12 +22,12 @@ project.version=${ver}
     env: 'prod',
     user: 'root',
     middleServer: '192.168.1.22',
-    targetServer: '192.168.1.25'
+    targetServer: ['192.168.1.25','192.168.1.23']
   }, {
     env: 'test',
     user: 'root',
     middleServer: '192.168.1.22',
-    targetServer: '192.168.1.25',
+    targetServer: ['192.168.1.25']
   }]
 };
 
