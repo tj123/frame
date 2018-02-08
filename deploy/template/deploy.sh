@@ -35,31 +35,16 @@ ssh <%=config.user%>@$server<%=i+1%> << EOF
 EOF<%}%>
 <%for(var i = 0;i < config.targetServer.length;i++){%>
 ## server<%=i+1%> 服务器
-<%for(var file in files){%>
-<%if(/service/.test(file))%> upload $server<%=i+1%> <%=file%>.tar.gz<%}%>
+<%for(var file in files){if(/service/.test(file)){%>upload $server<%=i+1%> <%=file%>.tar.gz
+<%}}}%><%for(var i = 0;i < config.targetServer.length;i++){%>
+ssh <%=config.user%>$server<%=i+1%> 'bash' < $projectSh -s \
+  <%const fls=[];for(let file in files){if(config.env != 'prod'){file = file + '-' + config.env};fls.push(file)}%><%=fls.filter(val => /service/.test(val)).join('\\\n  ')%>
 <%}%>
-
-## fstip 服务器
-upload $server1 data_service.tar.gz
-upload $server1 swb_service.tar.gz
-
-ssh root@$server1 'bash' < $fstip_sh -s \
- data-service \
- swb-service
-
-## yb 04 服务器
-upload $server2 fstip_service.tar.gz
-upload $server2 fstip_admin.tar.gz
-
-ssh root@$server2 'bash' < $fstip_sh -s \
-  fstip-service-proxy-simple \
-  fstip-admin
-
-upload $server1 fstip_job.tar.gz
-upload $server1 fstip_web.tar.gz
-
 sleep 20
-
-ssh root@$server1 'bash' < $fstip_sh -s \
- fstip-job \
- fstip-web
+<%for(var i = 0;i < config.targetServer.length;i++){%>
+## server<%=i+1%> 服务器
+<%for(var file in files){if(!/service/.test(file)){%>upload $server<%=i+1%> <%=file%>.tar.gz
+<%}}}%><%for(var i = 0;i < config.targetServer.length;i++){%>
+ssh <%=config.user%>$server<%=i+1%> 'bash' < $projectSh -s \
+  <%const fls=[];for(let file in files){if(config.env != 'prod'){file = file + '-' + config.env};fls.push(file)}%><%=fls.filter(val => !/service/.test(val)).join('\\\n  ')%>
+<%}%>
