@@ -54,7 +54,7 @@ ci.command('package [projects...]')
       exit(1);
     }
     if (opt.compress == 'true') {
-      require('./compress')(pms, config.outDir);
+      require('./compress')(pms, config);
     }
   });
 
