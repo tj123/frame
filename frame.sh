@@ -4,12 +4,12 @@
 tmpDir="/tmp/asfasdgasefdd"
 deployDir="/yuanben/frame"
 
-jar_frame-service="frame-service-1.0.0-SNAPSHOT.jar"
-jar_frame-web="frame-web-1.0.0-SNAPSHOT.jar"
+jar_frame_service="frame-service-1.0.0-SNAPSHOT.jar"
+jar_frame_web="frame-web-1.0.0-SNAPSHOT.jar"
 
 
 function check_file(){
-  eval 'jar=$jar_'$1
+  eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
   fil=$tmpDir/$jar.jar
   if [ -f $fil ]; then
     echo " 没有找到文件 $fil !"
@@ -25,7 +25,7 @@ function extract(){
 # $1 jar 包名称 $2 'test' 'prod'
 function start(){
     echo "开始启动 $1"
-    eval 'jar=$jar_'$1
+    eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
     nohup java -Xms256m -Xmx512m -jar $deployDir/$1/$jar.jar --spring.profiles.active=$2 >/dev/null 2>&1 &
     if [ $? -eq 0 ]; then
       echo "启动 服务 $1 成功"
