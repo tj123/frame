@@ -36,8 +36,9 @@ function start(){
 
 function stop(){
   echo "关闭 服务 $1"
-  pid=`ps -ef|grep $1|grep -v grep|grep -v PPID|grep -v tail|awk '{print $2}'`
-  if [ -n "$pid" ]; then
+  eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
+  pid=`ps -ef|grep $jar|grep -v grep|grep -v PPID|grep -v tail|awk '{print $2}'`
+  if [ "$pid" == "" ]; then
     echo "服务 $1 未运行"
   else
     kill -9 $pid
@@ -67,7 +68,7 @@ for parm in ${parms[*]}; do
     stop frame-service
     remove frame-service
     extract frame-service
-    start frame-service test
+    start frame-service dev
     ;;
   frame-service)
     check_file frame-service
@@ -81,7 +82,7 @@ for parm in ${parms[*]}; do
     stop frame-web
     remove frame-web
     extract frame-web
-    start frame-web test
+    start frame-web dev
     ;;
   frame-web)
     check_file frame-web
