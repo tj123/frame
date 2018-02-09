@@ -1,6 +1,7 @@
 require('shelljs/global');
 const NodeSsh = require('node-ssh');
 const path = require('path');
+const os = require('os');
 const ssh = new NodeSsh();
 
 
@@ -19,7 +20,7 @@ const delExists = file => {
 fi`;
 };
 
-async function upload(pms, config, env,password) {
+async function upload(pms, config, env, password) {
   let files = [];
   if (!pms || pms.length == 0) {
     for (const file in config.files) {
@@ -43,14 +44,13 @@ async function upload(pms, config, env,password) {
   const sshCfg = {};
   sshCfg.host = ecfg.middleServer;
   sshCfg.username = ecfg.user;
-  if(password){
+  if (password) {
     ecfg.password = password;
   }
   if (ecfg.password) {
     sshCfg.password = ecfg.password;
   } else {
-    const home = process.env.USERPROFILE;
-    const key = path.join(home,'.ssh/id_rsa');
+    const key = path.join(os.homedir(), '.ssh/id_rsa');
     sshCfg.privateKey = key;
   }
   await ssh.connect(sshCfg);
@@ -61,7 +61,7 @@ async function upload(pms, config, env,password) {
     if (!test('-f', fl)) {
       throw new Error(`找不到文件 ${fl}`);
     }
-    console.log(`开始上传 ${fl} 到${{test:'测试',prod:'正式'}[env]||env}环境`);
+    console.log(`开始上传 ${fl} 到${{test: '测试', prod: '正式'}[env] || env}环境`);
     await ssh.exec(delExists(rfl));
     await ssh.putFile(fl, rfl);
   }
@@ -70,7 +70,7 @@ async function upload(pms, config, env,password) {
   if (!test('-f', fl)) {
     throw new Error(`找不到文件 ${fl}`);
   }
-  console.log(`开始上传 ${fl} 到${{test:'测试',prod:'正式'}[env]||env}环境`);
+  console.log(`开始上传 ${fl} 到${{test: '测试', prod: '正式'}[env] || env}环境`);
   await ssh.exec(delExists(rfl));
   await ssh.putFile(fl, rfl);
   ssh.dispose();
