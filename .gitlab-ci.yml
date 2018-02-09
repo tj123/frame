@@ -6,6 +6,7 @@ stages:
 
 cache:
   paths:
+    - node_modules/*
     - build/*
     - frame-service/target/*.jar
     - frame-web/target/*.jar
@@ -23,10 +24,10 @@ cache:
   script:
     - yarn ci upload -e test
 
-
 部署测试:
   stage: staging
   when: manual
+  dependencies: ['上传测试']
   script:
     - ssh root@192.168.1.22 "bash" < deploy_test.sh
 
