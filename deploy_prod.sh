@@ -49,10 +49,10 @@ upload $server1 frame-service.tar.gz
 ## server2 服务器
 upload $server2 frame-service.tar.gz
 
-ssh root$server1 'bash' < $projectSh -s \
+ssh root@$server1 'bash' < $projectSh -s \
   frame-service
 
-ssh root$server2 'bash' < $projectSh -s \
+ssh root@$server2 'bash' < $projectSh -s \
   frame-service
 
 sleep 20
@@ -63,9 +63,9 @@ upload $server1 frame-web.tar.gz
 ## server2 服务器
 upload $server2 frame-web.tar.gz
 
-ssh root$server1 'bash' < $projectSh -s \
+ssh root@$server1 'bash' < $projectSh -s \
   frame-web
 
-ssh root$server2 'bash' < $projectSh -s \
+ssh root@$server2 'bash' < $projectSh -s \
   frame-web
 

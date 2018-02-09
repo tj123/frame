@@ -37,7 +37,7 @@ EOF<%}%>
 ## server<%=i+1%> 服务器
 <%for(var file in files){if(/service/.test(file)){%>upload $server<%=i+1%> <%=file%>.tar.gz
 <%}}}%><%for(var i = 0;i < config.targetServer.length;i++){%>
-ssh <%=config.user%>$server<%=i+1%> 'bash' < $projectSh -s \
+ssh <%=config.user%>@$server<%=i+1%> 'bash' < $projectSh -s \
   <%const fls=[];for(let file in files){if(config.env != 'prod'){file = file + '-' + config.env};fls.push(file)}%><%=fls.filter(val => /service/.test(val)).join('\\\n  ')%>
 <%}%>
 sleep 20
@@ -45,6 +45,6 @@ sleep 20
 ## server<%=i+1%> 服务器
 <%for(var file in files){if(!/service/.test(file)){%>upload $server<%=i+1%> <%=file%>.tar.gz
 <%}}}%><%for(var i = 0;i < config.targetServer.length;i++){%>
-ssh <%=config.user%>$server<%=i+1%> 'bash' < $projectSh -s \
+ssh <%=config.user%>@$server<%=i+1%> 'bash' < $projectSh -s \
   <%const fls=[];for(let file in files){if(config.env != 'prod'){file = file + '-' + config.env};fls.push(file)}%><%=fls.filter(val => !/service/.test(val)).join('\\\n  ')%>
 <%}%>
