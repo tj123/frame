@@ -8,6 +8,12 @@ var files = {
   'frame-web': ['frame-web/target/*.jar']
 }
 
+/**
+ * test -f 不支持通配符
+ */
+function hasFile(file){
+  return ls('-A',file).toString.split(',').length > 0;
+}
 
 /**
  * 打包
@@ -22,8 +28,8 @@ function packagea(project, buildPath) {
     }
     var ph = buildPath + '/' + project + '/';
     mkdir('-p', ph);
-    if(!test('-f',file)){
-      console.error(`文件 ${file} 不存在`);
+    if(!hasFile(file)){
+      console.error(`文件${file}不存在`);
       exit(1);
     }
     cp('-r', file, ph);
