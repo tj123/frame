@@ -1,6 +1,6 @@
 require('shelljs/global');
 const NodeSsh = require('node-ssh');
-
+const path = require('path');
 const ssh = new NodeSsh();
 
 
@@ -49,7 +49,9 @@ async function upload(pms, config, env,password) {
   if (ecfg.password) {
     sshCfg.password = ecfg.password;
   } else {
-    sshCfg.privateKey = '~/.ssh/id_rsa';
+    const home = process.env.USERPROFILE;
+    const key = path.join(home,'.ssh/id_rsa');
+    sshCfg.privateKey = key;
   }
   await ssh.connect(sshCfg);
   await ssh.exec(checkDir(tmpDir));
