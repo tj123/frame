@@ -10,9 +10,8 @@ jar_frame_web="frame-web-1.0.0-SNAPSHOT.jar"
 
 function check_file(){
   eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
-  fil=$tmpDir/$jar.jar
-  echo $fil
-  if [ -f $fil ]; then
+  fil=$tmpDir/$jar
+  if [ ! -f $fil ]; then
     echo " 没有找到文件 $fil !"
     exit 1
   fi
@@ -27,8 +26,7 @@ function extract(){
 function start(){
     echo "开始启动 $1"
     eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
-    echo $jar
-    nohup java -Xms256m -Xmx512m -jar $deployDir/$1/$jar.jar --spring.profiles.active=$2 >/dev/null 2>&1 &
+    nohup java -Xms256m -Xmx512m -jar $deployDir/$1/$jar --spring.profiles.active=$2 >/dev/null 2>&1 &
     if [ $? -eq 0 ]; then
       echo "启动 服务 $1 成功"
     else
