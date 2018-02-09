@@ -37,7 +37,7 @@ EOF
 ## server1 服务器
 upload $server1 frame-service.tar.gz
 
-ssh root@$server1 'bash' < $projectSh -s \
+ssh root@$server1 'bash' < $projectSh -s\
   frame-service-test
 
 sleep 20
@@ -45,6 +45,6 @@ sleep 20
 ## server1 服务器
 upload $server1 frame-web.tar.gz
 
-ssh root@$server1 'bash' < $projectSh -s \
+ssh root@$server1 'bash' < $projectSh -s\
   frame-web-test
 

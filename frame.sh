@@ -37,7 +37,7 @@ function start(){
 function stop(){
   echo "关闭 服务 $1"
   pid=`ps -ef|grep $1|grep -v grep|grep -v PPID|grep -v tail|awk '{print $2}'`
-  if [ "$pid" == "" ]; then
+  if [ -n "$pid" ]; then
     echo "服务 $1 未运行"
   else
     kill -9 $pid
