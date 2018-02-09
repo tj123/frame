@@ -4,13 +4,11 @@
 tmpDir="<%=tmpDir%>"
 deployDir="<%=deployDir%>"
 
-<%for(var file in files){%>jar_<%=file%>="<%=files[file]%>"
+<%for(var file in files){%>jar_<%=file.replace(/\-/g,'_')%>="<%=files[file]%>"
 <%}%>
-
 function check_file(){
-  eval 'jar=$jar_'$1
-  fil=$tmpDir/$jar.jar
-  if [ -f $fil ]; then
+  fil=$tmpDir/$1.tar.gz
+  if [ ! -f $fil ]; then
     echo " 没有找到文件 $fil !"
     exit 1
   fi
@@ -24,8 +22,8 @@ function extract(){
 # $1 jar 包名称 $2 'test' 'prod'
 function start(){
     echo "开始启动 $1"
-    eval 'jar=$jar_'$1
-    nohup java -Xms256m -Xmx512m -jar $deployDir/$1/$jar.jar --spring.profiles.active=$2 >/dev/null 2>&1 &
+    eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
+    nohup java -Xms256m -Xmx512m -jar $deployDir/$1/$jar --spring.profiles.active=$2 >/dev/null 2>&1 &
     if [ $? -eq 0 ]; then
       echo "启动 服务 $1 成功"
     else
@@ -35,7 +33,8 @@ function start(){
 
 function stop(){
   echo "关闭 服务 $1"
-  pid=`ps -ef|grep $1|grep -v grep|grep -v PPID|grep -v tail|awk '{print $2}'`
+  eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
+  pid=`ps -ef|grep $jar|grep -v grep|grep -v PPID|grep -v tail|awk '{print $2}'`
   if [ "$pid" == "" ]; then
     echo "服务 $1 未运行"
   else
@@ -60,8 +59,8 @@ fi
 parms=$@
 for parm in ${parms[*]}; do
 
-  case $parm in
-  <%for(var file in files){%><%=file%>-test)
+  case $parm in<%for(var file in files){%>
+  <%=file%>-test)
     check_file <%=file%>
     stop <%=file%>
     remove <%=file%>

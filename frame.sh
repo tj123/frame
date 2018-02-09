@@ -7,7 +7,6 @@ deployDir="/yuanben/frame"
 jar_frame_service="frame-service-1.0.0-SNAPSHOT.jar"
 jar_frame_web="frame-web-1.0.0-SNAPSHOT.jar"
 
-
 function check_file(){
   fil=$tmpDir/$1.tar.gz
   if [ ! -f $fil ]; then
@@ -67,7 +66,7 @@ for parm in ${parms[*]}; do
     stop frame-service
     remove frame-service
     extract frame-service
-    start frame-service dev
+    start frame-service test
     ;;
   frame-service)
     check_file frame-service
@@ -81,7 +80,7 @@ for parm in ${parms[*]}; do
     stop frame-web
     remove frame-web
     extract frame-web
-    start frame-web dev
+    start frame-web test
     ;;
   frame-web)
     check_file frame-web
