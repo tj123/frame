@@ -75,7 +75,8 @@ for parm in ${parms[*]}; do
     remove frame-service
     extract frame-service
     start frame-service prod
-    ;;frame-web-test)
+    ;;
+  frame-web-test)
     check_file frame-web
     stop frame-web
     remove frame-web

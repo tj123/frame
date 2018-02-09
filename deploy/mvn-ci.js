@@ -8,8 +8,6 @@ const _ = require('lodash');
 ci.version('0.1.0')
   .usage('[options] <params ...>');
 
-ci.option('-o, --outDir [dir]', '指定生成文件所在目录,使用相对路径', 'build');
-ci.option('-e, --env [value]', '指定环境 (test,prod)');
 ci.option('-cfg, --config [value]', '指定配置文件', '.mvn-ci.config.js');
 
 var config = null;
@@ -30,25 +28,26 @@ ci.command('clean [projects...]')
     console.log('开始清除工程');
     exec('mvn clean');
     if (!pjs || pjs.length == 0) {
-      rm('-rf', ci.outDir + '/*');
+      rm('-rf', config.outDir + '/*');
     } else {
       for (var ph of pjs) {
-        rm('-rf', ci.outDir + '/' + ph + '*');
+        rm('-rf', config.outDir + '/' + ph + '*');
       }
     }
   });
 
 ci.command('package [projects...]')
   .description('打包指定子工程,没有参数打包所有')
+  .option('-e, --env [value]', '指定环境 (test,prod)')
   .option('-c, --compress [value]', '是否压缩文件', 'true')
   .action((pms, opt) => {
     var cmd = 'mvn ';
-    if (ci.env) {
-      cmd += '-P' + ci.env;
+    if (opt.env) {
+      cmd += '-P' + opt.env + ' ';
     }
     exec(cmd + 'package');
     if (opt.compress == 'true') {
-      require('./compress')(pms, ci.outDir);
+      require('./compress')(pms, config.outDir);
     }
   });
 
@@ -91,9 +90,9 @@ ci.command('init')
   .action(()=> {
     if (test('-f', ci.config)) {
       console.log(`文件 ${ci.config} 已存在`);
-    } else {
-      cp(path.join(__dirname, 'template/.mvn-ci.config.js'), ci.config);
+      exit(1);
     }
+    cp(path.join(__dirname, 'template/.mvn-ci.config.js'), ci.config);
   });
 
 ci.command('create <file...>')
@@ -105,9 +104,23 @@ ci.command('create <file...>')
       if (-1 != _.indexOf(pms, 'sh')) {
         await render.projectSh(data);
       }
-      if(-1 != _.indexOf(pms,'deploy')){
+      if (-1 != _.indexOf(pms, 'deploy')) {
         await render.deploySh(data);
       }
+    } catch (e) {
+      console.error(e);
+      exit(1);
+    }
+  });
+
+ci.command('upload [files...]')
+  .description('上传指定文件 为指定上传所有')
+  .option('-e, --env [value]', '指定环境 (test,prod)', 'test')
+  .option('-p, --password [value]', '密码')
+  .action(async(pms, opt) => {
+    try {
+      const upload = require('./upload');
+      await upload.upload(pms, config, opt.env, opt.password);
     } catch (e) {
       console.error(e);
       exit(1);

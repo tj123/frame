@@ -13,27 +13,22 @@ cache:
 编译:
   stage: build
   script:
-    - mvn clean package
     - yarn
-    - yarn run package
+    - yarn ci clean
+    - yarn ci package
 
 上传测试:
   stage: package
   when: manual
   script:
-    - mvn -Ptest clean package
-    - ./package.sh all
-    - ssh root@fstip.ybveg.cn "rm -rf /yuanben/fstip_back && mkdir -p /yuanben/fstip_back"
-    - scp -r ./build/* root@fstip.ybveg.cn:/yuanben/fstip_back
+    - yarn ci upload -e test
 
 
 部署测试:
   stage: staging
   when: manual
   script:
-    - ssh root@fstip.ybveg.cn "rm -rf /yuanben/fstip_sh && mkdir -p /yuanben/fstip_sh"
-    - scp fstip.sh root@fstip.ybveg.cn:/yuanben/fstip_sh
-    - ssh root@fstip.ybveg.cn "bash" < deploy_test.sh
+    - ssh root@192.168.1.22 "bash" < deploy_test.sh
 
 #上传正式:
 #  stage: package
