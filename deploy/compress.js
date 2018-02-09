@@ -22,6 +22,10 @@ function packagea(project, buildPath) {
     }
     var ph = buildPath + '/' + project + '/';
     mkdir('-p', ph);
+    if(!test('-f',file)){
+      console.error(`文件 ${file} 不存在`);
+      exit(1);
+    }
     cp('-r', file, ph);
     cd(buildPath);
     tar.c({

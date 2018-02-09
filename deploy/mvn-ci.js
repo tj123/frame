@@ -26,7 +26,10 @@ ci.command('clean [projects...]')
   .description('清除指定子工程,没有参数清除所用')
   .action(pjs => {
     console.log('开始清除工程');
-    exec('mvn clean');
+    if( 1 == exec('mvn clean').code){
+      console.error('清除失败');
+      exit(1);
+    }
     if (!pjs || pjs.length == 0) {
       rm('-rf', config.outDir + '/*');
     } else {
@@ -45,7 +48,11 @@ ci.command('package [projects...]')
     if (opt.env) {
       cmd += '-P' + opt.env + ' ';
     }
-    exec(cmd + 'package');
+    const mn = exec(cmd + 'package');
+    if( 1 == mn.code){
+      console.error(mn.stderr || '打包失败');
+      exit(1);
+    }
     if (opt.compress == 'true') {
       require('./compress')(pms, config.outDir);
     }
