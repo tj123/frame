@@ -9,8 +9,7 @@ jar_frame_web="frame-web-1.0.0-SNAPSHOT.jar"
 
 
 function check_file(){
-  eval 'jar=$jar_'`echo $1|sed 's/-/_/g'`
-  fil=$tmpDir/$jar
+  fil=$tmpDir/$1.tar.gz
   if [ ! -f $fil ]; then
     echo " 没有找到文件 $fil !"
     exit 1
