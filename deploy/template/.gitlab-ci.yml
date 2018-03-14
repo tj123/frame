@@ -1,0 +1,49 @@
+stages:
+ - build
+ - package
+ - staging
+ - production
+
+cache:
+  paths:
+    - node_modules/*
+    - build/*
+    - frame-service/target/*.jar
+    - frame-web/target/*.jar
+
+编译:
+  stage: build
+  script:
+    - yarn
+    - yarn ci clean
+    - yarn ci package
+
+上传测试:
+  stage: package
+  when: manual
+  script:
+    - yarn ci upload -e test
+
+部署测试:
+  stage: staging
+  when: manual
+  dependencies: ['上传测试']
+  script:
+    - ssh root@192.168.1.22 "bash" < deploy_test.sh
+
+#上传正式:
+#  stage: package
+#  when: manual
+#  script:
+#    - mvn -Pprod clean package
+#    - ./package.sh all
+#    - ssh root@fstip.ybveg.com "rm -rf /yuanben/fstip_back && mkdir -p /yuanben/fstip_back"
+#    - scp -r ./build/* root@fstip.ybveg.com:/yuanben/fstip_back
+#
+#部署正式:
+#  stage: staging
+#  when: manual
+#  script:
+#    - ssh root@fstip.ybveg.com "rm -rf /yuanben/fstip_sh && mkdir -p /yuanben/fstip_sh"
+#    - scp fstip.sh root@fstip.ybveg.com:/yuanben/fstip_sh
+#    - ssh root@fstip.ybveg.com "bash" < deploy_prod.sh

@@ -12,6 +12,7 @@ logging:
     org.apache.zookeeper: WARN
     org.I0Itec.zkclient: WARN
     com.alibaba.dubbo: WARN
+    com.github.tj123.frame: DEBUG
 
 server:
   context-path: /api/v1

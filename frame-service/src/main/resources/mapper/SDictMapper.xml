@@ -11,7 +11,8 @@
       create_by_id createById,
       create_time createTime,
       update_by_id updateById,
-      update_time updateTime
+      update_time updateTime,
+      description
     from s_dict
   </select>
 
